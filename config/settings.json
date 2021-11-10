@@ -1,6 +1,6 @@
 {
-  "mongoConfig": {
-    "serverUrl": "mongodb://localhost:27017/",
-    "database": "Group_4"
+    "mongoConfig": {
+      "serverUrl": "mongodb://localhost:27017/",
+      "database": "flashcards"
+    }
   }
-}
