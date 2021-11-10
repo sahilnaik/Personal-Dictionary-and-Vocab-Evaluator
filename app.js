@@ -1,33 +1,30 @@
+const flashcards = require("./data/flashcard");
 const connection = require("./config/mongoConnection");
-const user = require("./data/user");
-const mcq = require("./data/mcq");
-const word = require("./data/words");
+const sessions = require("./data/sessions");
+const words=require("./data/words")
 
-const express = require('express');
-const app = express();
-const static = express.static(__dirname + '/public');
 
-const configRoutes = require('./routes');
-const exphbs = require('express-handlebars');
 
-app.use('/public', static);
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+const main = async () => {
 
-app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
-app.set('view engine', 'handlebars');
 
-configRoutes(app);
+try{
 
-// app.get("/", function (request, response) {
-//   response.sendFile(path.resolve("views/users/signup.html"));
-// });
+    /* const flashcard = await flashcards.create() */
+/* const session=await sessions.create_session('618bdd8bd143c0d513f6470b',1,["Correct"],["Not correct"]) */
+const word=await words.create_word('618bdd8bd143c0d513f6470b',1,"word","meaning",["synonym"],["antonym"],["example"],true)
+}
 
-// app.use("*", (request, response) => {
-//   response.status(404).json({ error: "Route not found" });
-// });
+ catch (error) {
+      console.log(error);
+    }
 
-app.listen(3000, () => {
-  console.log("We've now got a server!");
-  console.log("Your routes will be running on http://localhost:3000");
+
+
+    const db = await connection();
+    await db.serverConfig.close();
+};
+
+main().catch((error) => {
+console.log(error);
 });
