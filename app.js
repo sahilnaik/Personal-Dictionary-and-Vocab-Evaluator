@@ -1,21 +1,20 @@
 const connection = require("./config/mongoConnection");
 const user = require("./data/user");
 const mcq = require("./data/mcq");
-const word = require("./data/words");
 
-const express = require('express');
+const express = require("express");
 const app = express();
-const static = express.static(__dirname + '/public');
+const static = express.static(__dirname + "/public");
 
-const configRoutes = require('./routes');
-const exphbs = require('express-handlebars');
+const configRoutes = require("./routes");
+const exphbs = require("express-handlebars");
 
-app.use('/public', static);
+app.use("/public", static);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
-app.set('view engine', 'handlebars');
+app.engine("handlebars", exphbs({ defaultLayout: "main" }));
+app.set("view engine", "handlebars");
 
 configRoutes(app);
 
