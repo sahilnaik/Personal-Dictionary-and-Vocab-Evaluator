@@ -1,15 +1,15 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title></title>
+    <title>Signup Form</title>
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="../../public/css/signup.css" />
   </head>
   <body>
-    <form method="post" action="/signup" style="border: 1px solid #ccc">
+    <form method="post" id="myForm" action="/signup">
       <div class="container">
         <h1>Sign Up</h1>
         <p>Please fill in this form to create an account.</p>
@@ -45,36 +45,37 @@
 
         <label for="phonenumber"><b>Phone Number</b></label>
         <input
-          type="number"
-          placeholder="Enter Phone Number"
+          type="tel"
+          pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+          placeholder="123-456-7890"
           name="phonenumber"
           id="phonenumber"
           required
         />
-
-        <label for="psw"><b>Password</b></label>
+        <div id="phone-error"></div>
+        <label for="password"><b>Password</b></label>
         <input
           type="password"
           placeholder="Enter Password"
           name="psw"
+          class="psw"
           id="password"
           required
         />
 
-        <label for="psw-repeat"><b>Repeat Password</b></label>
+        <label for="password-repeat"><b>Repeat Password</b></label>
         <input
           type="password"
           placeholder="Repeat Password"
-          name="psw-repeat"
+          name="psw_repeat"
+          class="psw-repeat"
           id="password-repeat"
           required
         />
         <div id="pass-error"></div>
         <div class="clearfix">
           <button type="button" class="cancelbtn">Cancel</button>
-          <button type="submit" href="/" class="signupbtn" onclick="signup()">
-            Sign Up
-          </button>
+          <button type="submit" class="signupbtn">Sign Up</button>
         </div>
       </div>
     </form>

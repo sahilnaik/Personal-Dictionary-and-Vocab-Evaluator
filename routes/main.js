@@ -17,12 +17,5 @@ router.get("/signup", async (req, res) => {
     res.status(500).json({ error: e });
   }
 });
-router.post("/signup", async (req, res) => {
-  let signupData = req.body;
 
-  try {
-  } catch (e) {
-    res.status(500).json({ error: e });
-  }
-});
 module.exports = router;

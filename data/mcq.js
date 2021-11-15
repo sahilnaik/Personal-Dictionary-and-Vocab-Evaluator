@@ -45,6 +45,8 @@ async function createSession(userId, length) {
     question_word: "Word",
     answer: ["Word1", "Word2", "Word3", "Word4"],
     correctOrNot: bool,
+    correctAns: "Word",
+    userSelected: "Word",
   };
 
   QnAarray.push(QnA);
