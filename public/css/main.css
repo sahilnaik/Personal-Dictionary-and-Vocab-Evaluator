@@ -90,6 +90,7 @@ a{
     width: 100%;
     position: absolute;
     top:0px;
+    display: flex;
 }
 
 .dashboard-content{
@@ -231,4 +232,26 @@ body {
     text-align: center;
     position: relative;
     bottom:100px;
+}
+
+.right_navbar{
+    margin-left: 1400px;
+    font-size: large;
+    font-weight: 900;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    display: flex;
+}
+
+
+#right_profile{
+    position: relative;
+    bottom:5px;
+    left:10px;
+    border-radius: 50%;
+    border:1px solid black;
+    margin-left: 5px;
+    margin-bottom: 5px;
+    width: 40px;
+    height: 40px;
+
 }
