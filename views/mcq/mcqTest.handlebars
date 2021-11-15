@@ -1,3 +1,160 @@
-<div>
-    
+
+<div id="startMCQTest">
+        <Button type="button" class="btn btn-outline-primary" onclick="startTest()">Take Test</Button>
 </div>
+<div id="mcq_box">
+    <div class="row">
+            <div class="col-9 sub-box-mcq" style="background-color: white;">
+                <div class="content" id="contents">
+                    <h5 class="mcq-no" id="queNo">Question #1</h5>
+                    <h8 class="mcq-que" id="que">Do you know the synonym of this word?</h8>
+                    <h6 class="mcq-word" id="word"></h6>
+                    <div class="options" id="option">
+                        <input type="radio" id="option1" name="mcq_ans" value="option1" onclick="optionSelect()">
+                        <label for="option1" id="label_option1"></label><br>
+                        <input type="radio" id="option2" name="mcq_ans" value="option2" onclick="optionSelect()">
+                        <label for="option2" id="label_option2"></label><br>
+                        <input type="radio" id="option3" name="mcq_ans" value="option3" onclick="optionSelect()">
+                        <label for="option3" id="label_option3"></label><br>
+                        <input type="radio" id="option4" name="mcq_ans" value="option4" onclick="optionSelect()">
+                        <label for="option4" id="label_option4"></label>
+                    </div>
+                    
+                    
+                    <div id="buttons">
+                        <Button type="button" class="btn btn-secondary" id="next-button" onclick="next()">Next</Button>
+                        <Button type="button" class="btn btn-secondary" id="prev-button" onclick="prev()">Previous</Button>
+                        <Button type="button" class="btn btn-secondary" id="submit-button" onclick="eval()">Submit</Button>
+                    </div>
+                </div>
+            </div>
+    </div>
+
+</div>
+<script type = "text/javascript">
+        let wordindex=-1;
+        let words=[];
+        let number_of_correct=0;
+
+        function startTest(){
+            document.getElementById("startMCQTest").style.display="none";
+            initialize();
+            wordindex++;
+            que("next");
+            document.getElementById("mcq_box").style.display="grid";
+        }
+
+        function initialize(){
+            let session={};
+            let word={};
+            word["Question word"]="Dispel";
+            word["options"]=["Disband","Allurement","Adulation","Blandish"];
+            word["answer"]="Disband";
+            word["userSelection"]="";
+            word["correctOrNot"]="";
+            words.push(word);
+            let word1={};
+            word1["Question word"]="Sad";
+            word1["options"]=["Sorrow","Happy","Pleasant","Determined"];
+            word1["answer"]="Sorrow";
+            word1["userSelection"]="";
+            word1["correctOrNot"]="";
+            words.push(word1);
+            let word2={};
+            word2["Question word"]="Focused";
+            word2["options"]=["Sorrow","Happy","Pleasant","Determined"];
+            word2["answer"]="Determined";
+            word2["userSelection"]="";
+            word2["correctOrNot"]="";
+            words.push(word2);
+            session["words"]=words;
+        }
+
+        function que(page){
+            if(page==="next"){
+                let word3=words[wordindex];
+                document.getElementById("word").innerHTML=word3["Question word"];
+                let options=word3["options"];
+                document.getElementById("label_option1").innerHTML=options[0];
+                document.getElementById("label_option2").innerHTML=options[1];
+                document.getElementById("label_option3").innerHTML=options[2];
+                document.getElementById("label_option4").innerHTML=options[3];
+            }
+            else if(page==="prev"){
+                let word3=words[wordindex];
+                document.getElementById("word").innerHTML=word3["Question word"];
+                let options=word3["options"];
+                document.getElementById("label_option1").innerHTML=options[0];
+                document.getElementById("label_option2").innerHTML=options[1];
+                document.getElementById("label_option3").innerHTML=options[2];
+                document.getElementById("label_option4").innerHTML=options[3];
+            }
+            
+
+        }
+
+        function optionSelect(){
+            document.getElementById("buttons").style.display="flex";
+            let ele=document.getElementsByName("mcq_ans");
+            for(i = 0; i < ele.length; i++) {
+                if(ele[i].checked){
+                   console.log(ele[i].id);
+                   console.log(document.getElementById("label_"+ele[i].id).innerText);
+                   words[wordindex]["userSelection"]=document.getElementById("label_"+ele[i].id).innerText;
+                }
+            }
+            
+        }
+
+        function next(){
+            wordindex++;
+            if(wordindex==2){
+                document.getElementById("submit-button").style.display="flex";
+            }
+            que("next");
+            var ele = document.getElementsByName("mcq_ans");
+            for(var i=0;i<ele.length;i++){
+                console.log(words[wordindex]["userSelection"]);
+                console.log(wordindex);
+                console.log(document.getElementById("label_"+ele[i].id).innerText);
+                if(words[wordindex].userSelection===document.getElementById("label_"+ele[i].id).innerText){
+                    ele[i].checked = true;
+                }else{
+                    ele[i].checked = false;
+                }
+            }
+
+        }
+
+        function prev(){
+            wordindex--;
+            que("prev");
+            var ele = document.getElementsByName("mcq_ans");
+            for(var i=0;i<ele.length;i++){
+                console.log(words[wordindex]["userSelection"]);
+                console.log(wordindex);
+                console.log(document.getElementById("label_"+ele[i].id).innerText);
+                if(words[wordindex]["userSelection"]===document.getElementById("label_"+ele[i].id).innerText){
+                    ele[i].checked = true;
+                }else{
+                    ele[i].checked = false;
+                }
+            }
+        }
+
+        function eval(){
+            for(let k=0;k<words.length;k++){
+                if(words[k]["userSelection"]===words[k]["answer"]){
+                    words[k]["correctOrNot"]="true";
+                    number_of_correct++;
+                }else{
+                    words[k]["correctOrNot"]="false";
+                }   
+            }
+            console.log(words);
+            console.log(number_of_correct);
+            let percentage=number_of_correct/words.length*100;
+            console.log("Marks secured: "+number_of_correct+" out of "+words.length);
+            console.log("Percentage of Marks secured: "+percentage);
+        }       
+</script>
