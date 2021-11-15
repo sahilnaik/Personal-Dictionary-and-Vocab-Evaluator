@@ -1,5 +1,6 @@
 body{
     margin:0;
+    height: 1000px;
 }
 .sidebar{
     background:#23282D;
@@ -99,4 +100,72 @@ a{
     position: relative;
     bottom: 700px;
     left:800px;
+    width:100px;
+}
+
+
+#mcq_box{
+    position: relative;
+    left:300px;
+    bottom:900px;
+    width:1200px;
+    display: none;
+}
+
+.sub-box-mcq{
+    display: grid;
+    margin: 0 20px;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+    place-content: center;
+    height: 500px;
+    width: 1000px;
+}
+
+.content{
+    display: grid;
+    position: relative;
+    left:60px;
+}
+
+.options{
+    position: relative;
+    left:20px;
+}
+.mcq-que{
+    position: relative;
+    right:80px;
+}
+
+.mcq-word{
+    padding-top: 20px;
+    position: relative;
+    left:40px;
+    padding-bottom: 10px;
+}
+
+#buttons{
+    position: relative;
+    bottom:10px;
+    display: none;
+}
+
+#next-button{
+    width:120px;
+    position: relative;
+    top:50px;
+    left:400px;
+}
+#prev-button{
+    width:120px;
+    position: relative;
+    top:50px;
+    right:450px;
+}
+
+#submit-button{
+    width:120px;
+    position: absolute;
+    top:50px;
+    left:0px;
+    display: none;
 }

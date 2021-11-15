@@ -1,5 +1,6 @@
 body{
     margin:0;
+    height:1000px;
 }
 .sidebar{
     background:#23282D;
@@ -134,5 +135,100 @@ a{
     height: 200px;
     position: relative;
     left:100px;
+    top:350px;
+}
+
+body {
+    font-family: "Roboto", sans-serif;
+    background:#d2eaf1;
+}
+  
+.circle-wrap {
+    margin: 150px auto;
+    width: 150px;
+    height: 150px;
+    background: #fefcff;
+    border-radius: 50%;
+    border: 1px solid #cdcbd0;
+}
+
+.circle-wrap .circle .mask,
+.circle-wrap .circle .fill1,
+.circle-wrap .circle .fill2,
+.circle-wrap .circle .fill3 {
+  width: 150px;
+  height: 150px;
+  position: absolute;
+  border-radius: 50%;
+}
+
+.mask .fill1,.mask .fill2,.mask .fill3{
+  clip: rect(0px, 75px, 150px, 0px);
+  background-color: #227ded;
+}
+
+.circle-wrap .circle .mask {
+    clip: rect(0px, 150px, 150px, 75px);
+}
+
+/* :root{
+    --startdegree1: ;
+    --enddegree1: ;
+    --animation1: fill ease-in-out 3s;
+} */
+
+/* .mask.full,
+.circle .fill {
+    animation: fill ease-in-out 3s;
+    transform: var(--enddegree1);
+}
+  
+@keyframes fill{
+   0% {
+      transform: var(--startdegree1);
+    }
+    100% {
+      transform: var(--enddegree1);
+    }
+} */
+
+.circle-wrap .inside-circle {
+    width: 122px;
+    height: 122px;
+    border-radius: 50%;
+    background: #d2eaf1;
+    line-height: 120px;
+    text-align: center;
+    margin-top: 14px;
+    margin-left: 14px;
+    color: #1e51dc;
+    position: absolute;
+    z-index: 100;
+    font-weight: 700;
+    font-size: 2em;
+}
+
+.chart-box{
+    display: flex;
+    justify-content: center;
+}
+
+.chart-box1{
+    position: relative;
+    left:0px;
+    bottom:0px;
+    display: flex;
+    justify-content: center;
+}
+
+.report_heading{
+    text-align: center;
+    position: relative;
     top:100px;
+}
+
+.report_ending{
+    text-align: center;
+    position: relative;
+    bottom:100px;
 }
