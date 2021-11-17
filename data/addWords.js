@@ -1,7 +1,6 @@
 const mongoCollections = require('../config/mongoCollections')
 let { ObjectId } = require('mongodb')
 const words = mongoCollections.words
-// import {v4 as uuidv4} from 'uuid';
 
 const addWord = async function (userId,  word, meaning, synonym, antonym, example) {
     let wordCollection = await words()
@@ -11,7 +10,6 @@ const addWord = async function (userId,  word, meaning, synonym, antonym, exampl
     }
     word = word.toLowerCase()  
     let newWord = {
-        // id: uuidv4(),
         word: word,
         meaning: meaning,
         synonyms: [],
@@ -21,14 +19,34 @@ const addWord = async function (userId,  word, meaning, synonym, antonym, exampl
         noOfTimesCorrect: 0
     }
 
-    newWord.synonyms.push(synonym)
-    newWord.antonyms.push(antonym)
-    newWord.examples.push(example)
+    synonym = synonym.split(" ")
+    synonym.forEach(x => {
+        newWord.synonyms.push(x) 
+    });
+    antonym = antonym.split(" ")
+    antonym.forEach(x =>{
+        newWord.antonyms.push(x)
+    })
+    example = example.split(".")
+    example.forEach(x =>{
+        newWord.examples.push(x)
+    })
 
     let result = await wordCollection.updateOne({userId: userId}, {$addToSet: {words: newWord}})
     if (result.modifiedCount === 0) {
         throw {code: 500, error: `Unable to add the word to the Document`} 
     }
+
+    let wordDocumentWithWords = await wordCollection.findOne({userId: userId})
+    if (!wordDocumentWithWords) {
+        throw {code: 500, error: `Unable to get the word document after adding the word`}
+    }
+    // updating the YET TO LEARN KEY
+    result = await wordCollection.updateOne({userId: userId}, {$set: {yetToLearn: wordDocumentWithWords.words.length}})
+    if (result.modifiedCount === 0) {
+        throw {code: 500, error: `Unable to update the overallRating of the restaurant`} 
+    }
+
 }
 
 module.exports = {
