@@ -17,16 +17,8 @@ app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
 configRoutes(app);
-async function create() {
-  try {
-    const mcqCol = await mcq.create("6192c8b1cec5295a3aa3b2b9");
-  } catch (e) {
-    console.log(e);
-  }
-}
-create();
 
-// app.listen(3000, () => {
-//   console.log("We've now got a server!");
-//   console.log("Your routes will be running on http://localhost:3000");
-// });
+app.listen(3000, () => {
+  console.log("We've now got a server!");
+  console.log("Your routes will be running on http://localhost:3000");
+});
