@@ -5,18 +5,17 @@ const words = mongoCollections.words
 
 const createWordsDocument = async function createWordsDocument(userId) {
     let wordCollection = await words()
-    word = word.toLowerCase()
     let result
     let newWordObject = {
         _id: new ObjectId(),
         userId: userId,
-        word: [],
+        words: [],
         yetToLearn: 0,
         learning: 0,
         learnt: 0
     }
     
-    newWordObject.word.push(newWord)
+    // newWordObject.words.push(newWord)
     const insertWord = await wordCollection.insertOne(newWordObject)  
     if (insertWord.insertedCount === 0) {
         throw {code: 500, error: `Unable to add the word`}

@@ -1,5 +1,7 @@
-const wordsData = require('./createWordsDocument')
+const wordsDocument = require('./createWordsDocument')
+const addWord = require('./addWords')
 
 module.exports = {
-    wordsData: wordsData
+    wordsDocument: wordsDocument,
+    addWord: addWord
 }
