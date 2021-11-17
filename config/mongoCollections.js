@@ -19,5 +19,5 @@ module.exports = {
   user: getCollectionFn("user"),
   initialSeed: getCollectionFn("initialSeed"),
   mcq: getCollectionFn("mcq"),
-  word: getCollectionFn("word"),
+  word: getCollectionFn("words"),
 };

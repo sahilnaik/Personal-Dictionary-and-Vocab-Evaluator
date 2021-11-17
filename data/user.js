@@ -21,19 +21,47 @@ async function create(firstName, lastName, email, phoneNumber, password) {
   ) {
     throw "Phone number invalid";
   }
+  if (
+    firstName.length < 1 ||
+    lastName.length < 1 ||
+    email.length < 1 ||
+    password.length < 8
+  ) {
+    throw "Bad input";
+  }
+  email = email.toLowerCase();
   const checkForLetters = (phoneNumber) =>
     [...phoneNumber].every((c) => "0123456789-".includes(c));
 
   if (checkForLetters(phoneNumber) === false) {
     throw "Phone number invalid";
   }
-  let wordsId;
-  let flashcardId;
-  let overallLearnt;
-  let mcqTestId;
+  if (!validateEmail(email)) {
+    throw "Invalid email";
+  }
+
+  let wordsId = 0;
+  let flashcardId = 0;
+  let overallLearnt = 0;
+  let mcqTestId = 0;
 
   const userCollection = await user();
-
+  const checkEmail = await userCollection.findOne({
+    email: email,
+  });
+  const checkPhone = await userCollection.findOne({
+    phoneNumber: phoneNumber,
+  });
+  if (checkPhone !== null) {
+    if (checkPhone.phoneNumber === phoneNumber) {
+      throw "Phone number provided already exists";
+    }
+  }
+  if (checkEmail !== null) {
+    if (checkEmail.email === email) {
+      throw "Email provided is already registered";
+    }
+  }
   let newUser = {
     firstName,
     lastName,
@@ -50,29 +78,25 @@ async function create(firstName, lastName, email, phoneNumber, password) {
   if (insertInfo.insertedCount === 0) throw "Could not add user";
 }
 
-async function get(id) {
-  if (arguments.length !== 1) {
+async function get(email, password) {
+  if (arguments.length !== 2) {
     throw "Check arguments passed";
   }
-  id = id.trim();
-  if (ObjectId.isValid(id) === false) {
-    throw `Error in id`;
-  }
-  errorHandle(id);
+  stringErrorHandler(email);
+  stringErrorHandler(password);
 
-  if (typeof id !== "string") throw "Id must be a string";
-  let Id = ObjectId(id);
-
-  if (!id) throw "You must provide an id to search for";
   const userCollection = await user();
-  const inputId = await userCollection.findOne({ _id: Id });
-  if (inputId === null) {
-    throw "No User with that id";
+  const checkEmail = await userCollection.findOne({ email: email });
+  if (checkEmail === null) {
+    throw "No User with that email id";
   }
-
-  inputId["_id"] = inputId["_id"].toString();
-
-  return inputId;
+  if (checkEmail !== null) {
+    if (checkEmail.email === email && checkEmail.password === password) {
+      return checkEmail; 
+    } else {
+      throw "Invalid email and password combination";
+    }
+  }
 }
 
 async function remove(id) {
@@ -150,7 +174,11 @@ async function update(id, firstName, lastName, email, phone, password) {
   }
   return await this.get(id.toString());
 }
-
+function validateEmail(email) {
+  const re =
+    /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  return re.test(email);
+}
 module.exports = {
   create,
   get,
