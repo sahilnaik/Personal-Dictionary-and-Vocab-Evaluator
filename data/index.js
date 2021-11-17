@@ -7,5 +7,5 @@ module.exports = {
   user: userData,
   initialSeed: initialSeedData,
   mcq: mcqData,
-  // word: wordData,
+  //word: wordData,
 };

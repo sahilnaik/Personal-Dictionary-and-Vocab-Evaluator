@@ -1,6 +1,7 @@
 const mongoCollections = require("../config/mongoCollections");
 const mcq = mongoCollections.mcq;
 const user = mongoCollections.user;
+const word = mongoCollections.word;
 let { ObjectId } = require("mongodb");
 
 async function create(userId) {
@@ -41,15 +42,50 @@ async function createSession(userId, length) {
   let count = length;
   let bool;
   let QnAarray = [];
-  let QnA = {
-    question_word: "Word",
-    answer: ["Word1", "Word2", "Word3", "Word4"],
-    correctOrNot: bool,
-    correctAns: "Word",
-    userSelected: "Word",
-  };
+  let prevQuestion = [];
+  const wordCollection = await word();
+  const findWords = await wordCollection
+    .find({ userId: userId }, { projection: { words: 1 } })
+    .toArray();
+  let noOfWords = findWords[0].words.length - 1;
 
-  QnAarray.push(QnA);
+  for (let iterations = 0; iterations < 9; iterations++) {
+    let randomNum = Math.round(Math.random() * noOfWords);
+    let question_word = findWords[0].words[randomNum].word;
+    let answer_word = findWords[0].words[randomNum].synonyms[0];
+    if (!prevQuestion.includes(question_word)) {
+      let wrongOption;
+      let ansOptions = [];
+      let counter = 0;
+      for (let i = 0; i < 4; i++) {
+        let randomNumForOptions = Math.round(Math.random() * noOfWords);
+        wrongOption = findWords[0].words[randomNumForOptions].antonyms[0];
+        if (counter < 3) {
+          if (
+            randomNumForOptions != randomNum &&
+            !ansOptions.includes(wrongOption)
+          ) {
+            ansOptions.push(wrongOption);
+            counter++;
+          } else {
+            i--;
+          }
+        }
+      }
+      ansOptions.push(answer_word);
+      shuffleArray(ansOptions);
+      let QnA = {
+        question_word: question_word,
+        answer: ansOptions,
+        correctOrNot: bool,
+        correctAns: answer_word,
+      };
+      prevQuestion.push(question_word);
+      QnAarray.push(QnA);
+    } else {
+      iterations--;
+    }
+  }
   let sessionObject = {
     _id: count + 1,
     words: QnAarray,
@@ -60,6 +96,13 @@ async function createSession(userId, length) {
     { userId: userId },
     { $push: { sessions: sessionObject } }
   );
+}
+
+function shuffleArray(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
 }
 module.exports = {
   create,

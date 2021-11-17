@@ -29,7 +29,7 @@ router.post("/", async (req, res) => {
 
   try {
     const checkUser = await userData.get(email, password);
-    res.status(200).json(checkUser);
+    res.redirect("./");
   } catch (error) {
     res.status(500).json({ error: error });
   }
