@@ -5,8 +5,8 @@ const path = require('path');
 
 router.get('/', async(req,res)=>{
     try{
-        // res.sendFile(path.resolve('static/flashcard.html'));
-        res.render('flashcard/flashcard');
+        // res.sendFile(path.resolve('static/addWords.html'));
+        res.render('words/viewWords');
     }catch(e){
         res.status(500).json({error:e});
     }

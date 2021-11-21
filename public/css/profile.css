@@ -1,5 +1,6 @@
 body{
     margin:0;
+    height:1000px;
 }
 .sidebar{
     background:#23282D;
@@ -12,6 +13,7 @@ body{
 a{
     text-decoration: none;
 }
+
 .sidebar-dashboard{
     text-align: center;
     padding-top: 50px ;
@@ -83,55 +85,71 @@ a{
     transform: scale(1);
 }
 
+
 .navbar{
     background-color:#ffffff;
     height: 50px;
-    width: 100%;
     position: absolute;
     top:0px;
+    /* z-index: 1; */
 }
 
-.dashboard{
-    position: absolute;
-    top:20px;
-    left:400px;
+.profile_form{
+    position: relative;
+    left:150px;
+    bottom:950px;
+
 }
-.dashboard-content{
+
+.profile_pic_box{
     display: flex;
     justify-content: center;
-    
-}
-.add-word-form{
-    position: absolute;
-    top:120px;
-    right:100px;
 }
 
-.word-field{
-    display: flex;
-    width:500px;
+#profile_pic{
+    position:relative;
+    top:50px;
+    right:50px;
+    border-radius: 50%;
+    border:1px solid white;
+    width: 200px;
+    height: 200px;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.8);
 }
 
-.meaning-field{
-    display: flex;
-}
-
-.synonym-field{
-    display: flex;
-}
-
-.antonym-field{
-    display: flex;
-}
-
-.example-field{
-    display: flex;
-}
-
-.submit-field{
-    display: flex;
+#pen{
     position: relative;
-    left:350px;
-    top:30px;
+    top:210px;
+    right:80px;
 }
 
+#pen:hover{
+    transition: transform .5s ease;
+    transform: scale(0.9);
+}
+
+#myfile{
+    display: none;
+}
+
+#submit_file{
+    display: none;
+}
+
+.profile_details{
+    position: relative;
+    left:200px;
+    bottom:800px;
+}
+
+.pname{
+    font-weight: 700;
+    font-size: large;
+}
+
+hr{
+    border:1px black solid;
+    width:1535px;
+    position: relative;
+    right:125px;
+}

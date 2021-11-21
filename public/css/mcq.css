@@ -98,15 +98,15 @@ a{
 #startMCQTest{
     display: flex;
     position: relative;
-    bottom: 700px;
-    left:800px;
+    bottom: 650px;
+    left:850px;
     width:100px;
 }
 
 
 #mcq_box{
     position: relative;
-    left:300px;
+    left:500px;
     bottom:900px;
     width:1200px;
     display: none;

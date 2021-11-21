@@ -1,0 +1,189 @@
+<link rel="stylesheet" href="../public/css/viewWords.css">
+<link rel="stylesheet" href="../public/css/profile.css">
+<body onload="progressbarCalculator()">
+<div class="main_container" >
+    <div class="word_title">Personal Dictionary</div>
+
+    <div class="word_box">
+        <div class="progress_desc">
+            <span id="wordCount"></span> out of <span id="wordTotal"></span> words learnt
+        </div>
+        <span class="percentage"><span id="perc"></span></span>
+        <div class="progress" style="width:1280px;margin-bottom:50px;background-color:lightgray;">
+            <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" id="pbar" style="background-color: rgb(54, 224, 54);"></div>
+        </div>
+
+        <div class="select">
+            <select>
+                <option value="1">All Words</option>
+                <option value="2">Yet to Learn</option>
+                <option value="3">Learning</option>
+                <option value="4">Learnt</option>
+            </select>
+        </div>
+
+        <form>
+        <input class="chosen-value" type="text" value="" placeholder="Type to filter">
+        <ul class="value-list">
+        </ul>
+        </form>
+        <form id="details-form">
+        <div class="details-box">
+            <div class="word-field">
+                <h5 id="word" style="position:relative; left:550px; top:15px; color:white; font-size:x-large; font-weight: bold;"></h5>    
+            </div>
+        <br>    
+        <label for="meaning">
+                <div class="meaning-field">
+                    <h5>Meaning &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp : &nbsp &nbsp &nbsp &nbsp &nbsp<span name="" id="meaning" contenteditable="true"></span></h5>
+                    
+                </div>
+        </label>
+        <br> 
+        <label for="synonyms">
+                <div class="synonyms-field">
+                    <h5>Synonyms &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp : &nbsp &nbsp &nbsp &nbsp &nbsp<span name="" id="synonyms" contenteditable="true"></span></h5>
+                </div>
+        </label>
+        <br> 
+        <label for="antonyms">
+                <div class="antonyms-field">
+                    <h5>Antonyms &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp : &nbsp &nbsp &nbsp &nbsp &nbsp<span name="" id="antonyms" contenteditable="true"></span></h5>
+                     
+                </div>
+        </label>
+        <br>  
+        <label for="example">
+                <div class="example-field">
+                    <h5>Example &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp : &nbsp &nbsp &nbsp &nbsp &nbsp<span name="" id="example" contenteditable="true"></span></h5>
+                    
+                </div>
+        </label>
+        </form>
+        </div>
+    </div>
+</div>
+</body>
+<script type="text/javascript">
+    let selection="";
+    let wordList=[];
+    let finalList=[];
+    let wordObj={};
+    wordObj["word"]="happy";
+    wordObj["meaning"]="feeling pleasant";
+    wordObj["synonyms"]="pleasant,jovial";
+    wordObj["antonyms"]="sad";
+    wordObj["example"]="I am happy!";
+    wordList.push(wordObj);
+    let wordObj1={};
+    wordObj1["word"]="Sad";
+    wordObj1["meaning"]="feeling Bad";
+    wordObj1["synonyms"]="unhappy,sorrowful";
+    wordObj1["antonyms"]="happy";
+    wordObj1["example"]="I am sad!";
+    wordList.push(wordObj1);
+    wordList.map((obj)=>{
+        finalList.push(obj["word"]);
+    });
+    const inputField = document.querySelector('.chosen-value');
+    const dropdown = document.querySelector('.value-list');
+    let elementList=[];
+    finalList.map((ele)=>{
+        let element=document.createElement("li");
+        let text=document.createTextNode(ele);
+        element.appendChild(text);
+        dropdown.appendChild(element);
+    });
+    const dropdownArray = [... document.querySelectorAll('li')];
+    console.log(typeof dropdownArray)
+    dropdown.classList.add('open');
+    inputField.focus();
+    let valueArray = [];
+    dropdownArray.forEach(item => {
+    valueArray.push(item.textContent);
+    });
+
+    const closeDropdown = () => {
+    dropdown.classList.remove('open');
+    }
+
+    inputField.addEventListener('input', () => {
+    dropdown.classList.add('open');
+    let inputValue = inputField.value.toLowerCase();
+    let valueSubstring;
+    if (inputValue.length > 0) {
+        for (let j = 0; j < valueArray.length; j++) {
+        if (!(inputValue.substring(0, inputValue.length) === valueArray[j].substring(0, inputValue.length).toLowerCase())) {
+            dropdownArray[j].classList.add('closed');
+        } else {
+            dropdownArray[j].classList.remove('closed');
+        }
+        }
+    } else {
+        for (let i = 0; i < dropdownArray.length; i++) {
+        dropdownArray[i].classList.remove('closed');
+        }
+    }
+    });
+
+    dropdownArray.forEach(item => {
+    item.addEventListener('click', (evt) => {
+        inputField.value = item.textContent;
+        selection=item.textContent;
+        elementReturn(selection);
+        dropdownArray.forEach(dropdown => {
+        dropdown.classList.add('closed');
+        });
+    });
+    })
+
+    inputField.addEventListener('focus', () => {
+    inputField.placeholder = 'Type to filter';
+    dropdown.classList.add('open');
+    dropdownArray.forEach(dropdown => {
+        dropdown.classList.remove('closed');
+    });
+    });
+
+    inputField.addEventListener('blur', () => {
+    inputField.placeholder = 'Select Word';
+    dropdown.classList.remove('open');
+    });
+
+    document.addEventListener('click', (evt) => {
+    const isDropdown = dropdown.contains(evt.target);
+    const isInput = inputField.contains(evt.target);
+    if (!isDropdown && !isInput) {
+        dropdown.classList.remove('open');
+    }
+    });
+
+    function elementReturn(selection){
+        document.getElementById("details-form").style.display="flex";
+        document.getElementById("word").innerText=selection.toUpperCase();
+        let meaning,synonyms,antonyms,example="";
+        wordList.map((obj)=>{
+            if(obj["word"]===selection){
+                meaning=obj["meaning"];
+                synonyms=obj["synonyms"];
+                antonyms=obj["antonyms"];
+                example=obj["example"];
+            }
+        });
+        document.getElementById("meaning").innerHTML=meaning;
+        document.getElementById("synonyms").innerText=synonyms;
+        document.getElementById("antonyms").innerText=antonyms;
+        document.getElementById("example").innerText=example;
+    }
+
+    function progressbarCalculator(){
+        let total_no_of_words=100;
+        let words_learnt=20;
+        let percentage=words_learnt/total_no_of_words*100;
+        document.getElementById("pbar").style.width=percentage+"%";
+        document.getElementById("perc").innerText=percentage+"%";
+        document.getElementById("wordCount").innerText=words_learnt;
+        document.getElementById("wordTotal").innerText=total_no_of_words;
+
+    }
+</script>
