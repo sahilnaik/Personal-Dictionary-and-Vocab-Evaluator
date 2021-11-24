@@ -1,0 +1,96 @@
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Signup Form</title>
+  <meta name="description" content="" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="../../public/css/signup.css" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat"
+    rel="stylesheet"
+  />
+</head>
+<main>
+  <h1>Personal Dictionary and Vocab Evaluator</h1>
+  <form method="post" id="myForm" action="/signup">
+    <div class="container">
+      <h1>Sign Up</h1>
+      <p class="note">Please fill in this form to create an account.</p>
+      <hr />
+
+      <label for="email"><b>Email</b></label>
+      <input
+        type="text"
+        placeholder="Enter Email"
+        name="email"
+        id="email"
+        required
+      />
+      <div id="email-error"></div>
+
+      <label for="firstname"><b>First Name</b></label>
+      <input
+        type="text"
+        placeholder="Enter First Name"
+        name="firstname"
+        id="firstname"
+        required
+      />
+      <div id="firstname-error"></div>
+      <label for="lastname"><b>Last Name</b></label>
+      <input
+        type="text"
+        placeholder="Enter Last Name"
+        name="lastname"
+        id="lastname"
+        required
+      />
+      <div id="lastname-error"></div>
+      <label for="phonenumber"><b>Phone Number</b></label>
+      <input
+        type="tel"
+        pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+        placeholder="123-456-7890"
+        name="phonenumber"
+        id="phonenumber"
+        required
+      />
+      <div id="phone-error"></div>
+      <label for="password"><b>Password</b></label>
+      <input
+        type="password"
+        placeholder="Enter Password"
+        name="psw"
+        class="psw"
+        id="password"
+        required
+      />
+
+      <label for="password-repeat"><b>Repeat Password</b></label>
+      <input
+        type="password"
+        placeholder="Repeat Password"
+        name="psw_repeat"
+        class="psw-repeat"
+        id="password-repeat"
+        required
+      />
+      <div id="pass-error"></div>
+      <p class="error">{{error}}</p>
+      <div class="clearfix">
+        <button
+          type="button"
+          class="cancelbtn"
+          onclick="window.location.href='/'"
+        >
+          Cancel
+        </button>
+        <button type="submit" class="signupbtn">Sign Up</button>
+      </div>
+      <hr />
+      <a href="/login">Already have an account?</a>
+    </div>
+  </form>
+  <br />
+</main>
+<script src="../../public/js/signup.js"></script>

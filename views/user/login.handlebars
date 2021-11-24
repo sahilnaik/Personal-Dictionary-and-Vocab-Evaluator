@@ -1,0 +1,55 @@
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Login</title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="../public/css/login.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat"
+      rel="stylesheet"
+    />
+  </head>
+<main>
+  <h1>Personal Dictionary and Vocab Evaluator</h1>
+    <form action="/login" method="post" id="myForm">
+      <div class="container">
+        <h1>Login</h1>
+        <p class="note">Enter your credentials to continue</p>
+        <hr />
+        <label for="email"><b>Email</b></label>
+        <input
+          type="text"
+          placeholder="Enter Email"
+          name="email"
+          id="email"
+          required
+        />
+        <div id="email-error"></div>
+        <label for="password"><b>Password</b></label>
+        <input
+          type="password"
+          placeholder="Enter Password"
+          name="password"
+          id="password"
+          required
+        />
+        <div id="password-error"></div>
+        <p class="error">{{error}}</p>
+        <button
+          type="button"
+          class="cancelbtn"
+          onclick="window.location.href='/'"
+        >
+          Cancel
+        </button>
+        <button type="submit" class="loginbtn">Login</button>
+        <hr />
+        <a href="/signup">Don't have an account? Sign up here!</a>
+      </div>
+    </form>
+   
+    
+  </form>
+</main>
+<script src="../../public/js/login.js"></script>
