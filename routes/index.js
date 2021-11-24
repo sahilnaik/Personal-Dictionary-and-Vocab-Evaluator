@@ -4,7 +4,7 @@ const constructorMethod = (app) => {
     app.use('/', wordsRoutes);
     
     app.use('*', (req, res) => {
-      res.status(404).json({ error: 'Not found' });
+        res.status(404).json({ error: 'Not found' });
     });
     
   };
