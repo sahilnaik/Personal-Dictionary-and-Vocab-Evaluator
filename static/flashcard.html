@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="../public/css/flashcard.css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        
+    </head>
+    <body>
+        <div class="main-box" style="margin: 0px; padding: 0px;background-color:#F1F1F1; width:100%; height:100%">
+            <div class="sidebar">
+                <a href="/">
+                    <div class="sidebar-dashboard"><i class="far fa-user fa-2x"></i>
+                        <div class="sidebar-dashboard-text">Dashboard</div>
+                    </div>
+                </a>
+                <a href="/addWords">
+                    <div class="sidebar-word"><i class="fas fa-file-word fa-2x"></i>
+                        <div class="sidebar-dashboard-text">Add Words</div>   
+                    </div>
+                </a>
+                <a href="/flashcard">
+                    <div class="sidebar-flashcard"><i class="fas fa-user fa-2x"></i>
+                        <div class="sidebar-dashboard-text">Flashcard</div>
+                    </div>
+                </a>
+                <a href="/mcq">
+                    <div class="sidebar-mcq"><i class="fas fa-user fa-2x"></i>
+                        <div class="sidebar-dashboard-text">MCQ</div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div id="startFlashcardTest">
+            <Button type="button" class="btn btn-secondary" onclick="startTest()">Take Test</Button>
+        </div>
+        <div id="flashcard-content">
+                <div class="card text-white bg-secondary mb-3" id="card1" style="max-width: 70rem;">
+                    <div class="front_body" id="front_card">
+                        <div class="card-header" id="cardHeader">Question #1</div>
+                        <div class="card-body">
+                            <h5 class="card-title" style="text-align: center;" id="cardTitle"></h5>
+                            <p class="card-text" style="text-align: center;" id="cardText">Do you know this word?</p>
+                            <div class="flashcard-options" id="flashcardOptions">
+                                    <div onclick="changeWord()">
+                                        <i class="fas fa-check fa-4x"></i>
+                                    </div>
+                                    <div onclick="flipCard()">
+                                        <i class="fas fa-times fa-4x"></i>
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card text-white bg-secondary mb-3" id="card2" style="max-width: 70rem;">  
+                    <div class="front_body" id="back_card">
+                        <div class="card-header" style="text-align: center;" id="word"><h5>Word</h5></div>
+                        <div class="card-body">
+                        <h5 class="card-title" style="text-align: center;" id="meaning">Meaning</h5>
+                        <p class="card-text" style="text-align: center;" id="synonym">Synonym</p>
+                        <p class="card-text" style="text-align: center;" id="antonym">Antonym</p>
+                        <p class="card-text" style="text-align: center;" id="example">Example</p>
+                        <div class="flashcard-options1">
+                            <div onclick="changeWordBack()">
+                                <i class="fas fa-check fa-4x"></i>    
+                            </div>
+                            
+                        </div>
+                        
+                        </div>
+                </div>
+
+            </div>
+        </div>
+        <script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/TweenMax.min.js" integrity="sha512-DkPsH9LzNzZaZjCszwKrooKwgjArJDiEjA5tTgr3YX4E6TYv93ICS8T41yFHJnnSmGpnf0Mvb5NhScYbwvhn2w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/TimelineMax.min.js" integrity="sha512-0xrMWUXzEAc+VY7k48pWd5YT6ig03p4KARKxs4Bqxb9atrcn2fV41fWs+YXTKb8lD2sbPAmZMjKENiyzM/Gagw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+        <script  type = "text/javascript">
+                let wordCount=-1;
+
+                async function startTest(){
+                    document.getElementById("flashcard-content").style.display="grid";
+                    changeWord();
+                    document.getElementById("startFlashcardTest").style.display="none";
+                }
+
+                async function changeWord(){
+                    console.log("inside the fn");
+                    const card=document.querySelector("#card1");
+                    const back_card=document.querySelector("#back_card");
+                    document.getElementById("back_card").style.display="none";
+                    const t1=new TimelineMax();
+                    t1.fromTo(card,1,{left: "10%",opacity:"1"},{left:"80%",opacity:"0"});
+                    let newObj=await word();
+                    if(newObj===-1){
+                        return;
+                    }
+                    document.getElementById("cardHeader").innerHTML=newObj["queNo"];
+                    document.getElementById("cardTitle").innerHTML=newObj["word"];
+                    document.getElementById("cardText").innerHTML=newObj["title"];
+                    document.getElementById("flashcardOptions").innerHTML=newObj["option"];
+                    t1.fromTo(card,1,{left: "80%",opacity:"0"},{left:"10%",opacity:"1"})
+                    fadeout(newObj);
+                }
+
+
+
+                async function word(){
+                    let words=["Happy","Sad","Day"];
+                    let newObj={};
+                    wordCount++;
+                    if(wordCount>=words.length){
+                        return -1;
+                    }
+                    let queNo=document.getElementById("cardHeader").innerHTML;
+                    let que=document.getElementById("cardText").innerHTML;
+                    let options=document.getElementById("flashcardOptions").innerHTML;
+                    console.log(que);
+                    queNumber=wordCount+1;
+                    newObj["queNo"]=queNo.substr(0,queNo.length-1)+queNumber;
+                    newObj["title"]=que;
+                    newObj["word"]=words[wordCount];
+                    newObj["option"]=options;
+                    return newObj;
+                }
+
+                async function fadeout(newObj){
+                    console.log(newObj);
+                }
+
+                async function flipCard(){
+                    const t1=new TimelineMax();
+                    const front_card=document.querySelector("#front_card");
+                    const card1=document.querySelector("#card1");
+                    const card2=document.querySelector("#card2");
+                    const back_card=document.querySelector("#back_card");
+                    document.getElementById("front_card").style.display="none";
+                    t1.fromTo(front_card,1,{transition: "transform",transform:"rotateY(0deg)",display:"grid",opacity:1},{transition: "transform",transform:"rotateY(180deg)",display:"none",opacity:0})
+                    .fromTo(card1,0,{display:"flex",opacity:1},{display:"none",opacity:0})
+                    .fromTo(card2,0,{display:"none",opacity:0},{display:"flex",opacity:1})
+                    .fromTo(back_card,1,{display:"none",opacity:0},{display:"grid",opacity:1});
+                    document.getElementById("card2").style.display="none";
+                    // document.getElementById("word").innerHTML;
+                }
+
+                async function changeWordBack(){
+                    const card=document.querySelector("#card1");
+                    const back_card=document.querySelector("#back_card");
+                    document.getElementById("back_card").style.display="none";
+                    document.getElementById("card2").style.display="none";
+                    document.getElementById("card1").style.display="grid";
+                    document.getElementById("front_card").style.display="grid";
+                    document.getElementById("front_card").style.opacity=1;
+                    document.getElementById("front_card").style.transition="transform";
+                    document.getElementById("front_card").style.transform="rotateY(0deg)";
+                    const t1=new TimelineMax();
+                    t1.fromTo(card,1,{left: "10%",opacity:"1"},{left:"80%",opacity:"0"});
+                    let newObj=await word();
+                    if(newObj===-1){
+                        return;
+                    }
+                    document.getElementById("cardTitle").innerHTML=newObj["word"];
+                    document.getElementById("cardText").innerHTML=newObj["title"];
+                    document.getElementById("flashcardOptions").innerHTML=newObj["option"];
+                    t1.fromTo(card,1,{left: "80%",opacity:"0"},{left:"10%",opacity:"1"})
+                    fadeout(newObj);
+                    
+                }
+        </script>
+    </body>
+</html>

@@ -1,0 +1,155 @@
+body{
+    margin:0;
+    height:1000px;
+}
+.sidebar{
+    background:#23282D;
+    width:150px;
+    height:1000px;
+    display: grid;
+    grid-template-rows:15% 15% 15% 15% ;
+}
+
+a{
+    text-decoration: none;
+}
+
+.sidebar-dashboard{
+    text-align: center;
+    padding-top: 50px ;
+    padding-bottom: 50px;
+}
+.sidebar-dashboard-text{
+    color: white;
+}
+
+.fa-user{
+    color: white;
+}
+
+.fa-file-word{
+    color: white;
+}
+
+.sidebar-dashboard:hover{
+    transition: transform .5s ease;
+    background-color: rgb(53, 51, 51);
+}
+
+.sidebar-dashboard:hover {
+    transform: scale(1);
+  }
+
+.sidebar-word{
+    text-align: center;
+    padding-top: 50px ;
+    padding-bottom: 50px;
+}
+
+.sidebar-word:hover{
+    transition: transform .5s ease;
+    background-color: rgb(53, 51, 51);
+}
+
+.sidebar-word:hover {
+    transform: scale(1);
+}
+
+.sidebar-flashcard{
+    text-align: center;
+    padding-top: 50px ;
+    padding-bottom: 50px;
+}
+
+.sidebar-flashcard:hover{
+    transition: transform .5s ease;
+    background-color: rgb(53, 51, 51);
+}
+
+.sidebar-flashcard:hover {
+    transform: scale(1);
+}
+
+.sidebar-mcq{
+    text-align: center;
+    padding-top: 50px ;
+    padding-bottom: 50px;
+}
+
+.sidebar-mcq:hover{
+    transition: transform .5s ease;
+    background-color: rgb(53, 51, 51);
+}
+
+.sidebar-mcq:hover {
+    transform: scale(1);
+}
+
+
+.navbar{
+    background-color:#ffffff;
+    height: 50px;
+    position: absolute;
+    top:0px;
+    /* z-index: 1; */
+}
+
+.profile_form{
+    position: relative;
+    left:150px;
+    bottom:950px;
+
+}
+
+.profile_pic_box{
+    display: flex;
+    justify-content: center;
+}
+
+#profile_pic{
+    position:relative;
+    top:50px;
+    right:50px;
+    border-radius: 50%;
+    border:1px solid white;
+    width: 200px;
+    height: 200px;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.8);
+}
+
+#pen{
+    position: relative;
+    top:210px;
+    right:80px;
+}
+
+#pen:hover{
+    transition: transform .5s ease;
+    transform: scale(0.9);
+}
+
+#myfile{
+    display: none;
+}
+
+#submit_file{
+    display: none;
+}
+
+.profile_details{
+    position: relative;
+    left:200px;
+    bottom:800px;
+}
+
+.pname{
+    font-weight: 700;
+    font-size: large;
+}
+
+hr{
+    border:1px black solid;
+    width:1535px;
+    position: relative;
+    right:125px;
+}

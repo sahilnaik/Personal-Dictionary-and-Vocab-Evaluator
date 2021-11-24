@@ -1,0 +1,164 @@
+body{
+    margin:0;
+    height:1000px;
+}
+.sidebar{
+    background:#23282D;
+    width:150px;
+    height:1000px;
+    display: grid;
+    grid-template-rows:15% 15% 15% 15% ;
+}
+
+a{
+    text-decoration: none;
+}
+
+.sidebar-dashboard{
+    text-align: center;
+    padding-top: 50px ;
+    padding-bottom: 50px;
+}
+.sidebar-dashboard-text{
+    color: white;
+}
+
+.fa-user{
+    color: white;
+}
+
+.fa-file-word{
+    color: white;
+}
+
+.sidebar-dashboard:hover{
+    transition: transform .5s ease;
+    background-color: rgb(53, 51, 51);
+}
+
+.sidebar-dashboard:hover {
+    transform: scale(1);
+  }
+
+.sidebar-word{
+    text-align: center;
+    padding-top: 50px ;
+    padding-bottom: 50px;
+}
+
+.sidebar-word:hover{
+    transition: transform .5s ease;
+    background-color: rgb(53, 51, 51);
+}
+
+.sidebar-word:hover {
+    transform: scale(1);
+}
+
+.sidebar-flashcard{
+    text-align: center;
+    padding-top: 50px ;
+    padding-bottom: 50px;
+}
+
+.sidebar-flashcard:hover{
+    transition: transform .5s ease;
+    background-color: rgb(53, 51, 51);
+}
+
+.sidebar-flashcard:hover {
+    transform: scale(1);
+}
+
+.sidebar-mcq{
+    text-align: center;
+    padding-top: 50px ;
+    padding-bottom: 50px;
+}
+
+.sidebar-mcq:hover{
+    transition: transform .5s ease;
+    background-color: rgb(53, 51, 51);
+}
+
+.sidebar-mcq:hover {
+    transform: scale(1);
+}
+
+
+.navbar{
+    background-color:#ffffff;
+    height: 50px;
+    width: 100%;
+    position: absolute;
+    top:0px;
+    /* z-index: 1; */
+}
+
+#startFlashcardTest{
+    display: flex;
+    position: relative;
+    bottom: 650px;
+    left:850px;
+    width:100px;
+}
+
+#flashcard-content{
+    display: none;
+    height: 100%;
+    width: 90%;
+    position: absolute;
+    top:50px;
+    left:150px;
+}
+
+#card1{
+    height:500px; 
+    position: relative; 
+    left: 120px;
+    top: 100px;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+}
+
+#card2{
+    display: none;
+    height:500px; 
+    position: relative; 
+    left: 120px;
+    top: 100px;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+}
+
+.flashcard-options{
+    display:flex; 
+    justify-content: space-between;
+    padding:200px;
+}
+
+.main-box{
+    width: 800px;
+}
+.dashboard{
+    width: 800px;
+}
+
+.dashboard-content{
+    display: flex;
+    justify-content: center;
+    
+}
+
+.flashcard-options1{
+    display:flex; 
+    justify-content: center;
+    padding:200px;
+    position: relative;
+    bottom:100px;
+}
+
+
+/* #back_card{
+    display: flex;
+    position:absolute;
+    top:100px;
+} */

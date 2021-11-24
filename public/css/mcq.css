@@ -1,0 +1,208 @@
+body{
+    margin:0;
+    height: 1000px;
+}
+.sidebar{
+    background:#23282D;
+    width:150px;
+    height:1000px;
+    display: grid;
+    grid-template-rows:15% 15% 15% 15% ;
+}
+
+a{
+    text-decoration: none;
+}
+
+.sidebar-dashboard{
+    text-align: center;
+    padding-top: 50px ;
+    padding-bottom: 50px;
+}
+.sidebar-dashboard-text{
+    color: white;
+}
+
+.fa-user{
+    color: white;
+}
+
+.fa-file-word{
+    color: white;
+}
+
+.sidebar-dashboard:hover{
+    transition: transform .5s ease;
+    background-color: rgb(53, 51, 51);
+}
+
+.sidebar-dashboard:hover {
+    transform: scale(1);
+  }
+
+.sidebar-word{
+    text-align: center;
+    padding-top: 50px ;
+    padding-bottom: 50px;
+}
+
+.sidebar-word:hover{
+    transition: transform .5s ease;
+    background-color: rgb(53, 51, 51);
+}
+
+.sidebar-word:hover {
+    transform: scale(1);
+}
+
+.sidebar-flashcard{
+    text-align: center;
+    padding-top: 50px ;
+    padding-bottom: 50px;
+}
+
+.sidebar-flashcard:hover{
+    transition: transform .5s ease;
+    background-color: rgb(53, 51, 51);
+}
+
+.sidebar-flashcard:hover {
+    transform: scale(1);
+}
+
+.sidebar-mcq{
+    text-align: center;
+    padding-top: 50px ;
+    padding-bottom: 50px;
+}
+
+.sidebar-mcq:hover{
+    transition: transform .5s ease;
+    background-color: rgb(53, 51, 51);
+}
+
+.sidebar-mcq:hover {
+    transform: scale(1);
+}
+
+
+.navbar{
+    background-color:#ffffff;
+    height: 50px;
+    width: 100%;
+    position: absolute;
+    top:0px;
+    /* z-index: 1; */
+}
+
+#startMCQTest{
+    display: flex;
+    position: relative;
+    bottom: 650px;
+    left:850px;
+    width:100px;
+}
+
+
+#mcq_box{
+    position: relative;
+    left:500px;
+    bottom:900px;
+    width:1200px;
+    display: none;
+}
+
+.sub-box-mcq{
+    display: grid;
+    margin: 0 20px;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+    place-content: center;
+    height: 500px;
+    width: 1000px;
+}
+
+.content{
+    display: grid;
+    position: relative;
+    left:60px;
+}
+
+.options{
+    position: relative;
+    left:20px;
+}
+.mcq-que{
+    position: relative;
+    right:80px;
+}
+
+.mcq-word{
+    padding-top: 20px;
+    position: relative;
+    left:40px;
+    padding-bottom: 10px;
+}
+
+#buttons{
+    position: relative;
+    bottom:10px;
+    display: none;
+}
+
+#next-button{
+    width:120px;
+    position: relative;
+    top:50px;
+    left:400px;
+}
+#prev-button{
+    width:120px;
+    position: relative;
+    top:50px;
+    right:450px;
+}
+
+#submit-button{
+    width:120px;
+    position: absolute;
+    top:50px;
+    left:0px;
+    display: none;
+}
+
+#result_box{
+    position: relative;
+    left:500px;
+    bottom:900px;
+    width:1200px;
+    display: none;
+}
+
+.sub-box-result{
+    display: grid;
+    margin: 0 20px;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+    place-content: center;
+    height: 800px;
+    width: 1000px;
+}
+
+table, th, td {
+    padding:10px;
+    border:2px solid black;
+}
+
+td{
+    font-weight: 600;
+}
+
+#result_table{
+    position: relative;
+    right:70px;
+    width: 100%;
+}
+
+.mask .fill1,.mask .fill2,.mask .fill3{
+    clip: rect(0px, 75px, 150px, 0px);
+    background-color: #3aed22;
+  }

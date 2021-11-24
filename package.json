@@ -24,6 +24,8 @@
     "express-handlebars": "^6.0.1",
     "express-session": "^1.17.2",
     "mongodb": "^4.2.0",
-    "nodemon": "^2.0.15"
+    "nodemon": "^2.0.15",
+    "chart": "^0.1.2",
+    "chart.js": "^3.6.0"
   }
 }

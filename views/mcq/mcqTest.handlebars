@@ -1,0 +1,237 @@
+
+<link rel="stylesheet" href="../public/css/mcq.css">
+<div id="startMCQTest">
+        <Button type="button" class="btn btn-outline-primary" onclick="startTest()">Take Test</Button>
+</div>
+<div id="mcq_box">
+    <div class="row">
+            <div class="col-9 sub-box-mcq" style="background-color: white;">
+                <div class="content" id="contents">
+                    <h5 class="mcq-no" id="queNo">Question #1</h5>
+                    <h8 class="mcq-que" id="que">Do you know the synonym of this word?</h8>
+                    <h6 class="mcq-word" id="word"></h6>
+                    <div class="options" id="option">
+                        <input type="radio" id="option1" name="mcq_ans" value="option1" onclick="optionSelect()">
+                        <label for="option1" id="label_option1"></label><br>
+                        <input type="radio" id="option2" name="mcq_ans" value="option2" onclick="optionSelect()">
+                        <label for="option2" id="label_option2"></label><br>
+                        <input type="radio" id="option3" name="mcq_ans" value="option3" onclick="optionSelect()">
+                        <label for="option3" id="label_option3"></label><br>
+                        <input type="radio" id="option4" name="mcq_ans" value="option4" onclick="optionSelect()">
+                        <label for="option4" id="label_option4"></label>
+                    </div>
+                    
+                    
+                    <div id="buttons">
+                        <Button type="button" class="btn btn-secondary" id="next-button" onclick="next()">Next</Button>
+                        <Button type="button" class="btn btn-secondary" id="prev-button" onclick="prev()">Previous</Button>
+                        <Button type="button" class="btn btn-secondary" id="submit-button" onclick="eval()">Submit</Button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="result_box">
+    <div class="row">
+            <div class="col-9 sub-box-result" style="background-color: white;">
+                <div class="report_heading">
+                    <h4>MCQ Report Card</h4>
+                </div>
+                            
+                <div class="circle-wrap">
+                    <div class="circle">
+                        <div class="mask half">
+                            <div class="fill1"></div>
+                        </div>
+                        <div class="mask full1">
+                            <div class="fill1"></div>
+                        </div>
+                        <div id="i-circle1" class="inside-circle" style="background-color: rgb(217, 247, 174);"></div>
+                    </div>
+                </div>
+
+                <div class="report_ending">
+                    <h6>Percentage of marks secured (%)</h6>
+                    <br>
+                    <br>
+                    <table id="report_table">
+                        <tr>
+                           <th>Question</th>
+                           <th>Correct Or Not</th> 
+                        </tr>
+                    </table>
+                    <br>
+                    <br>
+                    <h6>Marks Secured: <span id="marks_sec"></span></h6>
+                    <h6>Total Marks: <span id="total_m"></span></h6>
+                </div>
+             </div>
+    </div>
+</div>         
+
+<script type = "text/javascript">
+        let wordindex=-1;
+        let words=[];
+        let number_of_correct=0;
+
+        function startTest(){
+            document.getElementById("startMCQTest").style.display="none";
+            initialize();
+            wordindex++;
+            que("next");
+            document.getElementById("mcq_box").style.display="grid";
+        }
+
+        function initialize(){
+            let session={};
+            let word={};
+            word["Question word"]="Dispel";
+            word["options"]=["Disband","Allurement","Adulation","Blandish"];
+            word["answer"]="Disband";
+            word["userSelection"]="";
+            word["correctOrNot"]="";
+            words.push(word);
+            let word1={};
+            word1["Question word"]="Sad";
+            word1["options"]=["Sorrow","Happy","Pleasant","Determined"];
+            word1["answer"]="Sorrow";
+            word1["userSelection"]="";
+            word1["correctOrNot"]="";
+            words.push(word1);
+            let word2={};
+            word2["Question word"]="Focused";
+            word2["options"]=["Sorrow","Happy","Pleasant","Determined"];
+            word2["answer"]="Determined";
+            word2["userSelection"]="";
+            word2["correctOrNot"]="";
+            words.push(word2);
+            let word3={};
+            word3["Question word"]="Desperation";
+            word3["options"]=["Panic","Happy","Pleasant","Determined"];
+            word3["answer"]="Panic";
+            word3["userSelection"]="";
+            word3["correctOrNot"]="";
+            words.push(word3);
+            session["words"]=words;
+        }
+
+        function que(page){
+            if(page==="next"){
+                let word3=words[wordindex];
+                document.getElementById("word").innerHTML=word3["Question word"];
+                let options=word3["options"];
+                document.getElementById("label_option1").innerHTML=options[0];
+                document.getElementById("label_option2").innerHTML=options[1];
+                document.getElementById("label_option3").innerHTML=options[2];
+                document.getElementById("label_option4").innerHTML=options[3];
+            }
+            else if(page==="prev"){
+                let word3=words[wordindex];
+                document.getElementById("word").innerHTML=word3["Question word"];
+                let options=word3["options"];
+                document.getElementById("label_option1").innerHTML=options[0];
+                document.getElementById("label_option2").innerHTML=options[1];
+                document.getElementById("label_option3").innerHTML=options[2];
+                document.getElementById("label_option4").innerHTML=options[3];
+            }
+            
+
+        }
+
+        function optionSelect(){
+            document.getElementById("buttons").style.display="flex";
+            let ele=document.getElementsByName("mcq_ans");
+            for(i = 0; i < ele.length; i++) {
+                if(ele[i].checked){
+                   console.log(ele[i].id);
+                   console.log(document.getElementById("label_"+ele[i].id).innerText);
+                   words[wordindex]["userSelection"]=document.getElementById("label_"+ele[i].id).innerText;
+                }
+            }
+            
+        }
+
+        function next(){
+            wordindex++;
+            if(wordindex==3){
+                document.getElementById("submit-button").style.display="flex";
+            }
+            que("next");
+            var ele = document.getElementsByName("mcq_ans");
+            for(var i=0;i<ele.length;i++){
+                console.log(words[wordindex]["userSelection"]);
+                console.log(wordindex);
+                console.log(document.getElementById("label_"+ele[i].id).innerText);
+                if(words[wordindex].userSelection===document.getElementById("label_"+ele[i].id).innerText){
+                    ele[i].checked = true;
+                }else{
+                    ele[i].checked = false;
+                }
+            }
+
+        }
+
+        function prev(){
+            wordindex--;
+            que("prev");
+            var ele = document.getElementsByName("mcq_ans");
+            for(var i=0;i<ele.length;i++){
+                console.log(words[wordindex]["userSelection"]);
+                console.log(wordindex);
+                console.log(document.getElementById("label_"+ele[i].id).innerText);
+                if(words[wordindex]["userSelection"]===document.getElementById("label_"+ele[i].id).innerText){
+                    ele[i].checked = true;
+                }else{
+                    ele[i].checked = false;
+                }
+            }
+        }
+
+        function eval(){
+            for(let k=0;k<words.length;k++){
+                if(words[k]["userSelection"]===words[k]["answer"]){
+                    words[k]["correctOrNot"]="true";
+                    number_of_correct++;
+                }else{
+                    words[k]["correctOrNot"]="false";
+                }   
+            }
+            console.log(words);
+            console.log(number_of_correct);
+            let percentage=Math.round(number_of_correct/words.length*100);
+            console.log("Marks secured: "+number_of_correct+" out of "+words.length);
+            console.log("Percentage of Marks secured: "+percentage);
+            triggerGraphs(number_of_correct,words.length,percentage);
+        }
+
+
+        function triggerGraphs(number_of_correct,number_of_words,percentage){
+                console.log("entered");
+                document.getElementById("mcq_box").style.display="none";
+                document.getElementById("result_box").style.display="grid";
+                for(let k=0;k<words.length;k++){
+                    let row=document.createElement("tr");
+                    let col1=document.createElement("td");
+                    col1.innerText= words[k]["Question word"];
+                    let col2=document.createElement("td");
+                    if(words[k]["userSelection"]===words[k]["answer"]){
+                        col2.innerHTML='<i class="fas fa-check-square"></i>';
+                    }else{
+                        col2.innerHTML='<i class="fas fa-times-circle"></i>';
+                    }
+                    row.appendChild(col1);
+                    row.appendChild(col2);
+                    document.getElementById("report_table").appendChild(row);
+                }
+                document.getElementById("marks_sec").innerText=number_of_correct;
+                document.getElementById("total_m").innerText=number_of_words;
+                document.getElementById('i-circle1').innerText=percentage.toString()+"%";
+                let deg1=(percentage/100*360)/2;
+                degree1=deg1.toString()+"deg";
+                fill1=document.getElementsByClassName('fill1');
+                full1=document.getElementsByClassName('full1');
+                const t1=new TimelineMax();
+                t1.fromTo(fill1,1,{transition: "transform",transform:"rotate(0deg)",ease:Power1.easeInOut},{transition: "transform",transform:"rotate("+degree1+")"}).
+                fromTo(full1,1,{transition: "transform",transform:"rotate(0deg)",ease:Power1.easeInOut},{transition: "transform",transform:"rotate("+degree1+")"},"-=1");
+        }       
+</script>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="../public/css/addWords.css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    </head>
+    <body>
+        <div class="main-box" style="margin: 0px; padding: 0px;">
+            <div class="sidebar">
+                <a href="/">
+                    <div class="sidebar-dashboard"><i class="far fa-user fa-2x"></i>
+                        <div class="sidebar-dashboard-text">Dashboard</div>
+                    </div>
+                </a>
+                <a href="/addWords">
+                    <div class="sidebar-word"><i class="fas fa-file-word fa-2x"></i>
+                        <div class="sidebar-dashboard-text">Add Words</div>   
+                    </div>
+                </a>
+                <a href="/flashcard">
+                    <div class="sidebar-flashcard"><i class="fas fa-user fa-2x"></i>
+                        <div class="sidebar-dashboard-text">Flashcard</div>
+                    </div>
+                </a>
+                <a href="/mcq">
+                    <div class="sidebar-mcq"><i class="fas fa-user fa-2x"></i>
+                        <div class="sidebar-dashboard-text">MCQ</div>
+                    </div>
+                </a>
+            </div>
+            <div class="dashboard">
+                <header class="dashboard-content">
+                    <h1 class="word-heading">ADD WORDS</h1>
+                </header>
+                <form action="/POST" class="add-word-form">
+                    <label for="word">
+                        <div class="word-field">
+                            <h5>Enter Word &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp: &nbsp &nbsp &nbsp &nbsp &nbsp </h5>
+                            <input id="word" type="text" required> 
+                        </div>
+                    </label>
+                    <br>
+                    <br>
+                    <label for="meaning">
+                        <div class="meaning-field">
+                        <h5>Enter Meaning &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp : &nbsp &nbsp &nbsp &nbsp &nbsp</h5>
+                        <textarea name="" id="meaning" cols="30" rows="10" required></textarea> 
+                        </div>
+                    </label>
+                    <br>
+                    <br>
+                    <label for="synonym">
+                        <div class="synonym-field">
+                            <h5>Enter Synonyms &nbsp &nbsp &nbsp &nbsp &nbsp : &nbsp &nbsp &nbsp &nbsp &nbsp</h5>
+                            <input id="synonym" type="text" required>
+                        </div>
+                    </label>
+                    <br>
+                    <br>
+                    <label for="antonym">
+                        <div class="antonym-field">
+                            <h5>Enter Antonyms &nbsp &nbsp &nbsp &nbsp &nbsp : &nbsp &nbsp &nbsp &nbsp &nbsp</h5>
+                            <input id="antonym" type="text"> 
+                        </div>
+                    </label>
+                    <br>
+                    <br>
+                    
+                    <label for="example">
+                        <div class="example-field">
+                        <h5>Enter Examples &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp: &nbsp &nbsp &nbsp &nbsp &nbsp</h5>
+                        <textarea name="" id="example" cols="30" rows="10"></textarea>
+                        </div>
+                    </label>   
+                    <div class="submit-field">
+                        <button type="button" class="btn btn-outline-dark">submit</button>
+                    </div>
+                </form>
+            </div>
+            <script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
+
+            <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>       
+    </body>
+</html>

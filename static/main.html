@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>       
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <style media="screen">@import url(http://fonts.googleapis.com/css?family=Roboto:400,700,300);</style>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.6.0/chart.min.js" integrity="sha512-GMGzUEevhWh8Tc/njS0bDpwgxdCJLQBWG3Z2Ct+JGOpVnEmjvNx6ts4v6A2XJf1HOrtOsfhv3hBKpK9kE5z8AQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <link rel="stylesheet" href="../public/css/main.css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        
+    </head>
+    <body onload="triggerEvents()">
+        <div class="main-box" style="margin: 0px; padding: 0px; display: flex;">
+            <div class="sidebar">
+                <a href="/" style="text-decoration: none;">
+                    <div class="sidebar-dashboard"><i class="far fa-user fa-2x"></i>
+                        <div class="sidebar-dashboard-text">Dashboard</div>
+                    </div>
+                </a>
+                <a href="/profile" style="text-decoration: none;">
+                    <div class="sidebar-dashboard"><i class="far fa-user fa-2x"></i>
+                        <div class="sidebar-dashboard-text">Profile</div>
+                    </div>
+                </a>
+                <a href="/addWords" style="text-decoration: none;">
+                    <div class="sidebar-word"><i class="fas fa-file-word fa-2x"></i>
+                        <div class="sidebar-dashboard-text">Add Words</div>   
+                    </div>
+                </a>
+                <a href="/flashcard" style="text-decoration: none;">
+                    <div class="sidebar-flashcard"><i class="fas fa-user fa-2x"></i>
+                        <div class="sidebar-dashboard-text">Flashcard</div>
+                    </div>
+                </a>
+                <a href="/mcq" style="text-decoration: none;">
+                    <div class="sidebar-mcq"><i class="fas fa-user fa-2x"></i>
+                        <div class="sidebar-dashboard-text">MCQ</div>
+                    </div>
+                </a>
+            </div>
+            <div class="dashboard" style="background-color:#F1F1F1; width:1550px;">
+                <div class="navbar" style="background-color: white; width:1538px;">
+                    <div class="right_navbar">
+                        <div id="right_name"></div>
+                        <div id="right_profile">
+                            <div class="dropdown">
+                                <img id="img_profile" src="" alt="">
+                                <div class="dropdown-content">
+                                    <a href="/" style="text-decoration: none;">Dashboard</a>
+                                    <a href="/profile" style="text-decoration: none;">Profile</a>
+                                    <a href="/viewWords" style="text-decoration: none;">Words</a>
+                                    <a href="/flashcard" style="text-decoration: none;">Flashcard Test</a>
+                                    <a href="/mcq" style="text-decoration: none;">MCQ Test</a>
+                                </div>
+                            </div>    
+                        </div>
+                    </div>
+                </div>
+                <div class="main-box">
+                    <div class="row row1" style="width:1450px;">
+                        <div class="sub-box col-3" style="background-color: white;">
+                            <div class="report_heading">
+                                <h4>Flashcard Test Report</h4>
+                            </div>
+                            
+                            <div class="circle-wrap">
+                                <div class="circle">
+                                    <div class="mask half">
+                                        <div class="fill1"></div>
+                                    </div>
+                                    <div class="mask full1">
+                                        <div class="fill1"></div>
+                                    </div>
+                                    <div id="i-circle1" class="inside-circle"></div>
+                                </div>
+                            </div>
+                            <div class="report_ending">
+                                <h6>Percentage of marks secured (%)</h6>
+                            </div> 
+                            
+                             
+                        </div>
+                        <div class="sub-box col-3"  style="background-color: white;">
+                            <div class="report_heading">
+                                <h4>MCQ Test Report</h4>
+                            </div>
+                            <div class="circle-wrap">
+                                <div class="circle">
+                                    <div class="mask half">
+                                        <div class="fill2"></div>
+                                    </div>
+                                    <div class="mask full2">
+                                        <div class="fill2"></div>
+                                    </div>
+                                    <div id="i-circle2" class="inside-circle"></div>
+                                </div>
+                            </div>
+                            <div class="report_ending">
+                                <h6>Percentage of marks secured (%)</h6>
+                            </div>
+                        </div>
+                        <div class="sub-box col-3"  style="background-color: white;">
+                            <div class="report_heading">
+                                <h4>Overall Test Report</h4>
+                            </div>
+                            <div class="circle-wrap">
+                                <div class="circle">
+                                    <div class="mask half">
+                                        <div class="fill3"></div>
+                                    </div>
+                                    <div class="mask full3">
+                                        <div class="fill3"></div>
+                                    </div>
+                                    <div id="i-circle3" class="inside-circle"></div>
+                                </div>
+                            </div>
+                            <div class="report_ending">
+                                <h6>Percentage of marks secured (%)</h6>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row row2" style="width:1450px;">
+                        <div class="sub-box col-5 chart-box"  style="background-color: white;">
+                            <canvas id="myChart" style="width:100%;max-width:600px"></canvas>
+                        </div>
+                        <div class="sub-box col-5 chart-box1"  style="background-color: white;">
+                            <canvas id="myChart1" style="width:100%;max-width:600px"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+              
+        </div>
+        
+        <script  type = "text/javascript">
+            var xValues = ["Session1", "Session2", "Session3", "Session4", "Session5","Session6"];
+            var yValues = [3, 5, 1, 6, 2, 5];
+            var barColors = ["red", "green","blue","orange","brown","grey"];
+
+            new Chart("myChart", {
+            type: "bar",
+            data: {
+                labels: xValues,
+                datasets: [{
+                backgroundColor: barColors,
+                data: yValues
+                }]
+            },
+            options: {
+                scales: {
+                        y: {
+                            suggestedMax: 6
+                        }
+                },
+                plugins: {
+                    legend: {display: false},
+                    title: {
+                        display: true,
+                        text: "Flashcard Test Results"
+                    }
+                }
+                
+            }
+            });
+
+            var xValues1 = ["Session1", "Session2", "Session3", "Session4", "Session5","Session6"];
+            var yValues1 = [5, 4, 4, 2, 1,9];
+            var barColors1 = ["red", "green","blue","orange","brown","grey"];
+
+            new Chart("myChart1", {
+            type: "bar",
+            data: {
+                labels: xValues1,
+                datasets: [{
+                backgroundColor: barColors1,
+                data: yValues1
+                }]
+            },
+            options: {
+                scales: {
+                        y: {
+                            suggestedMax: 10
+                        }
+                },
+                plugins: {
+                    legend: {display: false},
+                    title: {
+                        display: true,
+                        text: "MCQ Test Results"
+                    }
+                }
+                
+            }
+            });
+
+            function triggerEvents(){
+                triggerGraphs();
+                let name="Govind";
+                document.getElementById("right_name").innerText=name;
+                document.getElementById("img_profile").src=`https://ui-avatars.com/api/?name=${name}`;
+            }
+
+            function triggerGraphs(){
+                console.log("entered");
+                let percentage1=100;
+                let percentage2=80;
+                let percentage3=70;
+                document.getElementById('i-circle1').innerText=percentage1.toString()+"%";
+                let deg1=(percentage1/100*360)/2;
+                degree1=deg1.toString()+"deg";
+                fill1=document.getElementsByClassName('fill1');
+                full1=document.getElementsByClassName('full1');
+                const t1=new TimelineMax();
+                t1.fromTo(fill1,1,{transition: "transform",transform:"rotate(0deg)",ease:Power1.easeInOut},{transition: "transform",transform:"rotate("+degree1+")"}).
+                fromTo(full1,1,{transition: "transform",transform:"rotate(0deg)",ease:Power1.easeInOut},{transition: "transform",transform:"rotate("+degree1+")"},"-=1");
+
+                document.getElementById('i-circle2').innerText=percentage2.toString()+"%";
+                let deg2=(percentage2/100*360)/2;
+                degree2=deg2.toString()+"deg";
+                fill2=document.getElementsByClassName('fill2');
+                full2=document.getElementsByClassName('full2');
+                const t2=new TimelineMax();
+                t2.fromTo(fill2,2,{transition: "transform",transform:"rotate(0deg)",ease:SlowMo.easeOut},{transition: "transform",transform:"rotate("+degree2+")"}).
+                fromTo(full2,2,{transition: "transform",transform:"rotate(0deg)",ease:SlowMo.easeOut},{transition: "transform",transform:"rotate("+degree2+")"},"-=2");
+
+                document.getElementById('i-circle3').innerText=percentage3.toString()+"%";
+                let deg3=(percentage3/100*360)/2;
+                degree3=deg3.toString()+"deg";
+                fill3=document.getElementsByClassName('fill3');
+                full3=document.getElementsByClassName('full3');
+                const t3=new TimelineMax();
+                t3.fromTo(fill3,3,{transition: "transform",transform:"rotate(0deg)",ease:Power1.easeOut},{transition: "transform",transform:"rotate("+degree3+")"}).
+                fromTo(full3,3,{transition: "transform",transform:"rotate(0deg)",ease:Power1.easeOut},{transition: "transform",transform:"rotate("+degree3+")"},"-=3");
+            }
+        
+        </script>
+        <script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/TweenMax.min.js" integrity="sha512-DkPsH9LzNzZaZjCszwKrooKwgjArJDiEjA5tTgr3YX4E6TYv93ICS8T41yFHJnnSmGpnf0Mvb5NhScYbwvhn2w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/TimelineMax.min.js" integrity="sha512-0xrMWUXzEAc+VY7k48pWd5YT6ig03p4KARKxs4Bqxb9atrcn2fV41fWs+YXTKb8lD2sbPAmZMjKENiyzM/Gagw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    </body>
+</html>
