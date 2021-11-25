@@ -73,8 +73,48 @@ const addWord = async function (userId,  word, meaning, synonym, antonym, exampl
 
 }
 
+const editWord = async function editWord(userId, word, synonym, antonym, example) {
+    let wordCollection = await words()
+    let wordDocument = await wordCollection.findOne({userId: userId})
+    if (!wordDocument) {
+        throw {code: 404, error: `No such userId exists to add any words`}
+    }
+    word = word.toLowerCase() 
+    let editingWord 
+    wordDocument.words.forEach(x => {
+        if (x.word == word) {
+            editingWord = x
+        }
+    })
+
+    if (synonym && synonym.trim().length !== 0) {
+        synonym = synonym.split(", ")
+        synonym.forEach(x => {
+            editingWord.synonyms.push(x) 
+        });   
+    }
+    if (antonym && antonym.trim().length !== 0) {
+        antonym = antonym.split(", ")
+        antonym.forEach(x =>{
+            editingWord.antonyms.push(x)
+        })   
+    }
+    if (example && example.trim().length !== 0) {
+        example = example.split(". ")
+        example.forEach(x =>{
+            editingWord.examples.push(x)
+        })   
+    }
+
+    let result = await wordCollection.updateOne({userId: userId}, {$set: {words: wordDocument.words}})
+    if (result.modifiedCount === 0) {
+        throw {code: 500, error: `Unable to add the word to the Document`} 
+    }
+}
+
 
 module.exports = {
     createWordsDocument,
-    addWord
+    addWord, 
+    editWord
 }

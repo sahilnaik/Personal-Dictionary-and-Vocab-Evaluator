@@ -37,4 +37,15 @@ router.post('/:id/addword', async (req, res) => {
     }
 })
 
+
+router.patch('/:id/editWord', async (req, res) => {
+    let editWordForm = req.body
+    const { word, synonym, antonym, example } = editWordForm
+    try {
+        const wordDocument = await words.editWord(req.params.id, word, synonym, antonym, example)
+        res
+    } catch (e) {
+        
+    }
+})
 module.exports = router;
