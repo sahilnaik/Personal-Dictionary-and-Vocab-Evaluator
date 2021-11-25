@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const path = require("path");
 const data = require("../data");
-const userData = data.user;
+const userData = data.users;
 let { ObjectId } = require("mongodb");
 router.get("/", async (req, res) => {
   try {

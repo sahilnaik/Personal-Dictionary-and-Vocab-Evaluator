@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const path = require("path");
 const data = require("../data");
-const userData = data.user;
+const userData = data.users;
 let { ObjectId } = require("mongodb");
 router.get("/", async (req, res) => {
   try {
@@ -35,7 +35,15 @@ router.post("/", async (req, res) => {
 
   try {
     const checkUser = await userData.get(email, password);
-    res.redirect("./");
+    if (checkUser) {
+      req.session.user = { email: checkUser.email, firstName: checkUser.firstName, lastName: checkUser.lastName, _id: checkUser._id, profilePicture: checkUser.profilePicture };
+      return res.redirect("./");
+    }
+    else {
+      res.status(500).json({ error: "Internal Server error" });
+      return;
+    }
+    
   } catch (error) {
     return res.status(404).render("user/login", {
       layout: "user",

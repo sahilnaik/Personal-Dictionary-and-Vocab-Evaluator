@@ -1,18 +1,20 @@
 <link rel="stylesheet" href="../public/css/profile.css">
 <div class="profile_form">
-    <div class="profile_pic_box">
-        <img id="profile_pic" src="" alt="">
-        <i id="pen" class="fad fa-pen fa-2x" onclick="uploadpic()">
-            <input type="file" id="myfile" name="myfile">
-            <input type="submit" id="submit_file">  
-        </i>
-    </div>
+   <form method="POST" action="/profile-upload-single" id="myForm"  enctype="multipart/form-data">
+        <div class="profile_pic_box">
+            <img id="profile_pic" src="../../public/uploads/{{profilePicture}}" alt="">
+            <i id="pen" class="fad fa-pen fa-2x" onclick="uploadpic()">
+                <input type="file" id="myfile" name="profile-file" required/>
+            </i>
+            
+        </div>
+      
+    </form>
 </div>
 
 <div class="profile_details">
     <hr>
-    <br>
-    <br>
+   
     <div class="pname">Name: <span id="p_name"></span></div>
     <br>
     <div class="pname">Email ID: <span id="p_email"></span></div>
@@ -44,7 +46,7 @@
             let name="Govind";
             document.getElementById("right_name").innerText=name;
             document.getElementById("p_name").innerText=name;
-            document.getElementById("profile_pic").src=`https://ui-avatars.com/api/?name=${name}`;
+         
     });
 
     
@@ -52,12 +54,19 @@
     function uploadpic(){
         console.log("entered");
         let file=document.getElementById('myfile');
+        let myForm=document.getElementById('myForm');
         file.click();
+        let upload = document.getElementById('Upload');
         file.addEventListener("change", function() {
+            myForm.submit();
             for (var i = 0; i < file.files.length; i++) {
                 console.log(file.files[i].name);
                 document.getElementById("profile_pic").src=URL.createObjectURL(file.files[i]);
-            }
+                
+            }  
+
+            
+        
         }, false);
     }
 </script>

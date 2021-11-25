@@ -1,6 +1,9 @@
 const mongoCollections = require("../config/mongoCollections");
 const user = mongoCollections.users;
+const bcrypt = require("bcryptjs");
 let { ObjectId } = require("mongodb");
+let saltRounds = 16;
+
 
 function stringErrorHandler(pass) {
   if (typeof pass !== "string") throw "Type must be a string";
@@ -44,7 +47,7 @@ async function create(firstName, lastName, email, phoneNumber, password) {
   let flashcardId = 0;
   let overallLearnt = 0;
   let mcqTestId = 0;
-
+  let profilePicture = "default.jpeg";
   const userCollection = await user();
   const checkEmail = await userCollection.findOne({
     email: email,
@@ -62,16 +65,18 @@ async function create(firstName, lastName, email, phoneNumber, password) {
       throw "Email provided is already registered";
     }
   }
+  const hashedPassword = await bcrypt.hash(password, saltRounds);
   let newUser = {
     firstName,
     lastName,
     email,
     phoneNumber,
-    password,
+    password : hashedPassword,
     wordsId,
     flashcardId,
     overallLearnt,
     mcqTestId,
+    profilePicture,
   };
 
   const insertInfo = await userCollection.insertOne(newUser);
@@ -84,19 +89,20 @@ async function get(email, password) {
   }
   stringErrorHandler(email);
   stringErrorHandler(password);
-
+  let resObj = { authenticated: true };
   const userCollection = await user();
+  
   const checkEmail = await userCollection.findOne({ email: email });
   if (checkEmail === null) {
-    throw "No User with that email id";
+    throw `Either the username or password is invalid`;
   }
-  if (checkEmail !== null) {
-    if (checkEmail.email === email && checkEmail.password === password) {
-      return checkEmail; 
-    } else {
+  const passwordCorrect = await bcrypt.compare(password, checkEmail.password);
+    if (!passwordCorrect) { 
       throw "Invalid email and password combination";
+    } else {
+      return checkEmail; 
     }
-  }
+  
 }
 
 async function remove(id) {
@@ -174,6 +180,33 @@ async function update(id, firstName, lastName, email, phone, password) {
   }
   return await this.get(id.toString());
 }
+
+async function updatePicture(id, profilePicture) {
+  if (arguments.length !== 2) {
+    throw "Check arguments passed";
+  }
+  if (ObjectId.isValid(id) === false) {
+    throw `Error in id`;
+  }
+  id = ObjectId(id);
+  const userCollection = await user();
+  const inputId = await userCollection.find({ _id: id }).toArray();
+  if (inputId.length === 0) {
+    throw "No user with that id";
+  }
+  const updateUser = {
+    profilePicture: profilePicture,
+  };
+
+  const updatedInfo = await userCollection.updateOne(
+    { _id: id },
+    { $set: updateUser }
+  );
+  if (updatedInfo.modifiedCount === 0) {
+    throw "Could not update user successfully";
+  }
+  return "success";
+}
 function validateEmail(email) {
   const re =
     /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -184,4 +217,5 @@ module.exports = {
   get,
   remove,
   update,
+  updatePicture,
 };

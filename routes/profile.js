@@ -4,7 +4,10 @@ const router=express.Router();
 
 router.get('/', async(req,res)=>{
     try{
-        res.render('profile/profile');
+        firstName=req.session.user.firstName;
+        lastName=req.session.user.lastName;
+        profilePicture=req.session.user.profilePicture;
+        res.render('profile/profile', {firstName: firstName,lastName: lastName,profilePicture: profilePicture});
     }catch(e){
         res.status(500).json({error:e});
     }

@@ -2,6 +2,9 @@ body{
     margin:0;
     height:1000px;
 }
+.hidden {
+    display: none;
+  }
 .sidebar{
     background:#23282D;
     width:150px;
@@ -132,9 +135,7 @@ a{
     display: none;
 }
 
-#submit_file{
-    display: none;
-}
+
 
 .profile_details{
     position: relative;
