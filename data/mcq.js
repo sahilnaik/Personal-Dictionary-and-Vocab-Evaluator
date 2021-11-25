@@ -1,6 +1,6 @@
 const mongoCollections = require("../config/mongoCollections");
 const mcq = mongoCollections.mcq;
-const user = mongoCollections.user;
+const user = mongoCollections.users;
 const words = mongoCollections.words;
 let { ObjectId } = require("mongodb");
 
@@ -20,7 +20,9 @@ async function create(userId) {
   const mcqCollection = await mcq();
   const checkDuplicate = await mcqCollection.findOne({ userId: userId });
   if (checkDuplicate) {
-    createSession(userId, checkDuplicate.sessions.length);
+    
+    let sessionOutput= createSession(userId, checkDuplicate.sessions.length);
+    return sessionOutput;
   } else {
     let newMCQ = {
       userId,
@@ -36,6 +38,7 @@ async function create(userId) {
     );
     if (insertInfo.insertedCount === 0) throw "Could not add user";
   }
+  
 }
 
 async function createSession(userId, length) {
@@ -96,6 +99,9 @@ async function createSession(userId, length) {
     { userId: userId },
     { $push: { sessions: sessionObject } }
   );
+  if (updatedInfo.modifiedCount === 0) throw "Could not add session";
+  
+  return sessionObject;
 }
 
 function shuffleArray(array) {

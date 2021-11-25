@@ -17,7 +17,7 @@
    
     <div class="pname">Name: <span id="p_name"></span></div>
     <br>
-    <div class="pname">Email ID: <span id="p_email"></span></div>
+    <div class="pname">Email ID: {{email}}<span id="p_email"></span></div>
     
 </div>
 
@@ -43,7 +43,7 @@
 <script type="text/javascript">
     window.addEventListener('load', (event) => {
             console.log('page is fully loaded');
-            let name="Govind";
+            let name="{{firstName}} {{lastName}}"
             document.getElementById("right_name").innerText=name;
             document.getElementById("p_name").innerText=name;
          

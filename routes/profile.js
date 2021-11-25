@@ -7,7 +7,8 @@ router.get('/', async(req,res)=>{
         firstName=req.session.user.firstName;
         lastName=req.session.user.lastName;
         profilePicture=req.session.user.profilePicture;
-        res.render('profile/profile', {firstName: firstName,lastName: lastName,profilePicture: profilePicture});
+        email = req.session.user.email;
+        res.render('profile/profile', {firstName: firstName,lastName: lastName,profilePicture: profilePicture, email:email});
     }catch(e){
         res.status(500).json({error:e});
     }

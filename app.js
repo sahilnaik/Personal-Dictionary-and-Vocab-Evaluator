@@ -42,6 +42,7 @@ app.post('/profile-upload-single', upload.single('profile-file'), async function
   profilePicture = req.file.originalname;
   try {
     const updateProfilePicture = await updatePicture.updatePicture(req.session.user._id, profilePicture);
+    req.session.user.profilePicture = profilePicture;
     res.redirect('/profile');
   } catch (error) {
     console.log(error);

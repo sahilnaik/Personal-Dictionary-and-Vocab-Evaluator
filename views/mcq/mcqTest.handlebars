@@ -1,6 +1,7 @@
 
 <link rel="stylesheet" href="../public/css/mcq.css">
 <div id="startMCQTest">
+    
         <Button type="button" class="btn btn-outline-primary" onclick="startTest()">Take Test</Button>
 </div>
 <div id="mcq_box">
@@ -81,37 +82,31 @@
             que("next");
             document.getElementById("mcq_box").style.display="grid";
         }
-
+        let questions=[];
+        let options=[];
+        let answers=[];
+        {{#each mcqList}}
+            questions.push("{{question_word}}");
+            options.push("{{answer}}");
+            answers.push("{{correctAns}}");
+        {{/each}}
+       
+        
         function initialize(){
             let session={};
             let word={};
-            word["Question word"]="Dispel";
-            word["options"]=["Disband","Allurement","Adulation","Blandish"];
-            word["answer"]="Disband";
-            word["userSelection"]="";
-            word["correctOrNot"]="";
-            words.push(word);
-            let word1={};
-            word1["Question word"]="Sad";
-            word1["options"]=["Sorrow","Happy","Pleasant","Determined"];
-            word1["answer"]="Sorrow";
-            word1["userSelection"]="";
-            word1["correctOrNot"]="";
-            words.push(word1);
-            let word2={};
-            word2["Question word"]="Focused";
-            word2["options"]=["Sorrow","Happy","Pleasant","Determined"];
-            word2["answer"]="Determined";
-            word2["userSelection"]="";
-            word2["correctOrNot"]="";
-            words.push(word2);
-            let word3={};
-            word3["Question word"]="Desperation";
-            word3["options"]=["Panic","Happy","Pleasant","Determined"];
-            word3["answer"]="Panic";
-            word3["userSelection"]="";
-            word3["correctOrNot"]="";
-            words.push(word3);
+            let temp=questions[0];
+            console.log(temp.question_word);
+            for(let i=0;i<10;i++){
+                word["Question word"]=questions[i];
+                word["options"]=options[i].split(",");
+                word["answer"]=answers[i];
+                word["userSelection"]="";
+                word["correctOrNot"]="";
+                words.push(word);
+                word={};
+            }
+            
             session["words"]=words;
         }
 
@@ -153,7 +148,7 @@
 
         function next(){
             wordindex++;
-            if(wordindex==3){
+            if(wordindex==9){
                 document.getElementById("submit-button").style.display="flex";
             }
             que("next");
@@ -233,5 +228,9 @@
                 const t1=new TimelineMax();
                 t1.fromTo(fill1,1,{transition: "transform",transform:"rotate(0deg)",ease:Power1.easeInOut},{transition: "transform",transform:"rotate("+degree1+")"}).
                 fromTo(full1,1,{transition: "transform",transform:"rotate(0deg)",ease:Power1.easeInOut},{transition: "transform",transform:"rotate("+degree1+")"},"-=1");
+
         }       
+        module.exports = {
+           eval:eval,
+        }
 </script>
