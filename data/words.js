@@ -74,6 +74,15 @@ const addWord = async function (userId,  word, meaning, synonym, antonym, exampl
 }
 
 const editWord = async function editWord(userId, word, synonym, antonym, example) {
+    if (!synonym && !antonym && !example) {
+        throw `Please specify at least 1 of the items to be edited.`
+    }
+    if (synonym.trim().length == 0) {
+        throw `Items to be edited cannot be just empty spaces.`
+    }
+
+    synonym = synonym.trim(), antonym = antonym.trim(), example = example.trim()
+    let countS = 0, countA = 0, countE = 0
     let wordCollection = await words()
     let wordDocument = await wordCollection.findOne({userId: userId})
     if (!wordDocument) {
@@ -87,23 +96,72 @@ const editWord = async function editWord(userId, word, synonym, antonym, example
         }
     })
 
-    if (synonym && synonym.trim().length !== 0) {
-        synonym = synonym.split(", ")
-        synonym.forEach(x => {
-            editingWord.synonyms.push(x) 
-        });   
+    synonym = synonym.split(", ")
+    let synonymLenght = synonym.length
+    for (let i = 0; i < synonymLenght; i++) {
+        let same = false
+        for (let j = 0; j < editingWord.synonyms.length; j++) {
+            if (editingWord.synonyms[j] == synonym[i]) {
+                same = true
+                countS++
+                break
+            }            
+        }  
+        // if (!same) {
+        //     editingWord.synonyms.push(synonym[i])        
+        // }  
     }
-    if (antonym && antonym.trim().length !== 0) {
+
+    if (antonym.trim().length !== 0) {
         antonym = antonym.split(", ")
-        antonym.forEach(x =>{
-            editingWord.antonyms.push(x)
-        })   
-    }
-    if (example && example.trim().length !== 0) {
+        let antonymLenght = antonym.length
+        for (let i = 0; i < antonymLenght; i++) {
+            let same = false
+            for (let j = 0; j < editingWord.antonyms.length; j++) {
+                if (editingWord.antonyms[j] == antonym[i]) {
+                    same = true
+                    countA++
+                    break
+                }            
+            }  
+            // if (!same) {
+            //     editingWord.antonyms.push(antonym[i])        
+            // }  
+        }
+    }    
+    
+    if (example.trim().length !== 0) {
         example = example.split(". ")
-        example.forEach(x =>{
-            editingWord.examples.push(x)
-        })   
+        let exampleLenght = example.length
+        for (let i = 0; i < exampleLenght; i++) {
+            let same = false
+            for (let j = 0; j < editingWord.examples.length; j++) {
+                if (editingWord.examples[j] == example[i]) {
+                    same = true
+                    countE++
+                    break
+                }            
+            }  
+            // if (!same) {
+            //     editingWord.examples.push(example[i])        
+            // }  
+        }
+    }
+
+    if (countS == synonym.length && countA == antonym.length && countE == example.length) {
+        throw  `Please provide at least 1 of the elements different in order to edit`
+    }
+
+    if (countS != synonym.length) {
+        editingWord.synonyms = synonym
+    }
+
+    if (countA != antonym.length) {
+        editingWord.antonyms = antonym
+    }
+
+    if (countE != example.length) {
+        editingWord.examples = example
     }
 
     let result = await wordCollection.updateOne({userId: userId}, {$set: {words: wordDocument.words}})

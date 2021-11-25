@@ -43,9 +43,14 @@ router.patch('/:id/editWord', async (req, res) => {
     const { word, synonym, antonym, example } = editWordForm
     try {
         const wordDocument = await words.editWord(req.params.id, word, synonym, antonym, example)
-        res
+        res.status(200).json(`Successfully edited the word ${word}`)
     } catch (e) {
-        
+        if (e.code) {
+            res.status(e.code).json(e.error)
+        } else {
+            console.log(e)
+            res.status(400).json(e)          
+        }
     }
 })
 module.exports = router;
