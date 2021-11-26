@@ -2,10 +2,28 @@ body{
     margin:0;
     height:1000px;
 }
+
+.main-box{
+    margin: 0px; 
+    padding: 0px; 
+    display: grid;
+    margin: 0px; 
+    padding: 0px;
+    background-color:#F1F1F1;
+}
+
+.main-box1{
+    position: relative;
+    bottom:1100px;
+    left:300px;
+}
+
 .sidebar{
     background:#23282D;
     width:150px;
-    height:1000px;
+    height:1200px;
+    position: relative;
+    bottom:0px;
     display: grid;
     grid-template-rows:15% 15% 15% 15% 15%;
 }
@@ -88,6 +106,7 @@ a{
     background-color:#ffffff;
     height: 50px;
     position: relative;
+    bottom:1200px;
     left:150px;
     display: flex;
 }
@@ -100,10 +119,6 @@ a{
     top:50px;
 }
 
-.dashboard{
-    width: 800px;
-}
-
 .dashboard-content{
     display: flex;
     justify-content: center;
@@ -114,16 +129,12 @@ a{
     box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
 }
 
-.main-box{
-    margin: 0px; 
-    padding: 0px;
-    background-color:#F1F1F1;
-}
 
 .row1{
     height: 200px;
     position: relative;
     left:100px;
+    width:1450px;
 }
 
 .sub-box{
@@ -138,6 +149,7 @@ a{
     position: relative;
     left:100px;
     top:350px;
+    width:1450px;
 }
 
 body {
@@ -236,7 +248,8 @@ body {
 }
 
 .right_navbar{
-    margin-left: 1400px;
+    position: relative;
+    left:1480px;
     font-size: large;
     font-weight: 900;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
@@ -296,8 +309,3 @@ body {
 .dropdown-content a:hover {background-color: #ddd;}
   
 .dropdown:hover .dropdown-content {display: block;}
-
-.main-box1{
-    position: relative;
-    bottom: 1000px;
-}

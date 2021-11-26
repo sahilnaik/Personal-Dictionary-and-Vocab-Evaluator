@@ -89,10 +89,9 @@ a{
 .navbar{
     background-color:#ffffff;
     height: 50px;
-    width: 100%;
+    width: 92%;
     position: absolute;
     top:0px;
-    /* z-index: 1; */
 }
 
 #startMCQTest{
@@ -183,7 +182,7 @@ a{
     margin: 0 20px;
     box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
     place-content: center;
-    height: 800px;
+    height: 1000px;
     width: 1000px;
 }
 
