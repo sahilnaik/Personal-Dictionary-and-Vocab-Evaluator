@@ -64,23 +64,24 @@ body{
 }
 
 #next-button{
-    width:120px;
+    width:80px;
     position: relative;
     top:50px;
-    left:400px;
+    left:270px;
 }
 #prev-button{
-    width:120px;
+    display: none;
+    width:80px;
     position: relative;
     top:50px;
-    right:450px;
+    right:300px;
 }
 
 #submit-button{
-    width:120px;
-    position: absolute;
+    width:80px;
+    position: relative;
     top:50px;
-    left:0px;
+    right:50px;
     display: none;
 }
 

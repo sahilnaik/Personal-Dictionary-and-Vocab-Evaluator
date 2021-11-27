@@ -14,7 +14,7 @@ html,body{
     flex: 0.10;
     background:#23282D;
     display: grid;
-    grid-template-rows:15% 15% 15% 15% 15%;
+    grid-template-rows:15% 15% 15% 15% 15% 15%;
 }
 
 .main-dashboard{
@@ -174,3 +174,8 @@ a{
 .dropdown-content a:hover {background-color: #ddd;}
   
 .dropdown:hover .dropdown-content {display: block;}
+
+body {
+    font-family: "Roboto", sans-serif;
+    background:#d2eaf1;
+}

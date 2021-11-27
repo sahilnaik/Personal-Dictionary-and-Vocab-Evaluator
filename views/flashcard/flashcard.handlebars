@@ -5,7 +5,7 @@
 <div id="flashcard-content">
     <div class="card text-white bg-secondary mb-3" id="card1" style="max-width: 70rem;">
         <div class="front_body" id="front_card">
-            <div class="card-header" id="cardHeader">Question #1</div>
+            <div class="card-header">Question #<span id="cardHeader"></span></div>
                 <div class="card-body">
                     <h5 class="card-title" style="text-align: center;" id="cardTitle"></h5>
                         <p class="card-text" style="text-align: center;" id="cardText">Do you know this word?</p>
@@ -22,12 +22,12 @@
                 </div>
                 <div class="card text-white bg-secondary mb-3" id="card2" style="max-width: 70rem;">  
                     <div class="front_body" id="back_card">
-                        <div class="card-header" style="text-align: center;" id="word"><h5>Word</h5></div>
+                        <h5 class="card-header" style="text-align: center;" id="word"></h5>
                         <div class="card-body">
-                        <h5 class="card-title" style="text-align: center;" id="meaning">Meaning</h5>
-                        <p class="card-text" style="text-align: center;" id="synonym">Synonym</p>
-                        <p class="card-text" style="text-align: center;" id="antonym">Antonym</p>
-                        <p class="card-text" style="text-align: center;" id="example">Example</p>
+                        <h5 class="card-title" style="text-align: center;" id="meaning"></h5>
+                        <p class="card-text" style="text-align: center;">Synonym : <span id="synonym"></span></p>
+                        <p class="card-text" style="text-align: center;">Antonym : <span id="antonym"></span></p>
+                        <p class="card-text" style="text-align: center;">Example : <span id="example"></span></p>
                         <div class="flashcard-options1">
                             <div onclick="changeWordBack()">
                                 <i class="fas fa-check fa-4x"></i>    
@@ -37,60 +37,161 @@
         </div>
     </div>
 </div>
+<div id="result_box">
+    <div class="row">
+            <div class="col-9 sub-box-result" style="background-color: white;">
+                <div class="report_heading">
+                    <h4>MCQ Report Card</h4>
+                </div>
+                <br>
+                <h6>Marks Secured: <span id="marks_sec"></span></h6>
+                <h6>Total Marks: <span id="total_m"></span></h6> 
+                <br>           
+                <div class="circle-wrap">
+                    <div class="circle">
+                        <div class="mask half">
+                            <div class="fill1"></div>
+                        </div>
+                        <div class="mask full1">
+                            <div class="fill1"></div>
+                        </div>
+                        <div id="i-circle1" class="inside-circle" style="background-color: rgb(217, 247, 174);"></div>
+                    </div>
+                </div>
+
+                <div class="report_ending">
+                    <h6>Percentage of marks secured (%)</h6>
+                    <br>
+                    <br>
+                    <table id="report_table">
+                        <tr>
+                           <th>Question</th>
+                           <th>Correct Or Not</th> 
+                        </tr>
+                    </table>
+                    <br>
+                    <br>
+                </div>
+             </div>
+    </div>
+</div>  
 <script  type = "text/javascript">
                 let wordCount=-1;
+                let correctCount=0;
+                let wrongCount=0;
 
-                async function startTest(){
+                let words=[];
+                let word1={};
+                word1["word"]="Happy";
+                word1["meaning"]="Pleasant";
+                word1["synonyms"]="Pleasant, Smiling";
+                word1["antonyms"]="Sad, Sorrow";
+                word1["example"]="Happy me";
+                word1["userSelection"]=false;
+                words.push(word1);
+                let word2={};
+                word2["word"]="Sad";
+                word2["meaning"]="Sorrow";
+                word2["synonyms"]="Sad, Sorrow";
+                word2["antonyms"]="Pleasant, Smiling";
+                word2["example"]="Sad me";
+                word2["userSelection"]=false;
+                words.push(word2);
+                let word3={};
+                word3["word"]="Lame";
+                word3["meaning"]="Uninspiring and dull";
+                word3["synonyms"]="Feeble, Weak";
+                word3["antonyms"]="Energetic";
+                word3["example"]="I found the program pretty lame and not very informative";
+                word3["userSelection"]=false;
+                words.push(word3);
+
+
+                function startTest(){
                     document.getElementById("flashcard-content").style.display="grid";
                     changeWord();
                     document.getElementById("startFlashcardTest").style.display="none";
                 }
 
-                async function changeWord(){
+                function changeWord(){
                     console.log("inside the fn");
-                    const card=document.querySelector("#card1");
-                    const back_card=document.querySelector("#back_card");
-                    document.getElementById("back_card").style.display="none";
-                    const t1=new TimelineMax();
-                    t1.fromTo(card,1,{left: "10%",opacity:"1"},{left:"80%",opacity:"0"});
-                    let newObj=await word();
-                    if(newObj===-1){
-                        return;
+                    if(wordCount+1===words.length){
+                        words[wordCount].userSelection=true;
+                        correctCount++;
+                        const card=document.querySelector("#card1");
+                        const back_card=document.querySelector("#back_card");
+                        document.getElementById("back_card").style.display="none";
+                        const t1=new TimelineMax();
+                        t1.fromTo(card,1,{left: "10%",opacity:"1"},{left:"80%",opacity:"0"});
+                        t1.fromTo(card,1,{left: "80%",opacity:"0"},{left:"10%",opacity:"1"});
+                        eval();
+                    }else if(wordCount===-1){
+                        const card=document.querySelector("#card1");
+                        const back_card=document.querySelector("#back_card");
+                        document.getElementById("back_card").style.display="none";
+                        const t1=new TimelineMax();
+                        t1.fromTo(card,1,{left: "10%",opacity:"1"},{left:"80%",opacity:"0"});
+                        let newObj=word();
+                        document.getElementById("cardHeader").innerHTML=newObj["queNo"];
+                        document.getElementById("cardTitle").innerHTML=newObj["word"];
+                        document.getElementById("cardText").innerHTML=newObj["title"];
+                        document.getElementById("word").innerHTML=newObj["word"];
+                        document.getElementById("meaning").innerHTML=newObj["meaning"];
+                        document.getElementById("synonym").innerHTML=newObj["synonyms"];
+                        document.getElementById("antonym").innerHTML=newObj["antonyms"];
+                        document.getElementById("example").innerHTML=newObj["example"];
+                        document.getElementById("flashcardOptions").innerHTML=newObj["option"];
+                        t1.fromTo(card,1,{left: "80%",opacity:"0"},{left:"10%",opacity:"1"});
                     }
-                    document.getElementById("cardHeader").innerHTML=newObj["queNo"];
-                    document.getElementById("cardTitle").innerHTML=newObj["word"];
-                    document.getElementById("cardText").innerHTML=newObj["title"];
-                    document.getElementById("flashcardOptions").innerHTML=newObj["option"];
-                    t1.fromTo(card,1,{left: "80%",opacity:"0"},{left:"10%",opacity:"1"})
-                    fadeout(newObj);
+                    else{
+                        words[wordCount].userSelection=true;
+                        correctCount++;
+                        const card=document.querySelector("#card1");
+                        const back_card=document.querySelector("#back_card");
+                        document.getElementById("back_card").style.display="none";
+                        const t1=new TimelineMax();
+                        t1.fromTo(card,1,{left: "10%",opacity:"1"},{left:"80%",opacity:"0"});
+                        let newObj=word();
+                        document.getElementById("cardHeader").innerHTML=newObj["queNo"];
+                        document.getElementById("cardTitle").innerHTML=newObj["word"];
+                        document.getElementById("cardText").innerHTML=newObj["title"];
+                        document.getElementById("word").innerHTML=newObj["word"];
+                        document.getElementById("meaning").innerHTML=newObj["meaning"];
+                        document.getElementById("synonym").innerHTML=newObj["synonyms"];
+                        document.getElementById("antonym").innerHTML=newObj["antonyms"];
+                        document.getElementById("example").innerHTML=newObj["example"];
+                        document.getElementById("flashcardOptions").innerHTML=newObj["option"];
+                        t1.fromTo(card,1,{left: "80%",opacity:"0"},{left:"10%",opacity:"1"});
+                    }
+                    
                 }
 
 
 
-                async function word(){
-                    let words=["Happy","Sad","Day"];
+                function word(){
                     let newObj={};
                     wordCount++;
-                    if(wordCount>=words.length){
-                        return -1;
-                    }
                     let queNo=document.getElementById("cardHeader").innerHTML;
                     let que=document.getElementById("cardText").innerHTML;
                     let options=document.getElementById("flashcardOptions").innerHTML;
                     console.log(que);
-                    queNumber=wordCount+1;
-                    newObj["queNo"]=queNo.substr(0,queNo.length-1)+queNumber;
+                    newObj["queNo"]=wordCount+1;
                     newObj["title"]=que;
-                    newObj["word"]=words[wordCount];
+                    newObj["word"]=words[wordCount].word.toUpperCase();
+                    newObj["meaning"]=words[wordCount].meaning;
+                    newObj["synonyms"]=words[wordCount].synonyms;
+                    newObj["antonyms"]=words[wordCount].antonyms;
+                    newObj["example"]=words[wordCount].example;
                     newObj["option"]=options;
                     return newObj;
                 }
 
-                async function fadeout(newObj){
+                function fadeout(newObj){
                     console.log(newObj);
                 }
 
-                async function flipCard(){
+                function flipCard(){
+                    wrongCount++;
                     const t1=new TimelineMax();
                     const front_card=document.querySelector("#front_card");
                     const card1=document.querySelector("#card1");
@@ -105,7 +206,7 @@
                     // document.getElementById("word").innerHTML;
                 }
 
-                async function changeWordBack(){
+                function changeWordBack(){
                     const card=document.querySelector("#card1");
                     const back_card=document.querySelector("#back_card");
                     document.getElementById("back_card").style.display="none";
@@ -117,16 +218,64 @@
                     document.getElementById("front_card").style.transform="rotateY(0deg)";
                     const t1=new TimelineMax();
                     t1.fromTo(card,1,{left: "10%",opacity:"1"},{left:"80%",opacity:"0"});
-                    let newObj=await word();
-                    if(newObj===-1){
-                        return;
+                    if(wordCount+1===words.length){
+                        t1.fromTo(card,1,{left: "80%",opacity:"0"},{left:"10%",opacity:"1"});
+                        eval();
+                    }else{
+                        words[wordCount+1].userSelection=false;
+                        let newObj=word();
+                        document.getElementById("cardHeader").innerHTML=newObj["queNo"];
+                        document.getElementById("cardTitle").innerHTML=newObj["word"];
+                        document.getElementById("cardText").innerHTML=newObj["title"];
+                        document.getElementById("word").innerHTML=newObj["word"].toUpperCase();
+                        document.getElementById("meaning").innerHTML=newObj["meaning"];
+                        document.getElementById("synonym").innerHTML=newObj["synonyms"];
+                        document.getElementById("antonym").innerHTML=newObj["antonyms"];
+                        document.getElementById("example").innerHTML=newObj["example"];
+                        document.getElementById("flashcardOptions").innerHTML=newObj["option"];
+                        t1.fromTo(card,1,{left: "80%",opacity:"0"},{left:"10%",opacity:"1"});
                     }
-                    document.getElementById("cardTitle").innerHTML=newObj["word"];
-                    document.getElementById("cardText").innerHTML=newObj["title"];
-                    document.getElementById("flashcardOptions").innerHTML=newObj["option"];
-                    t1.fromTo(card,1,{left: "80%",opacity:"0"},{left:"10%",opacity:"1"})
-                    fadeout(newObj);
                     
+                    
+        }
+
+         function eval(){
+            let percentage=Math.round(correctCount/words.length*100);
+            console.log("Marks secured: "+correctCount+" out of "+words.length);
+            console.log("Percentage of Marks secured: "+percentage);
+            triggerGraphs(correctCount,words.length,percentage);
+        }
+
+
+        function triggerGraphs(number_of_correct,number_of_words,percentage){
+                console.log("entered");
+                document.getElementById("flashcard-content").style.display="none";
+                document.getElementById("result_box").style.display="grid";
+                for(let k=0;k<words.length;k++){
+                    let row=document.createElement("tr");
+                    let col1=document.createElement("td");
+                    col1.innerText= words[k]["word"];
+                    let col2=document.createElement("td");
+                    if(words[k]["userSelection"]===true){
+                        col2.innerHTML='<i class="fas fa-check-square"></i>';
+                    }else{
+                        col2.innerHTML='<i class="fas fa-times-circle"></i>';
+                    }
+                    row.appendChild(col1);
+                    row.appendChild(col2);
+                    document.getElementById("report_table").appendChild(row);
+                }
+                document.getElementById("marks_sec").innerText=correctCount;
+                document.getElementById("total_m").innerText=words.length;
+                document.getElementById('i-circle1').innerText=percentage.toString()+"%";
+                let deg1=(percentage/100*360)/2;
+                degree1=deg1.toString()+"deg";
+                fill1=document.getElementsByClassName('fill1');
+                full1=document.getElementsByClassName('full1');
+                const t1=new TimelineMax();
+                t1.fromTo(fill1,1,{transition: "transform",transform:"rotate(0deg)",ease:Power1.easeInOut},{transition: "transform",transform:"rotate("+degree1+")"}).
+                fromTo(full1,1,{transition: "transform",transform:"rotate(0deg)",ease:Power1.easeInOut},{transition: "transform",transform:"rotate("+degree1+")"},"-=1");
+
         }
 </script>
 <script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>

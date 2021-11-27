@@ -47,3 +47,130 @@
     position: relative;
     bottom:100px;
 }
+
+
+#result_box{
+    position: relative;
+    left:500px;
+    width:1200px;
+    display: none;
+}
+
+.sub-box-result{
+    display: grid;
+    margin: 0 20px;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+    place-content: center;
+    height: 1000px;
+    width: 1000px;
+}
+
+table, th, td {
+    padding:10px;
+    border:2px solid black;
+}
+
+td{
+    font-weight: 600;
+}
+
+#result_table{
+    position: relative;
+    right:70px;
+    width: 100%;
+}
+
+.mask .fill1,.mask .fill2,.mask .fill3{
+    clip: rect(0px, 75px, 150px, 0px);
+    background-color: #3aed22;
+  }
+
+
+    
+.circle-wrap {
+    margin: 150px auto;
+    width: 150px;
+    height: 150px;
+    background: #fefcff;
+    border-radius: 50%;
+    border: 1px solid #cdcbd0;
+}
+
+.circle-wrap .circle .mask,
+.circle-wrap .circle .fill1,
+.circle-wrap .circle .fill2,
+.circle-wrap .circle .fill3 {
+  width: 150px;
+  height: 150px;
+  position: absolute;
+  border-radius: 50%;
+}
+
+.mask .fill1,.mask .fill2,.mask .fill3{
+  clip: rect(0px, 75px, 150px, 0px);
+  background-color: #227ded;
+}
+
+.circle-wrap .circle .mask {
+    clip: rect(0px, 150px, 150px, 75px);
+}
+
+/* :root{
+    --startdegree1: ;
+    --enddegree1: ;
+    --animation1: fill ease-in-out 3s;
+} */
+
+/* .mask.full,
+.circle .fill {
+    animation: fill ease-in-out 3s;
+    transform: var(--enddegree1);
+}
+  
+@keyframes fill{
+   0% {
+      transform: var(--startdegree1);
+    }
+    100% {
+      transform: var(--enddegree1);
+    }
+} */
+
+.circle-wrap .inside-circle {
+    width: 122px;
+    height: 122px;
+    border-radius: 50%;
+    background: #d2eaf1;
+    line-height: 120px;
+    text-align: center;
+    margin-top: 14px;
+    margin-left: 14px;
+    color: #1e51dc;
+    position: absolute;
+    z-index: 100;
+    font-weight: 700;
+    font-size: 2em;
+}
+
+.chart-box{
+    display: flex;
+    justify-content: center;
+}
+
+.chart-box1{
+    display: flex;
+    justify-content: center;
+}
+
+
+.report_heading{
+    text-align: center;
+    position: relative;
+    top:100px;
+}
+
+.report_ending{
+    text-align: center;
+    position: relative;
+    bottom:100px;
+}

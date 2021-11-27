@@ -8,7 +8,7 @@
     <div class="row">
             <div class="col-9 sub-box-mcq">
                 <div class="content" id="contents">
-                    <h5 class="mcq-no" id="queNo">Question #1</h5>
+                    <h5 class="mcq-no" id="queNo">Question #<span id="no"></span></h5>
                     <h8 class="mcq-que" id="que">Do you know the synonym of this word?</h8>
                     <h6 class="mcq-word" id="word"></h6>
                     <div class="options" id="option">
@@ -24,9 +24,9 @@
                     
                     
                     <div id="buttons">
-                        <Button type="button" class="btn btn-secondary" id="next-button" onclick="next()">Next</Button>
                         <Button type="button" class="btn btn-secondary" id="prev-button" onclick="prev()">Previous</Button>
                         <Button type="button" class="btn btn-secondary" id="submit-button" onclick="eval()">Submit</Button>
+                        <Button type="button" class="btn btn-secondary" id="next-button" onclick="next()">Next</Button>
                     </div>
                 </div>
             </div>
@@ -73,6 +73,7 @@
 
 <script type = "text/javascript">
         let wordindex=-1;
+        let no=0;
         let words=[];
         let number_of_correct=0;
 
@@ -113,6 +114,21 @@
 
         function que(page){
             if(page==="next"){
+                no++;
+                console.log("Question No: "+no);
+                if(no===1){
+                    document.getElementById("prev-button").style.display="none";
+                }else{
+                    document.getElementById("prev-button").style.display="flex";
+                }
+
+                if(no===10){
+                    document.getElementById("next-button").style.display="none";
+                    document.getElementById("submit-button").style.display="flex";
+                }else{
+                    document.getElementById("next-button").style.display="flex";
+                }
+                document.getElementById("no").innerText=no;
                 let word3=words[wordindex];
                 document.getElementById("word").innerHTML=word3["Question word"];
                 let options=word3["options"];
@@ -122,6 +138,21 @@
                 document.getElementById("label_option4").innerHTML=options[3];
             }
             else if(page==="prev"){
+                no--;
+                console.log("Question No: "+no);
+                if(no===1){
+                    document.getElementById("prev-button").style.display="none";
+                }else{
+                    document.getElementById("prev-button").style.display="flex";
+                }
+                
+                if(no===10){
+                    document.getElementById("next-button").style.display="none";
+                    document.getElementById("submit-button").style.display="flex";
+                }else{
+                    document.getElementById("next-button").style.display="flex";
+                }
+                document.getElementById("no").innerText=no;
                 let word3=words[wordindex];
                 document.getElementById("word").innerHTML=word3["Question word"];
                 let options=word3["options"];
@@ -149,9 +180,6 @@
 
         function next(){
             wordindex++;
-            if(wordindex==9){
-                document.getElementById("submit-button").style.display="flex";
-            }
             que("next");
             var ele = document.getElementsByName("mcq_ans");
             for(var i=0;i<ele.length;i++){
@@ -230,8 +258,5 @@
                 t1.fromTo(fill1,1,{transition: "transform",transform:"rotate(0deg)",ease:Power1.easeInOut},{transition: "transform",transform:"rotate("+degree1+")"}).
                 fromTo(full1,1,{transition: "transform",transform:"rotate(0deg)",ease:Power1.easeInOut},{transition: "transform",transform:"rotate("+degree1+")"},"-=1");
 
-        }       
-        module.exports = {
-           eval:eval,
         }
 </script>
