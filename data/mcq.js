@@ -104,12 +104,46 @@ async function createSession(userId, length) {
   return sessionObject;
 }
 
+async function updateSession(userId, sessionId, words, correctCount) {
+  if (arguments.length != 4) throw "Invalid argument";
+  if (!userId) throw "You must provide a userId to create a mcq";
+  if (typeof userId !== "string") throw "userId must be a string";
+  userId = userId.trim();
+  if (!ObjectId.isValid(userId)) throw "userId is not valid";
+  if (!sessionId) throw "You must provide a sessionId to create a mcq";
+  if (typeof sessionId !== "string") throw "sessionId must be a string";
+  sessionId = sessionId.trim();
+  if (!words) throw "You must provide words to create a mcq";
+  let sessionNo = parseInt(sessionId);
+  let correctCountNo = parseInt(correctCount);
+  for(let i=0;i<words.length;i++){
+    if(words[i].correctOrNot=="true"){
+      words[i].correctOrNot=true;
+    }
+    else{
+      words[i].correctOrNot=false;
+    }
+  }
+ 
+  
+  
+  const mcqCollection = await mcq();
+  const updatedInfo = await mcqCollection.updateOne(
+    { userId: userId, "sessions._id": sessionNo },
+    { $set: { "sessions.$.words": words, "sessions.$.correctCount": correctCountNo } }
+  );
+  if (updatedInfo.modifiedCount === 0) throw "Could not update mcq";
+
+}
 function shuffleArray(array) {
   for (let i = array.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
     [array[i], array[j]] = [array[j], array[i]];
   }
 }
+
+
 module.exports = {
   create,
+  updateSession
 };

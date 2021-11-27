@@ -25,7 +25,7 @@
                     
                     <div id="buttons">
                         <Button type="button" class="btn btn-secondary" id="prev-button" onclick="prev()">Previous</Button>
-                        <Button type="button" class="btn btn-secondary" id="submit-button" onclick="eval()">Submit</Button>
+                        <Button type="button" class="btn btn-secondary" id="submit-button">Submit</Button>
                         <Button type="button" class="btn btn-secondary" id="next-button" onclick="next()">Next</Button>
                     </div>
                 </div>
@@ -70,7 +70,8 @@
              </div>
     </div>
 </div>         
-
+<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+        crossorigin="anonymous"></script>
 <script type = "text/javascript">
         let wordindex=-1;
         let no=0;
@@ -214,10 +215,10 @@
         function eval(){
             for(let k=0;k<words.length;k++){
                 if(words[k]["userSelection"]===words[k]["answer"]){
-                    words[k]["correctOrNot"]="true";
+                    words[k]["correctOrNot"]=true;
                     number_of_correct++;
                 }else{
-                    words[k]["correctOrNot"]="false";
+                    words[k]["correctOrNot"]=false;
                 }   
             }
             console.log(words);
@@ -226,7 +227,35 @@
             console.log("Marks secured: "+number_of_correct+" out of "+words.length);
             console.log("Percentage of Marks secured: "+percentage);
             triggerGraphs(number_of_correct,words.length,percentage);
+            let session={};
+            session["words"]=words;
+            
+            session["number_of_correct"]=number_of_correct;
+            return session;
         }
+        (function($) {
+        
+        $('#submit-button').click(function() {
+            let data = eval();
+            console.log("entered ajax");
+            console.log(data);
+            console.log({{mcqId}});
+            $.ajax({
+                
+                url: '/mcqsubmit',
+                type: 'POST',
+                data: {
+                    mcqData: data.words,
+                    number_of_correct: data.number_of_correct,
+                    id:{{mcqId}}
+                },
+                
+                success: function(msg) {
+                    alert('Email Sent');
+                }               
+            });
+});
+        })(jQuery);
 
 
         function triggerGraphs(number_of_correct,number_of_words,percentage){

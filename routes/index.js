@@ -7,6 +7,7 @@ const mcqRoute = require('./mcq');
 const profileRoute = require('./profile');
 const loginRoutes = require('./login');
 const signupRoutes = require('./signup');
+const mcqsubmitRoutes = require('./mcqsubmit');
 
 const constructorMethod = (app) => {
     app.use('/', mainRoute);
@@ -26,6 +27,8 @@ const constructorMethod = (app) => {
     app.use('/login', loginRoutes);
 
     app.use('/signup', signupRoutes);
+    
+    app.use('/mcqsubmit', mcqsubmitRoutes);
     
     app.use('*', (req, res) => {
         res.status(404).json({ error: 'Not found' });
