@@ -1,25 +1,20 @@
-.navbar{
-    background-color:#ffffff;
-    height: 50px;
-    width: 92%;
-    position: absolute;
-    top:0px;
+.main-box1{
+    display: grid;
+    grid-template-rows: 10% 90%;
+    margin-left: 0px;
 }
 
-.dashboard{
-    position: absolute;
-    top:20px;
-    left:400px;
+.main-box{
+    min-height: max-content;
 }
+
 .dashboard-content{
     display: flex;
     justify-content: center;
-    
 }
 .add-word-form{
-    position: absolute;
-    top:120px;
-    right:100px;
+    display: grid;
+    justify-content: center;
 }
 
 .word-field{
@@ -46,7 +41,11 @@
 .submit-field{
     display: flex;
     position: relative;
-    left:350px;
-    top:30px;
+    left:250px;  
+}
+
+#submit-btn{
+    width:80px;
+    height: 60px;
 }
 

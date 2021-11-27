@@ -1,12 +1,124 @@
-/* 
+html,body{
+    margin:0;
+    height: 100%;
+}
+
+.main-box{
+    background-color:#F1F1F1;
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+}
+
+.sidebar{
+    flex: 0.10;
+    background:#23282D;
+    display: grid;
+    grid-template-rows:15% 15% 15% 15% 15%;
+}
+
+.main-dashboard{
+    flex:0.9;
+    display: grid;
+    grid-template-rows:8% 92%;
+}
+
+.main-navbar{
+    background-color:#ffffff;
+    max-height: 50px;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+}
+
+
 .right_navbar{
-    position: relative;
-    left:60px;
+    justify-content: flex-end;
     font-size: large;
     font-weight: 900;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     display: flex;
+    padding-right: 30px;
+    padding-top: 5px;
+}
 
+
+.main-box1{
+    display: grid;
+    grid-template-rows: 50% 50%;
+    margin-left: 200px;
+}
+
+a{
+    text-decoration: none;
+}
+.sidebar-dashboard{
+    text-align: center;
+    padding-top: 50px ;
+    padding-bottom: 50px;
+}
+.sidebar-dashboard-text{
+    color: white;
+}
+
+.fa-user{
+    color: white;
+}
+
+.fa-file-word{
+    color: white;
+}
+
+.sidebar-dashboard:hover{
+    transition: transform .5s ease;
+    background-color: rgb(53, 51, 51);
+}
+
+.sidebar-dashboard:hover {
+    transform: scale(1);
+  }
+
+.sidebar-word{
+    text-align: center;
+    padding-top: 50px ;
+    padding-bottom: 50px;
+}
+
+.sidebar-word:hover{
+    transition: transform .5s ease;
+    background-color: rgb(53, 51, 51);
+}
+
+.sidebar-word:hover {
+    transform: scale(1);
+}
+
+.sidebar-flashcard{
+    text-align: center;
+    padding-top: 50px ;
+    padding-bottom: 50px;
+}
+
+.sidebar-flashcard:hover{
+    transition: transform .5s ease;
+    background-color: rgb(53, 51, 51);
+}
+
+.sidebar-flashcard:hover {
+    transform: scale(1);
+}
+
+.sidebar-mcq{
+    text-align: center;
+    padding-top: 50px ;
+    padding-bottom: 50px;
+}
+
+.sidebar-mcq:hover{
+    transition: transform .5s ease;
+    background-color: rgb(53, 51, 51);
+}
+
+.sidebar-mcq:hover {
+    transform: scale(1);
 }
 
 
@@ -62,32 +174,3 @@
 .dropdown-content a:hover {background-color: #ddd;}
   
 .dropdown:hover .dropdown-content {display: block;}
-
-.navbar{
-    background-color:#ffffff;
-    height: 50px;
-    display: flex;
-    left:150px;
-}
-
-.dashboard-content{
-    background-color:#f5f5f5;
-    height: 100%;
-    width: 100%;
-    position: absolute;
-    top:50px;
-}
-
-.dashboard{
-    width: 800px;
-}
-
-.dashboard-content{
-    display: flex;
-    justify-content: center;
-    
-}
-
-.navbar{
-    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
-} */

@@ -42,26 +42,27 @@
                     </div>
                 </a>
             </div>
-        </div>
-        <div class="navbar">
-            <div class="right_navbar">
-                <div id="right_name"></div>
-                    <div id="right_profile">
-                        <div class="dropdown">
-                            <img id="img_profile" src="" alt="">
-                                <div class="dropdown-content">
-                                    <a href="/" style="text-decoration: none;">Dashboard</a>
-                                    <a href="/profile" style="text-decoration: none;">Profile</a>
-                                    <a href="/viewWords" style="text-decoration: none;">Words</a>
-                                    <a href="/flashcard" style="text-decoration: none;">Flashcard Test</a>
-                                    <a href="/mcq" style="text-decoration: none;">MCQ Test</a>
-                                </div>
-                        </div>    
+            <div class="main-dashboard">
+                <div class="main-navbar">
+                <div class="right_navbar">
+                    <div id="right_name"></div>
+                        <div id="right_profile">
+                            <div class="dropdown">
+                                <img id="img_profile" src="" alt="">
+                                    <div class="dropdown-content">
+                                        <a href="/" style="text-decoration: none;">Dashboard</a>
+                                        <a href="/profile" style="text-decoration: none;">Profile</a>
+                                        <a href="/viewWords" style="text-decoration: none;">Words</a>
+                                        <a href="/flashcard" style="text-decoration: none;">Flashcard Test</a>
+                                        <a href="/mcq" style="text-decoration: none;">MCQ Test</a>
+                                    </div>
+                            </div>    
+                        </div>
                     </div>
                 </div>
+                {{{body}}}
+            </div>
         </div>
-        {{{body}}}
-        </div>  
         <script type="text/javascript">
             window.addEventListener('load', (event) => {
                 console.log('page is fully loaded');

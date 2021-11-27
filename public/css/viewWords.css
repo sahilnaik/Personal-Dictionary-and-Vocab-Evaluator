@@ -1,30 +1,67 @@
+html,body,.main-box,.main-dashboard{
+  margin:0;
+  width: 100%;
+  height: 100%;
+}
+
+.main-box{
+  width: 100%;
+  height: 100%;
+}
 .main_container{
     position: relative;
-    bottom:250px;
-    height: 100px;
-    width:1200px;
+    height: 100%;
+    width: 100%;
 }
 
 .word_box{
     position: relative;
-    bottom:700px;
-    left:250px;
     padding: 0;
-
+    height: 100%;
+    width: 100%;
 }
 
 .percentage{
     background-color: white;
     position: relative;
+    left: 285px;
     top:20px;
     font-weight: bolder;
 }
 
+.progress{
+  width:1280px;
+  margin-bottom:50px;
+  background-color:lightgray;
+  position: relative;
+  left:320px;
+}
+
 .progress_desc{
     position: relative;
-    left:1050px;
+    left:1350px;
     top:20px;
+    width:200px;
     font-weight: bolder;
+}
+
+#word-select-form{
+  position: relative;
+  left:280px;
+  z-index: 1;
+}
+.details-box{
+  padding: 50px;
+  display: grid;
+  position: relative;
+  top:-10px;
+  right:50px;
+  z-index: 0;
+}
+
+#details-form{
+  position: relative;
+  left:250px;
 }
 
 * {
@@ -174,6 +211,7 @@
   .select {
     position: relative;
     display: flex;
+    left:280px;
     width: 80rem;
     height: 3em;
     border-radius: .25em;
@@ -225,17 +263,33 @@
     display: none;
   }
   
-  .details-box{
-    padding: 50px;
-    display: grid;
-  }
   
   .word-field{
     box-shadow: 0 3px 10px rgb(0 0 0 / 0.9);
     position: relative;
-    right:50px;
     bottom:50px;
     height: 60px;
     width: 1280px;
     background:#23282D;
+  }
+
+  .word_title{
+    font-size: x-large;
+    font-weight: bold;
+    text-align: center;
+  }
+
+  .meaning-field,.synonyms-field,.antonyms-field,.example-field{
+    position: relative;
+    left:200px;
+  }
+
+  #word{
+    position:relative; 
+    left:550px; 
+    top:15px;
+    width: 100px; 
+    color:white; 
+    font-size:x-large; 
+    font-weight: bold;
   }

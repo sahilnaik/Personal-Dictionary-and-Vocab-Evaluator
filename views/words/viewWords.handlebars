@@ -1,5 +1,4 @@
 <link rel="stylesheet" href="../public/css/viewWords.css">
-<link rel="stylesheet" href="../public/css/profile.css">
 <body onload="progressbarCalculator()">
 <div class="main_container" >
     <div class="word_title">Personal Dictionary</div>
@@ -9,7 +8,7 @@
             <span id="wordCount"></span> out of <span id="wordTotal"></span> words learnt
         </div>
         <span class="percentage"><span id="perc"></span></span>
-        <div class="progress" style="width:1280px;margin-bottom:50px;background-color:lightgray;">
+        <div class="progress">
             <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" id="pbar" style="background-color: rgb(54, 224, 54);"></div>
         </div>
 
@@ -22,15 +21,16 @@
             </select>
         </div>
 
-        <form>
+        <form id="word-select-form">
         <input class="chosen-value" type="text" value="" placeholder="Type to filter">
         <ul class="value-list">
         </ul>
         </form>
-        <form id="details-form">
         <div class="details-box">
+        <form id="details-form">
+        
             <div class="word-field">
-                <h5 id="word" style="position:relative; left:550px; top:15px; color:white; font-size:x-large; font-weight: bold;"></h5>    
+                <h5 id="word"></h5>    
             </div>
         <br>    
         <label for="meaning">
@@ -59,9 +59,9 @@
                     
                 </div>
         </label>
+        </div>
         </form>
         </div>
-    </div>
 </div>
 </body>
 <script type="text/javascript">
@@ -159,7 +159,7 @@
     });
 
     function elementReturn(selection){
-        document.getElementById("details-form").style.display="flex";
+        document.getElementById("details-form").style.display="grid";
         document.getElementById("word").innerText=selection.toUpperCase();
         let meaning,synonyms,antonyms,example="";
         wordList.map((obj)=>{

@@ -1,19 +1,15 @@
+html,body{
+    height: 100%;
+}
+
 .hidden {
     display: none;
-  }
-
-.navbar{
-    background-color:#ffffff;
-    height: 50px;
-    position: absolute;
-    top:0px;
-    width: 92%;
 }
+
 
 .profile_form{
     position: relative;
     left:150px;
-    bottom:950px;
     max-width: 1600px;
 
 }
@@ -52,9 +48,6 @@
 
 
 .profile_details{
-    position: relative;
-    left:200px;
-    bottom:800px;
     max-width: 1600px;
 }
 
