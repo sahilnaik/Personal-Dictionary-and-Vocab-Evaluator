@@ -136,10 +136,10 @@ async function updateSession(userId, sessionId, words, correctCount) {
     { $set: { "sessions.$.words": words, "sessions.$.correctCount": correctCountNo } }
   );
   if (updatedInfo.modifiedCount === 0) throw "Could not update mcq";
-    calculateReview(userId);
+    calculate(userId);
 }
 
-async function calculateReview(userId) {
+async function calculate(userId) {
   let total = 0;
   
   const mcqCollection = await mcq();
@@ -189,6 +189,61 @@ async function getPercentage(email) {
   return percentage.overallPercentage;
 }
 
+async function getLastFiveSessions(id) {
+  if (!id) throw "You must provide an email to get last five sessions";
+  if (!ObjectId.isValid(id)) throw "userId is not valid";
+  id = ObjectId(id);
+  const mcqCollection = await mcq();
+
+  const sessionData = await mcqCollection.findOne({ userId: id });
+  let session = sessionData.sessions;
+  if (session.length == 0) {
+    return 0;
+  }
+  let sessionLength = session.length;
+  let len = sessionLength;
+  let allSessions = [];
+  let correctWords = [];
+  let incorrectWords = [];
+  let customSession ={};
+  
+
+    for (let i = 0; i<sessionLength ; i++) {
+      customSession["id"] = session[i]._id;
+      customSession["marks"]= session[i].correctCount;
+      customSession["total"]= session[i].words.length;
+      customSession["percentage"]= (session[i].correctCount)*10;
+        for(j=0;j<session[i].words.length;j++){
+          if(session[i].words[j].correctOrNot==true){
+             correctWords.push(session[i].words[j].question_word);
+            
+          }
+          else{
+             incorrectWords.push(session[i].words[j].question_word);
+            
+          }
+          
+        }
+        customSession["correct"]=correctWords.join(", ");
+          customSession["incorrect"]=incorrectWords.join(", ");
+      allSessions.push(customSession);
+      customSession={};
+      correctWords=[];
+      incorrectWords=[];
+    }
+  
+
+
+
+        //session3["marks"]="8";
+        // session3["total"]="10";
+        // session3["percentage"]="80%";
+        // session3["correct"]="Rage,Sad";
+        // session3["incorrect"]="Lame,Sheer";
+  return allSessions;
+}
+
+
 function shuffleArray(array) {
   for (let i = array.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
@@ -201,4 +256,5 @@ module.exports = {
   create,
   updateSession,
   getPercentage,
+  getLastFiveSessions,
 };
