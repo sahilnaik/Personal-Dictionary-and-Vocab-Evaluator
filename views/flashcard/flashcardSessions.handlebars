@@ -1,0 +1,44 @@
+<link rel="stylesheet" href="../public/css/sessions.css">
+
+{{#if insufficientWords}}  
+    <h2 class="error">Not enough words to start the Flashcard Test</h2>
+{{else}}
+<div class="main-navbar">
+    <div class="center-navbar">
+        <form action="/flashcard">
+            <button type="submit" class="btn btn-secondary">PROCEED TO TEST</button>
+        </form>
+    </div>    
+    <div class="right_navbar">
+        <div id="right_name"></div>
+            <div id="right_profile">
+                <div class="dropdown">
+                    <img id="img_profile" src="" alt="">
+                        <div class="dropdown-content">
+                            <a href="/" style="text-decoration: none;">Dashboard</a>
+                            <a href="/profile" style="text-decoration: none;">Profile</a>
+                            <a href="/viewWords" style="text-decoration: none;">Words</a>
+                            <a href="/flashcard/sessions" style="text-decoration: none;">Flashcard Test</a>
+                            <a href="/mcq/sessions" style="text-decoration: none;">MCQ Test</a>
+                            <a href="/logout" style="text-decoration: none;">Logout</a>
+
+                        </div>
+                </div>    
+            </div>
+        </div>
+    </div>
+    <div class="results">
+    <h1 class="f_heading">PREVIOUS TEST SCORES</h1>
+    {{#each sessions}}
+        <div class="result">
+            <div class="test">
+                <h4>Test <span class="test_no">{{@index}}</span></h4>
+            </div>
+            <p class="res"><span class="res_h">Result: </span><span class="s_marks_scored">{{marks}}</span>/<span class="s_total_marks">{{total}}</span></p>
+            <p class="res"><span class="res_h">Percentage:</span><span class="s_total_marks">{{percentage}}</span></p>
+            <p class="right"><span class="right_h">Words you got right: </span><span class="s_correct_words">{{correct}}</span></p>
+            <p class="wrong"><span class="wrong_h">Words you got incorrect: </span><span class="s_incorrect_words">{{incorrect}}</span></p>
+        </div>
+    {{/each}}
+    </div>
+{{/if}}
