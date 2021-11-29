@@ -3,7 +3,7 @@ const flashcard = mongoCollections.flashcard;
 const user = mongoCollections.users;
 const words = mongoCollections.words;
 let { ObjectId } = require("mongodb");
-​
+
 async function create(userId) {
     if (arguments.length != 1) throw "Invalid argument";
     if (!userId) throw "You must provide a userId to create a flashcard";
@@ -42,7 +42,7 @@ async function create(userId) {
     }
     
 }
-​
+
 async function createSession(userId, length) {
     let count = length;
     let wordArray = [];
