@@ -1,7 +1,7 @@
-html,body,.main-box,.main-dashboard{
+html,body,.main-box{
   margin:0;
-  width: 100%;
-  height: 100%;
+  min-width: 1700px;
+  min-height:1000px;
 }
 
 .main-box{
@@ -17,14 +17,12 @@ html,body,.main-box,.main-dashboard{
 .word_box{
     position: relative;
     padding: 0;
-    height: 100%;
-    width: 100%;
 }
 
 .percentage{
     background-color: white;
     position: relative;
-    left: 285px;
+    left:8%;
     top:20px;
     font-weight: bolder;
 }
@@ -34,12 +32,12 @@ html,body,.main-box,.main-dashboard{
   margin-bottom:50px;
   background-color:lightgray;
   position: relative;
-  left:320px;
+  left:10%;
 }
 
 .progress_desc{
     position: relative;
-    left:1350px;
+    left:80%;
     top:20px;
     width:200px;
     font-weight: bolder;
@@ -47,21 +45,19 @@ html,body,.main-box,.main-dashboard{
 
 #word-select-form{
   position: relative;
-  left:280px;
+  left:10%;
   z-index: 1;
 }
 .details-box{
-  padding: 50px;
+  padding-top: 50px;
   display: grid;
   position: relative;
-  top:-10px;
-  right:50px;
   z-index: 0;
 }
 
 #details-form{
   position: relative;
-  left:250px;
+  left:10%;
 }
 
 * {
@@ -211,7 +207,7 @@ html,body,.main-box,.main-dashboard{
   .select {
     position: relative;
     display: flex;
-    left:280px;
+    left:10%;
     width: 80rem;
     height: 3em;
     border-radius: .25em;
@@ -258,7 +254,6 @@ html,body,.main-box,.main-dashboard{
     background-color: white;
     height: 400px;
     width: 1280px;
-    margin: 0 20px;
     box-shadow: 0 3px 10px rgb(0 0 1 / 0.9);
     display: none;
   }
@@ -282,6 +277,11 @@ html,body,.main-box,.main-dashboard{
   .meaning-field,.synonyms-field,.antonyms-field,.example-field{
     position: relative;
     left:200px;
+    width: 1000px;
+  }
+
+  .example-field{
+    padding-bottom: 50px;
   }
 
   #word{

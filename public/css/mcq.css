@@ -18,8 +18,8 @@ body{
 
 #mcq_box{
     position: relative;
-    left:500px;
-    top:100px;
+    left:10%;
+    top:10%;
     height: 500px;
     width:1200px;
     display: none;

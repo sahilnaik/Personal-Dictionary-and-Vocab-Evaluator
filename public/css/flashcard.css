@@ -14,38 +14,39 @@
     display: none;
     height: 100%;
     width: 90%;
-    margin: auto;
 }
 
 #card1{
     height:500px; 
-    position: relative; 
-    left: 120px;
-    top: 100px;
+    position: relative;
+    top:10%;
     box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
 }
 
 #card2{
     display: none;
     height:500px; 
-    position: relative; 
-    left: 120px;
-    top: 100px;
+    position: relative;
+    top:10%;
     box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+    left:10%;
 }
 
 .flashcard-options{
     display:flex; 
     justify-content: space-between;
-    padding:200px;
+    padding-left:200px;
+    padding-right:200px;
+    padding-top:200px;
 }
 
 .flashcard-options1{
     display:flex; 
     justify-content: center;
-    padding:200px;
-    position: relative;
-    bottom:100px;
+    padding-left:200px;
+    padding-right:200px;
+    padding-top:100px;
+    padding-bottom: 100px;
 }
 
 
