@@ -8,9 +8,14 @@ const profileRoute = require('./profile');
 const loginRoutes = require('./login');
 const signupRoutes = require('./signup');
 const mcqsubmitRoutes = require('./mcqsubmit');
+const logoutRoutes = require("./logout")
 
 const constructorMethod = (app) => {
-    app.use('/', mainRoute);
+    app.use('/', mainRoute);    
+    
+    app.use('/login', loginRoutes);
+
+    app.use("/logout", logoutRoutes)
 
     app.use('/flashcard', flashcardRoute);
 
@@ -23,8 +28,6 @@ const constructorMethod = (app) => {
     app.use('/viewWords', viewWordsRoute);
 
     app.use('/words', wordsRoutes);
-
-    app.use('/login', loginRoutes);
 
     app.use('/signup', signupRoutes);
     

@@ -183,9 +183,21 @@ const getAll = async function getAll(userId) {
     return wordDocument.words
 }
 
+
+const noOfWords = async function noOfWords(userId) {
+    let wordCollection = await words()
+    let wordDocument = await wordCollection.findOne({userId: ObjectId(userId)})
+    if (!wordDocument) {
+        throw {code: 404, error: `No such userId exists to display`}
+    }
+
+    return wordDocument.words.length   
+}
+
 module.exports = {
     createWordsDocument,
     addWord, 
     editWord,
     getAll,
+    noOfWords,
 }
