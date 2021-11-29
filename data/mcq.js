@@ -19,10 +19,10 @@ async function create(userId) {
     throw `User with id ${userId} does not exist`;
   }
   const mcqCollection = await mcq();
-  const checkDuplicate = await mcqCollection.findOne({ userId: userId });
+  const checkDuplicate = await mcqCollection.findOne({ userId: Id });
   if (checkDuplicate) {
     
-    let sessionOutput= createSession(userId, checkDuplicate.sessions.length);
+    let sessionOutput= createSession(Id, checkDuplicate.sessions.length);
     return sessionOutput;
   } else {
     let newMCQ = {
@@ -112,6 +112,7 @@ async function updateSession(userId, sessionId, words, correctCount) {
   if (typeof userId !== "string") throw "userId must be a string";
   userId = userId.trim();
   if (!ObjectId.isValid(userId)) throw "userId is not valid";
+  userId = ObjectId(userId);
   if (!sessionId) throw "You must provide a sessionId to create a mcq";
   if (typeof sessionId !== "string") throw "sessionId must be a string";
   sessionId = sessionId.trim();
@@ -178,7 +179,7 @@ async function getPercentage(email) {
   const userCollection = await user();
   const userInfo = await userCollection.findOne({ email: email });
   if (!userInfo) throw "No user with that email";
-  let userId = userInfo._id
+  let userId = userInfo._id;
   const mcqCollection = await mcq();
   const percentage = await mcqCollection.findOne({ userId: userId });
   let session = percentage.sessions;
