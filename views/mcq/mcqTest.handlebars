@@ -101,7 +101,7 @@
             let temp=questions[0];
             console.log(temp.question_word);
             for(let i=0;i<10;i++){
-                word["Question word"]=questions[i];
+                word["question_word"]=questions[i];
                 word["options"]=options[i].split(",");
                 word["answer"]=answers[i];
                 word["userSelection"]="";
@@ -131,7 +131,7 @@
                 }
                 document.getElementById("no").innerText=no;
                 let word3=words[wordindex];
-                document.getElementById("word").innerHTML=word3["Question word"];
+                document.getElementById("word").innerHTML=word3["question_word"];
                 let options=word3["options"];
                 document.getElementById("label_option1").innerHTML=options[0];
                 document.getElementById("label_option2").innerHTML=options[1];
@@ -155,7 +155,7 @@
                 }
                 document.getElementById("no").innerText=no;
                 let word3=words[wordindex];
-                document.getElementById("word").innerHTML=word3["Question word"];
+                document.getElementById("word").innerHTML=word3["question_word"];
                 let options=word3["options"];
                 document.getElementById("label_option1").innerHTML=options[0];
                 document.getElementById("label_option2").innerHTML=options[1];
@@ -265,7 +265,7 @@
                 for(let k=0;k<words.length;k++){
                     let row=document.createElement("tr");
                     let col1=document.createElement("td");
-                    col1.innerText= words[k]["Question word"];
+                    col1.innerText= words[k]["question_word"];
                     let col2=document.createElement("td");
                     if(words[k]["userSelection"]===words[k]["answer"]){
                         col2.innerHTML='<i class="fas fa-check-square"></i>';
