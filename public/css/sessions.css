@@ -58,9 +58,16 @@
     margin: auto;
     left:100px;
     top:70px;
+    z-index: 1;
 }
 
 .error{
     display: grid;
     margin: auto;
+}
+.main-navbar{
+    z-index: 2;
+}
+.btn-primary{
+    z-index: 3;
 }

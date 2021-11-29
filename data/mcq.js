@@ -129,11 +129,12 @@ async function updateSession(userId, sessionId, words, correctCount) {
   }
  
   
-  
+  date = new Date();
+  let time = date.toUTCString()
   const mcqCollection = await mcq();
   const updatedInfo = await mcqCollection.updateOne(
     { userId: userId, "sessions._id": sessionNo },
-    { $set: { "sessions.$.words": words, "sessions.$.correctCount": correctCountNo } }
+    { $set: { "sessions.$.words": words, "sessions.$.correctCount": correctCountNo, "sessions.$.time": time } }
   );
   if (updatedInfo.modifiedCount === 0) throw "Could not update mcq";
     calculate(userId);
@@ -224,8 +225,20 @@ async function getLastFiveSessions(id) {
           }
           
         }
-        customSession["correct"]=correctWords.join(", ");
+        if(correctWords.length==0){
+          customSession["correct"]="No correct words";
+        }else{
+          customSession["correct"]=correctWords.join(", ");
+        }
+        if(incorrectWords.length==0){
+          customSession["incorrect"]="No incorrect words";
+        }
+        else{
           customSession["incorrect"]=incorrectWords.join(", ");
+        }
+        
+          
+          customSession["time"]=session[i].time;
       allSessions.push(customSession);
       customSession={};
       correctWords=[];

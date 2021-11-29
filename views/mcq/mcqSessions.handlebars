@@ -26,17 +26,21 @@
             </div>
         </div>
     </div>
+    
     <div class="results">
     <h1 class="f_heading">PREVIOUS TEST SCORES</h1>
     {{#each sessions}}
         <div class="result1">
             <div class="test1">
-                <h4>Test <span class="test_no">{{id}}</span></h4>
+                <h4>Test <span class="test_no">{{id}}</span></h4>   
             </div>
             <p class="res"><span class="res_h">Result: </span><span class="s_marks_scored">{{marks}}</span>/<span class="s_total_marks">{{total}}</span></p>
-            <p class="res"><span class="res_h">Percentage:</span><span class="s_total_marks">{{percentage}}</span></p>
+            <p class="res"><span class="res_h">Percentage: </span><span class="s_total_marks">{{percentage}}</span></p>
             <p class="right"><span class="right_h">Words you got right: </span><span class="s_correct_words">{{correct}}</span></p>
             <p class="wrong"><span class="wrong_h">Words you got incorrect: </span><span class="s_incorrect_words">{{incorrect}}</span></p>
+            
+            <p class="res"><span class="res_h">Submitted On: </span><span class="s_marks_scored">{{time}}</span></p>
+            
         </div>
     {{/each}}
     </div>
