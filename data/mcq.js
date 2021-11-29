@@ -10,7 +10,8 @@ async function create(userId) {
   if (typeof userId !== "string") throw "userId must be a string";
   userId = userId.trim();
   if (!ObjectId.isValid(userId)) throw "userId is not valid";
-  sessions = [];
+  let sessions = [];
+  let overallPercentage = 0;
   const userCollection = await user();
   let Id = ObjectId(userId);
   const inputId = await userCollection.findOne({ _id: Id });
@@ -27,6 +28,7 @@ async function create(userId) {
     let newMCQ = {
       userId,
       sessions,
+      overallPercentage
     };
 
     const insertInfo = await mcqCollection.insertOne(newMCQ);
@@ -133,8 +135,59 @@ async function updateSession(userId, sessionId, words, correctCount) {
     { $set: { "sessions.$.words": words, "sessions.$.correctCount": correctCountNo } }
   );
   if (updatedInfo.modifiedCount === 0) throw "Could not update mcq";
+    calculateReview(userId);
+}
+
+async function calculateReview(userId) {
+  let total = 0;
+  
+  const mcqCollection = await mcq();
+ 
+  const sessionData = await mcqCollection
+    .find({ userId: userId }, { projection: { sessions: 1, _id: 0 } })
+    .toArray();
+    let haha = sessionData[0].sessions;
+  let len= sessionData[0].sessions.length;
+
+  for (let i = 0; i < len; i++) {
+    total += sessionData[0].sessions[i].correctCount;
+    
+  }
+  if (len == 0) {
+    const updatedInfo = await mcqCollection.updateOne(
+      { userId: userId },
+      { $set: { overallPercentage: 0 } }
+    );
+  } else {
+    let overallPercentage = (total / (10*len))*100;
+    overallPercentage = Math.round((overallPercentage + Number.EPSILON) * 100) / 100;
+
+    const updatedInfo = await mcqCollection.updateOne(
+      { userId: userId },
+      { $set: { overallPercentage: overallPercentage } }
+    );
+  }
 
 }
+
+async function getPercentage(email) {
+  if (!email) throw "You must provide an email to get percentage";
+  if (typeof email !== "string") throw "email must be a string";
+  email= email.trim();
+  email = email.toLowerCase();
+  const userCollection = await user();
+  const userInfo = await userCollection.findOne({ email: email });
+  if (!userInfo) throw "No user with that email";
+  let userId = userInfo._id.toString();
+  const mcqCollection = await mcq();
+  const percentage = await mcqCollection.findOne({ userId: userId });
+  let session = percentage.sessions;
+  if (session.length == 0) {
+    return 0;
+  }
+  return percentage.overallPercentage;
+}
+
 function shuffleArray(array) {
   for (let i = array.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
@@ -145,5 +198,6 @@ function shuffleArray(array) {
 
 module.exports = {
   create,
-  updateSession
+  updateSession,
+  getPercentage,
 };

@@ -81,6 +81,7 @@ router.post("/", async (req, res) => {
       phoneNumber,
       password
     );
+    
 
     res.redirect("./login");
   } catch (error) {

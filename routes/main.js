@@ -1,7 +1,7 @@
 const express=require('express');
 const router=express.Router();
 const path = require('path');
-
+const mcqData = require("../data/mcq");
 
 router.get('/', async(req,res)=>{
     try{
@@ -9,8 +9,9 @@ router.get('/', async(req,res)=>{
         lastName=req.session.user.lastName;
         profilePicture=req.session.user.profilePicture;
         email = req.session.user.email;
+        const mcqScore = await mcqData.getPercentage(email);
         res.render('dashboard/dashboard', {
-            layout: "dashboardMain",firstName: firstName,lastName: lastName,profilePicture: profilePicture, email:email});
+            layout: "dashboardMain",firstName: firstName,lastName: lastName,profilePicture: profilePicture, email:email, mcqScore: mcqScore});
     }catch(e){
         res.status(500).json({error:e});
     }

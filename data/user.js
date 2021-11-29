@@ -3,7 +3,8 @@ const user = mongoCollections.users;
 const bcrypt = require("bcryptjs");
 let { ObjectId } = require("mongodb");
 let saltRounds = 16;
-
+const mcqStuff = require("./mcq");
+const createMcq = mcqStuff.create;
 
 function stringErrorHandler(pass) {
   if (typeof pass !== "string") throw "Type must be a string";
@@ -78,9 +79,12 @@ async function create(firstName, lastName, email, phoneNumber, password) {
     mcqTestId,
     profilePicture,
   };
+  
 
   const insertInfo = await userCollection.insertOne(newUser);
+  const newId = insertInfo.insertedId.toString();
   if (insertInfo.insertedCount === 0) throw "Could not add user";
+  createMcq(newId);
 }
 
 async function get(email, password) {
@@ -100,7 +104,9 @@ async function get(email, password) {
     if (!passwordCorrect) { 
       throw "Invalid email and password combination";
     } else {
+      
       return checkEmail; 
+
     }
   
 }
@@ -212,10 +218,10 @@ function validateEmail(email) {
     /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   return re.test(email);
 }
-module.exports = {
+module.exports = {             
   create,
   get,
   remove,
-  update,
+  update,    
   updatePicture,
 };
