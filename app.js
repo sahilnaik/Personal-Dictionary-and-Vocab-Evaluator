@@ -21,7 +21,7 @@ app.use(
     secret: 'some secret string!',
     resave: false,
     saveUninitialized: true,
-    
+    cookie: { maxAge: 60000 }
   })
 );
 
@@ -51,6 +51,92 @@ app.post('/profile-upload-single', upload.single('profile-file'), async function
   
   
 })
+
+// Authenticated User Routes Starts
+
+// app.use("/", (req, res, next) => {
+//   if (req.session.user) {
+//     return res.redirect("/") //IT should actually be /dashboard
+//   }
+//   next()
+// })
+
+app.use("/login", (req, res, next) => {
+  if (req.session.user) {
+    return res.redirect("/") //IT should actually be /dashboard
+  }
+  next()
+})
+
+app.use("/signup", (req, res, next) => {
+  if (req.session.user) {
+    return res.redirect("/") //IT should actually be /dashboard
+  }
+  next()
+})
+
+// Authenticated User Routes Ends
+
+// Unauthenticated User Routes Starts
+
+app.use("/addWords", (req, res, next) => {
+  if (!req.session.user) {
+    return res.status(403).render('httpErrors/error', {code: 403, description: "Forbidden", title: "403: Forbidden"})
+  }
+  next()
+})
+
+app.use("/flashcard", (req, res, next) => {
+  if (!req.session.user) {
+    return res.status(403).render('httpErrors/error', {code: 403, description: "Forbidden", title: "403: Forbidden"})
+  }
+  next()
+})
+
+app.use("/mcq", (req, res, next) => {
+  if (!req.session.user) {
+    return res.status(403).render('httpErrors/error', {code: 403, description: "Forbidden", title: "403: Forbidden"})
+  }
+  next()
+})
+
+app.use("/profile", (req, res, next) => {
+  if (!req.session.user) {
+    return res.status(403).render('httpErrors/error', {code: 403, description: "Forbidden", title: "403: Forbidden"})
+  }
+  next()
+})
+
+app.use("/viewWords", (req, res, next) => {
+  if (!req.session.user) {
+    return res.status(403).render('httpErrors/error', {code: 403, description: "Forbidden", title: "403: Forbidden"})
+  }
+  next()
+})
+
+app.use("/logout", (req, res, next) => {
+  if (!req.session.user) {
+    return res.status(403).render('httpErrors/error', {code: 403, description: "Forbidden", title: "403: Forbidden"})
+  }
+  next()
+})
+
+app.use("/mcqsubmit", (req, res, next) => {
+  if (!req.session.user) {
+    return res.status(403).render('httpErrors/error', {code: 403, description: "Forbidden", title: "403: Forbidden"})
+  }
+  next()
+})
+
+app.use("/words", (req, res, next) => {
+  if (!req.session.user) {
+    return res.status(403).render('httpErrors/error', {code: 403, description: "Forbidden", title: "403: Forbidden"})
+  }
+  next()
+})
+
+// Unauthenticated User Routes Starts
+
 // MIDDLEWARES ENDS
 
 configRoutes(app);
