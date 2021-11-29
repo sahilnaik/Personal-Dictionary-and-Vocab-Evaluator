@@ -21,7 +21,7 @@ const createWordsDocument = async function createWordsDocument(userId) {
     if (insertWord.insertedCount === 0) {
         throw {code: 500, error: `Unable to create the word Document`}
     }
-    
+
 
 
     return newWordObject._id
@@ -30,7 +30,7 @@ const createWordsDocument = async function createWordsDocument(userId) {
 
 const addWord = async function (userId,  word, meaning, synonym, antonym, example) {
     let wordCollection = await words()
-    let wordDocument = await wordCollection.findOne({userId: userId})
+    let wordDocument = await wordCollection.findOne({userId: ObjectId(userId)})
     if (!wordDocument) {
         throw {code: 404, error: `No such userId exists to add any words`}
     }
@@ -58,17 +58,18 @@ const addWord = async function (userId,  word, meaning, synonym, antonym, exampl
         newWord.examples.push(x)
     })
 
-    let result = await wordCollection.updateOne({userId: userId}, {$addToSet: {words: newWord}})
+    let result = await wordCollection.updateOne({userId: ObjectId(userId)}, {$addToSet: {words: newWord}})
     if (result.modifiedCount === 0) {
         throw {code: 500, error: `Unable to add the word to the Document`} 
     }
 
-    let wordDocumentWithWords = await wordCollection.findOne({userId: userId})
+    let wordDocumentWithWords = await wordCollection.findOne({userId: ObjectId(userId)})
     if (!wordDocumentWithWords) {
         throw {code: 500, error: `Unable to get the word document after adding the word`}
     }
+
     // updating the YET TO LEARN KEY
-    result = await wordCollection.updateOne({userId: userId}, {$set: {yetToLearn: wordDocumentWithWords.words.length}})
+    result = await wordCollection.updateOne({userId: ObjectId(userId)}, {$set: {yetToLearn: wordDocumentWithWords.words.length}})
     if (result.modifiedCount === 0) {
         throw {code: 500, error: `Unable to update the overallRating of the restaurant`} 
     }
@@ -172,9 +173,19 @@ const editWord = async function editWord(userId, word, synonym, antonym, example
     }
 }
 
+const getAll = async function getAll(userId) {
+    let wordCollection = await words()
+    let wordDocument = await wordCollection.findOne({userId: ObjectId(userId)})
+    if (!wordDocument) {
+        throw {code: 404, error: `No such userId exists to display`}
+    }
+
+    return wordDocument.words
+}
 
 module.exports = {
     createWordsDocument,
     addWord, 
-    editWord
+    editWord,
+    getAll,
 }

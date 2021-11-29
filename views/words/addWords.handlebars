@@ -3,39 +3,44 @@
         <header class="dashboard-content">
             <h1 class="word-heading">ADD WORDS</h1>
         </header>
+        {{#if success}}
+        <div class="success">
+            <p>Successfully added the word</p>
+        </div>
+        {{/if}}
         <form action="/words/addWord" method="post" class="add-word-form">
                     <label for="word">
                         <div class="word-field">
                             <h5>Enter Word &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp: &nbsp &nbsp &nbsp &nbsp &nbsp </h5>
-                            <input id="word" type="text" required> 
+                            <input id="word" type="text" name="word" required> 
                         </div>
                     </label>
                     <label for="meaning">
                         <div class="meaning-field">
                         <h5>Enter Meaning &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp : &nbsp &nbsp &nbsp &nbsp &nbsp</h5>
-                        <textarea name="" id="meaning" cols="30" rows="10" required></textarea> 
+                        <textarea id="meaning" cols="30" rows="10" name="meaning" required></textarea> 
                         </div>
                     </label>
                     <label for="synonym">
                         <div class="synonym-field">
                             <h5>Enter Synonyms &nbsp &nbsp &nbsp &nbsp &nbsp : &nbsp &nbsp &nbsp &nbsp &nbsp</h5>
-                            <input id="synonym" type="text" required>
+                            <input id="synonym" type="text" name="synonym" required>
                         </div>
                     </label>
                     <label for="antonym">
                         <div class="antonym-field">
                             <h5>Enter Antonyms &nbsp &nbsp &nbsp &nbsp &nbsp : &nbsp &nbsp &nbsp &nbsp &nbsp</h5>
-                            <input id="antonym" type="text"> 
+                            <input id="antonym" type="text" name="antonym"> 
                         </div>
                     </label>
                     <label for="example">
                         <div class="example-field">
                         <h5>Enter Examples &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp: &nbsp &nbsp &nbsp &nbsp &nbsp</h5>
-                        <textarea name="" id="example" cols="30" rows="10"></textarea>
+                        <textarea id="example" cols="30" rows="10" name="example"></textarea>
                         </div>
                     </label> 
                     <div class="submit-field">
-                        <button type="button" id="submit-btn" class="btn btn-outline-dark">submit</button>
+                        <button type="submit" id="submit-btn" class="btn btn-outline-dark">submit</button>
                     </div>
         </form>
 </div>

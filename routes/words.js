@@ -26,7 +26,8 @@ router.post('/addWord', async (req, res) => {
     const { word, meaning, synonym, antonym, example } = addWordForm
     try {
         const wordDocument = await words.addWord( req.session.user._id, word, meaning, synonym, antonym, example);
-        res.status(200).json(`Successfully added the word ${word}`)
+        // res.status(200).json(`Successfully added the word ${word}`)
+        res.render("words/addWords", {success: true})
     } catch (e) {
         if (e.code) {
             res.status(e.code).json(e.error)
