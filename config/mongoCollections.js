@@ -20,5 +20,6 @@ module.exports = {
   words: getCollectionFn('words'),
   users: getCollectionFn("user"),
   mcq: getCollectionFn("mcq"),
+  flashcard: getCollectionFn("flashcard"),
 
 };
