@@ -4,6 +4,8 @@ const path = require("path");
 const data = require("../data");
 const userData = data.users;
 let { ObjectId } = require("mongodb");
+
+
 router.get("/", async (req, res) => {
   try {
     res.render("user/login", { layout: "user" });
@@ -11,6 +13,7 @@ router.get("/", async (req, res) => {
     res.status(500).json({ error: e });
   }
 });
+
 router.post("/", async (req, res) => {
   let loginData = req.body;
 
@@ -18,10 +21,7 @@ router.post("/", async (req, res) => {
   let password = loginData.password;
 
   if (email.length < 1 || password.length < 8) {
-    res.status(400).render("user/login", {
-      layout: "user",
-      error: "Bad data",
-    });
+    res.status(400).render("user/login", { layout: "user", error: "Bad data", });
     return;
   }
 
@@ -45,10 +45,7 @@ router.post("/", async (req, res) => {
     }
     
   } catch (error) {
-    return res.status(404).render("user/login", {
-      layout: "user",
-      error: error,
-    });
+    return res.status(404).render("user/login", { layout: "user", error: error, email: email});
   }
 });
 module.exports = router;
