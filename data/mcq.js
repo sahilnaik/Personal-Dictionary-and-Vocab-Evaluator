@@ -178,7 +178,7 @@ async function getPercentage(email) {
   const userCollection = await user();
   const userInfo = await userCollection.findOne({ email: email });
   if (!userInfo) throw "No user with that email";
-  let userId = userInfo._id.toString();
+  let userId = userInfo._id
   const mcqCollection = await mcq();
   const percentage = await mcqCollection.findOne({ userId: userId });
   let session = percentage.sessions;
