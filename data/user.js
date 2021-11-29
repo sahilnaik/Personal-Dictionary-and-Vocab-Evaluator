@@ -5,6 +5,7 @@ let { ObjectId } = require("mongodb");
 let saltRounds = 16;
 const mcqStuff = require("./mcq");
 const createMcq = mcqStuff.create;
+const { createWordsDocument } = require("./words")
 
 function stringErrorHandler(pass) {
   if (typeof pass !== "string") throw "Type must be a string";
@@ -84,7 +85,10 @@ async function create(firstName, lastName, email, phoneNumber, password) {
   const insertInfo = await userCollection.insertOne(newUser);
   const newId = insertInfo.insertedId.toString();
   if (insertInfo.insertedCount === 0) throw "Could not add user";
-  createMcq(newId);
+  await createMcq(newId);
+  let wordDocumentId = await createWordsDocument(newId)
+  let wordIdInserted = await userCollection.updateOne({_id: ObjectId(newId)}, {$set: {wordsId: wordDocumentId}})
+  console.log(wordIdInserted);
 }
 
 async function get(email, password) {

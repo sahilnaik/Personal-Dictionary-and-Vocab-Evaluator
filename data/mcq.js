@@ -26,7 +26,7 @@ async function create(userId) {
     return sessionOutput;
   } else {
     let newMCQ = {
-      userId,
+      userId: Id,
       sessions,
       overallPercentage
     };

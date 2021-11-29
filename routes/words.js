@@ -21,11 +21,11 @@ router.post('/createDocument', async (req, res) => {
 })
 
 
-router.post('/:id/addword', async (req, res) => {
+router.post('/addWord', async (req, res) => {
     let addWordForm = req.body
     const { word, meaning, synonym, antonym, example } = addWordForm
     try {
-        const wordDocument = await words.addWord( req.params.id, word, meaning, synonym, antonym, example);
+        const wordDocument = await words.addWord( req.session.user._id, word, meaning, synonym, antonym, example);
         res.status(200).json(`Successfully added the word ${word}`)
     } catch (e) {
         if (e.code) {
@@ -53,4 +53,5 @@ router.patch('/:id/editWord', async (req, res) => {
         }
     }
 })
+
 module.exports = router;

@@ -21,7 +21,7 @@ app.use(
     secret: 'some secret string!',
     resave: false,
     saveUninitialized: true,
-   
+    
   })
 );
 
