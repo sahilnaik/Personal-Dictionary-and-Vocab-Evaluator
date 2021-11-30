@@ -32,6 +32,7 @@ router.get('/sessions', async (req, res) => {
        
         } else{
             const sessionList = await mcqData.getLastFiveSessions(req.session.user._id);
+            
             res.render('mcq/mcqSessions',{layout: "sessionMain", sessions:sessionList, profilePicture: profilePicture, firstName: firstName, lastName: lastName});
         }
     }catch(e){

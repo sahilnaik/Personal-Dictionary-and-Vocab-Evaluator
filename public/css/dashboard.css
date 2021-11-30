@@ -3,7 +3,9 @@ html,body{
     width: 100%;
     height: 100%;
 }
-
+.hidden{
+    display: none;
+}
 .main-box{
     background-color:#F1F1F1;
     position: relative;

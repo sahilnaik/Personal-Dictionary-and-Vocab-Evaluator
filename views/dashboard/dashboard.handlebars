@@ -68,9 +68,16 @@
             <canvas id="myChart1"></canvas>
         </div>
     </div>
+    <div class="hidden">
+        <p id="mcqHBS" class="hidden">{{{mcqScore}}}</p>
+        <p id="flashcardHBS" class="hidden">{{{flashcardScore}}}</p>
+        <p id="overallHBS" class="hidden">{{{overallScore}}}</p>
+        <p id="mcqSessionHBS" class="hidden">{{mcqSession}}</p>
+        <p id="mcqSessionIdHBS" class="hidden">{{mcqSessionId}}</p>
+    </div>
 </div>
-        
-        <script  type = "text/javascript">
+        <script src="../../public/js/dashboard.js"></script>
+        {{!-- <script  type = "text/javascript">
             var xValues = ["Session1", "Session2", "Session3", "Session4", "Session5","Session6"];
             var yValues = [3, 5, 1, 6, 2, 5];
             var barColors = ["red", "green","blue","orange","brown","grey"];
@@ -168,4 +175,4 @@
                 fromTo(full3,3,{transition: "transform",transform:"rotate(0deg)",ease:Power1.easeOut},{transition: "transform",transform:"rotate("+degree3+")"},"-=3");
             }
         
-        </script>
+        </script> --}}

@@ -237,8 +237,12 @@ async function getLastFiveSessions(id) {
           customSession["incorrect"]=incorrectWords.join(", ");
         }
         
-          
+          if(session[i].time){
           customSession["time"]=session[i].time;
+          }
+          else{
+            customSession["time"]="Not submitted";
+          }
       allSessions.push(customSession);
       customSession={};
       correctWords=[];
@@ -256,7 +260,37 @@ async function getLastFiveSessions(id) {
   return allSessions;
 }
 
+async function getLastFiveSessionScore(id){
+  if (!id) throw "You must provide an email to get last five sessions";
+  if (!ObjectId.isValid(id)) throw "userId is not valid";
+  id = ObjectId(id);
+  const mcqCollection = await mcq();
 
+  const sessionData = await mcqCollection.findOne({ userId: id });
+  let session = sessionData.sessions;
+  if (session.length == 0) {
+    return 0;
+  }
+  let sessionLength = session.length;
+  let len = sessionLength-1;
+  let customSession =[];
+  let customSessionId=[];
+  let limit = 5;
+  let i=0;
+  let overallStuff ={};
+  for(i=0;i<limit;i++){
+    customSession.push(session[len].correctCount);
+    customSessionId.push(session[len]._id);
+    len--;
+    if(len<0){
+      break;
+    }
+  }
+  overallStuff["scores"]=customSession;
+  overallStuff["sessionId"]=customSessionId;
+  return overallStuff;
+
+}
 function shuffleArray(array) {
   for (let i = array.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
@@ -270,4 +304,5 @@ module.exports = {
   updateSession,
   getPercentage,
   getLastFiveSessions,
+  getLastFiveSessionScore
 };
