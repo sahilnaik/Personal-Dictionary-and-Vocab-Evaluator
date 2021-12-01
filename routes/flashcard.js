@@ -1,6 +1,7 @@
 const express=require('express');
 const router=express.Router();
 const path = require('path');
+const flashcardData = require('../data/flashcard.js');
 const { words } = require('../data/index')
 
 
@@ -9,7 +10,8 @@ router.get('/', async(req,res)=>{
         let profilePicture= req.session.user.profilePicture;
         let firstName= req.session.user.firstName;
         let lastName= req.session.user.lastName;
-        res.render('flashcard/flashcard',{ profilePicture: profilePicture, firstName: firstName, lastName: lastName});
+        const flashcardList = await flashcardData.create(req.session.user._id);
+        res.render('flashcard/flashcard',{ profilePicture: profilePicture, firstName: firstName, lastName: lastName, flashcardList: flashcardList.words, flashcardId: flashcardList._id});
     }catch(e){
         res.status(500).json({error:e});
     }
@@ -60,4 +62,19 @@ router.get('/sessions', async (req, res) => {
         res.status(500).json({error:e});
     }
 });
+
+router.post("/flashcardsubmit", async (req, res) => {
+    let stuff = req.body.mcqData; 
+    let numberOfCorrect= req.body.number_of_correct;
+    let userId = req.session.user._id;
+    let sessionId = req.body.id
+    try {
+        const mcqList = await mcqData.updateSession(userId, sessionId, stuff, numberOfCorrect);
+    } catch (error) {
+        res.status(500).json({ error: error });
+    }
+        
+    
+    
+  });
 module.exports = router;

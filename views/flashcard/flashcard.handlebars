@@ -37,6 +37,7 @@
         </div>
     </div>
 </div>
+
 <div id="result_box">
     <div class="row">
             <div class="col-9 sub-box-result" style="background-color: white;">
@@ -75,38 +76,40 @@
              </div>
     </div>
 </div>  
+<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+        crossorigin="anonymous"></script>
 <script  type = "text/javascript">
                 let wordCount=-1;
                 let correctCount=0;
                 let wrongCount=0;
-
+                let questions=[];
+                let meaning=[];
+                let synonyms=[];
+                let antonyms=[];
+                let examples=[];
+                {{#each flashcardList}}
+                    
+                    questions.push("{{question_word}}");
+                    meaning.push("{{meaning}}");
+                    synonyms.push("{{synonyms}}");
+                    antonyms.push("{{antonyms}}");
+                    examples.push("{{examples}}");
+                {{/each}}
+                    
                 let words=[];
-                let word1={};
-                word1["word"]="Happy";
-                word1["meaning"]="Pleasant";
-                word1["synonyms"]="Pleasant, Smiling";
-                word1["antonyms"]="Sad, Sorrow";
-                word1["example"]="Happy me";
-                word1["userSelection"]=false;
-                words.push(word1);
-                let word2={};
-                word2["word"]="Sad";
-                word2["meaning"]="Sorrow";
-                word2["synonyms"]="Sad, Sorrow";
-                word2["antonyms"]="Pleasant, Smiling";
-                word2["example"]="Sad me";
-                word2["userSelection"]=false;
-                words.push(word2);
-                let word3={};
-                word3["word"]="Lame";
-                word3["meaning"]="Uninspiring and dull";
-                word3["synonyms"]="Feeble, Weak";
-                word3["antonyms"]="Energetic";
-                word3["example"]="I found the program pretty lame and not very informative";
-                word3["userSelection"]=false;
-                words.push(word3);
-
-
+                for(let i=0;i<10;i++){
+                    word["word"]=questions[i];
+                    word["meaning"]=meaning[i];
+                    word["synonyms"]=synonyms[i];
+                    word["antonyms"]=antonyms[i];
+                    word["example"]=examples[i];
+                    word["userSelection"]="";
+                    word["correctOrNot"]="";
+                    
+                    words.push(word);
+                    word={};
+                
+                }
                 function startTest(){
                     document.getElementById("flashcard-content").style.display="grid";
                     changeWord();
@@ -131,7 +134,7 @@
                         document.getElementById("back_card").style.display="none";
                         const t1=new TimelineMax();
                         t1.fromTo(card,1,{left: "10%",opacity:"1"},{left:"80%",opacity:"0"});
-                        let newObj=word();
+                        let newObj=woord();
                         document.getElementById("cardHeader").innerHTML=newObj["queNo"];
                         document.getElementById("cardTitle").innerHTML=newObj["word"];
                         document.getElementById("cardText").innerHTML=newObj["title"];
@@ -151,7 +154,7 @@
                         document.getElementById("back_card").style.display="none";
                         const t1=new TimelineMax();
                         t1.fromTo(card,1,{left: "10%",opacity:"1"},{left:"80%",opacity:"0"});
-                        let newObj=word();
+                        let newObj=woord();
                         document.getElementById("cardHeader").innerHTML=newObj["queNo"];
                         document.getElementById("cardTitle").innerHTML=newObj["word"];
                         document.getElementById("cardText").innerHTML=newObj["title"];
@@ -165,10 +168,7 @@
                     }
                     
                 }
-
-
-
-                function word(){
+                function woord(){
                     let newObj={};
                     wordCount++;
                     let queNo=document.getElementById("cardHeader").innerHTML;
@@ -223,7 +223,7 @@
                         eval();
                     }else{
                         words[wordCount+1].userSelection=false;
-                        let newObj=word();
+                        let newObj=woord();
                         document.getElementById("cardHeader").innerHTML=newObj["queNo"];
                         document.getElementById("cardTitle").innerHTML=newObj["word"];
                         document.getElementById("cardText").innerHTML=newObj["title"];
@@ -238,13 +238,20 @@
                     
                     
         }
-
          function eval(){
             let percentage=Math.round(correctCount/words.length*100);
             console.log("Marks secured: "+correctCount+" out of "+words.length);
             console.log("Percentage of Marks secured: "+percentage);
             triggerGraphs(correctCount,words.length,percentage);
+            let session={};
+            session["words"]=words;
+            
+            session["number_of_correct"]=correctCount;
+          //  document.getElementById("submit-button").click();
+            
+            return session;
         }
+        
 
 
         function triggerGraphs(number_of_correct,number_of_words,percentage){
