@@ -40,13 +40,15 @@
 
 <div id="result_box">
     <div class="row">
-            <div class="col-9 sub-box-result" style="background-color: white;">
+            <div class="col-6 sub-box-result">
                 <div class="report_heading">
-                    <h4>MCQ Report Card</h4>
+                    <h3>Flashcard Report Card</h3>
                 </div>
                 <br>
-                <h6>Marks Secured: <span id="marks_sec"></span></h6>
-                <h6>Total Marks: <span id="total_m"></span></h6> 
+                <div class="report_scores">
+                    <h4>Marks Secured: <span id="marks_sec"></span></h4>
+                    <h4>Total Marks: <span id="total_m"></span></h4> 
+                </div>
                 <br>           
                 <div class="circle-wrap">
                     <div class="circle">
@@ -247,6 +249,10 @@
             session["words"]=words;
             
             session["number_of_correct"]=correctCount;
+            document.getElementsByTagName("html")[0].style.height="1600px";
+            document.body.style.height="1600px";
+            document.getElementsByClassName(".main-box")[0].style.height="1600px";
+            document.getElementsByClassName(".main-dashboard")[0].style.height="1600px";
           //  document.getElementById("submit-button").click();
             
             return session;

@@ -52,7 +52,7 @@ router.get('/sessions', async (req, res) => {
         let firstName= req.session.user.firstName;
         let lastName= req.session.user.lastName;
         const noOfWords = await words.noOfWords(req.session.user._id);
-        if (noOfWords <= 10) {
+        if (noOfWords <= 9) {
             res.render('flashcard/flashcardSessions',{layout: "sessionMain", insufficientWords: true, profilePicture: profilePicture, firstName: firstName, lastName: lastName});
        
         } else{

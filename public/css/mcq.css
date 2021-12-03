@@ -2,6 +2,11 @@ body{
     margin:0;
 }
 
+html,body,.main-box,.main-dashboard{
+    height: 100%;
+    width: 100%;
+}
+
 .row{
     height: 500px;
 }
@@ -86,19 +91,16 @@ body{
 }
 
 #result_box{
-    position: relative;
-    left:500px;
-    width:1200px;
     display: none;
 }
 
 .sub-box-result{
     display: grid;
-    margin: 0 20px;
+    margin: auto;
+    margin-top: 80px;
     box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
     place-content: center;
-    height: 1000px;
-    width: 1000px;
+    background-color: white;
 }
 
 table, th, td {
@@ -202,11 +204,17 @@ td{
 .report_heading{
     text-align: center;
     position: relative;
-    top:100px;
+    top:80px;
 }
 
 .report_ending{
     text-align: center;
     position: relative;
     bottom:100px;
+}
+
+.report_scores{
+    position: relative;
+    top:100px;
+    margin: auto;
 }
