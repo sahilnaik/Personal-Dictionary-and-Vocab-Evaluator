@@ -1,15 +1,18 @@
 html,body{
     height: 100%;
+    width: 100%;
 }
 
 .hidden {
     display: none;
 }
 
-
+.sub-box{
+    padding-left: 50px;
+    display: grid;
+    grid-template-rows: 50% 25% 25%;
+}
 .profile_form{
-    position: relative;
-    left:150px;
     max-width: 1600px;
 
 }
@@ -58,7 +61,7 @@ html,body{
 
 hr{
     border:1px black solid;
-    width:1750px;
+    width:100%;
     position: relative;
-    right:48px;
+    right:30px;
 }
