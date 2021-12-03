@@ -37,6 +37,9 @@
         </div>
     </div>
 </div>
+<div class="hidden">
+    <Button type="button" class="hidden" id="submit-button">Submit</Button>
+</div>
 
 <div id="result_box">
     <div class="row">
@@ -134,7 +137,7 @@
                         const t1=new TimelineMax();
                         t1.fromTo(card,1,{left: "10%",opacity:"1"},{left:"80%",opacity:"0"});
                         t1.fromTo(card,1,{left: "80%",opacity:"0"},{left:"10%",opacity:"1"});
-                        eval();
+                        document.getElementById("submit-button").click();
                     }else if(wordCount===-1){
                         const card=document.querySelector("#card1");
                         const back_card=document.querySelector("#back_card");
@@ -226,8 +229,9 @@
                     const t1=new TimelineMax();
                     t1.fromTo(card,1,{left: "10%",opacity:"1"},{left:"80%",opacity:"0"});
                     if(wordCount+1===words.length){
+                        console.log(wordCount+1);
                         t1.fromTo(card,1,{left: "80%",opacity:"0"},{left:"10%",opacity:"1"});
-                        eval();
+                        document.getElementById("submit-button").click();
                     }else{
                         words[wordCount+1].userSelection=false;
                         let newObj=woord();
@@ -251,6 +255,14 @@
             console.log("Percentage of Marks secured: "+percentage);
             triggerGraphs(correctCount,words.length,percentage);
             let session={};
+            let temp={};
+            temp["word"]=words[0].word;
+            temp["meaning"]=words[0].meaning;
+            temp["synonyms"]=words[0].synonyms;
+            temp["antonyms"]=words[0].antonyms;
+            temp["example"]=words[0].example;
+            words[0]=temp;
+            console.log(words[0]);
             session["words"]=words;
             
             session["number_of_correct"]=correctCount;
@@ -258,11 +270,35 @@
             document.body.style.height="1600px";
             document.getElementsByClassName("main-box")[0].style.height="1600px";
             document.getElementsByClassName("main-dashboard")[0].style.height="1600px";
-          //  document.getElementById("submit-button").click();
             
             return session;
         }
         
+        (function($) {
+        
+        $('#submit-button').click(function() {
+            let data = eval();
+            console.log(data.words);
+            console.log(data.number_of_correct);
+            console.log({{flashcardId}});
+            console.log("entered ajax");
+            $.ajax({
+                
+                url: '/flashcard/flashcardsubmit',
+                type: 'POST',
+                data: {
+                    flashcardData: data.words,
+                    number_of_correct: data.number_of_correct,
+                    id:{{flashcardId}}
+                },
+                
+                success: function(msg) {
+                    alert('Email Sent');
+                }               
+            });
+});
+        })(jQuery);
+
 
 
         function triggerGraphs(number_of_correct,number_of_words,percentage){

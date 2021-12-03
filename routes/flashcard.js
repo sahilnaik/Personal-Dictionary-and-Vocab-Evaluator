@@ -64,7 +64,7 @@ router.get('/sessions', async (req, res) => {
 });
 
 router.post("/flashcardsubmit", async (req, res) => {
-    let stuff = req.body.mcqData; 
+    let stuff = req.body.flashcardData; 
     let numberOfCorrect= req.body.number_of_correct;
     let userId = req.session.user._id;
     let sessionId = req.body.id

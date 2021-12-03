@@ -16,7 +16,7 @@ html,body{
     display: flex;
     justify-content: center;
 }
-.add-word-form{
+#add-word-form{
     display: grid;
     justify-content: center;
 }
@@ -53,3 +53,9 @@ html,body{
     height: 60px;
 }
 
+#word_err,#meaning_err,#synonym_err,#antonym_err,#example_err{
+    font-weight: 700;
+    display: none;
+    padding-top: 20px;
+    padding-left:250px;
+}

@@ -252,6 +252,8 @@
         
         $('#submit-button').click(function() {
             let data = eval();
+            console.log(data.words);
+            console.log(data.number_of_correct);
             $.ajax({
                 
                 url: '/mcqsubmit',
