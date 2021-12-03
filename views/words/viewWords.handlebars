@@ -66,25 +66,34 @@
 </body>
 <script type="text/javascript">
     let selection="";
+    let wordsList=[];
+    let meaningsList=[];
+    let synonymsList=[];
+    let antonymsList=[];
+    let examplesList=[];
+   {{#each wordList}}
+            wordsList.push("{{word}}");
+            meaningsList.push("{{meaning}}");
+            synonymsList.push("{{synonyms}}");
+            antonymsList.push("{{antonyms}}");
+            examplesList.push("{{examples}}");
+    {{/each}}
     let wordList=[];
     let finalList=[];
-    let wordObj={};
-    wordObj["word"]="happy";
-    wordObj["meaning"]="feeling pleasant";
-    wordObj["synonyms"]="pleasant,jovial";
-    wordObj["antonyms"]="sad";
-    wordObj["example"]="I am happy!";
-    wordList.push(wordObj);
-    let wordObj1={};
-    wordObj1["word"]="Sad";
-    wordObj1["meaning"]="feeling Bad";
-    wordObj1["synonyms"]="unhappy,sorrowful";
-    wordObj1["antonyms"]="happy";
-    wordObj1["example"]="I am sad!";
-    wordList.push(wordObj1);
+    for(let i=0;i<wordsList.length;i++){
+        word["word"]=wordsList[i];
+        word["meaning"]=meaningsList[i];
+        word["synonyms"]=synonymsList[i].split(",");
+        word["antonyms"]=antonymsList[i].split(",");
+        word["example"]=examplesList[i].split(",");        
+        wordList.push(word);
+        word={};
+                
+    }
     wordList.map((obj)=>{
         finalList.push(obj["word"]);
     });
+    
     const inputField = document.querySelector('.chosen-value');
     const dropdown = document.querySelector('.value-list');
     let elementList=[];
