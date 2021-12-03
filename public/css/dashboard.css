@@ -17,7 +17,7 @@ html,body{
     flex: 0.10;
     background:#23282D;
     display: grid;
-    grid-template-rows:15% 15% 15% 15% 15% 15%;
+    grid-template-rows:15% 15% 15% 15% 15%;
 }
 
 .main-dashboard{
@@ -298,5 +298,5 @@ body {
 .dropdown:hover .dropdown-content {display: block;}
 
 .sidebar-highlight{
-    background-color: rgb(78, 78, 78);
+    background-color: rgb(53, 51, 51);
 }

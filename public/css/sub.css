@@ -14,7 +14,7 @@ html,body{
     flex: 0.10;
     background:#23282D;
     display: grid;
-    grid-template-rows:15% 15% 15% 15% 15% 15%;
+    grid-template-rows:15% 15% 15% 15% 15%;
 }
 
 .main-dashboard{
@@ -76,18 +76,18 @@ a{
     transform: scale(1);
   }
 
-.sidebar-word{
+.sidebar-word,.sidebar-add-word{
     text-align: center;
     padding-top: 50px ;
     padding-bottom: 50px;
 }
 
-.sidebar-word:hover{
+.sidebar-word:hover,.sidebar-add-word:hover{
     transition: transform .5s ease;
     background-color: rgb(53, 51, 51);
 }
 
-.sidebar-word:hover {
+.sidebar-word:hover,.sidebar-add-word:hover {
     transform: scale(1);
 }
 
@@ -178,4 +178,8 @@ a{
 body {
     font-family: "Roboto", sans-serif;
     background:#d2eaf1;
+}
+
+.sidebar-highlight{
+    background-color: rgb(53, 51, 51);
 }
