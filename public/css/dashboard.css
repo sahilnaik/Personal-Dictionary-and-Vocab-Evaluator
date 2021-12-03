@@ -296,3 +296,7 @@ body {
 .dropdown-content a:hover {background-color: #ddd;}
   
 .dropdown:hover .dropdown-content {display: block;}
+
+.sidebar-highlight{
+    background-color: rgb(78, 78, 78);
+}
