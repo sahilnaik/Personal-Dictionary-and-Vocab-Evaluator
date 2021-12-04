@@ -9,7 +9,7 @@ router.get('/', async(req,res)=>{
         let profilePicture= req.session.user.profilePicture;
         let firstName= req.session.user.firstName;
         let lastName= req.session.user.lastName;
-        res.render('words/addWords', {profilePicture: profilePicture, firstName: firstName, lastName: lastName});
+        res.render('words/addWords', {title:"Add Words",profilePicture: profilePicture, firstName: firstName, lastName: lastName});
     }catch(e){
         res.status(500).json({error:e});
     }

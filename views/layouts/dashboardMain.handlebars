@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title></title>       
+        <title>Dashboard</title>       
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <style media="screen">@import url(http://fonts.googleapis.com/css?family=Roboto:400,700,300);</style>
@@ -48,7 +48,7 @@
                     <div id="right_name"></div>
                         <div id="right_profile">
                             <div class="dropdown">
-                                <img id="img_profile" src="" alt="">
+                                <img id="img_profile" src="dummy" alt="">
                                     <div class="dropdown-content">
                                         <a href="/" style="text-decoration: none;">Dashboard</a>
                                         <a href="/profile" style="text-decoration: none;">Profile</a>
@@ -64,7 +64,7 @@
                 {{{body}}}
             </div>
         </div>
-        <script type="text/javascript">
+        <script>
             window.addEventListener('load', (event) => {
                 console.log('page is fully loaded');
                 let name="{{firstName}} {{lastName}}";

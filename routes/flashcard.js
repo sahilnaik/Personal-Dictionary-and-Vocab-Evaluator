@@ -11,7 +11,7 @@ router.get('/', async(req,res)=>{
         let firstName= req.session.user.firstName;
         let lastName= req.session.user.lastName;
         const flashcardList = await flashcardData.create(req.session.user._id);
-        res.render('flashcard/flashcard',{ profilePicture: profilePicture, firstName: firstName, lastName: lastName, flashcardList: flashcardList.words, flashcardId: flashcardList._id});
+        res.render('flashcard/flashcard',{ title:"Flashcard",profilePicture: profilePicture, firstName: firstName, lastName: lastName, flashcardList: flashcardList.words, flashcardId: flashcardList._id});
     }catch(e){
         res.status(500).json({error:e});
     }
@@ -53,10 +53,10 @@ router.get('/sessions', async (req, res) => {
         let lastName= req.session.user.lastName;
         const noOfWords = await words.noOfWords(req.session.user._id);
         if (noOfWords <= 9) {
-            res.render('flashcard/flashcardSessions',{layout: "sessionMain", insufficientWords: true, profilePicture: profilePicture, firstName: firstName, lastName: lastName});
+            res.render('flashcard/flashcardSessions',{layout: "sessionMain", title:"Flashcard",insufficientWords: true, profilePicture: profilePicture, firstName: firstName, lastName: lastName});
        
         } else{
-            res.render('flashcard/flashcardSessions',{layout: "sessionMain", sessions:sessionList, profilePicture: profilePicture, firstName: firstName, lastName: lastName});
+            res.render('flashcard/flashcardSessions',{layout: "sessionMain", title:"Flashcard",sessions:sessionList, profilePicture: profilePicture, firstName: firstName, lastName: lastName});
         }
     }catch(e){
         res.status(500).json({error:e});
