@@ -94,12 +94,12 @@ const editWord = async function editWord(userId, word, synonym, antonym, example
     word = word.toLowerCase() 
     let editingWord 
     wordDocument.words.forEach(x => {
-        if (x.word.toLowerCase() == word) {
+        if (x.word == word) {
             editingWord = x
         }
     })
 
-    synonym = synonym.split(",")
+    synonym = synonym.split(", ")
     let synonymLenght = synonym.length
     for (let i = 0; i < synonymLenght; i++) {
         let same = false
@@ -116,7 +116,7 @@ const editWord = async function editWord(userId, word, synonym, antonym, example
     }
 
     if (antonym.trim().length !== 0) {
-        antonym = antonym.split(",")
+        antonym = antonym.split(", ")
         let antonymLenght = antonym.length
         for (let i = 0; i < antonymLenght; i++) {
             let same = false
@@ -134,7 +134,7 @@ const editWord = async function editWord(userId, word, synonym, antonym, example
     }    
     
     if (example.trim().length !== 0) {
-        example = example.split(",")
+        example = example.split(". ")
         let exampleLenght = example.length
         for (let i = 0; i < exampleLenght; i++) {
             let same = false
