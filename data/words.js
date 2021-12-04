@@ -87,19 +87,19 @@ const editWord = async function editWord(userId, word, synonym, antonym, example
     synonym = synonym.trim(), antonym = antonym.trim(), example = example.trim()
     let countS = 0, countA = 0, countE = 0
     let wordCollection = await words()
-    let wordDocument = await wordCollection.findOne({userId: userId})
+    let wordDocument = await wordCollection.findOne({userId: ObjectId(userId)});
     if (!wordDocument) {
         throw {code: 404, error: `No such userId exists to add any words`}
     }
     word = word.toLowerCase() 
     let editingWord 
     wordDocument.words.forEach(x => {
-        if (x.word == word) {
+        if (x.word.toLowerCase() == word) {
             editingWord = x
         }
     })
 
-    synonym = synonym.split(", ")
+    synonym = synonym.split(",")
     let synonymLenght = synonym.length
     for (let i = 0; i < synonymLenght; i++) {
         let same = false
@@ -116,7 +116,7 @@ const editWord = async function editWord(userId, word, synonym, antonym, example
     }
 
     if (antonym.trim().length !== 0) {
-        antonym = antonym.split(", ")
+        antonym = antonym.split(",")
         let antonymLenght = antonym.length
         for (let i = 0; i < antonymLenght; i++) {
             let same = false
@@ -134,7 +134,7 @@ const editWord = async function editWord(userId, word, synonym, antonym, example
     }    
     
     if (example.trim().length !== 0) {
-        example = example.split(". ")
+        example = example.split(",")
         let exampleLenght = example.length
         for (let i = 0; i < exampleLenght; i++) {
             let same = false
@@ -167,7 +167,7 @@ const editWord = async function editWord(userId, word, synonym, antonym, example
         editingWord.examples = example
     }
 
-    let result = await wordCollection.updateOne({userId: userId}, {$set: {words: wordDocument.words}})
+    let result = await wordCollection.updateOne({userId: ObjectId(userId)}, {$set: {words: wordDocument.words}})
     if (result.modifiedCount === 0) {
         throw {code: 500, error: `Unable to add the word to the Document`} 
     }

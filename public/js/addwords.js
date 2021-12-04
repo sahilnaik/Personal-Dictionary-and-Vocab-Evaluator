@@ -196,26 +196,6 @@ window.addEventListener('load', (event) => {
                  example_err.style.display="none";
                  validateExample=true;
              }
-             i=0;
-             flag=0;
-             while(i<example.length){
-                 let code = example.charCodeAt(i);
-                 if (!(code > 64 && code < 91) &&
-                     !(code > 96 && code < 123)&& !(code===44)&& !(code===32)&& !(code===46)) {
-                         example_err.style.display="grid";
-                         example_err.innerText=`Input example ${example} can only contain alphabets,commas and space! Multiple examples can be entered with commas as the separator.`;
-                         validateExample=false;
-                         flag=1;
-                         return validateExample;
-                 }else{
-                     i++;
-                 }
-             }
-
-             if(flag===1){
-                 example_err.style.display="none";
-                 validateExample=true;
-             }
              return validateExample;
      }
  }

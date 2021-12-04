@@ -45,6 +45,11 @@ router.post('/:id/editWord', async (req, res) => {
     const synonym=editWordForm.synonymsinput;
     const antonym=editWordForm.antonymsinput;
     const example=editWordForm.exampleinput;
+    console.log(word);
+    console.log(synonym);
+    console.log(antonym);
+    console.log(example);
+
     try {
         const wordDocument = await words.editWord(req.params.id, word, synonym, antonym, example)
         res.status(200).json(`Successfully edited the word ${word}`)
