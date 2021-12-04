@@ -297,3 +297,14 @@ html,body,.main-box{
   #example,#meaning,#synonym,#antonym{
     position: absolute;
   }
+
+  #synonym_err,#antonym_err,#example_err{
+    font-weight: 700;
+    display: none;
+    padding-top: 20px;
+    padding-left:250px;
+}
+
+.hidden{
+  display: none;
+}

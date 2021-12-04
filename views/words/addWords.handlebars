@@ -109,9 +109,9 @@
                 while(i<word.length){
                     let code = word.charCodeAt(i);
                     if (!(code > 64 && code < 91) &&
-                        !(code > 96 && code < 123)&& !(code===32)&& !(code===44)) {
+                        !(code > 96 && code < 123)&& !(code===32)) {
                             word_err.style.display="grid";
-                            word_err.innerText=`Input word ${word} must be full of alphabets!`;
+                            word_err.innerText=`Input word ${word} can only contain alphabets!`;
                             validateWord=false;
                             flag=1;
                             return validateWord;
@@ -137,26 +137,16 @@
                     meaning_err.style.display="none";
                     validateMeaning=true;
                 }
-                i=0;
-                flag=0;
-                while(i<meaning.length){
-                    let code = meaning.charCodeAt(i);
-                    if (!(code > 64 && code < 91) &&
-                        !(code > 96 && code < 123)&& !(code===32)) {
-                            meaning_err.style.display="grid";
-                            meaning_err.innerText=`Input meaning ${meaning} must be full of alphabets!`;
-                            validateMeaning=false;
-                            flag=1;
-                            return validateMeaning;
-                    }else{
-                        i++;
-                    }
-                }
-                if(flag===1){
+                if(meaning.match(/^\s+$/)){
+                    meaning_err.style.display="grid";
+                    meaning_err.innerText="Meaning is full of empty spaces. Please Enter a valid meaning";
+                    validateMeaning=false;
+                    return validateMeaning;
+                }else{
                     meaning_err.style.display="none";
                     validateMeaning=true;
                 }
-                 return validateMeaning;
+                return validateMeaning;
         }
 
         function checkSynonym(synonym,synonym_err){
@@ -185,7 +175,7 @@
                     if (!(code > 64 && code < 91) &&
                         !(code > 96 && code < 123)&& !(code===44)&& !(code===32)) {
                             synonym_err.style.display="grid";
-                            synonym_err.innerText=`Input word ${synonym} must be full of alphabets!`;
+                            synonym_err.innerText=`Input synonym ${synonym} can only have alphabets and commas. Multiple synonyms can be entered with commas as the separator.`;
                             validateSynonym=false;
                             flag=1;
                             return validateSynonym;
@@ -203,9 +193,7 @@
 
         function checkAntonym(antonym,antonym_err){
                 if(antonym.length===0){
-                    antonym_err.style.display="grid";
-                    antonym_err.innerText="Please Enter a valid antonym";
-                    validateAntonym=false;
+                    validateAntonym=true;
                     return validateAntonym;
                 }else{
                     antonym_err.style.display="none";
@@ -227,7 +215,7 @@
                     if (!(code > 64 && code < 91) &&
                         !(code > 96 && code < 123)&& !(code===44)&& !(code===32)) {
                             antonym_err.style.display="grid";
-                            antonym_err.innerText=`Input antonym ${antonym} must be full of alphabets!`;
+                            antonym_err.innerText=`Input antonym ${antonym} must be full of alphabets! Multiple antonyms can be entered with commas as the separator.`;
                             validateAntonym=false;
                             flag=1;
                             return validateAntonym;
@@ -245,8 +233,15 @@
 
         function checkExample(example,example_err){
                 if(example.length===0){
+                    validateExample=true;
+                    return validateExample;
+                }else{
+                    example_err.style.display="none";
+                    validateExample=true;
+                }
+                if(example.match(/^\s+$/)){
                     example_err.style.display="grid";
-                    example_err.innerText="Please Enter a valid example";
+                    example_err.innerText="Example is full of empty spaces. Please enter a valid example!";
                     validateExample=false;
                     return validateExample;
                 }else{
@@ -258,9 +253,9 @@
                 while(i<example.length){
                     let code = example.charCodeAt(i);
                     if (!(code > 64 && code < 91) &&
-                        !(code > 96 && code < 123)&& !(code===44)&& !(code===32)) {
+                        !(code > 96 && code < 123)&& !(code===44)&& !(code===32)&& !(code===46)) {
                             example_err.style.display="grid";
-                            example_err.innerText=`Input example ${example} must be full of alphabets!`;
+                            example_err.innerText=`Input example ${example} can only contain alphabets,commas and space! Multiple examples can be entered with commas as the separator.`;
                             validateExample=false;
                             flag=1;
                             return validateExample;

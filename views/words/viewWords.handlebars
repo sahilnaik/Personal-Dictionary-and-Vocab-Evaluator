@@ -1,5 +1,4 @@
 <link rel="stylesheet" href="../public/css/viewWords.css">
-<body onload="progressbarCalculator()">
 <div class="main_container" >
     <div class="word_title">Personal Dictionary</div>
 
@@ -27,49 +26,69 @@
         </ul>
         </form>
         <div class="details-box">
-        <form id="details-form">
+        <form id="details-form" action="/words/{{userId}}/editWord" method="post">
         
             <div class="word-field">
-                <h5 id="word"></h5>    
+                <h5 id="word"></h5>
+                <input class="hidden" name="wordinput" id="wordinput"></input>    
             </div>
-        <br>    
-        <label for="meaning">
-                <div class="meaning-field">
-                    <h5>Meaning &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp : &nbsp &nbsp &nbsp &nbsp &nbsp<span name="" id="meaning" contenteditable="true"></span></h5>
-                    
-                </div>
-        </label>
-        <br> 
-        <label for="synonyms">
-                <div class="synonyms-field">
-                    <h5>Synonyms &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp : &nbsp &nbsp &nbsp &nbsp &nbsp<span name="" id="synonyms" contenteditable="true"></span></h5>
-                </div>
-        </label>
-        <br> 
-        <label for="antonyms">
-                <div class="antonyms-field">
-                    <h5>Antonyms &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp : &nbsp &nbsp &nbsp &nbsp &nbsp<span name="" id="antonyms" contenteditable="true"></span></h5>
-                     
-                </div>
-        </label>
-        <br>  
-        <label for="example">
-                <div class="example-field">
-                    <h5>Example &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp : &nbsp &nbsp &nbsp &nbsp &nbsp<span name="" id="example" contenteditable="true"></span></h5>
-                    
-                </div>
-        </label>
-        </div>
+            <br>    
+            <label for="meaning">
+                    <div class="meaning-field">
+                        <h5>Meaning &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp : &nbsp &nbsp &nbsp &nbsp &nbsp<span name="meaning" id="meaning" contenteditable="true"></span></h5>
+                        <p id="meaning_err"></p>
+                        <input class="hidden" name="meaninginput" id="meaninginput"></input>
+                    </div>
+            </label>
+            <br> 
+            <label for="synonyms">
+                    <div class="synonyms-field">
+                        <h5>Synonyms &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp : &nbsp &nbsp &nbsp &nbsp &nbsp<span name="synonyms" id="synonyms" contenteditable="true"></span></h5>
+                        <p id="synonym_err"></p>
+                        <input class="hidden" name="synonymsinput" id="synonymsinput"></input>
+                    </div>
+            </label>
+            <br> 
+            <label for="antonyms">
+                    <div class="antonyms-field">
+                        <h5>Antonyms &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp : &nbsp &nbsp &nbsp &nbsp &nbsp<span name="antonyms" id="antonyms" contenteditable="true"></span></h5>
+                        <p id="antonym_err"></p>
+                        <input class="hidden" name="antonymsinput" id="antonymsinput"></input>
+                    </div>
+            </label>
+            <br>  
+            <label for="example">
+                    <div class="example-field">
+                        <h5>Example &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp : &nbsp &nbsp &nbsp &nbsp &nbsp<span name="example" id="example" contenteditable="true"></span></h5>
+                        <p id="example_err"></p>
+                        <input class="hidden" name="exampleinput" id="exampleinput"></input>
+                    </div>
+            </label>
+            <div>
+                <button type="submit" id="submit-btn">submit</button>
+            </div>
         </form>
+        
+        
+        </div>
         </div>
 </div>
-</body>
-<script type="text/javascript">
-    
-    window.addEventListener('load', (event) => {
-       document.getElementsByClassName("sidebar-word")[0].style.backgroundColor="rgb(53, 51, 51)";
-    });
+<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+        crossorigin="anonymous"></script>
 
+<script type="text/javascript">
+
+    window.addEventListener('load', (event) => {
+        document.getElementsByClassName("sidebar-word")[0].style.backgroundColor="rgb(53, 51, 51)";
+        let total_no_of_words=100;
+        let words_learnt=20;
+        let percentage=words_learnt/total_no_of_words*100;
+        document.getElementById("pbar").style.width=percentage+"%";
+        document.getElementById("perc").innerText=percentage+"%";
+        document.getElementById("wordCount").innerText=words_learnt;
+        document.getElementById("wordTotal").innerText=total_no_of_words;
+    });
+    let userId="{{userId}}";
     let selection="";
     let wordsList=[];
     let meaningsList=[];
@@ -190,14 +209,185 @@
         document.getElementById("example").innerText=example;
     }
 
-    function progressbarCalculator(){
-        let total_no_of_words=100;
-        let words_learnt=20;
-        let percentage=words_learnt/total_no_of_words*100;
-        document.getElementById("pbar").style.width=percentage+"%";
-        document.getElementById("perc").innerText=percentage+"%";
-        document.getElementById("wordCount").innerText=words_learnt;
-        document.getElementById("wordTotal").innerText=total_no_of_words;
+    detailsForm=document.getElementById("details-form");
+    var word1,synonym1,antonym1,example1="";
+    detailsForm.addEventListener('submit', (event) => {
+        event.preventDefault();
+        document.getElementById('wordinput').value=document.getElementById("word").innerText;
+        document.getElementById("meaninginput").value=document.getElementById("meaning").innerText;
+        document.getElementById("synonymsinput").value=document.getElementById("synonyms").innerText;
+        document.getElementById("antonymsinput").value=document.getElementById("antonyms").innerText;
+        document.getElementById("exampleinput").value=document.getElementById("example").innerText;
+        let validateWord=true;
+        let validateMeaning=true;
+        let validateSynonym=true;
+        let validateAntonym=true;
+        let validateExample=true;
+        let word=document.getElementById('wordinput').value;
+        let meaning=document.getElementById('meaninginput').value;
+        let meaning_err=document.getElementById('meaning_err');
+        let synonym=document.getElementById('synonymsinput').value;
+        let synonym_err=document.getElementById('synonym_err');
+        let antonym=document.getElementById('antonymsinput').value;
+        let antonym_err=document.getElementById('antonym_err');
+        let example=document.getElementById('exampleinput').value;
+        let example_err=document.getElementById('example_err');
+        validateMeaning=checkMeaning(meaning,meaning_err);
+        validateSynonym=checkSynonym(synonym,synonym_err);
+        validateAntonym=checkAntonym(antonym,antonym_err);
+        validateExample=checkExample(example,example_err);
+        if(validateMeaning&&validateSynonym&&validateAntonym&&validateExample){
+                detailsForm.submit();
+        }
+        
 
-    }
+        function checkMeaning(meaning,meaning_err){
+                if(meaning.length===0){
+                    meaning_err.style.display="grid";
+                    meaning_err.innerText="Please Enter a valid meaning";
+                    validateMeaning=false;
+                    return validateMeaning;
+                }else{
+                    meaning_err.style.display="none";
+                    validateMeaning=true;
+                }
+                if(meaning.match(/^\s+$/)){
+                    meaning_err.style.display="grid";
+                    meaning_err.innerText="Meaning is full of empty spaces. Please Enter a valid meaning";
+                    validateMeaning=false;
+                    return validateMeaning;
+                }else{
+                    meaning_err.style.display="none";
+                    validateMeaning=true;
+                }
+                return validateMeaning;
+        }
+
+        function checkSynonym(synonym,synonym_err){
+                if(synonym.length===0){
+                    synonym_err.style.display="grid";
+                    synonym_err.innerText="Please Enter a valid synonym";
+                    validateSynonym=false;
+                    return validateSynonym;
+                }else{
+                    synonym_err.style.display="none";
+                    validateSynonym=true;
+                }
+                if(synonym.match(/\s+/)){
+                    synonym_err.style.display="grid";
+                    synonym_err.innerText="Synonym consists of spaces. Please Enter a valid synonym";
+                    validateSynonym=false;
+                    return validateSynonym;
+                }else{
+                    synonym_err.style.display="none";
+                    validateSynonym=true;
+                }
+                i=0;
+                flag=0;
+                while(i<synonym.length){
+                    let code = synonym.charCodeAt(i);
+                    if (!(code > 64 && code < 91) &&
+                        !(code > 96 && code < 123)&& !(code===44)&& !(code===32)) {
+                            synonym_err.style.display="grid";
+                            synonym_err.innerText=`Input synonym ${synonym} can only have alphabets and commas. Multiple synonyms can be entered with commas as the separator.`;
+                            validateSynonym=false;
+                            flag=1;
+                            return validateSynonym;
+                    }else{
+                        i++;
+                    }
+                }
+
+                if(flag===1){
+                    synonym_err.style.display="none";
+                    validateSynonym=true;
+                }
+                return validateSynonym;
+        }
+
+        function checkAntonym(antonym,antonym_err){
+                if(antonym.length===0){
+                    validateAntonym=true;
+                    return validateAntonym;
+                }else{
+                    antonym_err.style.display="none";
+                    validateAntonym=true;
+                }
+                if(antonym.match(/\s+/)){
+                    antonym_err.style.display="grid";
+                    antonym_err.innerText="Antonym consists of spaces. Please Enter a valid antonym";
+                    validateAntonym=false;
+                    return validateAntonym;
+                }else{
+                    antonym_err.style.display="none";
+                    validateAntonym=true;
+                }
+                i=0;
+                flag=0;
+                while(i<antonym.length){
+                    let code = antonym.charCodeAt(i);
+                    if (!(code > 64 && code < 91) &&
+                        !(code > 96 && code < 123)&& !(code===44)&& !(code===32)) {
+                            antonym_err.style.display="grid";
+                            antonym_err.innerText=`Input antonym ${antonym} must be full of alphabets! Multiple antonyms can be entered with commas as the separator.`;
+                            validateAntonym=false;
+                            flag=1;
+                            return validateAntonym;
+                    }else{
+                        i++;
+                    }
+                }
+
+                if(flag===1){
+                    antonym_err.style.display="none";
+                    validateAntonym=true;
+                }
+                 return validateAntonym;
+        }
+
+        function checkExample(example,example_err){
+                if(example.length===0){
+                    validateExample=true;
+                    return validateExample;
+                }else{
+                    example_err.style.display="none";
+                    validateExample=true;
+                }
+                if(example.match(/^\s+$/)){
+                    example_err.style.display="grid";
+                    example_err.innerText="Example is full of empty spaces. Please enter a valid example!";
+                    validateExample=false;
+                    return validateExample;
+                }else{
+                    example_err.style.display="none";
+                    validateExample=true;
+                }
+                i=0;
+                flag=0;
+                while(i<example.length){
+                    let code = example.charCodeAt(i);
+                    if (!(code > 64 && code < 91) &&
+                        !(code > 96 && code < 123)&& !(code===44)&& !(code===32)&& !(code===46)) {
+                            example_err.style.display="grid";
+                            example_err.innerText=`Input example ${example} can only contain alphabets,commas and space! Multiple examples can be entered with commas as the separator.`;
+                            validateExample=false;
+                            flag=1;
+                            return validateExample;
+                    }else{
+                        i++;
+                    }
+                }
+
+                if(flag===1){
+                    example_err.style.display="none";
+                    validateExample=true;
+                }
+                return validateExample;
+            }
+    });
+
+
+    
+            
+
 </script>

@@ -39,9 +39,12 @@ router.post('/addWord', async (req, res) => {
 })
 
 
-router.patch('/:id/editWord', async (req, res) => {
+router.post('/:id/editWord', async (req, res) => {
     let editWordForm = req.body
-    const { word, synonym, antonym, example } = editWordForm
+    const word=editWordForm.wordinput;
+    const synonym=editWordForm.synonymsinput;
+    const antonym=editWordForm.antonymsinput;
+    const example=editWordForm.exampleinput;
     try {
         const wordDocument = await words.editWord(req.params.id, word, synonym, antonym, example)
         res.status(200).json(`Successfully edited the word ${word}`)
