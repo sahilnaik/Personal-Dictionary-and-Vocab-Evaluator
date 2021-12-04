@@ -300,3 +300,7 @@ body {
 .sidebar-highlight{
     background-color: rgb(53, 51, 51);
 }
+
+.hidden{
+    display: none;
+}

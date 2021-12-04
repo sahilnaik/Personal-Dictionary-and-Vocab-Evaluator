@@ -191,3 +191,7 @@ body {
     font-family: "Roboto", sans-serif;
     background:#d2eaf1;
 }
+
+.hidden{
+    display: none;
+}

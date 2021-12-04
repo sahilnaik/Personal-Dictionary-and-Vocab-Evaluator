@@ -39,9 +39,15 @@
             </div>
         </div>
     </div>
+    <div class="hidden">
+        <p id="first_name" class="hidden">{{{firstName}}}</p>
+        <p id="last_name" class="hidden">{{{lastName}}}</p>
+        <p id="profile_pic" class="hidden">{{{profilePicture}}}</p>
+    </div>
 </div>
 <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
-<script>
+<script src="../../public/js/profile.js"></script>
+{{!-- <script>
     window.addEventListener('load', (event) => {
             console.log('page is fully loaded');
             let name="{{firstName}} {{lastName}}"
@@ -70,4 +76,4 @@
         
         }, false);
     }
-</script>
+</script> --}}

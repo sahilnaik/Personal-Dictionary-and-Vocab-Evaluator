@@ -151,10 +151,10 @@ html,body,.main-box{
     transition: 0.3s ease-in-out;
     z-index: 1;
   }
-  .value-list.open {
-    /* max-height: 320px;
-    overflow: scroll; */
-  }
+  /* .value-list.open {
+    max-height: 320px;
+    overflow: scroll;
+  } */
   .value-list li {
     position: relative;
     height: 4rem;
@@ -307,4 +307,8 @@ html,body,.main-box{
 
 .hidden{
   display: none;
+}
+
+.submit_edit{
+  display: grid;
 }

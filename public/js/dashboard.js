@@ -97,13 +97,5 @@ function triggerGraphs(){
     t2.fromTo(fill2,2,{transition: "transform",transform:"rotate(0deg)",ease:SlowMo.easeOut},{transition: "transform",transform:"rotate("+degree2+")"}).
     fromTo(full2,2,{transition: "transform",transform:"rotate(0deg)",ease:SlowMo.easeOut},{transition: "transform",transform:"rotate("+degree2+")"},"-=2");
 
-    document.getElementById('i-circle3').innerText=percentage3.toString()+"%";
-    let deg3=(percentage3/100*360)/2;
-    degree3=deg3.toString()+"deg";
-    fill3=document.getElementsByClassName('fill3');
-    full3=document.getElementsByClassName('full3');
-    const t3=new TimelineMax();
-    t3.fromTo(fill3,3,{transition: "transform",transform:"rotate(0deg)",ease:Power1.easeOut},{transition: "transform",transform:"rotate("+degree3+")"}).
-    fromTo(full3,3,{transition: "transform",transform:"rotate(0deg)",ease:Power1.easeOut},{transition: "transform",transform:"rotate("+degree3+")"},"-=3");
 }
 

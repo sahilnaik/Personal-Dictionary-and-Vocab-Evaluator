@@ -48,7 +48,7 @@
                     <div id="right_name"></div>
                         <div id="right_profile">
                             <div class="dropdown">
-                                <img id="img_profile" src="dummy" alt="">
+                                <img id="img_profile" src="" alt="">
                                     <div class="dropdown-content">
                                         <a href="/" style="text-decoration: none;">Dashboard</a>
                                         <a href="/profile" style="text-decoration: none;">Profile</a>
@@ -64,7 +64,14 @@
                 {{{body}}}
             </div>
         </div>
-        <script>
+        
+        <div class="hidden">
+            <p id="first_name" class="hidden">{{{firstName}}}</p>
+            <p id="last_name" class="hidden">{{{lastName}}}</p>
+            <p id="profile_pic" class="hidden">{{{profilePicture}}}</p>
+        </div>
+        <script src="../../public/js/dashboardMain.js"></script>
+        {{!-- <script>
             window.addEventListener('load', (event) => {
                 console.log('page is fully loaded');
                 let name="{{firstName}} {{lastName}}";
@@ -72,7 +79,7 @@
                 document.getElementById("img_profile").src=`../../public/uploads/{{profilePicture}}`;
             });
             
-        </script>        
+        </script>         --}}
         <script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/TweenMax.min.js" integrity="sha512-DkPsH9LzNzZaZjCszwKrooKwgjArJDiEjA5tTgr3YX4E6TYv93ICS8T41yFHJnnSmGpnf0Mvb5NhScYbwvhn2w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>

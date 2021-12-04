@@ -65,3 +65,7 @@ hr{
     position: relative;
     right:30px;
 }
+
+.hidden{
+    display: none;
+}
