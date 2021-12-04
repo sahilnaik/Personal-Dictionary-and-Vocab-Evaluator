@@ -54,7 +54,7 @@
        document.getElementsByClassName("sidebar-add-word")[0].style.backgroundColor="rgb(53, 51, 51)";
     });
 
-    {{!-- let form=document.getElementById('add-word-form');
+    let form=document.getElementById('add-word-form');
     if (form) {
             form.addEventListener("submit", (event) => {
                 event.preventDefault();
@@ -64,135 +64,218 @@
                 let validateSynonym=true;
                 let validateAntonym=true;
                 let validateExample=true;
-                let word=document.getElementById('word');
+                let word=document.getElementById('word').value;
                 let word_err=document.getElementById('word_err');
-                let meaning=document.getElementById('meaning');
+                let meaning=document.getElementById('meaning').value;
                 let meaning_err=document.getElementById('meaning_err');
-                let synonym=document.getElementById('synonym');
+                let synonym=document.getElementById('synonym').value;
                 let synonym_err=document.getElementById('synonym_err');
-                let antonym=document.getElementById('antonym');
+                let antonym=document.getElementById('antonym').value;
                 let antonym_err=document.getElementById('antonym_err');
-                let example=document.getElementById('example');
+                let example=document.getElementById('example').value;
                 let example_err=document.getElementById('example_err');
-                if(word.innerText.length===0){
-                    word_err.style.display="grid";
-                    word_err.innerText="Please Enter a valid word";
-                    validateWord=false;
-                }
-                if(word.innerText.match(/\s+/)){
-                    word_err.style.display="grid";
-                    word_err.innerText="Word consists of spaces. Please Enter a valid word";
-                    validateWord=false;
-                }
-                let i=0;
-                while(i<word.innerText.length){
-                    let code = word.innerText.charCodeAt(i);
-                    if (!(code > 64 && code < 91) &&
-                        !(code > 96 && code < 123)) {
-                            word_err.style.display="grid";
-                            word_err.innerText=`input word ${word.innerText} must be full of alphabets!`;
-                            validateWord=false;
-                    }else{
-                        i++;
-                    }
-                }
+                validateWord=checkWord(word,word_err);
+                validateMeaning=checkMeaning(meaning,meaning_err);
+                validateSynonym=checkSynonym(synonym,synonym_err);
+                validateAntonym=checkAntonym(antonym,antonym_err);
+                validateExample=checkExample(example,example_err);
 
-                if(meaning.innerText.length===0){
-                    meaning_err.style.display="grid";
-                    meaning_err.innerText="Please Enter a valid meaning";
-                    validateMeaning=false;
-                }
-                if(meaning.innerText.match(/\s+/)){
-                    meaning_err.style.display="grid";
-                    meaning_err.innerText="Meaning consists of spaces. Please Enter a valid Meaning";
-                    validateMeaning=false;
-                }
-                i=0;
-                while(i<meaning.innerText.length){
-                    let code = meaning.innerText.charCodeAt(i);
-                    if (!(code > 64 && code < 91) &&
-                        !(code > 96 && code < 123)) {
-                            meaning_err.style.display="grid";
-                            meaning_err.innerText=`input meaning ${meaning.innerText} must be full of alphabets!`;
-                            validateMeaning=false;
-                    }else{
-                        i++;
-                    }
-                }
-
-                if(synonym.innerText.length===0){
-                    synonym_err.style.display="grid";
-                    synonym_err.innerText="Please Enter a valid synonym";
-                    validateSynonym=false;
-                }
-                if(synonym.innerText.match(/\s+/)){
-                    synonym_err.style.display="grid";
-                    synonym_err.innerText="Synonym consists of spaces. Please Enter a valid synonym";
-                    validateSynonym=false;
-                }
-                i=0;
-                while(i<synonym.innerText.length){
-                    let code = synonym.innerText.charCodeAt(i);
-                    if (!(code > 64 && code < 91) &&
-                        !(code > 96 && code < 123)) {
-                            synonym_err.style.display="grid";
-                            synonym_err.innerText=`input word ${synonym.innerText} must be full of alphabets!`;
-                            validateSynonym=false;
-                    }else{
-                        i++;
-                    }
-                }
-
-                if(antonym.innerText.length===0){
-                    antonym_err.style.display="grid";
-                    antonym_err.innerText="Please Enter a valid antonym";
-                    validateAntonym=false;
-                }
-                if(antonym.innerText.match(/\s+/)){
-                    antonym_err.style.display="grid";
-                    antonym_err.innerText="Antonym consists of spaces. Please Enter a valid antonym";
-                    validateAntonym=false;
-                }
-                i=0;
-                while(i<antonym.innerText.length){
-                    let code = antonym.innerText.charCodeAt(i);
-                    if (!(code > 64 && code < 91) &&
-                        !(code > 96 && code < 123)) {
-                            antonym_err.style.display="grid";
-                            antonym_err.innerText=`input antonym ${antonym.innerText} must be full of alphabets!`;
-                            validateAntonym=false;
-                    }else{
-                        i++;
-                    }
-                }
-
-                if(example.innerText.length===0){
-                    example_err.style.display="grid";
-                    example_err.innerText="Please Enter a valid example";
-                    validateExample=false;
-                }
-                if(example.innerText.match(/\s+/)){
-                    example_err.style.display="grid";
-                    example_err.innerText="Example consists of spaces. Please Enter a valid example";
-                    validateExample=false;
-                }
-                i=0;
-                while(i<example.innerText.length){
-                    let code = example.innerText.charCodeAt(i);
-                    if (!(code > 64 && code < 91) &&
-                        !(code > 96 && code < 123)) {
-                            example_err.style.display="grid";
-                            example_err.innerText=`input example ${example.innerText} must be full of alphabets!`;
-                            validateExample=false;
-                    }else{
-                        i++;
-                    }
-                }
                 if(validateWord&&validateMeaning&&validateSynonym&&validateAntonym&&validateExample){
                     form.submit();
                 }
         });
-    } --}}
+
+        function checkWord(word,word_err){
+            if(word.length===0){
+                    word_err.style.display="grid";
+                    word_err.innerText="Please Enter a valid word";
+                    validateWord=false;
+                    return validateWord;
+                }else{
+                    word_err.style.display="none";
+                    validateWord=true;
+                }
+                if(word.match(/\s+/)){
+                    word_err.style.display="grid";
+                    word_err.innerText="Word consists of spaces. Please Enter a valid word";
+                    validateWord=false;
+                    return validateWord;
+                }else{
+                    word_err.style.display="none";
+                    validateWord=true;
+                }
+                let i=0;
+                let flag=0;
+                while(i<word.length){
+                    let code = word.charCodeAt(i);
+                    if (!(code > 64 && code < 91) &&
+                        !(code > 96 && code < 123)&& !(code===32)&& !(code===44)) {
+                            word_err.style.display="grid";
+                            word_err.innerText=`Input word ${word} must be full of alphabets!`;
+                            validateWord=false;
+                            flag=1;
+                            return validateWord;
+                    }else{
+                        i++;
+                    }
+                }
+                if(flag===0){
+                    word_err.style.display="none";
+                    validateWord=true;
+                }
+                 return validateWord;
+    
+        }
+
+        function checkMeaning(meaning,meaning_err){
+                if(meaning.length===0){
+                    meaning_err.style.display="grid";
+                    meaning_err.innerText="Please Enter a valid meaning";
+                    validateMeaning=false;
+                    return validateMeaning;
+                }else{
+                    meaning_err.style.display="none";
+                    validateMeaning=true;
+                }
+                i=0;
+                flag=0;
+                while(i<meaning.length){
+                    let code = meaning.charCodeAt(i);
+                    if (!(code > 64 && code < 91) &&
+                        !(code > 96 && code < 123)&& !(code===32)) {
+                            meaning_err.style.display="grid";
+                            meaning_err.innerText=`Input meaning ${meaning} must be full of alphabets!`;
+                            validateMeaning=false;
+                            flag=1;
+                            return validateMeaning;
+                    }else{
+                        i++;
+                    }
+                }
+                if(flag===1){
+                    meaning_err.style.display="none";
+                    validateMeaning=true;
+                }
+                 return validateMeaning;
+        }
+
+        function checkSynonym(synonym,synonym_err){
+                if(synonym.length===0){
+                    synonym_err.style.display="grid";
+                    synonym_err.innerText="Please Enter a valid synonym";
+                    validateSynonym=false;
+                    return validateSynonym;
+                }else{
+                    synonym_err.style.display="none";
+                    validateSynonym=true;
+                }
+                if(synonym.match(/\s+/)){
+                    synonym_err.style.display="grid";
+                    synonym_err.innerText="Synonym consists of spaces. Please Enter a valid synonym";
+                    validateSynonym=false;
+                    return validateSynonym;
+                }else{
+                    synonym_err.style.display="none";
+                    validateSynonym=true;
+                }
+                i=0;
+                flag=0;
+                while(i<synonym.length){
+                    let code = synonym.charCodeAt(i);
+                    if (!(code > 64 && code < 91) &&
+                        !(code > 96 && code < 123)&& !(code===44)&& !(code===32)) {
+                            synonym_err.style.display="grid";
+                            synonym_err.innerText=`Input word ${synonym} must be full of alphabets!`;
+                            validateSynonym=false;
+                            flag=1;
+                            return validateSynonym;
+                    }else{
+                        i++;
+                    }
+                }
+
+                if(flag===1){
+                    synonym_err.style.display="none";
+                    validateSynonym=true;
+                }
+                return validateSynonym;
+        }
+
+        function checkAntonym(antonym,antonym_err){
+                if(antonym.length===0){
+                    antonym_err.style.display="grid";
+                    antonym_err.innerText="Please Enter a valid antonym";
+                    validateAntonym=false;
+                    return validateAntonym;
+                }else{
+                    antonym_err.style.display="none";
+                    validateAntonym=true;
+                }
+                if(antonym.match(/\s+/)){
+                    antonym_err.style.display="grid";
+                    antonym_err.innerText="Antonym consists of spaces. Please Enter a valid antonym";
+                    validateAntonym=false;
+                    return validateAntonym;
+                }else{
+                    antonym_err.style.display="none";
+                    validateAntonym=true;
+                }
+                i=0;
+                flag=0;
+                while(i<antonym.length){
+                    let code = antonym.charCodeAt(i);
+                    if (!(code > 64 && code < 91) &&
+                        !(code > 96 && code < 123)&& !(code===44)&& !(code===32)) {
+                            antonym_err.style.display="grid";
+                            antonym_err.innerText=`Input antonym ${antonym} must be full of alphabets!`;
+                            validateAntonym=false;
+                            flag=1;
+                            return validateAntonym;
+                    }else{
+                        i++;
+                    }
+                }
+
+                if(flag===1){
+                    antonym_err.style.display="none";
+                    validateAntonym=true;
+                }
+                 return validateAntonym;
+        }
+
+        function checkExample(example,example_err){
+                if(example.length===0){
+                    example_err.style.display="grid";
+                    example_err.innerText="Please Enter a valid example";
+                    validateExample=false;
+                    return validateExample;
+                }else{
+                    example_err.style.display="none";
+                    validateExample=true;
+                }
+                i=0;
+                flag=0;
+                while(i<example.length){
+                    let code = example.charCodeAt(i);
+                    if (!(code > 64 && code < 91) &&
+                        !(code > 96 && code < 123)&& !(code===44)&& !(code===32)) {
+                            example_err.style.display="grid";
+                            example_err.innerText=`Input example ${example} must be full of alphabets!`;
+                            validateExample=false;
+                            flag=1;
+                            return validateExample;
+                    }else{
+                        i++;
+                    }
+                }
+
+                if(flag===1){
+                    example_err.style.display="none";
+                    validateExample=true;
+                }
+                return validateExample;
+        }
+    }
     
 </script>
 <script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>

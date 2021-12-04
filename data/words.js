@@ -45,15 +45,15 @@ const addWord = async function (userId,  word, meaning, synonym, antonym, exampl
         noOfTimesCorrect: 0
     }
 
-    synonym = synonym.split(" ")
+    synonym = synonym.split(",")
     synonym.forEach(x => {
         newWord.synonyms.push(x) 
     });
-    antonym = antonym.split(" ")
+    antonym = antonym.split(",")
     antonym.forEach(x =>{
         newWord.antonyms.push(x)
     })
-    example = example.split(".")
+    example = example.split(",")
     example.forEach(x =>{
         newWord.examples.push(x)
     })
