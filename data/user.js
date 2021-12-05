@@ -4,6 +4,8 @@ const bcrypt = require("bcryptjs");
 let { ObjectId } = require("mongodb");
 let saltRounds = 16;
 const mcqStuff = require("./mcq");
+const flashcardStuff = require("./flashcard");
+const createFlashcard = flashcardStuff.create;
 const createMcq = mcqStuff.create;
 const { createWordsDocument } = require("./words")
 
@@ -86,6 +88,7 @@ async function create(firstName, lastName, email, phoneNumber, password) {
   const newId = insertInfo.insertedId.toString();
   if (insertInfo.insertedCount === 0) throw "Could not add user";
   await createMcq(newId);
+  await createFlashcard(newId);
   let wordDocumentId = await createWordsDocument(newId)
   let wordIdInserted = await userCollection.updateOne({_id: ObjectId(newId)}, {$set: {wordsId: wordDocumentId}})
   console.log(wordIdInserted);

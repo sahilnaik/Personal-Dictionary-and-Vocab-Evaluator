@@ -6,10 +6,10 @@ const flashcardData = require("../data/flashcard");
 
 router.get('/', async(req,res)=>{
     try{
-        firstName=req.session.user.firstName;
-        lastName=req.session.user.lastName;
-        profilePicture=req.session.user.profilePicture;
-        email = req.session.user.email;
+        let firstName=req.session.user.firstName;
+        let lastName=req.session.user.lastName;
+        let profilePicture=req.session.user.profilePicture;
+        let email = req.session.user.email;
         const mcqScore = await mcqData.getPercentage(email);
         const mcqSession = await mcqData.getLastFiveSessionScore(req.session.user._id);
         const scores = mcqSession.scores;
