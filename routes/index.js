@@ -12,7 +12,9 @@ const logoutRoutes = require("./logout")
 const landingpageRoutes = require('./landingpage');
 
 const constructorMethod = (app) => {
-    app.use('/', mainRoute);    
+    app.use('/', landingpageRoutes);
+
+    app.use('/dashboard', mainRoute);    
     
     app.use('/login', loginRoutes);
 
@@ -34,7 +36,7 @@ const constructorMethod = (app) => {
     
     app.use('/mcqsubmit', mcqsubmitRoutes);
 
-    app.use('/landing', landingpageRoutes);
+    
     
     app.use('*', (req, res) => {
         res.status(404).json({ error: 'Not found' });
