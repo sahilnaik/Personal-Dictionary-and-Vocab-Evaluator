@@ -1,8 +1,17 @@
 
-var xValues = ["Session1", "Session2", "Session3", "Session4", "Session5","Session6"];
-var yValues = [3, 5, 1, 6, 2, 5];
+let flashSessionIdHBS = document.getElementById('flashSessionIdHBS').innerText;
+let xValues = flashSessionIdHBS.split(",");
+
+let flashValues = document.getElementById('flashSessionHBS').innerText;
+
+var yValues = flashValues.split(",");
+for(let i=0;i<yValues.length;i++){
+    xValues[i] = "Session "+xValues[i];
+    yValues[i]=parseInt(yValues[i]);
+}
 var barColors = ["red", "green","blue","orange","brown","grey"];
 let mcqScore = document.getElementById('mcqHBS').innerText;
+let flashScore = document.getElementById('flashcardHBS').innerText;
 
 new Chart("myChart", {
 type: "bar",
@@ -76,7 +85,7 @@ function triggerEvents(){
 
 function triggerGraphs(){
     console.log("entered");
-    let percentage1=100;
+    let percentage1=flashScore;
     let percentage2=mcqScore;
     let percentage3=70;
     document.getElementById('i-circle1').innerText=percentage1.toString()+"%";

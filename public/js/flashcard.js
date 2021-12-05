@@ -180,6 +180,8 @@ temp["meaning"]=words[0].meaning;
 temp["synonyms"]=words[0].synonyms;
 temp["antonyms"]=words[0].antonyms;
 temp["example"]=words[0].example;
+temp["userSelection"]=words[0].userSelection;
+
 words[0]=temp;
 console.log(words[0]);
 session["words"]=words;
