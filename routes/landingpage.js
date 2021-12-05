@@ -3,11 +3,17 @@ const router = express.Router();
 var path = require('path');
 
 router.get('/', (req, res) => {
-  res.sendFile(path.resolve( "static/landingPage.html" ));;
+  if(req.session.user){
+    res.redirect('/dashboard');
+  }
+  else{
+    res.sendFile(path.resolve( "static/landingPage.html" ));
+  }
+  
 });
 
 router.get('/demo', (req, res) => {
-  res.sendFile(path.resolve( "demo.html" ));;
+  res.sendFile(path.resolve( "demo.html" ));
 });
 
 
