@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="/public/css/demo.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    </head>
+    <body>
+      
+         <div id="startMCQTest">
+            <h1 id="MCQ-h1">Please Start Demo</h1>
+
+            <Button type="button" class="btn btn-outline-primary" onclick="startTest()">Start</Button>
+    </div> 
+
+    <div id="mcq_box" style="display: none;">
+        <div class="row">
+                <div class="col-9 sub-box-mcq">
+                    <div class="content" id="contents">
+                        <div id="Question-box">
+                        <h5 class="mcq-no" id="queNo">Question</h5>
+                        <br>
+                        <h8 class="mcq-que" id="que">Do you know the synonym of this word?</h8>
+                        <br>
+                        <br>
+                        <h6 class="mcq-word" id="word"></h6>
+                        <br>
+                        <div class="options" id="option">
+                            <input type="radio" id="option1" name="mcq_ans" value="option1" onclick="optionSelect()">
+                            <label for="option1" id="label_option1"></label><br>
+                            <input type="radio" id="option2" name="mcq_ans" value="option2" onclick="optionSelect()">
+                            <label for="option2" id="label_option2"></label><br>
+                            <input type="radio" id="option3" name="mcq_ans" value="option3" onclick="optionSelect()">
+                            <label for="option3" id="label_option3"></label><br>
+                            <input type="radio" id="option4" name="mcq_ans" value="option4" onclick="optionSelect()">
+                            <label for="option4" id="label_option4"></label>
+                        </div>
+                    </div>
+                        <br>
+                        <div id="buttons">
+                            <Button type="button" class="btn btn-secondary" id="next-button" onclick="next()">Next</Button>
+                            <Button type="button" class="btn btn-secondary" id="prev-button" onclick="prev()">Previous</Button>
+                            <Button type="button" class="btn btn-secondary" id="submit-button" onclick="eval()">Submit</Button>
+                        </div>
+                    </div>
+                </div>
+        </div>
+    
+    </div>
+
+<!-- <div id="resultcontainer">
+
+<h4 id="Score">Score</h4><br>
+
+<p id="result"></p>
+
+<button type="button" class="btn btn-secondary" id="landing-button" onclick="window.location.href='/landing'">Back</button>
+
+</div> -->
+
+
+<div id="result_box">
+    <div class="row">
+            <div class="col-9 sub-box-result"">
+                <div class="report_heading">
+                    <h4>MCQ Report Card</h4>
+                </div>
+                <br>
+
+                <div class="report_ending">
+                    <h6>Percentage of marks secured (%)</h6>
+                    <br>
+                    <p id="result"></p>
+                    <br>
+                    <br>
+                    <table id="report_table">
+                        <tr>
+                           <th>Question</th>
+                           <th>Correct Or Not</th> 
+                        </tr>
+                    </table>
+                    <br>
+                    <br>
+                </div>
+             </div>
+    </div>
+
+    <button type="button" class="btn btn-secondary" id="landing-button" onclick="window.location.href='/landing'">Back</button>
+</div>
+    <script src="/public/js/demo.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
+
+
+
+    </body>
+</html>

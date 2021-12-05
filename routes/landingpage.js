@@ -13,7 +13,7 @@ router.get('/', (req, res) => {
 });
 
 router.get('/demo', (req, res) => {
-  res.sendFile(path.resolve( "demo.html" ));
+  res.sendFile(path.resolve( "static/demo.html" ));
 });
 
 

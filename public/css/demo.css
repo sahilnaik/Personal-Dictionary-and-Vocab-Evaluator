@@ -1,0 +1,169 @@
+
+*{
+    background-color: #f1f1f1;
+}
+
+div{
+    background-color: #f1f1f1;
+}
+body
+{
+    color: #f1f1f1;
+    background-color: #f1f1f1!important;
+}
+
+#mcq_box
+{
+
+position: relative;
+ padding-left: 500px; 
+
+}
+
+
+#prev-button
+{
+
+position: absolute;
+top: 350px;;     
+left: 250px;;
+
+}
+
+#submit-button{
+    position: absolute;
+    top: 350px;
+    left: 100px;
+}
+
+#next-button{
+    position: absolute;
+    top: 350px;
+    left: 100px;
+}
+
+#resultcontainer {
+    /* Add shadows to create the "card" effect */
+     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); 
+    transition: 0.3s;
+    width: 20%;
+    height: 100px;
+    display: none;
+    margin-top: 100px;
+    margin-left: 500px;
+
+  }
+
+  body{
+      background:#f1f1f1
+  }
+
+  #queNo,#option
+  {
+
+   padding-left: 110px;
+
+  }
+
+  #que
+  {
+    padding-left: 20px; 
+  }
+
+
+  #word
+  {
+      padding-left: 120px;
+  }
+
+ #Score
+{
+    padding-left: 110px;
+    
+} 
+
+/*  #result
+{
+     
+
+   
+}  */
+
+
+.sub-box-result{
+    display: grid;
+    margin: 0 40px;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+    width: 100%;
+}
+
+
+#startMCQTest
+{
+    position: absolute;
+top: 200px;
+    left: 650px;
+}
+
+  #MCQ-h1
+  {
+    position: relative;
+
+    padding-bottom: 100px;
+
+    right: 130px;
+  }
+
+  #landing-button
+  {
+    top: 100px;
+    left: 250px;
+    padding: 10px 10px;
+    margin: 20px;
+  }
+
+  #result_box{
+    position: relative;
+    left:50px;
+    width:300px;
+    display: none;
+
+    padding-left: 500px;
+  }
+
+  table, th, td {
+    padding:10px;
+    border:2px solid black;
+}
+
+td{
+    font-weight: 600;
+}
+
+ .report_heading{
+    text-align: center;
+    position: relative;
+
+    min-width: max-content;
+    
+}
+
+.report_ending{
+    text-align: center;
+    position: relative;
+
+    
+    min-width: max-content;
+} 
+
+
+#Question-box
+{
+
+    display: grid;
+    margin: 0 40px;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+    width: 50%;
+    height: 300px;
+
+}
