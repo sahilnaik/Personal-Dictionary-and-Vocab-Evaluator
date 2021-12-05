@@ -38,7 +38,7 @@ router.post("/", async (req, res) => {
     if (checkUser) {
       req.session.user = { email: checkUser.email, firstName: checkUser.firstName, lastName: checkUser.lastName, _id: checkUser._id, profilePicture: checkUser.profilePicture };
       console.log(req.session)
-      return res.redirect("./");
+      return res.redirect("./dashboard");
     }
     else {
       res.status(500).json({ error: "Internal Server error" });
