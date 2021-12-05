@@ -107,30 +107,35 @@ window.addEventListener('load', (event) => {
                  synonym_err.style.display="none";
                  validateSynonym=true;
              }
-             if(synonym.match(/\s+/)){
+             if(synonym.match(/^\s+$/)){
                  synonym_err.style.display="grid";
-                 synonym_err.innerText="Synonym consists of spaces. Please Enter a valid synonym";
+                 synonym_err.innerText="Synonym consist full of empty spaces. Please Enter a valid synonym";
                  validateSynonym=false;
                  return validateSynonym;
              }else{
                  synonym_err.style.display="none";
                  validateSynonym=true;
              }
-             i=0;
+             synonymList=synonym.split(', ');
+             j=0;
              flag=0;
-             while(i<synonym.length){
-                 let code = synonym.charCodeAt(i);
-                 if (!(code > 64 && code < 91) &&
-                     !(code > 96 && code < 123)&& !(code===44)&& !(code===32)) {
-                         synonym_err.style.display="grid";
-                         synonym_err.innerText=`Input synonym ${synonym} can only have alphabets and commas. Multiple synonyms can be entered with commas as the separator.`;
-                         validateSynonym=false;
-                         flag=1;
-                         return validateSynonym;
-                 }else{
-                     i++;
-                 }
-             }
+             let synonymLength = synonymList.length
+             for (let i = 0; i < synonymLength; i++) {
+                eachSynonym=synonymList[i];
+                while(j<eachSynonym.length){
+                    let code = eachSynonym.charCodeAt(j);
+                    if (!(code > 64 && code < 91) &&
+                        !(code > 96 && code < 123)) {
+                            synonym_err.style.display="grid";
+                            synonym_err.innerText=`Input synonym ${synonym} can only have alphabets and comma spaces as separator. Multiple synonyms can be entered with comma space as the separator!`;
+                            validateSynonym=false;
+                            flag=1;
+                            return validateSynonym;
+                    }else{
+                        j++;
+                    }
+                }
+            }
 
              if(flag===1){
                  synonym_err.style.display="none";
@@ -147,7 +152,7 @@ window.addEventListener('load', (event) => {
                  antonym_err.style.display="none";
                  validateAntonym=true;
              }
-             if(antonym.match(/\s+/)){
+             if(antonym.match(/^\s+$/)){
                  antonym_err.style.display="grid";
                  antonym_err.innerText="Antonym consists of spaces. Please Enter a valid antonym";
                  validateAntonym=false;
@@ -156,21 +161,26 @@ window.addEventListener('load', (event) => {
                  antonym_err.style.display="none";
                  validateAntonym=true;
              }
-             i=0;
+             antonymList=antonym.split(', ');
+             j=0;
              flag=0;
-             while(i<antonym.length){
-                 let code = antonym.charCodeAt(i);
-                 if (!(code > 64 && code < 91) &&
-                     !(code > 96 && code < 123)&& !(code===44)&& !(code===32)) {
-                         antonym_err.style.display="grid";
-                         antonym_err.innerText=`Input antonym ${antonym} must be full of alphabets! Multiple antonyms can be entered with commas as the separator.`;
-                         validateAntonym=false;
-                         flag=1;
-                         return validateAntonym;
-                 }else{
-                     i++;
-                 }
-             }
+             let antonymLength = antonymList.length
+             for (let i = 0; i < antonymLength; i++) {
+                eachAntonym=antonymList[i];
+                while(j<eachAntonym.length){
+                    let code = eachAntonym.charCodeAt(j);
+                    if (!(code > 64 && code < 91) &&
+                        !(code > 96 && code < 123)) {
+                            antonym_err.style.display="grid";
+                            antonym_err.innerText=`Input antonym ${antonym} can only have alphabets and comma spaces as separator. Multiple antonyms can be entered with comma space as the separator!`;
+                            validateAntonym=false;
+                            flag=1;
+                            return validateAntonym;
+                    }else{
+                        j++;
+                    }
+                }
+            }
 
              if(flag===1){
                  antonym_err.style.display="none";

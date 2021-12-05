@@ -69,6 +69,16 @@
             </div>
         </form>
         </div>
+        {{#each wordList}}
+        <div class="hidden">
+            <p class="word_i" class="hidden">{{{word}}}</p>
+            <p class="meaning_i" class="hidden">{{{meaning}}}</p>
+            <p class="synonyms_i" class="hidden">{{{synonyms}}}</p>
+            <p class="antonyms_i" class="hidden">{{{antonyms}}}</p>
+            <p class="examples_i" class="hidden">{{{examples}}}</p>
+        </div>
+        {{/each}}
+         <p id="user_id" class="hidden">{{{userId}}}</p>
         </div>
 </div>
 <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
@@ -86,20 +96,29 @@
         document.getElementById("wordCount").innerText=words_learnt;
         document.getElementById("wordTotal").innerText=total_no_of_words;
     });
-    let userId="{{userId}}";
+
     let selection="";
     let wordsList=[];
     let meaningsList=[];
     let synonymsList=[];
     let antonymsList=[];
     let examplesList=[];
-   {{#each wordList}}
-            wordsList.push("{{word}}");
-            meaningsList.push("{{meaning}}");
-            synonymsList.push("{{synonyms}}");
-            antonymsList.push("{{antonyms}}");
-            examplesList.push("{{examples}}");
-    {{/each}}
+    
+    let word_i=document.getElementsByClassName("word_i");
+    let meaning_i=document.getElementsByClassName("meaning_i");
+    let synonyms_i=document.getElementsByClassName("synonyms_i");
+    let antonyms_i=document.getElementsByClassName("antonyms_i");
+    let examples_i=document.getElementsByClassName("examples_i");
+
+    let userId=document.getElementById("user_id").innerText;
+    console.log(word_i.length);
+    for(let i=0;i<word_i.length;i++){
+        wordsList.push(word_i[i].innerHTML);
+        meaningsList.push(meaning_i[i].innerHTML);
+        synonymsList.push(synonyms_i[i].innerHTML);
+        antonymsList.push(antonyms_i[i].innerHTML);
+        examplesList.push(examples_i[i].innerHTML);
+    }
     let wordList=[];
     let finalList=[];
     for(let i=0;i<wordsList.length;i++){
@@ -190,6 +209,11 @@
     });
 
     function elementReturn(selection){
+        document.getElementById("meaning_err").innerText="";
+        document.getElementById("synonym_err").innerText="";
+        document.getElementById("antonym_err").innerText="";
+        document.getElementById("example_err").innerText="";
+
         document.getElementById("details-form").style.display="grid";
         document.getElementById("word").innerText=selection.toUpperCase();
         let meaning,synonyms,antonyms,example="";
@@ -201,10 +225,34 @@
                 example=obj["example"];
             }
         });
+        let synonymsString="";
+        let i=0;
+        while(i<synonyms.length-1){
+            synonymsString+=synonyms[i]+", ";
+            i++;
+        }
+        synonymsString+=synonyms[synonyms.length-1];
+
+        let antonymsString="";
+        i=0;
+        while(i<antonyms.length-1){
+            antonymsString+=antonyms[i]+", ";
+            i++;
+        }
+        antonymsString+=antonyms[antonyms.length-1];
+
+        let examplesString="";
+        i=0;
+        while(i<example.length-1){
+            examplesString+=example[i]+". ";
+            i++;
+        }
+        examplesString+=example[example.length-1];
+
         document.getElementById("meaning").innerHTML=meaning;
-        document.getElementById("synonyms").innerText=synonyms;
-        document.getElementById("antonyms").innerText=antonyms;
-        document.getElementById("example").innerText=example;
+        document.getElementById("synonyms").innerText=synonymsString;
+        document.getElementById("antonyms").innerText=antonymsString;
+        document.getElementById("example").innerText=examplesString;
     }
 
     detailsForm=document.getElementById("details-form");
@@ -262,86 +310,96 @@
         }
 
         function checkSynonym(synonym,synonym_err){
-                if(synonym.length===0){
-                    synonym_err.style.display="grid";
-                    synonym_err.innerText="Please Enter a valid synonym";
-                    validateSynonym=false;
-                    return validateSynonym;
-                }else{
-                    synonym_err.style.display="none";
-                    validateSynonym=true;
-                }
-                if(synonym.match(/\s+/)){
-                    synonym_err.style.display="grid";
-                    synonym_err.innerText="Synonym consists of spaces. Please Enter a valid synonym";
-                    validateSynonym=false;
-                    return validateSynonym;
-                }else{
-                    synonym_err.style.display="none";
-                    validateSynonym=true;
-                }
-                i=0;
-                flag=0;
-                while(i<synonym.length){
-                    let code = synonym.charCodeAt(i);
+             if(synonym.length===0){
+                 synonym_err.style.display="grid";
+                 synonym_err.innerText="Please Enter a valid synonym";
+                 validateSynonym=false;
+                 return validateSynonym;
+             }else{
+                 synonym_err.style.display="none";
+                 validateSynonym=true;
+             }
+             if(synonym.match(/^\s+$/)){
+                 synonym_err.style.display="grid";
+                 synonym_err.innerText="Synonym consist full of empty spaces. Please Enter a valid synonym";
+                 validateSynonym=false;
+                 return validateSynonym;
+             }else{
+                 synonym_err.style.display="none";
+                 validateSynonym=true;
+             }
+             synonymList=synonym.split(', ');
+             j=0;
+             flag=0;
+             let synonymLength = synonymList.length
+             for (let i = 0; i < synonymLength; i++) {
+                eachSynonym=synonymList[i];
+                while(j<eachSynonym.length){
+                    let code = eachSynonym.charCodeAt(j);
                     if (!(code > 64 && code < 91) &&
-                        !(code > 96 && code < 123)&& !(code===44)&& !(code===32)) {
+                        !(code > 96 && code < 123)) {
                             synonym_err.style.display="grid";
-                            synonym_err.innerText=`Input synonym ${synonym} can only have alphabets and commas. Multiple synonyms can be entered with commas as the separator.`;
+                            synonym_err.innerText=`Input synonym ${synonym} can only have alphabets and comma spaces as separator. Multiple synonyms can be entered with comma space as the separator!`;
                             validateSynonym=false;
                             flag=1;
                             return validateSynonym;
                     }else{
-                        i++;
+                        j++;
                     }
                 }
+            }
 
-                if(flag===1){
-                    synonym_err.style.display="none";
-                    validateSynonym=true;
-                }
-                return validateSynonym;
-        }
+             if(flag===1){
+                 synonym_err.style.display="none";
+                 validateSynonym=true;
+             }
+             return validateSynonym;
+     }
 
-        function checkAntonym(antonym,antonym_err){
-                if(antonym.length===0){
-                    validateAntonym=true;
-                    return validateAntonym;
-                }else{
-                    antonym_err.style.display="none";
-                    validateAntonym=true;
-                }
-                if(antonym.match(/\s+/)){
-                    antonym_err.style.display="grid";
-                    antonym_err.innerText="Antonym consists of spaces. Please Enter a valid antonym";
-                    validateAntonym=false;
-                    return validateAntonym;
-                }else{
-                    antonym_err.style.display="none";
-                    validateAntonym=true;
-                }
-                i=0;
-                flag=0;
-                while(i<antonym.length){
-                    let code = antonym.charCodeAt(i);
+     function checkAntonym(antonym,antonym_err){
+             if(antonym.length===0){
+                 validateAntonym=true;
+                 return validateAntonym;
+             }else{
+                 antonym_err.style.display="none";
+                 validateAntonym=true;
+             }
+             if(antonym.match(/^\s+$/)){
+                 antonym_err.style.display="grid";
+                 antonym_err.innerText="Antonym consists of spaces. Please Enter a valid antonym";
+                 validateAntonym=false;
+                 return validateAntonym;
+             }else{
+                 antonym_err.style.display="none";
+                 validateAntonym=true;
+             }
+             antonymList=antonym.split(', ');
+             j=0;
+             flag=0;
+             let antonymLength = antonymList.length
+             for (let i = 0; i < antonymLength; i++) {
+                eachAntonym=antonymList[i];
+                while(j<eachAntonym.length){
+                    let code = eachAntonym.charCodeAt(j);
                     if (!(code > 64 && code < 91) &&
-                        !(code > 96 && code < 123)&& !(code===44)&& !(code===32)) {
+                        !(code > 96 && code < 123)) {
                             antonym_err.style.display="grid";
-                            antonym_err.innerText=`Input antonym ${antonym} must be full of alphabets! Multiple antonyms can be entered with commas as the separator.`;
+                            antonym_err.innerText=`Input antonym ${antonym} can only have alphabets and comma spaces as separator. Multiple antonyms can be entered with comma space as the separator!`;
                             validateAntonym=false;
                             flag=1;
                             return validateAntonym;
                     }else{
-                        i++;
+                        j++;
                     }
                 }
+            }
 
-                if(flag===1){
-                    antonym_err.style.display="none";
-                    validateAntonym=true;
-                }
-                 return validateAntonym;
-        }
+             if(flag===1){
+                 antonym_err.style.display="none";
+                 validateAntonym=true;
+             }
+              return validateAntonym;
+     }
 
         function checkExample(example,example_err){
                 if(example.length===0){

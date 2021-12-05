@@ -1,7 +1,7 @@
 html,body,.main-box{
   margin:0;
   min-width: 1700px;
-  min-height:1000px;
+  min-height:1300px;
 }
 
 .main-box{
@@ -252,7 +252,7 @@ html,body,.main-box{
     top:100px;
     right:20px;
     background-color: white;
-    height: 400px;
+    height: 500px;
     width: 1280px;
     box-shadow: 0 3px 10px rgb(0 0 1 / 0.9);
     display: none;
