@@ -15,8 +15,9 @@ body
 #mcq_box
 {
 
-position: relative;
- padding-left: 500px; 
+    position: relative;
+    padding-left: 600px;
+    padding-top: 100px; 
 
 }
 
@@ -101,9 +102,11 @@ left: 250px;;
 #startMCQTest
 {
     position: absolute;
-top: 200px;
+    top: 200px;
     left: 650px;
+    display: grid;
 }
+
 
   #MCQ-h1
   {
@@ -111,7 +114,6 @@ top: 200px;
 
     padding-bottom: 100px;
 
-    right: 130px;
   }
 
   #landing-button
@@ -127,8 +129,8 @@ top: 200px;
     left:50px;
     width:300px;
     display: none;
-
-    padding-left: 500px;
+    padding-top: 100px;
+    padding-left: 600px;
   }
 
   table, th, td {
