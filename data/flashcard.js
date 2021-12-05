@@ -222,15 +222,7 @@ async function getLastFiveSessions(id) {
       correctWords=[];
       incorrectWords=[];
     }
-  
-
-
-
-        //session3["marks"]="8";
-        // session3["total"]="10";
-        // session3["percentage"]="80%";
-        // session3["correct"]="Rage,Sad";
-        // session3["incorrect"]="Lame,Sheer";
+  allSessions = allSessions.reverse();
   return allSessions;
 }
 

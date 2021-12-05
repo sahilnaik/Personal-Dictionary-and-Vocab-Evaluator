@@ -251,7 +251,7 @@ async function getLastFiveSessions(id) {
   
 
 
-
+    allSessions= allSessions.reverse();
         //session3["marks"]="8";
         // session3["total"]="10";
         // session3["percentage"]="80%";

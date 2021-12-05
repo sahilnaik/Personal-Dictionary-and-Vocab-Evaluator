@@ -31,7 +31,7 @@ router.get('/sessions', async (req, res) => {
         } else{
             const sessionList = await flashcardData.getLastFiveSessions(req.session.user._id);
             
-            res.render('flashcard/flashcardSessions',{title:"Flashcard",layout: "sessionMain", sessions:sessionList.reverse(), profilePicture: profilePicture, firstName: firstName, lastName: lastName});
+            res.render('flashcard/flashcardSessions',{title:"Flashcard",layout: "sessionMain", sessions:sessionList, profilePicture: profilePicture, firstName: firstName, lastName: lastName});
         }
     }catch(e){
         res.status(500).json({error:e});

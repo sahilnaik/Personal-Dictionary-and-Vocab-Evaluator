@@ -33,7 +33,7 @@ router.get('/sessions', async (req, res) => {
         } else{
             const sessionList = await mcqData.getLastFiveSessions(req.session.user._id);
             
-            res.render('mcq/mcqSessions',{title:"MCQ",layout: "sessionMain", sessions:sessionList.reverse(), profilePicture: profilePicture, firstName: firstName, lastName: lastName});
+            res.render('mcq/mcqSessions',{title:"MCQ",layout: "sessionMain", sessions:sessionList, profilePicture: profilePicture, firstName: firstName, lastName: lastName});
         }
     }catch(e){
         res.status(500).json({error:e});
