@@ -4,7 +4,7 @@ const path = require('path');
 const data = require("../data");
 const userData = data.users;
 // const mcqData = data.mcq;
-const { getAll } = data.words
+const { getAll, getLearning, getYetToLearn, getLearnt } = data.words
 
 
 router.get('/', async(req,res)=>{
@@ -18,7 +18,10 @@ router.get('/', async(req,res)=>{
         let profilePicture= req.session.user.profilePicture;
         let firstName= req.session.user.firstName;
         let lastName= req.session.user.lastName;
-        res.render('words/viewWords', {title:"View Words", noOfWords: wordList.length, wordList: wordList, profilePicture: profilePicture, firstName: firstName, lastName: lastName,userId:id});
+        res.render('words/viewWords', { title:"View Words", noOfWords: wordList.length, wordList: wordList, profilePicture: profilePicture,
+                                    firstName: firstName, lastName: lastName,userId:id, yetToLearnWords: yetToLearnWords, learningWords: learningWords,
+                                    learntWords: learntWords, noOfLearningWords: learningWords.length, noOfLearntWords: learntWords.length,
+                                    noOfYetToLearnWords: yetToLearnWords.length });
     }catch(e){
         res.status(500).json({error:e});
     }

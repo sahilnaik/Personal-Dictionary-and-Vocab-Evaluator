@@ -20,6 +20,9 @@
             </select>
         </div>
 
+        {{#if yetToLearnWords}}
+            <p>{{yetToLearnWords.length}}</p>
+        {{/if}}
         <form id="word-select-form">
         <label for="filter_word">
             <input class="chosen-value" type="text" value="" id="filter_word" placeholder="Type to filter">
