@@ -15,7 +15,7 @@
     width:800px;
     padding: 100px;
     display: grid;
-    background-color: #007bff;
+    background-color: #0072ee;
     box-shadow: 0 3px 10px rgb(0 0 0 / 0.8);
     margin:100px;
     margin-left: 300px;
@@ -68,8 +68,9 @@
 .main-navbar{
     z-index: 2;
 }
-.btn-primary{
+#btn_s{
     z-index: 3;
+    background-color: #0072ee;
 }
 #dashboard_link,#profile_link,#flashcard_link,#mcq_link,#logout_link,#viewwords_link{
     text-decoration: none;

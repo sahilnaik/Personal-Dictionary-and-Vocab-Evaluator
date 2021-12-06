@@ -252,7 +252,7 @@ html,body,.main-box{
     top:100px;
     right:20px;
     background-color: white;
-    height: 500px;
+    height: 100%;
     width: 1280px;
     box-shadow: 0 3px 10px rgb(0 0 1 / 0.9);
     display: none;
@@ -313,6 +313,24 @@ html,body,.main-box{
   display: grid;
 }
 
+#submit-btn:hover{
+  background-color: #000;
+  color:white;
+}
+
 #pbar{
   background-color: rgb(54, 224, 54);
+}
+
+p{
+  font-weight: 600;
+  font-size: 20px;
+}
+
+#exampleinput,#wordinput,#meaninginput,#synonymsinput,#antonymsinput,#user_id{
+  display: none;
+}
+
+.word_i,.meaning_i,.synonyms_i,.antonyms_i,.examples_i,.wordlist_i{
+  display: none;
 }

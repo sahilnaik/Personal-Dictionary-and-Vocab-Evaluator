@@ -5,7 +5,7 @@
     <div class="main-navbar">
     <div class="center-navbar">
         <form action="/mcq">
-            <button type="submit" class="btn btn-primary">PROCEED TO TEST</button>
+            <button type="submit" id="btn_s" class="btn btn-primary">PROCEED TO TEST</button>
         </form>
     </div>    
     <div class="right_navbar">
@@ -32,7 +32,7 @@
     {{#each sessions}}
         <div class="result1">
             <div class="test1">
-                <h4>Test <span class="test_no">{{id}}</span></h4>   
+                <h2>Test <span class="test_no">{{id}}</span></h2>   
             </div>
             <p class="res"><span class="res_h">Result: </span><span class="s_marks_scored">{{marks}}</span>/<span class="s_total_marks">{{total}}</span></p>
             <p class="res"><span class="res_h">Percentage: </span><span class="s_total_marks">{{percentage}}</span></p>

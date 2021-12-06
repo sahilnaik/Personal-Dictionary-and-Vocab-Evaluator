@@ -21,64 +21,65 @@
         </div>
 
         <form id="word-select-form">
-        <input class="chosen-value" type="text" value="" placeholder="Type to filter">
+        <label for="filter_word">
+            <input class="chosen-value" type="text" value="" id="filter_word" placeholder="Type to filter">
+        </label>
         <ul class="value-list">
         </ul>
         </form>
         <div class="details-box">
         <form id="details-form" action="/words/{{userId}}/editWord" method="post">
-        
-            <div class="word-field">
-                <h5 id="word"></h5>
-                <input class="hidden" name="wordinput" id="wordinput"></input>    
-            </div>
-            <br>    
-            <label for="meaning">
+                    <div class="word-field">
+                        <h1 id="word"></h1>
+                        <input name="wordinput" id="wordinput">    
+                    </div>
+                    <br>    
                     <div class="meaning-field">
-                        <h5>Meaning &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp : &nbsp &nbsp &nbsp &nbsp &nbsp<span name="meaning" id="meaning" contenteditable="true"></span></h5>
+                        <p>Meaning &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; : &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<span id="meaning" contenteditable="true"></span></p>
                         <p id="meaning_err"></p>
-                        <input class="hidden" name="meaninginput" id="meaninginput"></input>
+                        <label for="meaninginput">
+                            <input name="meaninginput" id="meaninginput">
+                        </label>
                     </div>
-            </label>
-            <br> 
-            <label for="synonyms">
+                    <br> 
                     <div class="synonyms-field">
-                        <h5>Synonyms &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp : &nbsp &nbsp &nbsp &nbsp &nbsp<span name="synonyms" id="synonyms" contenteditable="true"></span></h5>
+                        <p>Synonyms &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; : &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<span id="synonyms" contenteditable="true"></span></p>
                         <p id="synonym_err"></p>
-                        <input class="hidden" name="synonymsinput" id="synonymsinput"></input>
+                        <label for="synonymsinput">
+                            <input name="synonymsinput" id="synonymsinput">
+                        </label>
                     </div>
-            </label>
-            <br> 
-            <label for="antonyms">
+                    <br> 
                     <div class="antonyms-field">
-                        <h5>Antonyms &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp : &nbsp &nbsp &nbsp &nbsp &nbsp<span name="antonyms" id="antonyms" contenteditable="true"></span></h5>
+                        <p>Antonyms &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; : &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<span id="antonyms" contenteditable="true"></span></p>
                         <p id="antonym_err"></p>
-                        <input class="hidden" name="antonymsinput" id="antonymsinput"></input>
+                        <label for="antonymsinput">
+                            <input name="antonymsinput" id="antonymsinput">
+                        </label>
                     </div>
-            </label>
-            <br>  
-            <label for="example">
+                    <br>  
                     <div class="example-field">
-                        <h5>Example &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp : &nbsp &nbsp &nbsp &nbsp &nbsp<span name="example" id="example" contenteditable="true"></span></h5>
+                        <p>Example &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; : &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<span id="example" contenteditable="true"></span></p>
                         <p id="example_err"></p>
-                        <input class="hidden" name="exampleinput" id="exampleinput"></input>
+                        <label for="exampleinput">
+                            <input name="exampleinput" id="exampleinput">
+                        </label>
                     </div>
-            </label>
-            <div>
+            <div class="submit_edit">
                 <button type="submit" id="submit-btn">submit</button>
             </div>
         </form>
         </div>
         {{#each wordList}}
-        <div class="hidden">
-            <p class="word_i" class="hidden">{{{word}}}</p>
-            <p class="meaning_i" class="hidden">{{{meaning}}}</p>
-            <p class="synonyms_i" class="hidden">{{{synonyms}}}</p>
-            <p class="antonyms_i" class="hidden">{{{antonyms}}}</p>
-            <p class="examples_i" class="hidden">{{{examples}}}</p>
+        <div class="wordlist_i">
+            <p class="word_i">{{{word}}}</p>
+            <p class="meaning_i">{{{meaning}}}</p>
+            <p class="synonyms_i">{{{synonyms}}}</p>
+            <p class="antonyms_i">{{{antonyms}}}</p>
+            <p class="examples_i">{{{examples}}}</p>
         </div>
         {{/each}}
-         <p id="user_id" class="hidden">{{{userId}}}</p>
+         <p id="user_id">{{{userId}}}</p>
         </div>
 </div>
 <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
