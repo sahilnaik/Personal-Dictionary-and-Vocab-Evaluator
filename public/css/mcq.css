@@ -222,3 +222,7 @@ td{
 #i-circle1{
     background-color: rgb(217, 247, 174);
 }
+
+#dashboard_link,#profile_link,#flashcard_link,#mcq_link,#logout_link,#viewwords_link{
+    text-decoration: none;
+}

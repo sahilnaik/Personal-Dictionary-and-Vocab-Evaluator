@@ -304,3 +304,11 @@ body {
 .hidden{
     display: none;
 }
+
+#dashboard_link,#profile_link,#flashcard_link,#mcq_link,#logout_link,#viewwords_link{
+    text-decoration: none;
+}
+
+#s_dashboard,#s_addwords,#s_flashcard,#s_mcq,#s_viewwords{
+    text-decoration: none;
+}

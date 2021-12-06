@@ -14,27 +14,27 @@
     <body>
         <div class="main-box">
             <div class="sidebar">
-                <a href="/dashboard">
+                <a href="/dashboard" aria-label="Dashboard" id="s_dashboard">
                     <div class="sidebar-dashboard"><i class="far fa-user fa-2x"></i>
                         <div class="sidebar-dashboard-text">Dashboard</div>
                     </div>
                 </a>
-                <a href="/addWords" >
+                <a href="/addWords" aria-label="Add words" id="s_addwords">
                     <div class="sidebar-add-word"><i class="fas fa-file-word fa-2x"></i>
                         <div class="sidebar-dashboard-text">Add Words</div>   
                     </div>
                 </a>
-                <a href="/flashcard/sessions" >
+                <a href="/flashcard/sessions" aria-label="Flashcard sessions" id="s_flashcard">
                     <div class="sidebar-flashcard"><i class="fas fa-user fa-2x"></i>
                         <div class="sidebar-dashboard-text">Flashcard</div>
                     </div>
                 </a>
-                <a href="/mcq/sessions" >
+                <a href="/mcq/sessions" aria-label="MCQ sessions" id="s_mcq">
                     <div class="sidebar-mcq"><i class="fas fa-user fa-2x"></i>
                         <div class="sidebar-dashboard-text">MCQ</div>
                     </div>
                 </a>
-                <a href="/viewWords">
+                <a href="/viewWords" aria-label="View Words" id="s_viewwords">
                     <div class="sidebar-word"><i class="fas fa-file-word fa-2x"></i>
                         <div class="sidebar-dashboard-text">View Words</div>
                     </div>
@@ -48,12 +48,12 @@
                             <div class="dropdown">
                                 <img id="img_profile" src="" alt="Profile picture">
                                     <div class="dropdown-content">
-                                        <a href="/dashboard">Dashboard</a>
-                                        <a href="/profile" >Profile</a>
-                                        <a href="/viewWords" >Words</a>
-                                        <a href="/flashcard/sessions" >Flashcard Test</a>
-                                        <a href="/mcq/sessions" >MCQ Test</a>
-                                        <a href="/logout" >Logout</a>
+                                        <a id="dashboard_link" aria-label="Dashboard" href="/dashboard">Dashboard</a>
+                                        <a id="profile_link" aria-label="Profile" href="/profile">Profile</a>
+                                        <a id="viewwords_link" aria-label="View Words" href="/viewWords">Words</a>
+                                        <a id="flashcard_link" aria-label="Flashcard Sessions" href="/flashcard/sessions">Flashcard Test</a>
+                                        <a id="mcq_link" aria-label="MCQ Sessions" href="/mcq/sessions">MCQ Test</a>
+                                        <a id="logout_link" aria-label="Logout" href="/logout">Logout</a>
 
                                     </div>
                             </div>    

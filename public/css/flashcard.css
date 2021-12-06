@@ -206,3 +206,7 @@ td{
 .card-text,.card-title{
     text-align: center;
 }
+
+#dashboard_link,#profile_link,#flashcard_link,#mcq_link,#logout_link,#viewwords_link{
+    text-decoration: none;
+}

@@ -312,3 +312,7 @@ html,body,.main-box{
 .submit_edit{
   display: grid;
 }
+
+#pbar{
+  background-color: rgb(54, 224, 54);
+}
