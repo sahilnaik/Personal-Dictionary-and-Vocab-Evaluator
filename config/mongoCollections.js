@@ -21,5 +21,4 @@ module.exports = {
   users: getCollectionFn("user"),
   mcq: getCollectionFn("mcq"),
   flashcard: getCollectionFn("flashcard"),
-
 };

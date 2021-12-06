@@ -4,6 +4,8 @@ const path = require("path");
 const data = require("../data");
 const userData = data.users;
 let { ObjectId } = require("mongodb");
+
+
 router.get("/", async (req, res) => {
   try {
     res.render("user/signup", { layout: "user" });
@@ -11,6 +13,7 @@ router.get("/", async (req, res) => {
     res.status(500).json({ error: e });
   }
 });
+
 router.post("/", async (req, res) => {
   let signupData = req.body;
   let firstName = signupData.firstname;

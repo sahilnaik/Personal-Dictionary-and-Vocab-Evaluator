@@ -56,7 +56,7 @@ app.post('/profile-upload-single', upload.single('profile-file'), async function
 
 // app.use("/", (req, res, next) => {
 //   if (req.session.user) {
-//     return res.redirect("/") //IT should actually be /dashboard
+//     return res.redirect("/dashboard") //IT should actually be /dashboard
 //   }
 //   next()
 // })

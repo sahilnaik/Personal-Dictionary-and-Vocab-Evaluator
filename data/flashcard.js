@@ -18,6 +18,8 @@ async function create(userId) {
     if (inputId == null) {
       throw `User with id ${userId} does not exist`;
     }
+
+    
     const flashcardCollection = await flashcard();
     const checkDuplicate = await flashcardCollection.findOne({ userId: Id });
     if (checkDuplicate) {
