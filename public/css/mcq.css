@@ -226,3 +226,7 @@ td{
 #dashboard_link,#profile_link,#flashcard_link,#mcq_link,#logout_link,#viewwords_link{
     text-decoration: none;
 }
+
+.mcq_i,.word_i,.option_i,.answers_i,#mcq_id{
+    display: none;
+}

@@ -9,7 +9,7 @@
             <div class="col-9 sub-box-mcq">
                 <div class="content" id="contents">
                     <h5 class="mcq-no" id="queNo">Question #<span id="no"></span></h5>
-                    <h8 class="mcq-que" id="que">Do you know the synonym of this word?</h8>
+                    <h6 class="mcq-que" id="que">Do you know the synonym of this word?</h6>
                     <h6 class="mcq-word" id="word"></h6>
                     <div class="options" id="option">
                         <input type="radio" id="option1" name="mcq_ans" value="option1" onclick="optionSelect()">
@@ -73,13 +73,13 @@
     </div>
 </div>
 {{#each mcqList}}
-    <div class="hidden">
-        <p class="word_i" class="hidden">{{{question_word}}}</p>
-        <p class="option_i" class="hidden">{{{answer}}}</p>
-        <p class="answers_i" class="hidden">{{{correctAns}}}</p>
+    <div class="mcq_i">
+        <p class="word_i">{{{question_word}}}</p>
+        <p class="option_i">{{{answer}}}</p>
+        <p class="answers_i">{{{correctAns}}}</p>
     </div>
 {{/each}}
-<p id="mcq_id" class="hidden">{{{mcqId}}}</p>         
+<p id="mcq_id">{{{mcqId}}}</p>         
 <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
         crossorigin="anonymous"></script>
 <script src="../../public/js/mcqTest.js"></script>

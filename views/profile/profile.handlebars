@@ -3,7 +3,7 @@
     <div class="profile_form">
     <form method="POST" action="/profile-upload-single" id="myForm"  enctype="multipart/form-data">
             <div class="profile_pic_box">
-                <img id="profile_pic" src="../../public/uploads/{{profilePicture}}" alt="Profile picture">
+                <img id="profile_picture" src="../../public/uploads/{{profilePicture}}" alt="Profile picture">
                 <i id="pen" class="fad fa-pen fa-2x" onclick="uploadpic()">
                     <input type="file" id="myfile" name="profile-file" required/>
                 </i>
@@ -38,11 +38,6 @@
                 <p class="learnt">LEARNT</p>
             </div>
         </div>
-    </div>
-    <div class="hidden">
-        <p id="first_name" class="hidden">{{{firstName}}}</p>
-        <p id="last_name" class="hidden">{{{lastName}}}</p>
-        <p id="profile_pic" class="hidden">{{{profilePicture}}}</p>
     </div>
 </div>
 <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>

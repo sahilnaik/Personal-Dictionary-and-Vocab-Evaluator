@@ -82,15 +82,15 @@
     </div>
 </div> 
 {{#each flashcardList}}
-    <div class="hidden">
-        <p class="word_i" class="hidden">{{{word}}}</p>
-        <p class="meaning_i" class="hidden">{{{meaning}}}</p>
-        <p class="synonyms_i" class="hidden">{{{synonyms}}}</p>
-        <p class="antonyms_i" class="hidden">{{{antonyms}}}</p>
-        <p class="examples_i" class="hidden">{{{examples}}}</p>
+    <div class="wordlist_i">
+        <p class="word_i" >{{{word}}}</p>
+        <p class="meaning_i">{{{meaning}}}</p>
+        <p class="synonyms_i">{{{synonyms}}}</p>
+        <p class="antonyms_i">{{{antonyms}}}</p>
+        <p class="examples_i">{{{examples}}}</p>
     </div>
 {{/each}}
-<p id="flashcard_id" class="hidden">{{{flashcardId}}}</p> 
+<p id="flashcard_id">{{{flashcardId}}}</p> 
 <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
         crossorigin="anonymous"></script>
 
