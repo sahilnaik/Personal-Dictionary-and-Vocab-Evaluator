@@ -6,6 +6,9 @@
 div{
     background-color: #f1f1f1;
 }
+.hidden{
+    display: none;
+}
 body
 {
     color: #f1f1f1;

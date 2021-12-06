@@ -6,6 +6,7 @@ const flashcardData = require("../data/flashcard");
 
 router.get('/', async(req,res)=>{
     try{
+        if(req.session.user){
         let firstName=req.session.user.firstName;
         let lastName=req.session.user.lastName;
         let profilePicture=req.session.user.profilePicture;
@@ -23,8 +24,13 @@ router.get('/', async(req,res)=>{
             layout: "dashboardMain",firstName: firstName,lastName: lastName,profilePicture: profilePicture, 
             email:email, mcqScore: mcqScore, mcqSession: scores, mcqSessionId: mcqSessionId,
             flashcardScore: flashcardScore, flashcardSession: fScores, flashcardSessionId: flashcardSessionId});
+        } 
+        else{
+            res.redirect('/login');
+        }
+        
     }catch(e){
-        res.status(500).json({error:e});
+        res.status(500).json({error:"Hmmm something went wrong"});
     }
 });
 module.exports = router;

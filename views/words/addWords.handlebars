@@ -9,41 +9,51 @@
         </div>
         {{/if}}
         <form action="/words/addWord" method="post" id="add-word-form">
-                    <label for="word">
+                    
                         <div class="word-field">
-                            <h5>Enter Word &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp: &nbsp &nbsp &nbsp &nbsp &nbsp </h5>
+                            <p>Enter Word &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp: &nbsp &nbsp &nbsp &nbsp &nbsp </p>
+                            <label for="word">
                             <input id="word" type="text" name="word" required> 
+                            </label>
                         </div>
                         <p id="word_err"></p>
-                    </label>
-                    <label for="meaning">
+                    
+                    
                         <div class="meaning-field">
-                        <h5>Enter Meaning &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp: &nbsp &nbsp &nbsp &nbsp &nbsp</h5>
+                        <p>Enter Meaning &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp: &nbsp &nbsp &nbsp &nbsp &nbsp</p>
+                        <label for="meaning">
                         <textarea id="meaning" cols="30" rows="3" name="meaning" required></textarea>
+                        </label>
                         </div>
                         <p id="meaning_err"></p> 
-                    </label>
-                    <label for="synonym">
+                    
+                    
                         <div class="synonym-field">
-                            <h5>Enter Synonyms &nbsp &nbsp &nbsp &nbsp : &nbsp &nbsp &nbsp &nbsp &nbsp</h5>
+                            <p>Enter Synonyms &nbsp &nbsp &nbsp &nbsp : &nbsp &nbsp &nbsp &nbsp &nbsp</p>
+                            <label for="synonym">
                             <input id="synonym" type="text" name="synonym" required>
+                            </label>
                         </div>
                         <p id="synonym_err"></p>
-                    </label>
-                    <label for="antonym">
+                   
+                    
                         <div class="antonym-field">
-                            <h5>Enter Antonyms &nbsp &nbsp &nbsp &nbsp &nbsp: &nbsp &nbsp &nbsp &nbsp &nbsp</h5>
+                            <p>Enter Antonyms &nbsp &nbsp &nbsp &nbsp &nbsp: &nbsp &nbsp &nbsp &nbsp &nbsp</p>
+                            <label for="antonym">
                             <input id="antonym" type="text" name="antonym"> 
+                            </label>
                         </div>
                         <p id="antonym_err"></p>
-                    </label>
-                    <label for="example">
+                  
+                    
                         <div class="example-field">
-                        <h5>Enter Examples &nbsp &nbsp &nbsp &nbsp &nbsp : &nbsp &nbsp &nbsp &nbsp &nbsp</h5>
+                        <p>Enter Examples &nbsp &nbsp &nbsp &nbsp &nbsp : &nbsp &nbsp &nbsp &nbsp &nbsp</p>
+                        <label for="example">
                         <textarea id="example" cols="30" rows="3" name="example"></textarea>
+                        </label>
                         </div>
                         <p id="example_err"></p>
-                    </label> 
+                    
                     <div class="submit-field">
                         <button type="submit" id="submit-btn" class="btn btn-outline-dark">submit</button>
                     </div>

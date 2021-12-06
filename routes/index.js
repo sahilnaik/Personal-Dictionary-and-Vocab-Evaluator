@@ -10,6 +10,7 @@ const signupRoutes = require('./signup');
 const mcqsubmitRoutes = require('./mcqsubmit');
 const logoutRoutes = require("./logout")
 const landingpageRoutes = require('./landingpage');
+var path = require('path');
 
 const constructorMethod = (app) => {
     app.use('/', landingpageRoutes);
@@ -39,7 +40,9 @@ const constructorMethod = (app) => {
     
     
     app.use('*', (req, res) => {
-        res.status(404).json({ error: 'Not found' });
+        
+        res.status(404).sendFile(path.resolve("static/errorPage.html"));
+       
     });
     
   };

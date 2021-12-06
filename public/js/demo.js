@@ -11,6 +11,7 @@ function startTest(){
     document.getElementById("submit-button").style.display="none";
     document.getElementById("prev-button").style.display="none"
     document.getElementById("result_box").style.display="none";
+ //   document.getElementById("mcq_box").classList.remove("hidden");
     initialize();
     wordindex++;
     que("next");

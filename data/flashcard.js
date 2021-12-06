@@ -63,7 +63,7 @@ async function createSession(userId, length) {
         let antonyms = findWords[0].words[randomNum].antonyms;
         let examples = findWords[0].words[randomNum].examples;
         let wordInfo = {
-          question_word: question_word,
+          word: question_word,
           meaning: meaning,
           synonyms: synonyms,
           antonyms: antonyms,
