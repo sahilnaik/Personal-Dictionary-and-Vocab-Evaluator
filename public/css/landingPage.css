@@ -83,3 +83,15 @@ footer {
 {
   margin-left: 50px;
 }
+
+h2{
+  color:#949494
+}
+
+.carousel-caption p{
+  color:#767676;
+}
+
+.sr-only{
+  color:#767676;
+}
