@@ -3,12 +3,12 @@
     <Button type="button" id="flashcard-btn" class="btn btn-secondary" onclick="startTest()">Take Test</Button>
 </div>
 <div id="flashcard-content">
-    <div class="card text-white bg-secondary mb-3" id="card1" style="max-width: 70rem;">
+    <div class="card text-white bg-secondary mb-3" id="card1">
         <div class="front_body" id="front_card">
             <div class="card-header">Question #<span id="cardHeader"></span></div>
                 <div class="card-body">
-                    <h5 class="card-title" style="text-align: center;" id="cardTitle"></h5>
-                        <p class="card-text" style="text-align: center;" id="cardText">Do you know this word?</p>
+                    <h5 class="card-title" id="cardTitle"></h5>
+                        <p class="card-text" id="cardText">Do you know this word?</p>
                             <div class="flashcard-options" id="flashcardOptions">
                                 <div onclick="changeWord()">
                                     <i class="fas fa-check fa-4x"></i>
@@ -20,14 +20,14 @@
                         </div>
                     </div>
                 </div>
-                <div class="card text-white bg-secondary mb-3" id="card2" style="max-width: 70rem;">  
+                <div class="card text-white bg-secondary mb-3" id="card2">  
                     <div class="front_body" id="back_card">
-                        <h5 class="card-header" style="text-align: center;" id="word"></h5>
+                        <h5 class="card-header" id="word"></h5>
                         <div class="card-body">
-                        <h5 class="card-title" style="text-align: center;" id="meaning"></h5>
-                        <p class="card-text" style="text-align: center;">Synonym : <span id="synonym"></span></p>
-                        <p class="card-text" style="text-align: center;">Antonym : <span id="antonym"></span></p>
-                        <p class="card-text" style="text-align: center;">Example : <span id="example"></span></p>
+                        <h5 class="card-title" id="meaning"></h5>
+                        <p class="card-text">Synonym : <span id="synonym"></span></p>
+                        <p class="card-text">Antonym : <span id="antonym"></span></p>
+                        <p class="card-text">Example : <span id="example"></span></p>
                         <div class="flashcard-options1">
                             <div onclick="changeWordBack()">
                                 <i class="fas fa-check fa-4x"></i>    
@@ -61,7 +61,7 @@
                         <div class="mask full1">
                             <div class="fill1"></div>
                         </div>
-                        <div id="i-circle1" class="inside-circle" style="background-color: rgb(217, 247, 174);"></div>
+                        <div id="i-circle1" class="inside-circle"></div>
                     </div>
                 </div>
 

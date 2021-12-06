@@ -71,3 +71,6 @@
 .btn-primary{
     z-index: 3;
 }
+#dashboard_link,#profile_link,#flashcard_link,#mcq_link,#logout_link,#viewwords_link{
+    text-decoration: none;
+}

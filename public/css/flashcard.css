@@ -186,3 +186,23 @@ td{
 .hidden{
     display: none;
 }
+
+#i-circle1{
+    background-color: rgb(217, 247, 174);
+}
+
+#cardTitle,#cardText{
+    text-align: center;
+}
+
+#card1,#card2{
+    max-width: 70rem;
+}
+
+#word,#meaning{
+    text-align: center;
+}
+
+.card-text,.card-title{
+    text-align: center;
+}
