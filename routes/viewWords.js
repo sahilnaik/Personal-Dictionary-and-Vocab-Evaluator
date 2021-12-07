@@ -11,10 +11,7 @@ router.get('/', async(req,res)=>{
     try{
         // res.sendFile(path.resolve('static/addWords.html'));
         let id = req.session.user._id;
-        const wordList = await getAll(id);
-        const yetToLearnWords = await getYetToLearn(id)
-        const learntWords = await getLearnt(id)
-        const learningWords = await getLearning(id)
+        const { wordList, yetToLearnWords, learningWords, learntWords } = await getAll(id);
         let profilePicture= req.session.user.profilePicture;
         let firstName= req.session.user.firstName;
         let lastName= req.session.user.lastName;

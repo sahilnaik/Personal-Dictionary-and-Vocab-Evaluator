@@ -82,56 +82,56 @@ app.use("/signup", (req, res, next) => {
 
 app.use("/addWords", (req, res, next) => {
   if (!req.session.user) {
-    return res.status(403).render('httpErrors/error', {code: 403, description: "Forbidden", title: "403: Forbidden"})
+    return res.status(403).render('httpErrors/error', {layout: "errorPage", code: 403, description: "Forbidden", title: "403: Forbidden"})
   }
   next()
 })
 
 app.use("/flashcard", (req, res, next) => {
   if (!req.session.user) {
-    return res.status(403).render('httpErrors/error', {code: 403, description: "Forbidden", title: "403: Forbidden"})
+    return res.status(403).render('httpErrors/error', {layout: "errorPage", code: 403, description: "Forbidden", title: "403: Forbidden"})
   }
   next()
 })
 
 app.use("/mcq", (req, res, next) => {
   if (!req.session.user) {
-    return res.status(403).render('httpErrors/error', {code: 403, description: "Forbidden", title: "403: Forbidden"})
+    return res.status(403).render('httpErrors/error', {layout: "errorPage", code: 403, description: "Forbidden", title: "403: Forbidden"})
   }
   next()
 })
 
 app.use("/profile", (req, res, next) => {
   if (!req.session.user) {
-    return res.status(403).render('httpErrors/error', {code: 403, description: "Forbidden", title: "403: Forbidden"})
+    return res.status(403).render('httpErrors/error', {layout: "errorPage", code: 403, description: "Forbidden", title: "403: Forbidden"})
   }
   next()
 })
 
 app.use("/viewWords", (req, res, next) => {
   if (!req.session.user) {
-    return res.status(403).render('httpErrors/error', {code: 403, description: "Forbidden", title: "403: Forbidden"})
+    return res.status(403).render('httpErrors/error', {layout: "errorPage", code: 403, description: "Forbidden", title: "403: Forbidden"})
   }
   next()
 })
 
 app.use("/logout", (req, res, next) => {
   if (!req.session.user) {
-    return res.status(403).render('httpErrors/error', {code: 403, description: "Forbidden", title: "403: Forbidden"})
+    return res.status(403).render('httpErrors/error', {layout: "errorPage", code: 403, description: "Forbidden", title: "403: Forbidden"})
   }
   next()
 })
 
 app.use("/mcqsubmit", (req, res, next) => {
   if (!req.session.user) {
-    return res.status(403).render('httpErrors/error', {code: 403, description: "Forbidden", title: "403: Forbidden"})
+    return res.status(403).render('httpErrors/error', {layout: "errorPage", code: 403, description: "Forbidden", title: "403: Forbidden"})
   }
   next()
 })
 
 app.use("/words", (req, res, next) => {
   if (!req.session.user) {
-    return res.status(403).render('httpErrors/error', {code: 403, description: "Forbidden", title: "403: Forbidden"})
+    return res.status(403).render('httpErrors/error', {layout: "errorPage", code: 403, description: "Forbidden", title: "403: Forbidden"})
   }
   next()
 })

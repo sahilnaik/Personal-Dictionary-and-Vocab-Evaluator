@@ -1,3 +1,11 @@
+// (function($){
+
+//     $(document).ready(function () {
+//         console.log(wordList)
+//     })
+
+// })(window.jquery)
+
 
     window.addEventListener('load', (event) => {
         document.getElementsByClassName("sidebar-word")[0].style.backgroundColor="rgb(53, 51, 51)";
@@ -23,7 +31,6 @@
     let antonyms_i=document.getElementsByClassName("antonyms_i");
     let examples_i=document.getElementsByClassName("examples_i");
 
-    let userId=document.getElementById("user_id").innerText;
     console.log(word_i.length);
     for(let i=0;i<word_i.length;i++){
         wordsList.push(word_i[i].innerHTML);
@@ -37,9 +44,9 @@
     for(let i=0;i<wordsList.length;i++){
         word["word"]=wordsList[i];
         word["meaning"]=meaningsList[i];
-        word["synonyms"]=synonymsList[i].split(",");
-        word["antonyms"]=antonymsList[i].split(",");
-        word["example"]=examplesList[i].split(",");        
+        word["synonyms"]=synonymsList[i].split(", ");
+        word["antonyms"]=antonymsList[i].split(", ");
+        word["example"]=examplesList[i].split(", ");        
         wordList.push(word);
         word={};
                 
@@ -57,6 +64,7 @@
         element.appendChild(text);
         dropdown.appendChild(element);
     });
+
     const dropdownArray = [... document.querySelectorAll('li')];
     console.log(typeof dropdownArray)
     dropdown.classList.add('open');
@@ -199,28 +207,6 @@
                 detailsForm.submit();
         }
         
-
-        function checkMeaning(meaning,meaning_err){
-                if(meaning.length===0){
-                    meaning_err.style.display="grid";
-                    meaning_err.innerText="Please Enter a valid meaning";
-                    validateMeaning=false;
-                    return validateMeaning;
-                }else{
-                    meaning_err.style.display="none";
-                    validateMeaning=true;
-                }
-                if(meaning.match(/^\s+$/)){
-                    meaning_err.style.display="grid";
-                    meaning_err.innerText="Meaning is full of empty spaces. Please Enter a valid meaning";
-                    validateMeaning=false;
-                    return validateMeaning;
-                }else{
-                    meaning_err.style.display="none";
-                    validateMeaning=true;
-                }
-                return validateMeaning;
-        }
 
         function checkSynonym(synonym,synonym_err){
              if(synonym.length===0){
