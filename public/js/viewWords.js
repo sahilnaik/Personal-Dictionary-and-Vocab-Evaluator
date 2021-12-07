@@ -146,29 +146,33 @@
                 example=obj["example"];
             }
         });
+        let synonymList=synonyms[0].split(',');
+        console.log(synonymList);
         let synonymsString="";
         let i=0;
-        while(i<synonyms.length-1){
-            synonymsString+=synonyms[i]+", ";
+        while(i<synonymList.length-1){
+            synonymsString+=synonymList[i]+", ";
             i++;
         }
-        synonymsString+=synonyms[synonyms.length-1];
+        synonymsString+=synonymList[synonymList.length-1];
 
+        let antonymList=antonyms[0].split(',');
         let antonymsString="";
         i=0;
-        while(i<antonyms.length-1){
-            antonymsString+=antonyms[i]+", ";
+        while(i<antonymList.length-1){
+            antonymsString+=antonymList[i]+", ";
             i++;
         }
-        antonymsString+=antonyms[antonyms.length-1];
+        antonymsString+=antonymList[antonymList.length-1];
 
+        let exampleList=example[0].split('.');
         let examplesString="";
         i=0;
-        while(i<example.length-1){
-            examplesString+=example[i]+". ";
+        while(i<exampleList.length-1){
+            examplesString+=exampleList[i]+". ";
             i++;
         }
-        examplesString+=example[example.length-1];
+        examplesString+=exampleList[exampleList.length-1];
 
         document.getElementById("meaning").innerHTML=meaning;
         document.getElementById("synonyms").innerText=synonymsString;
@@ -199,11 +203,10 @@
         let antonym_err=document.getElementById('antonym_err');
         let example=document.getElementById('exampleinput').value;
         let example_err=document.getElementById('example_err');
-        validateMeaning=checkMeaning(meaning,meaning_err);
         validateSynonym=checkSynonym(synonym,synonym_err);
         validateAntonym=checkAntonym(antonym,antonym_err);
         validateExample=checkExample(example,example_err);
-        if(validateMeaning&&validateSynonym&&validateAntonym&&validateExample){
+        if(validateSynonym&&validateAntonym&&validateExample){
                 detailsForm.submit();
         }
         
