@@ -44,10 +44,17 @@ async function create(userId) {
 }
 
 async function createSession(userId, length) {
+  if (arguments.length != 2) throw "Invalid argument";
+  if (!userId) throw "You must provide a userId to create a mcq";
+  if(typeof length!="number") throw "length must be a number";
+  
+
+
   let count = length;
   let bool;
   let QnAarray = [];
   let prevQuestion = [];
+
   const wordCollection = await words();
   const findWords = await wordCollection
     .find({ userId: userId }, { projection: { words: 1 } })
@@ -117,6 +124,7 @@ async function updateSession(userId, sessionId, words, correctCount) {
   if (typeof sessionId !== "string") throw "sessionId must be a string";
   sessionId = sessionId.trim();
   if (!words) throw "You must provide words to create a mcq";
+
   let sessionNo = parseInt(sessionId);
   let correctCountNo = parseInt(correctCount);
   for(let i=0;i<words.length;i++){
@@ -141,6 +149,8 @@ async function updateSession(userId, sessionId, words, correctCount) {
 }
 
 async function calculate(userId) {
+  if (arguments.length != 1) throw "Invalid argument";
+  if (!userId) throw "You must provide a userId to update mcq";
   let total = 0;
   
   const mcqCollection = await mcq();

@@ -201,12 +201,20 @@ async function updatePicture(id, profilePicture) {
   if (ObjectId.isValid(id) === false) {
     throw `Error in id`;
   }
+  if(profilePicture.length === 0) {
+    throw "No profile picture provided";
+  }
+  if(id.length === 0) {
+    throw "No id provided";
+  }
+  
   id = ObjectId(id);
   const userCollection = await user();
   const inputId = await userCollection.find({ _id: id }).toArray();
   if (inputId.length === 0) {
     throw "No user with that id";
   }
+ 
   const updateUser = {
     profilePicture: profilePicture,
   };

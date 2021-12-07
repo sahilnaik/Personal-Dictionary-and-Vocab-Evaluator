@@ -103,6 +103,7 @@ async function updateSession(userId, sessionId, words, correctCount) {
   userId = userId.trim();
   if (!ObjectId.isValid(userId)) throw "userId is not valid";
   userId = ObjectId(userId);
+  if(typeof words !=="array") throw "words must be an array";
   if (!sessionId) throw "You must provide a sessionId to create a flashcard";
   if (typeof sessionId !== "string") throw "sessionId must be a string";
   sessionId = sessionId.trim();
@@ -237,6 +238,7 @@ async function getPercentage(email) {
   const userInfo = await userCollection.findOne({ email: email });
   if (!userInfo) throw "No user with that email";
   let userId = userInfo._id;
+  let check = userId.toString();
   const flashcardCollection = await flashcard();
   const percentage = await flashcardCollection.findOne({ userId: userId });
   let session = percentage.sessions;
