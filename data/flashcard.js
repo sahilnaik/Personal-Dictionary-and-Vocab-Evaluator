@@ -103,7 +103,6 @@ async function updateSession(userId, sessionId, words, correctCount) {
   userId = userId.trim();
   if (!ObjectId.isValid(userId)) throw "userId is not valid";
   userId = ObjectId(userId);
-  if(typeof words !=="array") throw "words must be an array";
   if (!sessionId) throw "You must provide a sessionId to create a flashcard";
   if (typeof sessionId !== "string") throw "sessionId must be a string";
   sessionId = sessionId.trim();
