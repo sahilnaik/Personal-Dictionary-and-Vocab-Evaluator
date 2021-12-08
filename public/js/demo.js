@@ -42,6 +42,22 @@ function initialize(){
     word2["correctOrNot"]="";
     words.push(word2);
     session["words"]=words;
+    let word3={};
+    word3["Question word"]="Bad";
+    word3["options"]=["Sorrow","Awful","Frosty","Tough"];
+    word3["answer"]="Awful";
+    word3["userSelection"]="";
+    word3["correctOrNot"]="";
+    words.push(word3);
+    session["words"]=words;
+    let word4={};
+    word4["Question word"]="Cold";
+    word4["options"]=["Challenging","Boiling","Chilly","Pleasant"];
+    word4["answer"]="Chilly";
+    word4["userSelection"]="";
+    word4["correctOrNot"]="";
+    words.push(word4);
+    session["words"]=words;
 }
 
 function que(page){
@@ -81,7 +97,7 @@ function optionSelect(){
 
 function next(){
     wordindex++;
-    if(wordindex==2){
+    if(wordindex==4){
         document.getElementById("submit-button").style.display="flex";
         document.getElementById("next-button").style.display="none";
     }
@@ -107,7 +123,7 @@ function prev(){
     wordindex--;
     que("prev");
 
-    if(wordindex==2){
+    if(wordindex==4){
         document.getElementById("submit-button").style.display="flex";
     }
     else if(wordindex>0){
