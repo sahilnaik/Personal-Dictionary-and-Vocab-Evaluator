@@ -196,36 +196,6 @@ const getAll = async function getAll(userId) {
 }
 
 
-// const getYetToLearn = async function getYetToLearn(userId) {
-//     let wordCollection = await words()
-//     let wordDocument = await wordCollection.findOne({userId: ObjectId(userId)}, {words: {$projection: {progress: ""}}})
-//     if (!wordDocument) {
-//         throw {code: 404, error: `No such userId exists to display words`}
-//     }
-    
-//     return wordDocument.words
-// }
-
-// const getLearnt = async function getLearnt(userId) {
-//     let wordCollection = await words()
-//     let wordDocument = await wordCollection.findOne({userId: ObjectId(userId)}, {words: {$projection: {progress: "learnt"}}})
-//     if (!wordDocument) {
-//         throw {code: 404, error: `No such userId exists to display words`}
-//     }
-    
-//     return wordDocument.words
-// }
-
-// const getLearning = async function getLearning(userId) {
-//     let wordCollection = await words()
-//     let wordDocument = await wordCollection.findOne({userId: ObjectId(userId)}, {words: {$projection: {progress: "learning"}}})
-//     if (!wordDocument) {
-//         throw {code: 404, error: `No such userId exists to display words`}
-//     }
-    
-//     return wordDocument.words
-// }
-
 const noOfWords = async function noOfWords(userId) {
     let wordCollection = await words()
     let wordDocument = await wordCollection.findOne({userId: ObjectId(userId)})
@@ -241,8 +211,5 @@ module.exports = {
     addWord, 
     editWord,
     getAll,
-    noOfWords,
-    // getYetToLearn,
-    // getLearnt,
-    // getLearning
+    noOfWords
 }

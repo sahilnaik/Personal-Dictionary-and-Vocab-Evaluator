@@ -11,16 +11,25 @@ html,body{
 }
 
 .sidebar{
-    flex: 0.10;
+    /* flex: 0.10;
     background:#23282D;
     display: grid;
-    grid-template-rows:15% 15% 15% 15% 15%;
+    height: 100%;
+    grid-template-rows:15% 15% 15% 15% 15%; */
+    flex: 0.10;
+    width: 150px;
+    height: 100%;
+    background: #23282D;
+    display: grid;
+    position: fixed;
+    grid-template-rows: 15% 15% 15% 15% 15%;
 }
 
 .main-dashboard{
-    flex:0.9;
+    flex: 1;
+    margin-left: 6em;
     display: grid;
-    grid-template-rows:8% 92%;
+    grid-template-rows: 8% 92%;
 }
 
 .main-navbar{

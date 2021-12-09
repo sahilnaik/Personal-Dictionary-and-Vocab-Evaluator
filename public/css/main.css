@@ -5,7 +5,7 @@ body{
 .sidebar{
     background:#23282D;
     width:150px;
-    height:1000px;
+    height:100%;
     display: grid;
     grid-template-rows:15% 15% 15% 15% 15%;
 }

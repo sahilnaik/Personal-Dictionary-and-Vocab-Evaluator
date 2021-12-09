@@ -75,3 +75,7 @@
 #dashboard_link,#profile_link,#flashcard_link,#mcq_link,#logout_link,#viewwords_link{
     text-decoration: none;
 }
+
+.proceed-to-test-btn{
+    z-index: 1;
+}
