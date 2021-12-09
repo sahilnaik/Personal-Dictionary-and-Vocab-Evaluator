@@ -334,3 +334,18 @@ p{
 .word_i,.meaning_i,.synonyms_i,.antonyms_i,.examples_i,.wordlist_i{
   display: none;
 }
+
+.word_i1,.meaning_i1,.synonyms_i1,.antonyms_i1,.examples_i1,.yettolearnwordlist_i{
+  display: none;
+}
+.word_i2,.meaning_i2,.synonyms_i2,.antonyms_i2,.examples_i2,.learningwordslist_i{
+  display: none;
+}
+
+.word_i3,.meaning_i3,.synonyms_i3,.antonyms_i3,.examples_i3,.learntwordslist_i{
+  display: none;
+}
+
+#noOfWords,#noOfLearntWords{
+  display: none;
+}

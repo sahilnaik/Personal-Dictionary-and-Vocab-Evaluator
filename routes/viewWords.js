@@ -17,7 +17,8 @@ router.get('/', async(req,res)=>{
         let lastName= req.session.user.lastName;
         res.render('words/viewWords', { title:"View Words", wordList: wordList, profilePicture: profilePicture,
                                     firstName: firstName, lastName: lastName,userId:id, yetToLearnWords: yetToLearnWords, learningWords: learningWords,
-                                    learntWords: learntWords });
+                                    learntWords: learntWords, yetToLearnWordsLength: yetToLearnWords.length, learningWordsLength: learningWords.length,
+                                    learntWordsLength: learntWords.length });
     }catch(e){
         res.status(500).json({error:e});
     }

@@ -73,10 +73,7 @@
             </div>
         </form>
         </div>
-        {{#if yetToLearnWords}}
-
-        {{/if}}
-        {{#each wordList}}
+       {{#each wordList}}
         <div class="wordlist_i">
             <p class="word_i">{{word}}</p>
             <p class="meaning_i">{{meaning}}</p>
@@ -85,6 +82,53 @@
             <p class="examples_i">{{examples}}</p>
         </div>
         {{/each}}
+        {{#if yetToLearnWordsLength}}
+            {{#each yetToLearnWords}}
+            <div class="yettolearnwordlist_i">
+                <p class="word_i1">{{{word}}}</p>
+                <p class="meaning_i1">{{{meaning}}}</p>
+                <p class="synonyms_i1">{{{synonyms}}}</p>
+                <p class="antonyms_i1">{{{antonyms}}}</p>
+                <p class="examples_i1">{{{examples}}}</p>
+            </div>
+            {{/each}}
+        {{else}}
+            <div>
+                <p>There are no words that you are not learning or haven't learnt</p>
+            </div>
+        {{/if}}
+        {{#if learntWordsLength}}
+            {{#each learningWords}}
+            <div class="learningwordslist_i">
+                <p class="word_i2">{{{word}}}</p>
+                <p class="meaning_i2">{{{meaning}}}</p>
+                <p class="synonyms_i2">{{{synonyms}}}</p>
+                <p class="antonyms_i2">{{{antonyms}}}</p>
+                <p class="examples_i2">{{{examples}}}</p>
+            </div>
+            {{/each}}
+        {{else}}
+            <div>
+                <p>You are not learning any words</p>
+            </div>
+        {{/if}}
+        {{#if learntWordsLength}}
+            {{#each learntWords}}
+                <div class="learntwordslist_i">
+                    <p class="word_i3">{{{word}}}</p>
+                    <p class="meaning_i3">{{{meaning}}}</p>
+                    <p class="synonyms_i3">{{{synonyms}}}</p>
+                    <p class="antonyms_i3">{{{antonyms}}}</p>
+                    <p class="examples_i3">{{{examples}}}</p>
+                </div>
+            {{/each}}
+        {{else}}
+            <div>
+                <p>No Words Learnt Yet</p>
+            </div>
+        {{/if}}
+        <p id="noOfWords">{{{noOfWords}}}</p>
+        <p id="noOfLearntWords">{{{noOfLearntWords}}}</p>
         </div>
 </div>
 
