@@ -139,6 +139,7 @@ left: 250px;;
   table, th, td {
     padding:10px;
     border:2px solid black;
+	border-width: 2px !important;
 }
 
 td{
