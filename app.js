@@ -7,6 +7,7 @@ const session = require('express-session');
 const multer = require('multer');
 const { users } = require('./data');
 const updatePicture = require('./data/user');
+const res = require('express/lib/response');
 
 app.use('/public', static);
 app.use(express.json());
@@ -28,24 +29,48 @@ app.use(
 // MIDDLEWARES STARTS
 
 //-------Multer Middleware for Image Upload---------//
+
+
+app.use("/profile-upload-single", (res, req, next) => {
+  if (req.method == "GET") {
+    return  res.status(403).render('httpErrors/error', {layout: "errorPage", code: 403, description: "Forbidden", title: "403: Forbidden"})
+  }
+  next()
+})
+
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, './public/uploads')
   },
   filename: function (req, file, cb) {
-    cb(null, file.originalname)
+    cb(null, file.originalname.split(' ').join('-'))
   }
 })
-var upload = multer({ storage: storage })
+var upload = multer({ 
+  storage: storage,
+  fileFilter: (req, file, cb) => {
+    if (file.mimetype == "image/png" || file.mimetype == "image/jpg" || file.mimetype == "image/jpeg") {
+      cb(null, true);
+    } else {
+      cb(null, false);
+      let error = true
+      return error
+    }
+  } 
+})
 
-app.post('/profile-upload-single', upload.single('profile-file'), async function (req, res, next) {
-  profilePicture = req.file.originalname;
+app.post('/profile-upload-single', result = upload.single('profile-file'), async function (req, res, next) {
   try {
+    if (result) {
+      throw 'Only .png, .jpg and .jpeg format allowed!'
+    }
+    profilePicture = req.file.originalname;
     const updateProfilePicture = await updatePicture.updatePicture(req.session.user._id, profilePicture);
     req.session.user.profilePicture = profilePicture;
-    res.redirect('/profile');
+    return res.redirect('/profile');
   } catch (error) {
     console.log(error);
+    return res.status(401).redirect('/profile')
   }
     
   next()
@@ -66,6 +91,7 @@ app.use("/login", (req, res, next) => {
   }
   next()
 })
+
 
 app.use("/signup", (req, res, next) => {
   if (req.session.user) {
