@@ -19,12 +19,12 @@ window.addEventListener('load', (event) => {
 });
 
 function editStart(){
-    console.log("clicked!");
     if(document.getElementById('synonyms').contentEditable=="true"){
         document.getElementById('synonyms').contentEditable="false";
         document.getElementById('synonyms').style.border="none";
     }else{
         document.getElementById('synonyms').contentEditable="true";
+        document.getElementById('synonyms').style.minWidth="200px";
         document.getElementById('synonyms').style.border="2px solid black";
     }
     if(document.getElementById('antonyms').contentEditable=="true"){
@@ -32,6 +32,7 @@ function editStart(){
         document.getElementById('antonyms').style.border="none";
     }else{
         document.getElementById('antonyms').contentEditable="true";
+        document.getElementById('antonyms').style.minWidth="200px";
         document.getElementById('antonyms').style.border="2px solid black";
     }
     if(document.getElementById('example').contentEditable=="true"){
@@ -39,6 +40,7 @@ function editStart(){
         document.getElementById('example').style.border="none";
     }else{
         document.getElementById('example').contentEditable="true";
+        document.getElementById('example').style.minWidth="200px";
         document.getElementById('example').style.border="2px solid black";
     }
 
@@ -164,7 +166,7 @@ dropdownArray.forEach(dropdown => {
 });
 
 inputField.addEventListener('blur', () => {
-inputField.placeholder = 'Select Word';
+inputField.placeholder = 'Type to filter';
 dropdown.classList.remove('open');
 });
 
