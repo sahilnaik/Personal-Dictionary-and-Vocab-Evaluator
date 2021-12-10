@@ -77,8 +77,8 @@ const addWord = async function (userId,  word, meaning, synonym, antonym, exampl
 }
 
 const editWord = async function editWord(userId, word, synonym, antonym, example) {
-    if (!synonym && !antonym && !example) {
-        throw `Please specify at least 1 of the items to be edited.`
+    if (!synonym) {
+        throw `Synonyms Cannot be empty`
     }
     if (synonym.trim().length == 0) {
         throw `Items to be edited cannot be just empty spaces.`
@@ -92,10 +92,12 @@ const editWord = async function editWord(userId, word, synonym, antonym, example
         throw {code: 404, error: `No such userId exists to add any words`}
     }
     word = word.toLowerCase() 
-    let editingWord 
+    let editingWord, i=0, indexof
     wordDocument.words.forEach(x => {
+        i++
         if (x.word == word) {
             editingWord = x
+            indexof = i
         }
     })
 
@@ -167,6 +169,8 @@ const editWord = async function editWord(userId, word, synonym, antonym, example
         editingWord.examples = example
     }
 
+    wordCollection.words = wordCollection.words.splice(indexof, 1, editingWord)
+
     let result = await wordCollection.updateOne({userId: ObjectId(userId)}, {$set: {words: wordDocument.words}})
     if (result.modifiedCount === 0) {
         throw {code: 500, error: `Unable to add the word to the Document`} 
@@ -206,10 +210,26 @@ const noOfWords = async function noOfWords(userId) {
     return wordDocument.words.length   
 }
 
+const updateProgress = async function updateProgress(userId, word) {
+    let wordCollection = await words()
+    let wordDocument = await wordCollection.findOne({userId: ObjectId(userId)})
+    
+    wordDocument.words.every(async x =>{
+        if (x.word == word) {
+            let updatingWord
+            // updatingWord.word = x.word
+            x.progress = "learning"
+            let updatingProgress = await wordCollection.updateOne({userId: ObjectId(userId)}, {$set: {words: wordDocument.words}})
+        }
+    })
+
+}
+
 module.exports = {
     createWordsDocument,
     addWord, 
     editWord,
     getAll,
-    noOfWords
+    noOfWords,
+    updateProgress
 }

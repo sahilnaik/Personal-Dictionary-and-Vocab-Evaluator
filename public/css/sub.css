@@ -27,7 +27,7 @@ html,body{
 
 .main-dashboard{
     flex: 1;
-    margin-left: 6em;
+    margin-left: 8em;
     display: grid;
     grid-template-rows: 8% 92%;
 }

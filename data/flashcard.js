@@ -3,6 +3,7 @@ const flashcard = mongoCollections.flashcard;
 const user = mongoCollections.users;
 const words = mongoCollections.words;
 let { ObjectId } = require("mongodb");
+let { updateProgress } = require("./words")
 
 async function create(userId) {
     if (arguments.length != 1) throw "Invalid argument";
@@ -58,6 +59,7 @@ async function createSession(userId, length) {
     for (let iterations = 0; iterations < 10; iterations++) {
       let randomNum = Math.round(Math.random() * noOfWords);
       let question_word = findWords[0].words[randomNum].word;
+      let wordProgress = findWords[0].words[randomNum].progress
       
       if (!prevQuestion.includes(question_word)) {
         let meaning = findWords[0].words[randomNum].meaning;
@@ -72,6 +74,9 @@ async function createSession(userId, length) {
             examples: examples,
             correctOrNot: false,
         };
+        if (wordProgress == "yet to learn") {
+          await updateProgress(userId, question_word)
+        }
         prevQuestion.push(question_word);
         wordArray.push(wordInfo);
       } else {
@@ -92,6 +97,7 @@ async function createSession(userId, length) {
     );
     if (updatedInfo.modifiedCount === 0) throw "Could not add session";
     
+    
     return sessionObject;
   }
 
@@ -108,10 +114,12 @@ async function updateSession(userId, sessionId, words, correctCount) {
   if (typeof sessionId !== "string") throw "sessionId must be a string";
   sessionId = sessionId.trim();
   if (!words) throw "You must provide words to create a flashcard";
+
   let sessionNo = parseInt(sessionId);
   let correctCountNo = parseInt(correctCount);
   let correctArray = [];
   let incorrectArray = [];
+
   for(let i=0;i<words.length;i++){
     if(words[i].userSelection=="true"){
       words[i].userSelection=true;
