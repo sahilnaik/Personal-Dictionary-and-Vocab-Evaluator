@@ -48,8 +48,7 @@ app.post('/profile-upload-single', upload.single('profile-file'), async function
     console.log(error);
   }
     
-  
-  
+  next()
 })
 
 // Authenticated User Routes Starts
