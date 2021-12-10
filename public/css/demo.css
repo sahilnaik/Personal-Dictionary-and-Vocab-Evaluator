@@ -30,20 +30,20 @@ body
 
 position: absolute;
 top: 350px;;     
-left: 250px;;
+left: 100px;;
 
 }
 
 #submit-button{
     position: absolute;
     top: 350px;
-    left: 100px;
+    left: 250px;
 }
 
 #next-button{
     position: absolute;
     top: 350px;
-    left: 100px;
+    left: 250px;
 }
 
 #resultcontainer {
