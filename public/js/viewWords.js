@@ -11,7 +11,15 @@ window.addEventListener('load', (event) => {
     document.getElementsByClassName("sidebar-word")[0].style.backgroundColor="rgb(53, 51, 51)";
     let total_no_of_words=document.getElementById("noOfWords").innerText;
     let words_learnt=document.getElementById("noOfLearntWords").innerText;
-    let percentage=words_learnt/total_no_of_words*100;
+    console.log(total_no_of_words);
+    console.log(words_learnt);
+    let percentage;
+    if(total_no_of_words==0 || words_learnt==0){
+        percentage=0;
+    }else{
+        percentage=words_learnt/total_no_of_words*100;
+        percentage=Math.round(percentage);
+    }
     document.getElementById("pbar").style.width=percentage+"%";
     document.getElementById("perc").innerText=percentage+"%";
     document.getElementById("wordCount").innerText=words_learnt;
@@ -297,7 +305,7 @@ e.addEventListener('change', (event) => {
     });
 
     inputField.addEventListener('blur', () => {
-    inputField.placeholder = 'Select Word';
+    inputField.placeholder = 'Type to filter';
     dropdown.classList.remove('open');
     });
 

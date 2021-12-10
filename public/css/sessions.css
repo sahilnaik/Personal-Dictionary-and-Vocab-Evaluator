@@ -63,7 +63,7 @@
 
 .error{
     display: grid;
-    margin: auto;
+    justify-content: right;
 }
 .main-navbar{
     z-index: 2;

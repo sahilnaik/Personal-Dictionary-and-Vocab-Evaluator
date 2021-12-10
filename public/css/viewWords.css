@@ -13,12 +13,18 @@ html,body,.main-box{
     height: 100%;
     width: 100%;
 }
-
+.sidebar{
+  z-index:2;
+}
 .word_box{
     position: relative;
     padding: 0;
 }
 
+.progress_cal{
+  position: relative;
+  left:0px;
+}
 .percentage{
     background-color: white;
     position: relative;
@@ -363,6 +369,7 @@ p{
   display: flex;
   position: relative;
   left:1200px;
+  width: 150px;
 }
 
 #edit_icon{
