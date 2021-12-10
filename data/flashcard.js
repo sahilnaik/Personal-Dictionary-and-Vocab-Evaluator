@@ -3,7 +3,7 @@ const flashcard = mongoCollections.flashcard;
 const user = mongoCollections.users;
 const words = mongoCollections.words;
 let { ObjectId } = require("mongodb");
-let { updateProgress } = require("./words")
+let { updateProgress, updateCounters } = require("./words")
 
 async function create(userId) {
     if (arguments.length != 1) throw "Invalid argument";
@@ -83,6 +83,10 @@ async function createSession(userId, length) {
         iterations--;
       }
     }
+
+    // updating the learning counter
+    await updateCounters(userId)
+
     let sessionObject = {
       _id: count + 1,
       words: wordArray,
