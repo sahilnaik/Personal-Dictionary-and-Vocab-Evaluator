@@ -294,7 +294,7 @@ html,body,.main-box{
     font-weight: bold;
   }
 
-  #example,#meaning,#synonym,#antonym{
+  #example,#meaning,#synonyms,#antonyms{
     position: absolute;
   }
 
@@ -313,9 +313,14 @@ html,body,.main-box{
   display: grid;
 }
 
-#submit-btn:hover{
+#submit-btn{
   background-color: #000;
-  color:white;
+  color: white;
+}
+
+#submit-btn:hover{
+  background-color: skyblue;
+  color:#000;
 }
 
 #pbar{
@@ -348,4 +353,24 @@ p{
 
 #noOfWords,#noOfLearntWords{
   display: none;
+}
+
+#example,#synonyms,#antonyms{
+  padding: 8px;
+}
+
+.edit_icon_box{
+  display: flex;
+  position: relative;
+  left:1200px;
+}
+
+#edit_icon{
+  color:black;
+
+}
+
+#edit_icon:hover{
+  color:skyblue;
+
 }

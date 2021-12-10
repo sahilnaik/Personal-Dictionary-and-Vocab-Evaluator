@@ -36,7 +36,8 @@
                         <h1 id="word"></h1>
                         <input name="wordinput" id="wordinput">    
                     </div>
-                    <br>    
+                    <br>
+                    <div class="edit_icon_box"><i class="fas fa-edit fa-2x" id="edit_icon" onclick="editStart()"></i></div>    
                     <div class="meaning-field">
                         <p>Meaning &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; : &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<span id="meaning"></span></p>
                         <p id="meaning_err"></p>
@@ -46,7 +47,7 @@
                     </div>
                     <br> 
                     <div class="synonyms-field">
-                        <p>Synonyms &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; : &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<span id="synonyms" contenteditable="true"></span></p>
+                        <p>Synonyms &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; : &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<span id="synonyms" contenteditable="false"></span></p>
                         <p id="synonym_err"></p>
                         <label for="synonymsinput">
                             <input name="synonymsinput" id="synonymsinput">
@@ -54,7 +55,7 @@
                     </div>
                     <br> 
                     <div class="antonyms-field">
-                        <p>Antonyms &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; : &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<span id="antonyms" contenteditable="true"></span></p>
+                        <p>Antonyms &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; : &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<span id="antonyms" contenteditable="false"></span></p>
                         <p id="antonym_err"></p>
                         <label for="antonymsinput">
                             <input name="antonymsinput" id="antonymsinput">
@@ -62,7 +63,7 @@
                     </div>
                     <br>  
                     <div class="example-field">
-                        <p>Example &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; : &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<span id="example" contenteditable="true"></span></p>
+                        <p>Example &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; : &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<span id="example" contenteditable="false"></span></p>
                         <p id="example_err"></p>
                         <label for="exampleinput">
                             <input name="exampleinput" id="exampleinput">

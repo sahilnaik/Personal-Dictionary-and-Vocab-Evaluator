@@ -18,6 +18,32 @@ window.addEventListener('load', (event) => {
     document.getElementById("wordTotal").innerText=total_no_of_words;
 });
 
+function editStart(){
+    console.log("clicked!");
+    if(document.getElementById('synonyms').contentEditable=="true"){
+        document.getElementById('synonyms').contentEditable="false";
+        document.getElementById('synonyms').style.border="none";
+    }else{
+        document.getElementById('synonyms').contentEditable="true";
+        document.getElementById('synonyms').style.border="2px solid black";
+    }
+    if(document.getElementById('antonyms').contentEditable=="true"){
+        document.getElementById('antonyms').contentEditable="false";
+        document.getElementById('antonyms').style.border="none";
+    }else{
+        document.getElementById('antonyms').contentEditable="true";
+        document.getElementById('antonyms').style.border="2px solid black";
+    }
+    if(document.getElementById('example').contentEditable=="true"){
+        document.getElementById('example').contentEditable="false";
+        document.getElementById('example').style.border="none";
+    }else{
+        document.getElementById('example').contentEditable="true";
+        document.getElementById('example').style.border="2px solid black";
+    }
+
+}
+
 let selection="";
 let wordsList=[];
 let meaningsList=[];
