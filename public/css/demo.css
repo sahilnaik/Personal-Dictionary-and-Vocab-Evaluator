@@ -29,21 +29,21 @@ body
 {
 
 position: absolute;
-top: 350px;;     
-left: 100px;;
+top: 550px;     
+left: 700px;;
 
 }
 
 #submit-button{
     position: absolute;
-    top: 350px;
-    left: 250px;
+    top: 550px;
+    left: 800px;
 }
 
 #next-button{
     position: absolute;
-    top: 350px;
-    left: 250px;
+    top: 550px;
+    left: 800px;
 }
 
 #resultcontainer {
