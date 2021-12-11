@@ -10,6 +10,7 @@ const signupRoutes = require('./signup');
 const mcqsubmitRoutes = require('./mcqsubmit');
 const logoutRoutes = require("./logout")
 const landingpageRoutes = require('./landingpage');
+const feedbackRoutes = require('./feedback');
 var path = require('path');
 
 const constructorMethod = (app) => {
@@ -37,7 +38,8 @@ const constructorMethod = (app) => {
     
     app.use('/mcqsubmit', mcqsubmitRoutes);
 
-    
+    app.use('/feedback', feedbackRoutes);
+
     
     app.use('*', (req, res) => {
         
