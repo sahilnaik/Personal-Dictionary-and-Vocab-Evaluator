@@ -381,3 +381,9 @@ p{
   color:skyblue;
 
 }
+
+.required_msg{
+  color: red;
+  font-size: xx-large;
+  display: none;
+}

@@ -29,7 +29,16 @@ window.addEventListener('load', (event) => {
              validateExample=checkExample(example,example_err);
 
              if(validateWord&&validateMeaning&&validateSynonym&&validateAntonym&&validateExample){
-                 form.submit();
+                var delayInMilliseconds = 2000;
+
+                setTimeout(function() {
+                  form.submit();
+                }, delayInMilliseconds);
+                swal({
+                    title: "Good job!",
+                    text: "Submitted Successfully",
+                    icon: "success",
+                });
              }
      });
 

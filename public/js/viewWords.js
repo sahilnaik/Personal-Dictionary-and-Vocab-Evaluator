@@ -30,10 +30,12 @@ function editStart(){
     if(document.getElementById('synonyms').contentEditable=="true"){
         document.getElementById('synonyms').contentEditable="false";
         document.getElementById('synonyms').style.border="none";
+        document.getElementsByClassName('required_msg')[0].style.display="none";
     }else{
         document.getElementById('synonyms').contentEditable="true";
         document.getElementById('synonyms').style.minWidth="200px";
         document.getElementById('synonyms').style.border="2px solid black";
+        document.getElementsByClassName('required_msg')[0].style.display="inline";
     }
     if(document.getElementById('antonyms').contentEditable=="true"){
         document.getElementById('antonyms').contentEditable="false";
@@ -397,7 +399,16 @@ detailsForm.addEventListener('submit', (event) => {
     validateAntonym=checkAntonym(antonym,antonym_err);
     validateExample=checkExample(example,example_err);
     if(validateSynonym&&validateAntonym&&validateExample){
-            detailsForm.submit();
+            var delayInMilliseconds = 2000;
+
+                setTimeout(function() {
+                    detailsForm.submit();
+                }, delayInMilliseconds);
+                swal({
+                    title: "Good job!",
+                    text: "Submitted Successfully",
+                    icon: "success",
+                });
     }
     
 

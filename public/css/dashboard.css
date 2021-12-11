@@ -321,3 +321,13 @@ body {
 #s_dashboard,#s_addwords,#s_flashcard,#s_mcq,#s_viewwords{
     text-decoration: none;
 }
+
+.pro_heading{
+    font-size: xx-large;
+    font-weight: 600;
+}
+
+.pro_subheading{
+    font-size: large;
+    font-weight: 600;
+}

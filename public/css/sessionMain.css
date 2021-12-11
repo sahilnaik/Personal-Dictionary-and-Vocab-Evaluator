@@ -196,3 +196,7 @@ body {
 .hidden{
     display: none;
 }
+
+#s_dashboard,#s_addwords,#s_flashcard,#s_mcq,#s_viewwords{
+    text-decoration: none;
+}

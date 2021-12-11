@@ -37,7 +37,7 @@
                         <input name="wordinput" id="wordinput">    
                     </div>
                     <br>
-                    <div class="edit_icon_box"><i class="fas fa-edit fa-2x" id="edit_icon" onclick="editStart()"></i></div>    
+                    <div class="edit_icon_box"><i class="fas fa-edit fa-2x" id="edit_icon" onclick="editStart()"></i></div>
                     <div class="meaning-field">
                         <p>Meaning &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; : &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<span id="meaning"></span></p>
                         <p id="meaning_err"></p>
@@ -47,7 +47,7 @@
                     </div>
                     <br> 
                     <div class="synonyms-field">
-                        <p>Synonyms &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; : &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<span id="synonyms" contenteditable="false"></span></p>
+                        <p>Synonyms<span class="required_msg">*</span> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; : &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<span id="synonyms" contenteditable="false"></span></p>
                         <p id="synonym_err"></p>
                         <label for="synonymsinput">
                             <input name="synonymsinput" id="synonymsinput">
@@ -74,9 +74,6 @@
             </div>
         </form>
         </div>
-        {{#if yetToLearnWords}}
-
-        {{/if}}
         {{#each wordList}}
         <div class="wordlist_i">
             <p class="word_i">{{word}}</p>
@@ -118,6 +115,7 @@
         </div>
 </div>
 
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
     crossorigin="anonymous"></script>
 <script src="/public/js/viewWords.js"></script>

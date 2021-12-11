@@ -26,8 +26,7 @@ router.post('/addWord', async (req, res) => {
     const { word, meaning, synonym, antonym, example } = addWordForm
     try {
         const wordDocument = await words.addWord( req.session.user._id, word, meaning, synonym, antonym, example);
-        // res.status(200).json(`Successfully added the word ${word}`)
-        res.render("words/addWords", {success: true})
+        res.status(200).redirect("/addWords");
     } catch (e) {
         if (e.code) {
             res.status(e.code).json(e.error)
@@ -51,8 +50,8 @@ router.post('/:id/editWord', async (req, res) => {
     console.log(example);
 
     try {
-        const wordDocument = await words.editWord(req.params.id, word, synonym, antonym, example)
-        res.status(200).json(`Successfully edited the word ${word}`)
+        const wordDocument = await words.editWord(req.params.id, word, synonym, antonym, example);
+        res.status(200).redirect("/viewWords");
     } catch (e) {
         if (e.code) {
             res.status(e.code).json(e.error)

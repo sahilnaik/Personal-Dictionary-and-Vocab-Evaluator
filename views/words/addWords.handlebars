@@ -3,15 +3,9 @@
         <header class="dashboard-content">
             <h1 class="word-heading">ADD WORDS</h1>
         </header>
-        {{#if success}}
-        <div class="success">
-            <p>Successfully added the word</p>
-        </div>
-        {{/if}}
         <form action="/words/addWord" method="post" id="add-word-form">
-                    
                         <div class="word-field">
-                            <p>Enter Word &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;: &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </p>
+                            <p>Enter Word<span class="required_msg">*</span> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;: &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </p>
                             <label for="word">
                             <input id="word" type="text" name="word" required> 
                             </label>
@@ -20,7 +14,7 @@
                     
                     
                         <div class="meaning-field">
-                        <p>Enter Meaning &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;: &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</p>
+                        <p>Enter Meaning<span class="required_msg">*</span> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;: &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</p>
                         <label for="meaning">
                         <textarea id="meaning" cols="30" rows="3" name="meaning" required></textarea>
                         </label>
@@ -29,7 +23,7 @@
                     
                     
                         <div class="synonym-field">
-                            <p>Enter Synonyms &nbsp; &nbsp; &nbsp; &nbsp; : &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</p>
+                            <p>Enter Synonyms<span class="required_msg">*</span> &nbsp; &nbsp; &nbsp; &nbsp; : &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</p>
                             <label for="synonym">
                             <input id="synonym" type="text" name="synonym" required>
                             </label>
@@ -57,6 +51,10 @@
                     <div class="submit-field">
                         <button type="submit" id="submit-btn" class="btn btn-outline-dark">submit</button>
                     </div>
+                    <p class="disclaimer_msg">Contents marked with <span class="required_msg">*</span> are Mandatory Fields </p>
+                    {{!-- <div class="success_msg">
+                        <p class="success_msg_err">Word Entered Successfully!</p>
+                    </div> --}}
         </form>
 </div>
 <script src="../../public/js/addwords.js"></script>
@@ -285,6 +283,7 @@
     
 </script> --}}
 <script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>       
