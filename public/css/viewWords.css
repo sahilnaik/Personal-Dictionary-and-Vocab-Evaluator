@@ -12,6 +12,7 @@ html,body,.main-box{
     position: relative;
     height: 100%;
     width: 100%;
+    padding-left: 150px;
 }
 .sidebar{
   z-index:2;
@@ -34,7 +35,7 @@ html,body,.main-box{
 }
 
 .progress{
-  width:1280px;
+  width:70%;
   margin-bottom:50px;
   background-color:lightgray;
   position: relative;
@@ -43,8 +44,8 @@ html,body,.main-box{
 
 .progress_desc{
     position: relative;
-    left:80%;
-    top:20px;
+    left:70%;
+    top:1%;
     width:200px;
     font-weight: bolder;
 }
@@ -53,12 +54,15 @@ html,body,.main-box{
   position: relative;
   left:10%;
   z-index: 1;
+  width: 70%;
 }
 .details-box{
   padding-top: 50px;
   display: grid;
   position: relative;
   z-index: 0;
+  width: 70%;
+  padding-left: 50px;
 }
 
 #details-form{
@@ -113,7 +117,7 @@ html,body,.main-box{
     position: absolute;
     top: 0;
     left: 0;
-    width: 1280px;
+    width: 90%;
   }
   
   .chosen-value {
@@ -214,7 +218,7 @@ html,body,.main-box{
     position: relative;
     display: flex;
     left:10%;
-    width: 80rem;
+    width: 70%;
     height: 3em;
     border-radius: .25em;
     overflow: hidden;
@@ -259,7 +263,7 @@ html,body,.main-box{
     right:20px;
     background-color: white;
     height: 100%;
-    width: 1280px;
+    width: 100%;
     box-shadow: 0 3px 10px rgb(0 0 1 / 0.9);
     display: none;
   }
@@ -269,8 +273,10 @@ html,body,.main-box{
     box-shadow: 0 3px 10px rgb(0 0 0 / 0.9);
     position: relative;
     bottom:50px;
+    display: flex;
+    justify-content: center;
     height: 60px;
-    width: 1280px;
+    width: 100%;
     background:#23282D;
   }
 
@@ -282,8 +288,8 @@ html,body,.main-box{
 
   .meaning-field,.synonyms-field,.antonyms-field,.example-field{
     position: relative;
-    left:200px;
-    width: 1000px;
+    left:50px;
+    width: 850px;
   }
 
   .example-field{
@@ -291,8 +297,7 @@ html,body,.main-box{
   }
 
   #word{
-    position:relative; 
-    left:550px; 
+    position:relative;  
     top:15px;
     width: 100px; 
     color:white; 
@@ -368,7 +373,7 @@ p{
 .edit_icon_box{
   display: flex;
   position: relative;
-  left:1200px;
+  left:900px;
   width: 150px;
 }
 
