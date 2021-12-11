@@ -3,7 +3,7 @@ const flashcard = mongoCollections.flashcard;
 const user = mongoCollections.users;
 const words = mongoCollections.words;
 let { ObjectId } = require("mongodb");
-let { updateProgress, updateCounters } = require("./words")
+let { updateProgressToLearning, updateCounters, getAll, updateAllWordsProgress } = require("./words")
 
 async function create(userId) {
     if (arguments.length != 1) throw "Invalid argument";
@@ -59,6 +59,10 @@ async function createSession(userId, length) {
       .find({ userId: userId }, { projection: { words: 1 } })
       .toArray();
     let noOfWords = findWords[0].words.length - 1;
+    let { wordList, yetToLearnWords, learningWords, learntWords } = await getAll(userId)
+    if (yetToLearnWords.length == 0 && learningWords == 0) {
+      throw {code: 400, error: "You have learnt all the words"}
+    }
   
     for (let iterations = 0; iterations < 10; iterations++) {
       let randomNum = Math.round(Math.random() * noOfWords);
@@ -79,10 +83,12 @@ async function createSession(userId, length) {
             correctOrNot: false,
         };
         if (wordProgress == "yet to learn") {
-          await updateProgress(userId, question_word)
+          await updateProgressToLearning(userId, question_word)
         }
-        prevQuestion.push(question_word);
-        wordArray.push(wordInfo);
+        // if (wordProgress != "learnt") { 
+          prevQuestion.push(question_word);
+          wordArray.push(wordInfo); 
+        // }
       } else {
         iterations--;
       }
@@ -138,7 +144,7 @@ async function updateSession(userId, sessionId, words, correctCount) {
       incorrectArray.push(words[i].word);
     }
   }
- 
+  await updateAllWordsProgress(userId, correctArray)
   
   date = new Date();
   let time = date.toUTCString()
@@ -148,7 +154,9 @@ async function updateSession(userId, sessionId, words, correctCount) {
     { $set: { "sessions.$.words": words, "sessions.$.correctCount": correctCountNo, "sessions.$.time": time, "sessions.$.correct": correctArray, "sessions.$.incorrect": incorrectArray } }
   );
   if (updatedInfo.modifiedCount === 0) throw "Could not update flashcard";
-    calculate(userId);
+  
+  calculate(userId);
+
 }
 
 async function calculate(userId) {
