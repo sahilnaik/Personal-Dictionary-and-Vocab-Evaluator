@@ -1,12 +1,12 @@
 <link rel="stylesheet" href="/public/css/feedback.css">
 
 
-  <form method="POST" class="feedback-form" id="feedback-form">
+  <form method="POST" action="/feedback/store" class="feedback-form" id="feedback-form">
 
   <h1 id="Feedback-h1">Feedback</h1><br>
 
 
-        <p>How would you rate this experience?</p>
+        <p>How would you rate this experience?<span class="required_msg">*</span></p>
 
     <input type="radio" id="onestar" name="rating" class="rating"  value="1">
         <label for="onestar">1</label><br>
@@ -24,7 +24,8 @@
         <input type="radio" id="fivestar" name="rating" value="5">
         <label for="fourstar">5</label><br><br>
 
-
+        <label for="feedback">Enter your Feedback:</label><span class="required_msg">*</span>
+        <br>
         <textarea name="feedback" id="feedback" cols="30" rows="7"></textarea>
         <br>
         <br>

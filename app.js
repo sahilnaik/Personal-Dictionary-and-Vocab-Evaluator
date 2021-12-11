@@ -154,6 +154,13 @@ app.use("/words", (req, res, next) => {
   next()
 })
 
+app.use("/feedback", (req, res, next) => {
+  if (!req.session.user) {
+    return res.status(403).render('httpErrors/error', {layout: "errorPage", code: 403, description: "Forbidden", title: "403: Forbidden"})
+  }
+  next()
+})
+
 // Unauthenticated User Routes Starts
 
 // MIDDLEWARES ENDS

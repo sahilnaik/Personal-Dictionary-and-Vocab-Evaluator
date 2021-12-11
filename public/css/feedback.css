@@ -6,6 +6,7 @@
   width: 50%;
   height: 90%;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  font-size: x-large;
 }
 
 body {
@@ -28,7 +29,7 @@ body {
     color: #23282d;
   }
    * {
-    box-sizing: border-box;
+    box-sizing: content-box;
     font-family: "Montserrat", sans-serif;
     text-align: center;
     
@@ -54,11 +55,16 @@ textarea[name="feedback"]
 
 
 
-button { padding: 14px 20px;
+button { 
+    padding: 14px 20px;
     background-color: black;
     border-color: #f1f1f1;
     color: white;
     border-radius: 10px;
-
+    cursor: pointer;
 }
- 
+
+.required_msg{
+    color: red;
+    font-size: xx-large;
+}

@@ -40,7 +40,8 @@ function check_for_spaces(string)               //common code for strings
 
 
 router.get('/',async (req,res)=>
-{try{
+{
+  try{
     if(req.session.user){
         let firstName=req.session.user.firstName;
         let lastName=req.session.user.lastName;
