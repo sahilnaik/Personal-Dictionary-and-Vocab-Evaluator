@@ -3,7 +3,7 @@ const express = require('express');
 const res = require('express/lib/response');
 const router = express.Router();
 const { words } = require('../data/index')
-
+const xss = require("xss")
 
 router.post('/createDocument', async (req, res) => {
     let signupForm = req.body
@@ -23,7 +23,12 @@ router.post('/createDocument', async (req, res) => {
 
 router.post('/addWord', async (req, res) => {
     let addWordForm = req.body
-    const { word, meaning, synonym, antonym, example } = addWordForm
+    // const { word, meaning, synonym, antonym, example } = addWordForm
+    const word = xss(addWordForm.word)
+    const meaning = xss(addWordForm.meaning)
+    const synonym = xss(addWordForm.synonym)
+    const antonym = xss(addWordForm.antonym)
+    const example = xss(addWordForm.example)
     try {
         const wordDocument = await words.addWord( req.session.user._id, word, meaning, synonym, antonym, example);
         res.status(200).redirect("/addWords");
@@ -40,10 +45,11 @@ router.post('/addWord', async (req, res) => {
 
 router.post('/:id/editWord', async (req, res) => {
     let editWordForm = req.body
-    const word=editWordForm.wordinput;
-    const synonym=editWordForm.synonymsinput;
-    const antonym=editWordForm.antonymsinput;
-    const example=editWordForm.exampleinput;
+    const word = xss(editWordForm.wordinput);
+    const synonym = xss(editWordForm.synonymsinput);
+    // const meaning = xss(editWordForm.meaning)
+    const antonym = xss(editWordForm.antonymsinput);
+    const example = xss(editWordForm.exampleinput);
     console.log(word);
     console.log(synonym);
     console.log(antonym);

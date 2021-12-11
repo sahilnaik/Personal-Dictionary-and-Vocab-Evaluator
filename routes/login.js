@@ -4,7 +4,7 @@ const path = require("path");
 const data = require("../data");
 const userData = data.users;
 let { ObjectId } = require("mongodb");
-
+const xss = require("xss") 
 
 router.get("/", async (req, res) => {
   try {
@@ -17,8 +17,8 @@ router.get("/", async (req, res) => {
 router.post("/", async (req, res) => {
   let loginData = req.body;
 
-  let email = loginData.email;
-  let password = loginData.password;
+  let email = xss(loginData.email);
+  let password = xss(loginData.password);
 
   if (email.length < 1 || password.length < 8) {
     res.status(400).render("user/login", { layout: "user", error: "Bad data", });
@@ -50,6 +50,7 @@ router.post("/", async (req, res) => {
   }
 });
 module.exports = router;
+
 function validateEmail(email) {
   const re =
     /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;

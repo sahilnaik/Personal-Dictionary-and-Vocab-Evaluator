@@ -2,7 +2,7 @@ const { Router } = require('express');
 const express = require('express');
 const router = express.Router();
 const data = require('../data/feedback');
-
+const xss = require("xss");
 
 
 function check_feedback(rating,feedback)
@@ -64,32 +64,30 @@ router.post('/store',async(req,res)=>
     let firstName;
     let lastName;
     let email;
-    rating=parseInt(req.body.rating)
-    feedback=req.body.feedback.trim()
+    rating = parseInt(req.body.rating)
+    feedback = xss(req.body.feedback).trim()
 
 
-if(req.session.user)
-{
-    firstName=req.session.user.firstName;
-    lastName=req.session.user.lastName;
-    email = req.session.user.email
+    if(req.session.user)
+    {
+        firstName=req.session.user.firstName;
+        lastName=req.session.user.lastName;
+        email = req.session.user.email
 
-}
+    }
 
-try {
+    try {
 
-  check_feedback(rating,feedback)
+      check_feedback(rating,feedback)
 
-    let response=await data.create(firstName,lastName,email,rating,feedback);
-    
-    res.status(200).json({success:true});
-  } 
-  catch (e) {
+        let response=await data.create(firstName,lastName,email,rating,feedback);
+        
+        res.status(200).json({success:true});
+      } 
+      catch (e) {
 
-    res.status(400).json({success:false});
-  }
-
-   
+        res.status(400).json({success:false});
+      }
 })
 
 

@@ -4,7 +4,7 @@ const path = require("path");
 const data = require("../data");
 const userData = data.users;
 let { ObjectId } = require("mongodb");
-
+const xss = require("xss")
 
 router.get("/", async (req, res) => {
   try {
@@ -16,12 +16,12 @@ router.get("/", async (req, res) => {
 
 router.post("/", async (req, res) => {
   let signupData = req.body;
-  let firstName = signupData.firstname;
-  let lastName = signupData.lastname;
-  let email = signupData.email;
-  let password = signupData.psw;
-  let phoneNumber = signupData.phonenumber;
-  let confirmPassword = signupData.psw_repeat;
+  let firstName = xss(signupData.firstname);
+  let lastName = xss(signupData.lastname);
+  let email = xss(signupData.email);
+  let password = xss(signupData.psw);
+  let phoneNumber = xss(signupData.phonenumber);
+  let confirmPassword = xss(signupData.psw_repeat);
   if (
     firstName.length < 1 ||
     lastName.length < 1 ||
