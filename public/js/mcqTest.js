@@ -24,18 +24,18 @@ let answers_i=document.getElementsByClassName("answers_i");
 
 let mcqId=document.getElementById("mcq_id").innerText;
 
-for(let i=0;i<10;i++){
+for(let i=0;i<5;i++){
     questions.push(word_i[i].innerHTML);
     options.push(option_i[i].innerHTML);
     answers.push(answers_i[i].innerHTML);
 }
-
+console.log(options);
 function initialize(){
     let session={};
     let word={};
     let temp=questions[0];
     console.log(temp.question_word);
-    for(let i=0;i<10;i++){
+    for(let i=0;i<5;i++){
         word["question_word"]=questions[i];
         word["options"]=options[i].split(",");
         word["answer"]=answers[i];
@@ -60,7 +60,7 @@ function que(page){
             document.getElementById("prev-button").style.display="flex";
         }
 
-        if(no===10){
+        if(no===5){
             document.getElementById("next-button").style.display="none";
             document.getElementById("submit-button").style.display="flex";
         }else{
@@ -84,7 +84,7 @@ function que(page){
             document.getElementById("prev-button").style.display="flex";
         }
         
-        if(no===10){
+        if(no===5){
             document.getElementById("next-button").style.display="none";
             document.getElementById("submit-button").style.display="flex";
         }else{

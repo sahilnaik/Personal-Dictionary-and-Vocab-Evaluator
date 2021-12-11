@@ -61,11 +61,15 @@ async function createSession(userId, length) {
     .toArray();
   let noOfWords = findWords[0].words.length - 1;
 
-  for (let iterations = 0; iterations < 10; iterations++) {
+  for (let iterations = 0; iterations < 5; iterations++) {
     let randomNum = Math.round(Math.random() * noOfWords);
+    
     let question_word = findWords[0].words[randomNum].word;
+      
+    let noOftimesCorr = findWords[0].words[randomNum].noOfTimesCorrect;
+    
     let answer_word = findWords[0].words[randomNum].synonyms[0];
-    if (!prevQuestion.includes(question_word)) {
+    if (!prevQuestion.includes(question_word) && findWords[0].words[randomNum].noOfTimesCorrect>2) {
       let wrongOption;
       let ansOptions = [];
       let counter = 0;
@@ -223,7 +227,7 @@ async function getLastFiveSessions(id) {
       customSession["id"] = session[i]._id;
       customSession["marks"]= session[i].correctCount;
       customSession["total"]= session[i].words.length;
-      customSession["percentage"]= (session[i].correctCount)*10;
+      customSession["percentage"]= (session[i].correctCount)/(session[i].words.length)*100;
         for(j=0;j<session[i].words.length;j++){
           if(session[i].words[j].correctOrNot==true){
              correctWords.push(session[i].words[j].question_word);
