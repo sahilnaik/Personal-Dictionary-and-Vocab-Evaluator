@@ -1,7 +1,7 @@
 <link rel="stylesheet" href="../public/css/viewWords.css">
 <div class="main_container" >
     <div class="word_title">Personal Dictionary</div>
-
+    <br>
     <div class="word_box">
         <div class="progress_desc">
             <span id="wordCount"></span> out of <span id="wordTotal"></span> words learnt
@@ -36,8 +36,8 @@
                         <h1 id="word"></h1>
                         <input name="wordinput" id="wordinput">    
                     </div>
-                    <br>
-                    <div class="edit_icon_box"><i class="fas fa-edit fa-2x" id="edit_icon" onclick="editStart()"></i></div>
+                    <div class="box_input">
+                        <div class="edit_icon_box"><i class="fas fa-edit fa-2x" id="edit_icon" onclick="editStart()"></i></div>
                     <div class="meaning-field">
                         <p>Meaning &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; : &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<span id="meaning"></span></p>
                         <p id="meaning_err"></p>
@@ -69,18 +69,22 @@
                             <input name="exampleinput" id="exampleinput">
                         </label>
                     </div>
-            <div class="submit_edit">
+                    
+                    <p class="disclaimer_msg">Multiple examples needs to be entered with full stop space as the separator</p>
+                    </div>
+                    <div class="submit_edit">
                 <button type="submit" id="submit-btn">submit</button>
-            </div>
+            </div>    
+                    
         </form>
         </div>
         {{#each wordList}}
         <div class="wordlist_i">
-            <p class="word_i">{{word}}</p>
-            <p class="meaning_i">{{meaning}}</p>
-            <p class="synonyms_i">{{synonyms}}</p>
-            <p class="antonyms_i">{{antonyms}}</p>
-            <p class="examples_i">{{examples}}</p>
+            <p class="word_i">{{{word}}}</p>
+            <p class="meaning_i">{{{meaning}}}</p>
+            <p class="synonyms_i">{{{synonyms}}}</p>
+            <p class="antonyms_i">{{{antonyms}}}</p>
+            <p class="examples_i">{{{examples}}}</p>
         </div>
         {{/each}}
         {{#each yetToLearnWords}}

@@ -6,13 +6,18 @@ html,body,.main-box{
 
 .main-box{
   width: 100%;
-  height: 100%;
+  min-height: 120%;
+}
+
+#example_err{
+  position: relative;
+  top:100px;
 }
 .main_container{
     position: relative;
-    height: 100%;
+    min-height: 100%;
     width: 100%;
-    padding-left: 150px;
+    padding-left: 100px;
 }
 .sidebar{
   z-index:2;
@@ -35,7 +40,7 @@ html,body,.main-box{
 }
 
 .progress{
-  width:70%;
+  width:55%;
   margin-bottom:50px;
   background-color:lightgray;
   position: relative;
@@ -44,7 +49,7 @@ html,body,.main-box{
 
 .progress_desc{
     position: relative;
-    left:70%;
+    left:60%;
     top:1%;
     width:200px;
     font-weight: bolder;
@@ -54,7 +59,7 @@ html,body,.main-box{
   position: relative;
   left:10%;
   z-index: 1;
-  width: 70%;
+  width: 60%;
 }
 .details-box{
   padding-top: 50px;
@@ -62,7 +67,9 @@ html,body,.main-box{
   position: relative;
   z-index: 0;
   width: 70%;
-  padding-left: 50px;
+  right:80px;
+  min-height: 800px;
+  padding-left: 100px;
 }
 
 #details-form{
@@ -218,7 +225,7 @@ html,body,.main-box{
     position: relative;
     display: flex;
     left:10%;
-    width: 70%;
+    width: 55%;
     height: 3em;
     border-radius: .25em;
     overflow: hidden;
@@ -268,7 +275,13 @@ html,body,.main-box{
     display: none;
   }
   
-  
+  .box_input{
+    display: grid;
+    justify-content: center;
+    position: relative;
+    bottom:80px;
+    right:20px;
+  }
   .word-field{
     box-shadow: 0 3px 10px rgb(0 0 0 / 0.9);
     position: relative;
@@ -290,12 +303,21 @@ html,body,.main-box{
     position: relative;
     left:50px;
     width: 850px;
+    
   }
-
+  
+  #meaning::-webkit-scrollbar,#example::-webkit-scrollbar {
+    display: none;
+  }
   .example-field{
     padding-bottom: 50px;
   }
-
+  .disclaimer_msg{
+    display: none;
+    font-size: medium;
+    font-weight: 500;
+    text-align: center;
+  }
   #word{
     position:relative;  
     top:15px;
@@ -305,8 +327,11 @@ html,body,.main-box{
     font-weight: bold;
   }
 
-  #example,#meaning,#synonyms,#antonyms{
+  #example,#meaning{
     position: absolute;
+    overflow: scroll;
+    width:500px;
+    height: 100px;
   }
 
   #synonym_err,#antonym_err,#example_err{
@@ -321,7 +346,7 @@ html,body,.main-box{
 }
 
 .submit_edit{
-  display: grid;
+  display: none;
 }
 
 #submit-btn{
@@ -373,7 +398,7 @@ p{
 .edit_icon_box{
   display: flex;
   position: relative;
-  left:900px;
+  left:800px;
   width: 150px;
 }
 

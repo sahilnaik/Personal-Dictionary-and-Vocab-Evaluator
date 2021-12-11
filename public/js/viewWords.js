@@ -31,27 +31,51 @@ function editStart(){
         document.getElementById('synonyms').contentEditable="false";
         document.getElementById('synonyms').style.border="none";
         document.getElementsByClassName('required_msg')[0].style.display="none";
+        document.getElementsByClassName('disclaimer_msg')[0].style.display="none";
+        document.getElementById('meaning_err').style.display="none";
+        document.getElementById('synonym_err').style.display="none";
+        document.getElementById('antonym_err').style.display="none";
+        document.getElementById('example_err').style.display="none";
+        document.getElementsByClassName('submit_edit')[0].style.display="none";
     }else{
         document.getElementById('synonyms').contentEditable="true";
         document.getElementById('synonyms').style.minWidth="200px";
         document.getElementById('synonyms').style.border="2px solid black";
+        document.getElementsByClassName('disclaimer_msg')[0].style.display="grid";
         document.getElementsByClassName('required_msg')[0].style.display="inline";
+        document.getElementsByClassName('submit_edit')[0].style.display="grid";
     }
     if(document.getElementById('antonyms').contentEditable=="true"){
         document.getElementById('antonyms').contentEditable="false";
         document.getElementById('antonyms').style.border="none";
+        document.getElementById('meaning_err').style.display="none";
+        document.getElementById('synonym_err').style.display="none";
+        document.getElementById('antonym_err').style.display="none";
+        document.getElementById('example_err').style.display="none";
+        document.getElementsByClassName('disclaimer_msg')[0].style.display="none";
+        document.getElementsByClassName('submit_edit')[0].style.display="none";
     }else{
         document.getElementById('antonyms').contentEditable="true";
         document.getElementById('antonyms').style.minWidth="200px";
         document.getElementById('antonyms').style.border="2px solid black";
+        document.getElementsByClassName('disclaimer_msg')[0].style.display="grid";
+        document.getElementsByClassName('submit_edit')[0].style.display="grid";
     }
     if(document.getElementById('example').contentEditable=="true"){
         document.getElementById('example').contentEditable="false";
         document.getElementById('example').style.border="none";
+        document.getElementById('meaning_err').style.display="none";
+        document.getElementById('synonym_err').style.display="none";
+        document.getElementById('antonym_err').style.display="none";
+        document.getElementById('example_err').style.display="none";
+        document.getElementsByClassName('submit_edit')[0].style.display="none";
+        document.getElementsByClassName('disclaimer_msg')[0].style.display="none";
     }else{
         document.getElementById('example').contentEditable="true";
         document.getElementById('example').style.minWidth="200px";
         document.getElementById('example').style.border="2px solid black";
+        document.getElementsByClassName('submit_edit')[0].style.display="grid";
+        document.getElementsByClassName('disclaimer_msg')[0].style.display="grid";
     }
 
 }
@@ -96,8 +120,9 @@ for(let i=0;i<word_i.length;i++){
     meaningsList.push(meaning_i[i].innerHTML);
     synonymsList.push(synonyms_i[i].innerHTML);
     antonymsList.push(antonyms_i[i].innerHTML);
-    examplesList.push(examples_i[i].innerHTML);
+    examplesList.push(examples_i[i].innerText);
 }
+console.log(examplesList);
 let wordList=[];
 let finalList=[];
 for(let i=0;i<wordsList.length;i++){
@@ -105,7 +130,7 @@ for(let i=0;i<wordsList.length;i++){
     word["meaning"]=meaningsList[i];
     word["synonyms"]=synonymsList[i].split(", ");
     word["antonyms"]=antonymsList[i].split(", ");
-    word["example"]=examplesList[i].split(", ");        
+    word["example"]=examplesList[i].split(". ");        
     wordList.push(word);
     word={};
             
@@ -355,7 +380,7 @@ function elementReturn(selection){
         i++;
     }
     antonymsString+=antonymList[antonymList.length-1];
-
+    console.log(example[0]);
     let exampleList=example[0].split('.');
     let examplesString="";
     i=0;
@@ -518,26 +543,6 @@ detailsForm.addEventListener('submit', (event) => {
                 validateExample=false;
                 return validateExample;
             }else{
-                example_err.style.display="none";
-                validateExample=true;
-            }
-            i=0;
-            flag=0;
-            while(i<example.length){
-                let code = example.charCodeAt(i);
-                if (!(code > 64 && code < 91) &&
-                    !(code > 96 && code < 123)&& !(code===44)&& !(code===32)&& !(code===46)) {
-                        example_err.style.display="grid";
-                        example_err.innerText=`Input example ${example} can only contain alphabets,commas and space! Multiple examples can be entered with commas as the separator.`;
-                        validateExample=false;
-                        flag=1;
-                        return validateExample;
-                }else{
-                    i++;
-                }
-            }
-
-            if(flag===1){
                 example_err.style.display="none";
                 validateExample=true;
             }
