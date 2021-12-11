@@ -53,7 +53,7 @@ var upload = multer({
       cb(null, true);
     } else {
       cb(null, false);
-      let error = true
+      let error = "Error"
       return error
     }
   } 
@@ -61,7 +61,7 @@ var upload = multer({
 
 app.post('/profile-upload-single', result = upload.single('profile-file'), async function (req, res, next) {
   try {
-    if (result) {
+    if (result === "Error") {
       throw 'Only .png, .jpg and .jpeg format allowed!'
     }
     profilePicture = req.file.originalname;
@@ -70,7 +70,8 @@ app.post('/profile-upload-single', result = upload.single('profile-file'), async
     return res.redirect('/profile');
   } catch (error) {
     console.log(error);
-    return res.status(401).redirect('/profile')
+    res.status(401).redirect('/profile')
+    return
   }
     
   next()
