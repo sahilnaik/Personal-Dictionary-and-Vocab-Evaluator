@@ -66,10 +66,10 @@ async function createSession(userId, length) {
     
     let question_word = findWords[0].words[randomNum].word;
       
-    let noOftimesCorr = findWords[0].words[randomNum].noOfTimesCorrect;
+
     
     let answer_word = findWords[0].words[randomNum].synonyms[0];
-    if (!prevQuestion.includes(question_word) && findWords[0].words[randomNum].noOfTimesCorrect>2) {
+    if (!prevQuestion.includes(question_word) && findWords[0].words[randomNum].progress=="learnt") {
       let wrongOption;
       let ansOptions = [];
       let counter = 0;

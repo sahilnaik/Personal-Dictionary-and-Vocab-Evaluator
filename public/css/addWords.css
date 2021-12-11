@@ -42,6 +42,10 @@ html,body{
     display: flex;
 }
 
+label{
+    margin-top: 5px;
+}
+
 .submit-field{
     display: flex;
     position: relative;
@@ -67,7 +71,7 @@ p{
 
 .required_msg{
     color: red;
-    font-size: xx-large;
+    font-size: larger;
 }
 
 .disclaimer_msg{
