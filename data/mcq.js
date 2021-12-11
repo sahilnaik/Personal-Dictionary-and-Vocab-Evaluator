@@ -71,7 +71,7 @@ async function createSession(userId, length) {
       let counter = 0;
       for (let i = 0; i < 4; i++) {
         let randomNumForOptions = Math.round(Math.random() * noOfWords);
-        wrongOption = findWords[0].words[randomNumForOptions].antonyms[0];
+        wrongOption = findWords[0].words[randomNumForOptions].synonyms[0];
         if (counter < 3) {
           if (
             randomNumForOptions != randomNum &&
