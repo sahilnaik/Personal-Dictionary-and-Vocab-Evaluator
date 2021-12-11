@@ -6,8 +6,7 @@ const words = mongoCollections.words
 const createWordsDocument = async function createWordsDocument(userId) {
     let wordCollection = await words()
     userId = ObjectId(userId)
-    // let result
-    let newWordObject = {
+     let newWordObject = {
         _id: new ObjectId(),
         userId: userId,
         words: [],
@@ -16,7 +15,6 @@ const createWordsDocument = async function createWordsDocument(userId) {
         learnt: 0
     }
     
-    // newWordObject.words.push(newWord)
     const insertWord = await wordCollection.insertOne(newWordObject)  
     if (insertWord.insertedCount === 0) {
         throw {code: 500, error: `Unable to create the word Document`}
@@ -35,6 +33,13 @@ const addWord = async function (userId,  word, meaning, synonym, antonym, exampl
         throw {code: 404, error: `No such userId exists to add any words`}
     }
     word = word.toLowerCase()  
+
+    wordDocument.words.forEach(x =>{
+        if (x.word.toLowerCase() === word) {
+            throw {code: 401, error: "Word already exists in the database."}
+        }
+    })
+
     let newWord = {
         word: word,
         meaning: meaning,
@@ -111,9 +116,6 @@ const editWord = async function editWord(userId, word, synonym, antonym, example
                 break
             }            
         }  
-        // if (!same) {
-        //     editingWord.synonyms.push(synonym[i])        
-        // }  
     }
 
     if (antonym.trim().length !== 0) {
@@ -128,9 +130,6 @@ const editWord = async function editWord(userId, word, synonym, antonym, example
                     break
                 }            
             }  
-            // if (!same) {
-            //     editingWord.antonyms.push(antonym[i])        
-            // }  
         }
     }    
     
@@ -146,9 +145,6 @@ const editWord = async function editWord(userId, word, synonym, antonym, example
                     break
                 }            
             }  
-            // if (!same) {
-            //     editingWord.examples.push(example[i])        
-            // }  
         }
     }
 
@@ -215,8 +211,6 @@ const updateProgress = async function updateProgress(userId, word) {
     
     wordDocument.words.every(async x =>{
         if (x.word == word) {
-            let updatingWord
-            // updatingWord.word = x.word
             x.progress = "learning"
             let updatingProgress = await wordCollection.updateOne({userId: ObjectId(userId)}, {$set: {words: wordDocument.words}})
             if (!updatingProgress) {

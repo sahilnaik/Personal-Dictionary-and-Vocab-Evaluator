@@ -23,7 +23,10 @@ router.post('/createDocument', async (req, res) => {
 
 router.post('/addWord', async (req, res) => {
     let addWordForm = req.body
-    // const { word, meaning, synonym, antonym, example } = addWordForm
+    let profilePicture= req.session.user.profilePicture;
+    let firstName= req.session.user.firstName;
+    let lastName= req.session.user.lastName;
+
     const word = xss(addWordForm.word)
     const meaning = xss(addWordForm.meaning)
     const synonym = xss(addWordForm.synonym)
@@ -31,13 +34,13 @@ router.post('/addWord', async (req, res) => {
     const example = xss(addWordForm.example)
     try {
         const wordDocument = await words.addWord( req.session.user._id, word, meaning, synonym, antonym, example);
-        res.status(200).redirect("/addWords");
+        res.status(200).render("/addWords", { profilePicture: profilePicture, firstName: firstName, lastName: lastName });
     } catch (e) {
         if (e.code) {
-            res.status(e.code).json(e.error)
+            res.status(e.code).render("words/addWords", {error: e.error})
         } else {
             console.log(e)
-            res.status(400).json(e)          
+            res.json(e)          
         }
     }
 })

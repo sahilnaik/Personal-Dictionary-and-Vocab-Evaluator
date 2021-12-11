@@ -21,7 +21,7 @@ router.get('/', async(req,res)=>{
         const fScores = flashcardSession.scores;
         const flashcardSessionId = flashcardSession.sessionId;
         res.render('dashboard/dashboard', {
-            layout: "dashboardMain",firstName: firstName,lastName: lastName,profilePicture: profilePicture, 
+            layout: "dashboardMain",firstName: firstName,lastName: lastName, profilePicture: profilePicture, 
             email:email, mcqScore: mcqScore, mcqSession: scores, mcqSessionId: mcqSessionId,
             flashcardScore: flashcardScore, flashcardSession: fScores, flashcardSessionId: flashcardSessionId});
         } 

@@ -4,6 +4,11 @@
             <h1 class="word-heading">ADD WORDS</h1>
         </header>
         <form action="/words/addWord" method="post" id="add-word-form">
+            {{#if error}}
+                <div class="errorDiv">
+                    <p>{{error}}</p>
+                </div>
+            {{/if}}
                         <div class="word-field">
                             <p>Enter Word<span class="required_msg">*</span> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;: &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </p>
                             <label for="word">
