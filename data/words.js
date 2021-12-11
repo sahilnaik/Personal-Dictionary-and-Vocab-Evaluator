@@ -90,12 +90,14 @@ const editWord = async function editWord(userId, word, synonym, antonym, example
     }
     word = word.toLowerCase() 
     let editingWord, i=0, indexof
-    wordDocument.words.forEach(x => {
+    wordDocument.words.every(x => {
         i++
-        if (x.word == word) {
+        if (x.word.toLowerCase() == word) {
             editingWord = x
             indexof = i
+            return false
         }
+        return true
     })
 
     synonym = synonym.split(", ")
