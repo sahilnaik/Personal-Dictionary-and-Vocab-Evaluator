@@ -44,6 +44,16 @@ function check_for_spaces(string)               //common code for strings
 
 async function create(firstName,lastName,email,rating,feedback)
 {
+    check_for_spaces(firstName);
+    check_for_spaces(lastName);
+    check_for_spaces(email);
+    if(!firstName || !lastName || !email || !rating || !feedback || firstName === null || lastName === null || email === null || rating === null || feedback === null)
+    {
+        throw 'Invalid Input';
+    }
+   
+    
+
    
     check_feedback(rating,feedback)
 

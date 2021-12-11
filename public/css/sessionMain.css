@@ -46,7 +46,7 @@ html,body{
     justify-content: flex-end;
     font-size: large;
     font-weight: 900;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    /* font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; */
     display: flex;
     padding-right: 30px;
     position: relative;
