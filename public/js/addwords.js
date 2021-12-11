@@ -44,8 +44,11 @@ window.addEventListener('load', (event) => {
 
      function checkWord(word,word_err){
          if(word.length===0){
+
                  word_err.style.display="grid";
+                    document.getElementById('word').focus();
                  word_err.innerText="Please Enter a valid word";
+
                  validateWord=false;
                  return validateWord;
              }else{
@@ -54,6 +57,7 @@ window.addEventListener('load', (event) => {
              }
              if(word.match(/\s+/)){
                  word_err.style.display="grid";
+                 document.getElementById('word').focus();
                  word_err.innerText="Word consists of spaces. Please Enter a valid word";
                  validateWord=false;
                  return validateWord;
@@ -68,6 +72,7 @@ window.addEventListener('load', (event) => {
                  if (!(code > 64 && code < 91) &&
                      !(code > 96 && code < 123)&& !(code===32)) {
                          word_err.style.display="grid";
+                            document.getElementById('word').focus();
                          word_err.innerText=`Input word ${word} can only contain alphabets!`;
                          validateWord=false;
                          flag=1;
@@ -87,6 +92,7 @@ window.addEventListener('load', (event) => {
      function checkMeaning(meaning,meaning_err){
              if(meaning.length===0){
                  meaning_err.style.display="grid";
+                    document.getElementById('meaning').focus();
                  meaning_err.innerText="Please Enter a valid meaning";
                  validateMeaning=false;
                  return validateMeaning;
@@ -96,6 +102,7 @@ window.addEventListener('load', (event) => {
              }
              if(meaning.match(/^\s+$/)){
                  meaning_err.style.display="grid";
+                 document.getElementById('meaning').focus();
                  meaning_err.innerText="Meaning is full of empty spaces. Please Enter a valid meaning";
                  validateMeaning=false;
                  return validateMeaning;
@@ -109,6 +116,7 @@ window.addEventListener('load', (event) => {
      function checkSynonym(synonym,synonym_err){
              if(synonym.length===0){
                  synonym_err.style.display="grid";
+                 document.getElementById('synonym').focus();
                  synonym_err.innerText="Please Enter a valid synonym";
                  validateSynonym=false;
                  return validateSynonym;
@@ -118,6 +126,7 @@ window.addEventListener('load', (event) => {
              }
              if(synonym.match(/^\s+$/)){
                  synonym_err.style.display="grid";
+                 document.getElementById('synonym').focus();
                  synonym_err.innerText="Synonym consist full of empty spaces. Please Enter a valid synonym";
                  validateSynonym=false;
                  return validateSynonym;
@@ -136,7 +145,8 @@ window.addEventListener('load', (event) => {
                     if (!(code > 64 && code < 91) &&
                         !(code > 96 && code < 123)) {
                             synonym_err.style.display="grid";
-                            synonym_err.innerText=`Input synonym ${synonym} can only have alphabets and comma spaces as separator. Multiple synonyms can be entered with comma space as the separator!`;
+                            document.getElementById('synonym').focus();
+                            synonym_err.innerText=`Input synonym ${synonym} can only have alphabets and comma spaces as separator. \n Multiple synonyms can be entered with comma space as the separator!`;
                             validateSynonym=false;
                             flag=1;
                             return validateSynonym;
@@ -163,6 +173,7 @@ window.addEventListener('load', (event) => {
              }
              if(antonym.match(/^\s+$/)){
                  antonym_err.style.display="grid";
+                    document.getElementById('antonym').focus();
                  antonym_err.innerText="Antonym consists of spaces. Please Enter a valid antonym";
                  validateAntonym=false;
                  return validateAntonym;
@@ -181,7 +192,8 @@ window.addEventListener('load', (event) => {
                     if (!(code > 64 && code < 91) &&
                         !(code > 96 && code < 123)) {
                             antonym_err.style.display="grid";
-                            antonym_err.innerText=`Input antonym ${antonym} can only have alphabets and comma spaces as separator. Multiple antonyms can be entered with comma space as the separator!`;
+                            document.getElementById('antonym').focus();
+                            antonym_err.innerText=`Input antonym ${antonym} can only have alphabets and comma spaces as separator. \n Multiple antonyms can be entered with comma space as the separator!`;
                             validateAntonym=false;
                             flag=1;
                             return validateAntonym;
@@ -208,7 +220,9 @@ window.addEventListener('load', (event) => {
              }
              if(example.match(/^\s+$/)){
                  example_err.style.display="grid";
+                    document.getElementById('example').focus();
                  example_err.innerText="Example is full of empty spaces. Please enter a valid example!";
+                 
                  validateExample=false;
                  return validateExample;
              }else{
