@@ -26,8 +26,8 @@ router.get('/sessions', async (req, res) => {
         let firstName= req.session.user.firstName;
         let lastName= req.session.user.lastName;
         
-        const noOfWords = await words.noOfWords(req.session.user._id);
-        if (noOfWords <= 9) {
+        const noOfLearntWords = await words.getAll(req.session.user._id);
+        if (noOfLearntWords.learntWords.length < 5) {
             res.render('mcq/mcqSessions',{title:"MCQ",layout: "sessionMain", insufficientWords: true, profilePicture: profilePicture, firstName: firstName, lastName: lastName});
        
         } else{
