@@ -46,7 +46,7 @@ router.get('/',async (req,res)=>
         let lastName=req.session.user.lastName;
         let profilePicture=req.session.user.profilePicture;
 
-        res.render('feedback/feedback',{firstName: firstName,lastName: lastName,profilePicture: profilePicture});
+        res.render('feedback/feedback',{firstName: firstName,lastName: lastName,profilePicture: profilePicture, title:'Feedback'});
     } 
     else{
         res.redirect('/login');
