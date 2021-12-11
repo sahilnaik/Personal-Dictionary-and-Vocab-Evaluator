@@ -78,6 +78,12 @@ app.post('/profile-upload-single', result = upload.single('profile-file'), async
 })
 
 // Authenticated User Routes Starts
+app.get("/", (req, res, next) => {
+  if (req.session.user) {
+    return res.redirect("/dashboard") //IT should actually be /dashboard
+  }
+  next()
+})
 
 app.use("/login", (req, res, next) => {
   if (req.session.user) {
