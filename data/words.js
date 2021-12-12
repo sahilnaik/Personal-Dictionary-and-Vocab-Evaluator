@@ -15,18 +15,18 @@ const checkSameSynonym = async (synonym) =>{
 
 const checkSameAntonym = async (antonym) => {
     let sameAntonym = false
-    for (let i = 1; i < synonym.length; i++) {
-        if(synonym[i-1] == synonym[i]){
+    for (let i = 1; i < antonym.length; i++) {
+        if(antonym[i-1] == antonym[i]){
             sameAntonym = true
             throw {code: 401, error: `No 2 antonyms can be same. Every antonym must be unique`}
         }  
     }
 }
 
-const checkSameExamples = async (antonym) => {
+const checkSameExamples = async (example) => {
     let sameExample = false
-    for (let i = 1; i < synonym.length; i++) {
-        if(synonym[i-1] == synonym[i]){
+    for (let i = 1; i < example.length; i++) {
+        if(example[i-1] == example[i]){
             sameExample = true
             throw {code: 401, error: `No 2 examples can be same. Every example must be unique`}
         }   
@@ -276,6 +276,9 @@ const editWord = async function editWord(userId, word, synonym, antonym, example
         let exampleLenght = example.length
         if (editingWord.examples.length != 0) {
             for (let i = 0; i < exampleLenght; i++) {
+                if(example[i].trim().length == 0) {
+                    throw {code: 400, error: `Example is empty`}
+                }
                 let same = false
                 for (let j = 0; j < editingWord.examples.length; j++) {
                     if (editingWord.examples[j] == example[i]) {
@@ -328,6 +331,16 @@ const editWord = async function editWord(userId, word, synonym, antonym, example
 }
 
 const getAll = async function getAll(userId) {
+    if(arguments.length != 1) {
+        throw {code: 400, error: `Check the number of arguments`}
+    }
+    if(typeof userId != 'string') {
+        throw {code: 400, error: `Check if the argument is of type string`}
+    }
+    if(!ObjectId.isValid(userId)) {
+        throw {code: 400, error: `UserId is invalid`}
+    }
+
     let wordCollection = await words()
     let wordDocument = await wordCollection.findOne({userId: ObjectId(userId)})
     if (!wordDocument) {
@@ -351,6 +364,16 @@ const getAll = async function getAll(userId) {
 
 
 const noOfWords = async function noOfWords(userId) {
+    if(arguments.length != 1) {
+        throw {code: 400, error: `Check the number of arguments`}
+    }
+    if(typeof userId != 'string') {
+        throw {code: 400, error: `Check if the argument is of type string`}
+    }
+    if(!ObjectId.isValid(userId)) {
+        throw {code: 400, error: `UserId is invalid`}
+    }
+
     let wordCollection = await words()
     let wordDocument = await wordCollection.findOne({userId: ObjectId(userId)})
     if (!wordDocument) {
@@ -361,6 +384,22 @@ const noOfWords = async function noOfWords(userId) {
 }
 
 const updateAllWordsProgress = async function updateAllWordsProgress(userId, correctArray, incorrectArray) {
+    if(arguments.length != 3) {
+        throw {code: 400, error: `Check the number of arguments`}
+    }
+    if(typeof userId != 'string') {
+        throw {code: 400, error: `Check if the argument is of type string`}
+    }
+    if(!ObjectId.isValid(userId)) {
+        throw {code: 400, error: `UserId is invalid`}
+    }
+    if(!Array.isArray(correctArray)) {
+        throw {code: 400, error: `Check if the argument is of type array`}
+    }
+    if(!Array.isArray(incorrectArray)) {
+        throw {code: 400, error: `Check if the argument is of type array`}
+    }
+
     let wordCollection = await words()
     let wordDocument = await wordCollection.findOne({userId: ObjectId(userId)})
 
@@ -390,6 +429,19 @@ const updateAllWordsProgress = async function updateAllWordsProgress(userId, cor
 }
 
 const updateProgressToLearning = async function updateProgressToLearning(userId, word) {
+    if(arguments.length != 2) {
+        throw {code: 400, error: `Check the number of arguments`}
+    }
+    if(typeof userId != 'string') {
+        throw {code: 400, error: `Check if the argument is of type string`}
+    }
+    if(!ObjectId.isValid(userId)) {
+        throw {code: 400, error: `UserId is invalid`}
+    }
+    if(typeof word != 'string') {
+        throw {code: 400, error: `Check if the argument is of type string`}
+    }
+
     let wordCollection = await words()
     let wordDocument = await wordCollection.findOne({userId: ObjectId(userId)})
     
@@ -406,6 +458,17 @@ const updateProgressToLearning = async function updateProgressToLearning(userId,
 }
 
 const updateCounters = async function updateCounters(userId) {
+    if(arguments.length != 1) {
+        throw {code: 400, error: `Check the number of arguments`}
+    }
+    if(typeof userId != 'string') {
+
+        throw {code: 400, error: `Check if the argument is of type string`}
+    }
+    if(!ObjectId.isValid(userId)) {
+        throw {code: 400, error: `UserId is invalid`}
+    }
+
     let wordCollection = await words()
     let wordDocument = await wordCollection.findOne({userId: ObjectId(userId)})
 
