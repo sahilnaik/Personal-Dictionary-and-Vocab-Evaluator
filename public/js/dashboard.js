@@ -65,7 +65,8 @@ data: {
 options: {
     scales: {
             y: {
-                suggestedMax: 5
+                suggestedMax: 5,
+                ticks:{stepSize:1}
             }
     },
     plugins: {
