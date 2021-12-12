@@ -8,13 +8,9 @@ html,body{
 }
 
 .sub-box{
-    padding-left: 50px;
+    padding-left: 30px;
     display: grid;
     grid-template-rows: 50% 25% 25%;
-}
-.profile_form{
-    max-width: 1600px;
-
 }
 
 .profile_pic_box{
@@ -49,11 +45,6 @@ html,body{
 }
 
 
-
-.profile_details{
-    max-width: 1600px;
-}
-
 .pname{
     font-weight: 700;
     font-size: large;
@@ -62,8 +53,6 @@ html,body{
 hr{
     border:1px black solid;
     width:100%;
-    position: relative;
-    right:30px;
 }
 
 .hidden{
