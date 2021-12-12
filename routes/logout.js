@@ -8,10 +8,10 @@ let { ObjectId } = require("mongodb");
 router.get("/", (req, res) => {
     try{
         req.session.destroy();
-        res.render("user/logout", { layout: "user" });
+        return res.render("user/logout", { layout: "user" });
     }    
     catch (e) {
-        res.status(500).json({ error: e });
+        return res.status(500).render('httpErrors/error', {code:'500', description: e});
       }
 })
 

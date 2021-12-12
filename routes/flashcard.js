@@ -86,7 +86,7 @@ router.post("/flashcardsubmit", async (req, res) => {
         const flashcardList = await flashcardData.updateSession(userId, sessionId, stuff, numberOfCorrect);
        
     } catch (error) {
-        res.status(500).json({ error: error });
+        return res.status(500).json({ error: error });
     }
         
     

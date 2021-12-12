@@ -20,17 +20,17 @@ router.get('/', async(req,res)=>{
         const flashcardSession = await flashcardData.getLastFiveSessionScore(req.session.user._id);
         const fScores = flashcardSession.scores;
         const flashcardSessionId = flashcardSession.sessionId;
-        res.render('dashboard/dashboard', {
+        return res.render('dashboard/dashboard', {
             layout: "dashboardMain",firstName: firstName,lastName: lastName, profilePicture: profilePicture, 
             email:email, mcqScore: mcqScore, mcqSession: scores, mcqSessionId: mcqSessionId,
             flashcardScore: flashcardScore, flashcardSession: fScores, flashcardSessionId: flashcardSessionId});
         } 
         else{
-            res.redirect('/login');
+           return res.redirect('/login');
         }
         
     }catch(e){
-        res.status(500).json({error:"Hmmm something went wrong"});
+        return res.status(500).json({error:"Hmmm something went wrong"});
     }
 });
 module.exports = router;

@@ -10,7 +10,8 @@ router.get("/", async (req, res) => {
   try {
     res.render("user/signup", { layout: "user" });
   } catch (e) {
-    res.status(500).json({ error: e });
+    //res.status(500).json({ error: e });
+    return res.status(500).render('httpErrors/error', {code:'500', description: e});
   }
 });
 
@@ -103,7 +104,7 @@ router.post("/", async (req, res) => {
 
     res.redirect("./login");
   } catch (error) {
-    return res.status(404).render("user/signup", {
+    return res.status(500).render("user/signup", {
       layout: "user",
       error: error,
     });

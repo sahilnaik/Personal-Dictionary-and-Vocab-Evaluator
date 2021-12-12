@@ -43,7 +43,7 @@ const constructorMethod = (app) => {
     
     app.use('*', (req, res) => {
         
-        res.status(404).sendFile(path.resolve("static/errorPage.html"));
+        return res.status(404).sendFile(path.resolve("static/errorPage.html"));
        
     });
     

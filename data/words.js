@@ -339,9 +339,7 @@ const getAll = async function getAll(userId) {
     if(arguments.length != 1) {
         throw {code: 400, error: `Check the number of arguments`}
     }
-    if(typeof userId != 'string') {
-        throw {code: 400, error: `Check if the argument is of type string`}
-    }
+    
     if(!ObjectId.isValid(userId)) {
         throw {code: 400, error: `UserId is invalid`}
     }
@@ -372,9 +370,7 @@ const noOfWords = async function noOfWords(userId) {
     if(arguments.length != 1) {
         throw {code: 400, error: `Check the number of arguments`}
     }
-    if(typeof userId != 'string') {
-        throw {code: 400, error: `Check if the argument is of type string`}
-    }
+   
     if(!ObjectId.isValid(userId)) {
         throw {code: 400, error: `UserId is invalid`}
     }
@@ -392,9 +388,7 @@ const updateAllWordsProgress = async function updateAllWordsProgress(userId, cor
     if(arguments.length != 3) {
         throw {code: 400, error: `Check the number of arguments`}
     }
-    if(typeof userId != 'string') {
-        throw {code: 400, error: `Check if the argument is of type string`}
-    }
+  
     if(!ObjectId.isValid(userId)) {
         throw {code: 400, error: `UserId is invalid`}
     }
@@ -437,9 +431,7 @@ const updateProgressToLearning = async function updateProgressToLearning(userId,
     if(arguments.length != 2) {
         throw {code: 400, error: `Check the number of arguments`}
     }
-    if(typeof userId != 'string') {
-        throw {code: 400, error: `Check if the argument is of type string`}
-    }
+    
     if(!ObjectId.isValid(userId)) {
         throw {code: 400, error: `UserId is invalid`}
     }
@@ -465,10 +457,6 @@ const updateProgressToLearning = async function updateProgressToLearning(userId,
 const updateCounters = async function updateCounters(userId) {
     if(arguments.length != 1) {
         throw {code: 400, error: `Check the number of arguments`}
-    }
-    if(typeof userId != 'string') {
-
-        throw {code: 400, error: `Check if the argument is of type string`}
     }
     if(!ObjectId.isValid(userId)) {
         throw {code: 400, error: `UserId is invalid`}

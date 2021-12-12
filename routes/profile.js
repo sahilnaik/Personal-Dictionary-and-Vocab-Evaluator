@@ -13,12 +13,13 @@ router.get('/', async(req,res)=>{
         email = req.session.user.email;
         let id = req.session.user._id;
         const { wordList, yetToLearnWords, learningWords, learntWords } = await getAll(id);
-        res.render('profile/profile', {title:"Profile",firstName: firstName,lastName: lastName, profilePicture: profilePicture, email:email,
+        return res.render('profile/profile', {title:"Profile",firstName: firstName,lastName: lastName, profilePicture: profilePicture, email:email,
         wordList: wordList, wordListLength: wordList.length, yetToLearnWords: yetToLearnWords, learningWords: learningWords,
         learntWords: learntWords, yetToLearnWordsLength: yetToLearnWords.length, learningWordsLength: learningWords.length,
         learntWordsLength: learntWords.length });
     }catch(e){
-        res.status(500).json({error:e});
+        
+        return res.status(500).render('httpErrors/error', {code:'500', description: e});
     }
 });
 

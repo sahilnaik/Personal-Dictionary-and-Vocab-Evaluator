@@ -13,9 +13,13 @@ router.post('/createDocument', async (req, res) => {
         res.status(200).json(`Word document successfully created for User ID: ${userId} with document ID:${wordDocument}`)
     } catch (e) {
         if (e.code) {
-            res.status(e.code).json(e.error)
+          //  res.status(e.code).json(e.error)
+            res.status(e.code).render("words/addWords", {title:"Add Words",profilePicture: profilePicture,error: e.error, firstName: firstName, lastName: lastName})
+    
         } else {
-            res.status(400).json(e)          
+          //  res.status(400).json(e)    
+            return res.status(500).render('httpErrors/error', {code:'500', description: e});         
+           
         }
     }
 })
@@ -34,13 +38,14 @@ router.post('/addWord', async (req, res) => {
     const example = xss(addWordForm.example)
     try {
         const wordDocument = await words.addWord( req.session.user._id, word, meaning, synonym, antonym, example);
-        res.status(200).render("words/addWords", {title:"Add Words", profilePicture: profilePicture, firstName: firstName, lastName: lastName });
+        return res.status(200).render("words/addWords", {title:"Add Words", profilePicture: profilePicture, firstName: firstName, lastName: lastName });
     } catch (e) {
         if (e.code) {
-            res.status(e.code).render("words/addWords", {title:"Add Words",profilePicture: profilePicture,error: e.error, firstName: firstName, lastName: lastName})
+            return res.status(e.code).render("words/addWords", {title:"Add Words",profilePicture: profilePicture,error: e.error, firstName: firstName, lastName: lastName})
         } else {
             console.log(e)
-            res.json(e)          
+            return res.status(500).render('httpErrors/error', {code:'500', description: e});         
+       
         }
     }
 })
@@ -60,13 +65,15 @@ router.post('/:id/editWord', async (req, res) => {
 
     try {
         const wordDocument = await words.editWord(req.params.id, word, synonym, antonym, example);
-        res.status(200).redirect("/viewWords");
+        return res.status(200).redirect("/viewWords");
     } catch (e) {
         if (e.code) {
-            res.status(e.code).json(e.error)
+           // res.status(e.code).json(e.error)
+            return res.status(e.code).render('httpErrors/error', {code:e.code, description: e.error});
         } else {
-            console.log(e)
-            res.status(400).json(e)          
+          //  console.log(e)
+           // res.status(400).json(e) 
+            return res.status(500).render('httpErrors/error', {code:'500', description: e});         
         }
     }
 })

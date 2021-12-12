@@ -48,13 +48,16 @@ router.get('/',async (req,res)=>
         let profilePicture=req.session.user.profilePicture;
 
         res.render('feedback/feedback',{firstName: firstName,lastName: lastName,profilePicture: profilePicture, title:'Feedback'});
+        return;
     } 
     else{
-        res.redirect('/login');
+      return res.redirect('/login');
     }
 
 }catch(e){
-    res.status(500).json({error:"Hmmm something went wrong"});
+   // res.status(500).json({error:"Hmmm something went wrong"});
+    res.status(500).render('httpErrors/error', {code:'500', description: "Hmmm something went wrong"});
+    return;
 }
 })
 
@@ -82,11 +85,12 @@ router.post('/store',async(req,res)=>
 
         let response=await data.create(firstName,lastName,email,rating,feedback);
         
-        res.status(200).json({success:true});
+        return res.status(200).json({success:true});
+        
       } 
       catch (e) {
 
-        res.status(400).json({success:false});
+       return res.status(400).json({success:false});
       }
 })
 
