@@ -58,7 +58,7 @@ html,body,.main-box,.main-dashboard{
 .mcq-word{
     padding-top: 20px;
     position: relative;
-    left:40px;
+    left:0px;
     padding-bottom: 10px;
 }
 
@@ -263,4 +263,13 @@ td{
     color: white;
     position: relative;
     background-color: #1e51dc;
+}
+
+#word{
+    font-weight: 600;
+    font-size: x-large;
+}
+
+#report_table{
+    margin-left: 30px;
 }

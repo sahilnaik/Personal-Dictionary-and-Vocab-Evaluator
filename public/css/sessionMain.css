@@ -6,7 +6,7 @@ html,body{
     display: flex;
     justify-items: center;
     padding-top: 5px;
-    padding-left: 550px;
+    padding-left: 750px;
 }
 
 .main-box{
@@ -24,6 +24,7 @@ html,body{
     display: grid;
     position: fixed;
     grid-template-rows:15% 15% 15% 15% 15%;
+    z-index: 3;
 }
 
 .main-dashboard{
@@ -37,8 +38,7 @@ html,body{
     max-height: 50px;
     box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
     position: fixed;
-    left:150px;
-    width: 90%;
+    width: 100%;
 }
 
 

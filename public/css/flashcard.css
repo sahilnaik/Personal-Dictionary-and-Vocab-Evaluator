@@ -195,12 +195,19 @@ td{
     text-align: center;
 }
 
+#cardTitle{
+    font-size: xx-large;
+    font-weight: 700;
+}
+
 #card1,#card2{
     max-width: 70rem;
 }
 
 #word,#meaning{
     text-align: center;
+    font-size: xx-large;
+    font-weight: 700;
 }
 
 .card-text,.card-title{
@@ -246,4 +253,8 @@ td{
     color: white;
     position: relative;
     background-color: black;
+}
+
+#report_table{
+    margin-left: 50px;
 }

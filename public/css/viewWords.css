@@ -413,7 +413,7 @@ p{
 }
 
 .required_msg{
-  color: red;
+  color: #de0000;
   font-size: xx-large;
   display: none;
 }

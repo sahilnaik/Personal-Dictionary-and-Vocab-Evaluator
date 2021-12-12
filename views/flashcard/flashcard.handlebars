@@ -1,7 +1,7 @@
 <link rel="stylesheet" href="../public/css/flashcard.css">
 <div id="startFlashcardTest">
     
-    <div id="note"><p class="note_title">FLASHCARD TEST</p><br>
+    <div id="note"><h1 class="note_title">FLASHCARD TEST</h1><br>
     Words from your Personal Dictionary will show up. If you know the word, click on the tick button, otherwise click on the cross button.
     Learn the word before you move on to the next word. This test will be graded out of 10. Result will be generated when the test is submitted.
     <div id="exit_note"><span>Note:</span>&nbsp; If you exit from the test without submitting it, your marks will be considered as 0.</div></div>
@@ -12,7 +12,7 @@
         <div class="front_body" id="front_card">
             <div class="card-header">Question #<span id="cardHeader"></span></div>
                 <div class="card-body">
-                    <h1 class="card-title" id="cardTitle"></h1>
+                    <p class="card-title" id="cardTitle"></p>
                         <p class="card-text" id="cardText">Do you know this word?</p>
                             <div class="flashcard-options" id="flashcardOptions">
                                 <div onclick="changeWord()">
@@ -27,9 +27,9 @@
                 </div>
                 <div class="card text-white bg-secondary mb-3" id="card2">  
                     <div class="front_body" id="back_card">
-                        <h2 class="card-header" id="word"></h2>
+                        <p class="card-header" id="word"></p>
                         <div class="card-body">
-                        <h3 class="card-title" id="meaning"></h3>
+                        <p class="card-title" id="meaning"></p>
                         <p class="card-text">Synonym : <span id="synonym"></span></p>
                         <p class="card-text">Antonym : <span id="antonym"></span></p>
                         <p class="card-text">Example : <span id="example"></span></p>
@@ -50,12 +50,12 @@
     <div class="row">
             <div class="col-6 sub-box-result">
                 <div class="report_heading">
-                    <h3>Flashcard Report Card</h3>
+                    <h2>Flashcard Report Card</h2>
                 </div>
                 <br>
                 <div class="report_scores">
-                    <h4>Marks Secured: <span id="marks_sec"></span></h4>
-                    <h4>Total Marks: <span id="total_m"></span></h4> 
+                    <h3>Marks Secured: <span id="marks_sec"></span></h3>
+                    <h3>Total Marks: <span id="total_m"></span></h3> 
                 </div>
                 <br>           
                 <div class="circle-wrap">
@@ -71,7 +71,7 @@
                 </div>
 
                 <div class="report_ending">
-                    <h5>Percentage of marks secured (%)</h5>
+                    <h4>Percentage of marks secured (%)</h4>
                     <br>
                     <br>
                     <table id="report_table">
