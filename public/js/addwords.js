@@ -125,7 +125,7 @@ window.addEventListener('load', (event) => {
                 meaning_err.style.display="grid";
                  document.getElementById('meaning').focus();
                  
-                 meaning_err.innerText="Meaning cannot contain special characters. Please Enter a valid meaning";
+                 meaning_err.innerText="Meaning cannot contain special characters and numbers. \n Please Enter a valid meaning";
                  validateMeaning=false;
                  return validateMeaning;
              }else{
