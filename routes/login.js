@@ -24,7 +24,7 @@ router.post("/", async (req, res) => {
     res.status(400).render("user/login", { layout: "user", error: "Bad data", });
     return;
   }
-
+  
   if (!validateEmail(email)) {
     res.status(404).render("user/login", {
       layout: "user",

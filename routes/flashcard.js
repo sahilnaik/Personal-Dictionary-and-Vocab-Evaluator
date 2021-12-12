@@ -7,11 +7,17 @@ const { words } = require('../data/index')
 
 router.get('/', async(req,res)=>{
     try{
+        if(req.session.user){
         let profilePicture= req.session.user.profilePicture;
         let firstName= req.session.user.firstName;
         let lastName= req.session.user.lastName;
         const flashcardList = await flashcardData.create(req.session.user._id);
         res.render('flashcard/flashcard',{ title:"Flashcard",profilePicture: profilePicture, firstName: firstName, lastName: lastName, flashcardList: flashcardList.words, flashcardId: flashcardList._id});
+        }
+        else{
+            res.redirect('/login');
+        }
+
     }catch(e){
         res.status(500).json({error:e});
     }
