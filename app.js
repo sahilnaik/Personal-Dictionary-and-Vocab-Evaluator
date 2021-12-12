@@ -31,7 +31,7 @@ app.use(
 //-------Multer Middleware for Image Upload---------//
 
 
-app.use("/profile-upload-single", (res, req, next) => {
+app.use("/profile-upload-single", (req, res, next) => {
   if (req.method == "GET") {
     return  res.status(403).render('httpErrors/error', {layout: "errorPage", code: 403, description: "Forbidden", title: "403: Forbidden"})
   }
@@ -76,6 +76,27 @@ app.post('/profile-upload-single', result = upload.single('profile-file'), async
 })
 
 // Authenticated User Routes Starts
+app.get(`/words`, (req, res, next) => {
+  // if (req.method == "GET") {
+    return  res.status(403).render('httpErrors/error', {layout: "errorPage", code: 403, description: "Forbidden", title: "403: Forbidden"})
+  // }
+  next()
+})
+
+app.get(`/words/addWord`, (req, res, next) => {
+  // if (req.method == "GET") {
+    return  res.status(403).render('httpErrors/error', {layout: "errorPage", code: 403, description: "Forbidden", title: "403: Forbidden"})
+  // }
+  next()
+})
+
+app.get(`/words/:id/editWord`, (req, res, next) => {
+  // if (req.method == "GET") {
+    return  res.status(403).render('httpErrors/error', {layout: "errorPage", code: 403, description: "Forbidden", title: "403: Forbidden"})
+  // }
+  next()
+})
+
 app.get("/", (req, res, next) => {
   if (req.session.user) {
     return res.redirect("/dashboard") //IT should actually be /dashboard
@@ -171,16 +192,6 @@ app.use("/feedback", (req, res, next) => {
 // MIDDLEWARES ENDS
 
 configRoutes(app);
-
-// app.use((req, res, next) => {
-//   date = new Date();
-//   console.log(
-//     `[${date.toUTCString()}]:\t${req.method}\t${req.originalUrl}\t\t${
-//       req.session.user ? "(Authenticated User)" : "(Non-Authenticated User)"
-//     }`
-//   );
-//   next();
-// });
 
 app.listen(3000, () => {
   console.log("We've now got a server!");

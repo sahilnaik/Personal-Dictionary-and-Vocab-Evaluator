@@ -65,6 +65,7 @@
 .error{
     display: grid;
     justify-content: right;
+    transform: translate(50%, 50%);
 }
 .main-navbar{
     z-index: 2;

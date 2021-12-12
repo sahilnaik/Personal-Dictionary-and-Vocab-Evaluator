@@ -29,26 +29,26 @@
         </div>
     </div>
     <div class="results">
-    {{#if sessions}} 
-    <h1 class="f_heading">PREVIOUS TEST SCORES</h1>
-    {{#each sessions}}
-        <div class="result">
-            <div class="test">
-                <h2>Test <span class="test_no">{{id}}</span></h2>
-            </div>
-            <p class="res"><span class="res_h">Result: </span><span class="s_marks_scored">{{marks}}</span>/<span class="s_total_marks">{{total}}</span></p>
-            <p class="res"><span class="res_h">Percentage:</span><span class="s_total_marks">{{percentage}}</span></p>
-            <p class="right"><span class="right_h">Words you got right: </span><span class="s_correct_words">{{correct}}</span></p>
-            <p class="wrong"><span class="wrong_h">Words you got incorrect: </span><span class="s_incorrect_words">{{incorrect}}</span></p>
-            <p class="res"><span class="res_h">Submitted On: </span><span class="s_marks_scored">{{time}}</span></p>
-            
-        </div>
-    {{/each}}
+        {{#if sessions}} 
+            <h1 class="f_heading">PREVIOUS TEST SCORES</h1>
+            {{#each sessions}}
+                <div class="result">
+                    <div class="test">
+                        <h2>Test <span class="test_no">{{id}}</span></h2>
+                    </div>
+                    <p class="res"><span class="res_h">Result: </span><span class="s_marks_scored">{{marks}}</span>/<span class="s_total_marks">{{total}}</span></p>
+                    <p class="res"><span class="res_h">Percentage:</span><span class="s_total_marks">{{percentage}}</span></p>
+                    <p class="right"><span class="right_h">Words you got right: </span><span class="s_correct_words">{{correct}}</span></p>
+                    <p class="wrong"><span class="wrong_h">Words you got incorrect: </span><span class="s_incorrect_words">{{incorrect}}</span></p>
+                    <p class="res"><span class="res_h">Submitted On: </span><span class="s_marks_scored">{{time}}</span></p>
+                    
+                </div>
+            {{/each}}
+        {{else}}
+            <h1 class="error">NO PREVIOUS TEST SCORES</h1>
+        {{/if}}
     </div>
-    {{else}}
-    <h1 class="f_heading">NO PREVIOUS TEST SCORES</h1>
-    
-    {{/if}}
+
 {{/if}}
 
 <script src="../../public/js/flashcardsessions.js"></script>

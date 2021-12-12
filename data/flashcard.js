@@ -298,10 +298,21 @@ async function getLastFiveSessionScore(id){
   return overallStuff;
 
 }
+
+const createSeedSession = async function createSeedSession(seedUser, sessionData, overallPercentage) {
+  const flashcardCollection = await flashcard();
+  const checkDuplicate = await flashcardCollection.findOne({ userId: ObjectId(seedUser) });
+  
+  let sessionDataAdded = await flashcardCollection.updateOne({userId: ObjectId(seedUser)}, {$addToSet: {sessions: sessionData}})
+  let overAllRatingUpdated = await flashcardCollection.updateOne({userId: ObjectId(seedUser)}, {$set: {overallPercentage: overallPercentage}})
+
+}
+
   module.exports = {
     create,
     updateSession,
     getLastFiveSessions,
     getLastFiveSessionScore,
-    getPercentage
+    getPercentage,
+    createSeedSession
   };
