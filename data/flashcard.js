@@ -59,9 +59,6 @@ async function createSession(userId, length) {
       .toArray();
     let noOfWords = findWords[0].words.length - 1;
     let { wordList, yetToLearnWords, learningWords, learntWords } = await getAll(userId)
-    if (yetToLearnWords.length == 0 && learningWords == 0) {
-      throw {code: 400, error: "You have learnt all the words"}
-    }
   
     for (let iterations = 0; iterations < 10; iterations++) {
       let randomNum = Math.round(Math.random() * noOfWords);
