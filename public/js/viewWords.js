@@ -462,9 +462,30 @@ detailsForm.addEventListener('submit', (event) => {
              synonym_err.style.display="none";
              validateSynonym=true;
          }
+         
          if(synonym.match(/^\s+$/)){
              synonym_err.style.display="grid";
              synonym_err.innerText="Synonym consist full of empty spaces. Please Enter a valid synonym";
+             validateSynonym=false;
+             return validateSynonym;
+         }else{
+             synonym_err.style.display="none";
+             validateSynonym=true;
+         }
+         if(synonym == document.getElementById('wordinput').value || synonym == document.getElementById('meaninginput').value || synonym == document.getElementById('antonymsinput').value || synonym == document.getElementById('exampleinput').value){
+             synonym_err.style.display="grid";
+                synonym_err.innerText="Synonym cannot be same as the word, meaning, antonyms or example";
+                validateSynonym=false;
+                return validateSynonym;
+            }else{
+                synonym_err.style.display="none";
+                validateSynonym=true;
+            }
+         if(!synonym.match(/^[a-zA-Z]+$/)) {
+            synonym_err.style.display="grid";
+             document.getElementById('synonym').focus();
+             
+             synonym_err.innerText="Synonym cannot contain special characters. Please Enter a valid synonym";
              validateSynonym=false;
              return validateSynonym;
          }else{
@@ -516,6 +537,25 @@ detailsForm.addEventListener('submit', (event) => {
              antonym_err.style.display="none";
              validateAntonym=true;
          }
+         if(antonym == document.getElementById('wordinput').value || antonym == document.getElementById('meaninginput').value || antonym == document.getElementById('synonymsinput').value || antonym == document.getElementById('exampleinput').value){
+            antonym_err.style.display="grid";
+            antonym_err.innerText="Antonym cannot be same as the word, meaning, synonyms or example";
+            validateAntonym=false;
+            return validateAntonym;
+            }else{
+                antonym_err.style.display="none";
+                validateAntonym=true;
+            }
+         if(!antonym.match(/^[a-zA-Z]+$/)){
+            antonym_err.style.display="grid";
+               document.getElementById('antonym').focus();
+            antonym_err.innerText="Antonym cannot contain special characters. Please Enter a valid antonym";
+            validateAntonym=false;
+            return validateAntonym;
+        }else{
+            antonym_err.style.display="none";
+            validateAntonym=true;
+        }
          antonymList=antonym.split(', ');
          j=0;
          flag=0;
@@ -555,6 +595,15 @@ detailsForm.addEventListener('submit', (event) => {
             if(example.match(/^\s+$/)){
                 example_err.style.display="grid";
                 example_err.innerText="Example is full of empty spaces. Please enter a valid example!";
+                validateExample=false;
+                return validateExample;
+            }else{
+                example_err.style.display="none";
+                validateExample=true;
+            }
+            if(example === document.getElementById('wordinput').value || example === document.getElementById('meaninginput').value || example === document.getElementById('synonymsinput').value || example === document.getElementById('antonymsinput').value){
+                example_err.style.display="grid";
+                example_err.innerText="Example cannot be the same as the word, meaning, synonym or antonym!";
                 validateExample=false;
                 return validateExample;
             }else{
