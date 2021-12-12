@@ -83,19 +83,6 @@ html,body,.main-box{
     box-sizing: border-box;
   }
   
-  /* body {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    height: 100vh;
-    align-items: center;
-    justify-content: flex-start;
-    font-family: "Ek Mukta";
-    text-transform: uppercase;
-    font-weight: 600;
-    letter-spacing: 4px;
-    background: #1d1f20;
-  } */
   
   h1 {
     margin-top: 10vh;
@@ -168,10 +155,7 @@ html,body,.main-box{
     transition: 0.3s ease-in-out;
     z-index: 1;
   }
-  /* .value-list.open {
-    max-height: 320px;
-    overflow: scroll;
-  } */
+  
   .value-list li {
     position: relative;
     height: 4rem;
@@ -194,7 +178,6 @@ html,body,.main-box{
     opacity: 0;
   }
 
-  /* Main selector */
   :root {
     --background-gradient: linear-gradient(30deg, #f39c12 30%, #f1c40f);
     --gray: #34495e;
@@ -202,12 +185,10 @@ html,body,.main-box{
   }
   
   select {
-    /* Reset Select */
     appearance: none;
     outline: 0;
     border: 0;
     box-shadow: none;
-    /* Personalize */
     flex: 1;
     padding: 0 1em;
     color: #fff;
@@ -216,11 +197,11 @@ html,body,.main-box{
     cursor: pointer;
     
   }
-  /* Remove IE arrow */
+  
   select::-ms-expand {
     display: none;
   }
-  /* Custom Select wrapper */
+  
   .select {
     position: relative;
     display: flex;
@@ -230,7 +211,7 @@ html,body,.main-box{
     border-radius: .25em;
     overflow: hidden;
   }
-  /* Arrow */
+  
   .select::after {
     content: '\25BC';
     position: absolute;
@@ -241,27 +222,14 @@ html,body,.main-box{
     transition: .25s all ease;
     pointer-events: none;
   }
-  /* Transition */
+  
   .select:hover::after {
     color: #f39c12;
   }
-  
-  /* Other styles*/
-  /* body {
-    color: #fff;
-    background: var(--background-gradient);
-  } */
+ 
   h1 {
     margin: 0 0 0.25em;
   }
-  /* a {
-    font-weight: bold;
-    color: var(--gray);
-    text-decoration: none;
-    padding: .25em;
-    border-radius: .25em;
-    background: white;
-  } */
 
 
   #details-form{
