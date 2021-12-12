@@ -86,7 +86,7 @@ const addWord = async function (userId,  word, meaning, synonym, antonym, exampl
     if(!word.match(/^[a-zA-Z]+$/)) {
         throw {code: 400, error: `Word should contain only alphabets`}
     }
-    if(!meaning.match(/^[a-zA-Z ]+$/)) {
+    if(!meaning.match(/^[a-zA-Z, ]+$/)) {
         throw {code: 400, error: `Meaning should contain only alphabets`}
     }
 

@@ -121,7 +121,17 @@ window.addEventListener('load', (event) => {
                 meaning_err.style.display="none";
                 validateMeaning=true;
             }
-             
+             if(!meaning.match(/^[a-zA-Z, ]+$/)) {
+                meaning_err.style.display="grid";
+                 document.getElementById('meaning').focus();
+                 
+                 meaning_err.innerText="Meaning cannot contain special characters. Please Enter a valid meaning";
+                 validateMeaning=false;
+                 return validateMeaning;
+             }else{
+                 meaning_err.style.display="none";
+                 validateMeaning=true;
+             }
              return validateMeaning;
      }
 
@@ -156,7 +166,18 @@ window.addEventListener('load', (event) => {
                 synonym_err.style.display="none";
                 validateSynonym=true;
             }
-            
+             if(!synonym.match(/^[a-zA-Z, ]+$/)) {
+                synonym_err.style.display="grid";
+                 document.getElementById('synonym').focus();
+                 
+                 synonym_err.innerText="Synonym cannot contain special characters. Please Enter a valid synonym";
+                 validateSynonym=false;
+                 return validateSynonym;
+             }else{
+                 synonym_err.style.display="none";
+                 validateSynonym=true;
+             }
+             
              synonymList=synonym.split(', ');
              j=0;
              flag=0;
@@ -204,7 +225,16 @@ window.addEventListener('load', (event) => {
                  antonym_err.style.display="none";
                  validateAntonym=true;
              }
-             
+             if(!antonym.match(/^[a-zA-Z, ]+$/)){
+                antonym_err.style.display="grid";
+                   document.getElementById('antonym').focus();
+                antonym_err.innerText="Antonym cannot contain special characters. Please Enter a valid antonym";
+                validateAntonym=false;
+                return validateAntonym;
+            }else{
+                antonym_err.style.display="none";
+                validateAntonym=true;
+            }
             if(antonym === document.getElementById('word').value || antonym === document.getElementById('meaning').value || antonym === document.getElementById('synonym').value || antonym === document.getElementById('example').value){
                 antonym_err.style.display="grid";
                    document.getElementById('antonym').focus();
