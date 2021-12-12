@@ -131,6 +131,8 @@ const editWord = async function editWord(userId, word, synonym, antonym, example
                 }            
             }  
         }
+    } else {
+        countA = -1
     }    
     
     if (example.trim().length !== 0) {
@@ -146,7 +148,9 @@ const editWord = async function editWord(userId, word, synonym, antonym, example
                 }            
             }  
         }
-    }
+    } else {
+        countE = -1
+    }    
 
     if (countS == synonym.length && countA == antonym.length && countE == example.length) {
         throw  `Please provide at least 1 of the elements different in order to edit`
