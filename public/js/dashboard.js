@@ -25,7 +25,7 @@ data: {
 options: {
     scales: {
             y: {
-                suggestedMax: 6
+                suggestedMax: 10
             }
     },
     plugins: {
@@ -65,7 +65,7 @@ data: {
 options: {
     scales: {
             y: {
-                suggestedMax: 10
+                suggestedMax: 5
             }
     },
     plugins: {
