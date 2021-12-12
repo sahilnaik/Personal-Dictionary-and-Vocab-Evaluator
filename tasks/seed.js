@@ -1,6 +1,7 @@
 const { users } = require("../data/index")
 const { addWordSeed, updateCounters } = require("../data/words")
 const { createSeedSession } = require("../data/flashcard")
+const { createSeedMCQ } = require("../data/mcq")
 
 const createSeedUser = async () => {  
   try {
@@ -802,7 +803,85 @@ const addSeedSession = async function addSeedSession(seedUser) {
         "time" : "Sun, 12 Dec 2021 21:24:31 GMT"
     },
     60
-      )
+    )
+  } catch (e) {
+    console.log(e);
+  }
+}
+
+const addMCQSeed = async function addMCQSeed(seedUser) {
+  try {
+    let session = await createSeedMCQ(
+      seedUser,
+      {
+        "_id" : 1,
+        "words" : [ 
+            {
+                "question_word" : "blandishment",
+                "options" : [ 
+                    "Apathetic", 
+                    "Disband", 
+                    "Allurement", 
+                    "Untrustworthy"
+                ],
+                "answer" : "Allurement",
+                "userSelection" : "Apathetic",
+                "correctOrNot" : false
+            }, 
+            {
+                "question_word" : "tincture",
+                "options" : [ 
+                    "Coarse", 
+                    "Color", 
+                    "Bargaining", 
+                    "Fiery"
+                ],
+                "answer" : "Color",
+                "userSelection" : "Fiery",
+                "correctOrNot" : false
+            }, 
+            {
+                "question_word" : "pungent",
+                "options" : [ 
+                    "Delicate", 
+                    "Bristle", 
+                    "Bitter", 
+                    "Guesswork"
+                ],
+                "answer" : "Bitter",
+                "userSelection" : "Bristle",
+                "correctOrNot" : false
+            }, 
+            {
+                "question_word" : "unreliable",
+                "options" : [ 
+                    "Untrustworthy", 
+                    "Sell", 
+                    "Leather", 
+                    "Alive"
+                ],
+                "answer" : "Untrustworthy",
+                "userSelection" : "Untrustworthy",
+                "correctOrNot" : true
+            }, 
+            {
+                "question_word" : "salable",
+                "options" : [ 
+                    "Alive", 
+                    "Clarify", 
+                    "Sell", 
+                    "Sporadic"
+                ],
+                "answer" : "Sell",
+                "userSelection" : "Clarify",
+                "correctOrNot" : false
+            }
+        ],
+        "correctCount" : 1,
+        "time" : "Sun, 12 Dec 2021 22:33:08 GMT"
+    },
+    20
+    )
   } catch (e) {
     console.log(e);
   }
@@ -810,12 +889,14 @@ const addSeedSession = async function addSeedSession(seedUser) {
 const main = async () => {
   let seedUser = await createSeedUser()
   let word1 = await addWordSeeds(seedUser)
+  let overallLearntSeed = await users.overallLearnt(seedUser,)
   try {
   let countersUpdate = await updateCounters(seedUser) 
   } catch (e) {
     console.log(e);
   }
   let seedSession = await addSeedSession(seedUser)
+  let seedMCQSession = await addMCQSeed(seedUser)
 }
 
 main()
