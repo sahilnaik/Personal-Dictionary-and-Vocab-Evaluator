@@ -205,7 +205,7 @@ const noOfWords = async function noOfWords(userId) {
     return wordDocument.words.length   
 }
 
-const updateAllWordsProgress = async function updateAllWordsProgress(userId, correctArray) {
+const updateAllWordsProgress = async function updateAllWordsProgress(userId, correctArray, incorrectArray) {
     let wordCollection = await words()
     let wordDocument = await wordCollection.findOne({userId: ObjectId(userId)})
 
@@ -217,10 +217,26 @@ const updateAllWordsProgress = async function updateAllWordsProgress(userId, cor
                 }
                 y.noOfTimesCorrect++
                 let updatingNoOfTimesCorrect = await wordCollection.updateOne({userId: ObjectId(userId)}, {$set: {words: wordDocument.words}})
-                if (!updatingNoOfTimesCorrect) {
-                    throw {code: 500, error: `Cannot update the no of words counter`}
-                }
+                // if (!updatingNoOfTimesCorrect) {
+                //     throw {code: 500, error: `Cannot update the no of words counter`}
+                // }
                 return false
+            }
+            return true
+        })
+    })
+
+    incorrectArray.forEach(x => {
+        wordDocument.words.every(async y => {
+            if (x.toLowerCase() == y.word.toLowerCase()) {
+                if (y.progress == "learnt") {
+                    y.noOfTimesCorrect = 1
+                    let updatingNoOfTimesCorrect = await wordCollection.updateOne({userId: ObjectId(userId)}, {$set: {words: wordDocument.words}})
+                    // if (!updatingNoOfTimesCorrect) {
+                    //     throw { code: 500, error: `Cannot update the no of words counter` }
+                    // }
+                    return false
+                }
             }
             return true
         })
@@ -278,10 +294,6 @@ const updateCounters = async function updateCounters(userId) {
     })
     
     result = await wordCollection.updateOne({userId: ObjectId(userId)}, {$set: {yetToLearn: yetToLearnWords.length, learning:learningWords.length, learnt: learntWords.length }})
-    if (result.modifiedCount === 0) {
-        throw {code: 500, error: `Unable to update the Learning Counters`} 
-    }
-
 }
 module.exports = {
     createWordsDocument,

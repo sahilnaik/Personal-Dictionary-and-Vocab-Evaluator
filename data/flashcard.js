@@ -144,7 +144,7 @@ async function updateSession(userId, sessionId, words, correctCount) {
       incorrectArray.push(words[i].word);
     }
   }
-  await updateAllWordsProgress(userId, correctArray)
+  await updateAllWordsProgress(userId, correctArray, incorrectArray)
   
   date = new Date();
   let time = date.toUTCString()
