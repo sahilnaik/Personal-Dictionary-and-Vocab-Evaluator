@@ -12,6 +12,12 @@ router.get('/', async(req,res)=>{
         let profilePicture= req.session.user.profilePicture;
         let firstName= req.session.user.firstName;
         let lastName= req.session.user.lastName;
+        if(profilePicture==null || profilePicture==undefined || profilePicture=='' || firstName==null || firstName==undefined || firstName=='' || lastName==null || lastName==undefined || lastName==''){
+            res.status(400).json({error: "Please update your profile"});
+        }
+        if(!ObjectId.isValid(req.session.user._id)){
+            res.status(400).json({error: "Invalid id"});
+        }
         const flashcardList = await flashcardData.create(req.session.user._id);
         res.render('flashcard/flashcard',{ title:"Flashcard",profilePicture: profilePicture, firstName: firstName, lastName: lastName, flashcardList: flashcardList.words, flashcardId: flashcardList._id});
         }
@@ -30,6 +36,12 @@ router.get('/sessions', async (req, res) => {
         let profilePicture= req.session.user.profilePicture;
         let firstName= req.session.user.firstName;
         let lastName= req.session.user.lastName;
+        if(profilePicture==null || profilePicture==undefined || profilePicture=='' || firstName==null || firstName==undefined || firstName=='' || lastName==null || lastName==undefined || lastName==''){
+            res.status(400).json({error: "Please update your profile"});
+        }
+        if(!ObjectId.isValid(req.session.user._id)){
+            res.status(400).json({error: "Invalid id"});
+        }
         
         const noOfWords = await words.noOfWords(req.session.user._id);
         if (noOfWords <= 9) {

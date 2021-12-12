@@ -21,8 +21,18 @@ for(let i=0;i<10;i++){
     questions.push(word_i[i].innerHTML);
     meaning.push(meaning_i[i].innerHTML);
     synonyms.push(synonyms_i[i].innerHTML);
-    antonyms.push(antonyms_i[i].innerHTML);
+    if(antonyms_i[i].innerHTML===""){
+        antonyms.push("None provided");
+    }
+    else{
+        antonyms.push(antonyms_i[i].innerHTML);
+    }
+    if(examples_i[i].innerHTML===""){
+        examples.push("None provided");
+    }
+    else{
     examples.push(examples_i[i].innerHTML);
+    }
 }
 
 let words=[];

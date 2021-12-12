@@ -19,7 +19,7 @@ router.post("/", async (req, res) => {
 
   let email = xss(loginData.email);
   let password = xss(loginData.password);
-
+  password = password.trim();
   if (email.length < 1 || password.length < 8) {
     res.status(400).render("user/login", { layout: "user", error: "Bad data", });
     return;
