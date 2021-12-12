@@ -175,7 +175,7 @@ async function calculate(userId) {
       { $set: { overallPercentage: 0 } }
     );
   } else {
-    let overallPercentage = (total / (10*len))*100;
+    let overallPercentage = (total / (5*len))*100;
     overallPercentage = Math.round((overallPercentage + Number.EPSILON) * 100) / 100;
 
     const updatedInfo = await mcqCollection.updateOne(
@@ -312,11 +312,20 @@ function shuffleArray(array) {
   }
 }
 
+const createSeedMCQ = async function createSeedMCQ(seedUser, sessionData, overallPercentage) {
+  const mcqCollection = await mcq();
+  const checkDuplicate = await mcqCollection.findOne({ userId: ObjectId(seedUser) });
+
+  let sessionDataAdded = await mcqCollection.updateOne({userId: ObjectId(seedUser)}, {$addToSet: {sessions: sessionData}})
+  let overAllRatingUpdated = await mcqCollection.updateOne({userId: ObjectId(seedUser)}, {$set: {overallPercentage: overallPercentage}})
+
+}
 
 module.exports = {
   create,
   updateSession,
   getPercentage,
   getLastFiveSessions,
-  getLastFiveSessionScore
+  getLastFiveSessionScore,
+  createSeedMCQ
 };
