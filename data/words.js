@@ -70,16 +70,16 @@ const addWord = async function (userId,  word, meaning, synonym, antonym, exampl
     if(arguments.length != 6) {
         throw {code: 400, error: `Check the number of arguments`}
     }
-    if(!userId || !word || !meaning || !synonym || !antonym || !example) {
+    if(!userId || !word || !meaning || !synonym) {
         throw {code: 400, error: `Check if all the arguments are provided`}
     }
-    if(typeof userId != 'string' || typeof word != 'string' || typeof meaning != 'string' || typeof synonym != 'string' || typeof antonym != 'string' || typeof example != 'string') {
+    if(typeof userId != 'string' || typeof word != 'string' || typeof meaning != 'string' || typeof synonym != 'string') {
         throw {code: 400, error: `Check if all the arguments are of type string`}
     }
     if(!ObjectId.isValid(userId)) {
         throw {code: 400, error: `UserId is invalid`}
     }
-    if(word.trim().length == 0 || meaning.trim().length == 0 || synonym.trim().length == 0 || antonym.trim().length == 0 || example.trim().length == 0) {
+    if(word.trim().length == 0 || meaning.trim().length == 0 || synonym.trim().length == 0) {
         throw {code: 400, error: `Arguments are empty`}
     }
     if(word == meaning || word == synonym || word == antonym || meaning == synonym || meaning == antonym || synonym == antonym) {
@@ -115,23 +115,33 @@ const addWord = async function (userId,  word, meaning, synonym, antonym, exampl
         noOfTimesCorrect: 0
     }
 
+    
+    
 
     synonym = synonym.split(", ")
+    let testSynonym = synonym.sort().join("")
     await checkSameSynonym(synonym)
 
     synonym.forEach(x => {
         newWord.synonyms.push(x) 
     });
     
-    
-    antonym = antonym.split(", ")
-    await checkSameAntonym(antonym)
+    if (antonym.length !== 0) {
+        antonym = antonym.split(", ")
+        let testAntonym = antonym.sort().join("")
+    if(testSynonym=== testAntonym){
+        throw {code: 401, error: "Synonyms and Antonyms cannot be same"};
+    }
+    if(!testSynonym.match(/^[a-zA-Z]+$/) || !testAntonym.match(/^[a-zA-Z]+$/)) {
+        throw {code: 401, error: "Synonyms and Antonyms should contain only alphabets"};
+    }
+        await checkSameAntonym(antonym)
 
-    antonym.forEach(x =>{
-        newWord.antonyms.push(x)
-    })
-
-    
+        antonym.forEach(x =>{
+            newWord.antonyms.push(x)
+        })
+    }
+    if (example.length !== 0) {
     example = example.split(". ")
     for (let i = 0; i < example.length; i++) {
         example[i] = example[i].trim()
@@ -147,14 +157,9 @@ const addWord = async function (userId,  word, meaning, synonym, antonym, exampl
     example.forEach(x =>{
         newWord.examples.push(x)
     })
-    let testSynonym = synonym.sort().join("")
-    let testAntonym = antonym.sort().join("")
-    if(testSynonym=== testAntonym){
-        throw {code: 401, error: "Synonyms and Antonyms cannot be same"};
-    }
-    if(!testSynonym.match(/^[a-zA-Z]+$/) || !testAntonym.match(/^[a-zA-Z]+$/)) {
-        throw {code: 401, error: "Synonyms and Antonyms should contain only alphabets"};
-    }
+}
+    
+    
 
     let result = await wordCollection.updateOne({userId: ObjectId(userId)}, {$addToSet: {words: newWord}})
     if (result.modifiedCount === 0) {
