@@ -212,17 +212,15 @@ const updateAllWordsProgress = async function updateAllWordsProgress(userId, cor
     correctArray.forEach(x => {
         wordDocument.words.every(async y => {
             if (x.toLowerCase() == y.word.toLowerCase()) {
-                if (y.noOfTimesCorrect == 3) {
-                    await updateProgressToLearnt(userId, y.word.toLowerCase())
-                }
                 y.noOfTimesCorrect++
+                if (y.noOfTimesCorrect == 3) {
+                    y.progress = "learnt"
+                }
                 let updatingNoOfTimesCorrect = await wordCollection.updateOne({userId: ObjectId(userId)}, {$set: {words: wordDocument.words}})
                 // if (!updatingNoOfTimesCorrect) {
                 //     throw {code: 500, error: `Cannot update the no of words counter`}
                 // }
-                return false
             }
-            return true
         })
     })
 
@@ -235,10 +233,8 @@ const updateAllWordsProgress = async function updateAllWordsProgress(userId, cor
                     // if (!updatingNoOfTimesCorrect) {
                     //     throw { code: 500, error: `Cannot update the no of words counter` }
                     // }
-                    return false
                 }
             }
-            return true
         })
     })
 }
@@ -254,28 +250,9 @@ const updateProgressToLearning = async function updateProgressToLearning(userId,
             if (!updatingProgress) {
                 throw {code: 500, error: `Cannot update the progress status of the word to learning`}
             }
-            return false
         }
-        return true
     })
 
-}
-
-const updateProgressToLearnt = async function updateProgressToLearnt(userId, word) {
-    let wordCollection = await words()
-    let wordDocument = await wordCollection.findOne({userId: ObjectId(userId)})
-
-    wordDocument.words.every(async x =>{
-        if (x.word == word) {
-            x.progress = "learnt"
-            let updatingProgress = await wordCollection.updateOne({userId: ObjectId(userId)}, {$set: {words: wordDocument.words}})
-            if (!updatingProgress) {
-                throw {code: 500, error: `Cannot update the progress status of the word to learnt`}
-            }
-            return false
-        }
-        return true
-    })
 }
 
 const updateCounters = async function updateCounters(userId) {
@@ -303,6 +280,5 @@ module.exports = {
     noOfWords,
     updateAllWordsProgress,
     updateProgressToLearning,
-    updateProgressToLearnt,
     updateCounters,
 }

@@ -145,7 +145,7 @@ async function updateSession(userId, sessionId, words, correctCount) {
     }
   }
   await updateAllWordsProgress(userId, correctArray, incorrectArray)
-  
+  await updateCounters(userId)
   date = new Date();
   let time = date.toUTCString()
   const flashcardCollection = await flashcard();
