@@ -4,6 +4,16 @@ const words = mongoCollections.words
 
 
 const createWordsDocument = async function createWordsDocument(userId) {
+    if(arguments.length != 1) {
+
+        throw "Check arguments length"
+    }
+    if(!userId) {
+        throw 'You must provide a userId'
+    }
+    if(typeof userId != 'string') {
+        throw 'userId must be a string'
+    }
     let wordCollection = await words()
     userId = ObjectId(userId)
      let newWordObject = {
@@ -27,6 +37,31 @@ const createWordsDocument = async function createWordsDocument(userId) {
 }
 
 const addWord = async function (userId,  word, meaning, synonym, antonym, example) {
+    if(arguments.length != 6) {
+        throw {code: 400, error: `Check the number of arguments`}
+    }
+    if(!userId || !word || !meaning || !synonym || !antonym || !example) {
+        throw {code: 400, error: `Check if all the arguments are provided`}
+    }
+    if(typeof userId != 'string' || typeof word != 'string' || typeof meaning != 'string' || typeof synonym != 'string' || typeof antonym != 'string' || typeof example != 'string') {
+        throw {code: 400, error: `Check if all the arguments are of type string`}
+    }
+    if(!ObjectId.isValid(userId)) {
+        throw {code: 400, error: `UserId is invalid`}
+    }
+    if(word.trim().length == 0 || meaning.trim().length == 0 || synonym.trim().length == 0 || antonym.trim().length == 0 || example.trim().length == 0) {
+        throw {code: 400, error: `Arguments are empty`}
+    }
+    if(word == meaning || word == synonym || word == antonym || meaning == synonym || meaning == antonym || synonym == antonym) {
+        throw {code: 400, error: `Arguments are same`}
+    }
+    if(!word.match(/^[a-zA-Z]+$/)) {
+        throw {code: 400, error: `Word should contain only alphabets`}
+    }
+    if(!meaning.match(/^[a-zA-Z]+$/)) {
+        throw {code: 400, error: `Meaning should contain only alphabets`}
+    }
+
     let wordCollection = await words()
     let wordDocument = await wordCollection.findOne({userId: ObjectId(userId)})
     if (!wordDocument) {
@@ -59,13 +94,30 @@ const addWord = async function (userId,  word, meaning, synonym, antonym, exampl
         newWord.antonyms.push(x)
     })
     example = example.split(". ")
+    for (let i = 0; i < example.length; i++) {
+        example[i] = example[i].trim()
+        if(example[i].length == 0) {
+            throw {code: 401, error: "Example cannot be empty"};
+        }
+        // if(!example[i].match(/^[a-zA-Z0-9!"',@#\$%\&*\)\(.]+$/g)){
+        //     throw {code: 401, error: "Example should contain only alphabets and numbers"};
+        // }
+    }
     example.forEach(x =>{
         newWord.examples.push(x)
     })
+    let testSynonym = synonym.sort().join("")
+    let testAntonym = antonym.sort().join("")
+    if(testSynonym=== testAntonym){
+        throw {code: 401, error: "Synonyms and Antonyms cannot be same"};
+    }
+    if(!testSynonym.match(/^[a-zA-Z]+$/) || !testAntonym.match(/^[a-zA-Z]+$/)) {
+        throw {code: 401, error: "Synonyms and Antonyms should contain only alphabets"};
+    }
 
     let result = await wordCollection.updateOne({userId: ObjectId(userId)}, {$addToSet: {words: newWord}})
     if (result.modifiedCount === 0) {
-        throw {code: 500, error: `Unable to add the word to the Document`} 
+        throw {code: 500, error: `Unable to add the word to the Document`}; 
     }
 
     let wordDocumentWithWords = await wordCollection.findOne({userId: ObjectId(userId)})
@@ -79,12 +131,29 @@ const addWord = async function (userId,  word, meaning, synonym, antonym, exampl
 }
 
 const editWord = async function editWord(userId, word, synonym, antonym, example) {
-    if (!synonym) {
-        throw `Synonyms Cannot be empty`
+    if(arguments.length != 5) {
+        throw {code: 400, error: `Check the number of arguments`}
     }
-    if (synonym.trim().length == 0) {
-        throw `Items to be edited cannot be just empty spaces.`
+    if(!userId || !word || !synonym) {
+       throw {code: 400, error: `Check if all the arguments are provided`}
     }
+    if(typeof userId != 'string' || typeof word != 'string' || typeof synonym != 'string') {
+       throw {code: 400, error: `Check if all the arguments are of type string`}
+    }
+    if(!ObjectId.isValid(userId)) {
+        throw {code: 400, error: `UserId is invalid`}
+    }
+    if(word.trim().length == 0 || synonym.trim().length == 0) {
+        throw {code: 400, error: `Arguments are empty`}
+    }
+    if(word == synonym || word == antonym || synonym == antonym) {
+        throw {code: 400, error: `Arguments are same`}
+    }
+    if(!word.match(/^[a-zA-Z]+$/)) {
+        throw {code: 400, error: `Word should contain only alphabets`}
+    }
+   
+    
 
     synonym = synonym.trim(), antonym = antonym.trim(), example = example.trim()
     let countS = 0, countA = 0, countE = 0
@@ -107,6 +176,7 @@ const editWord = async function editWord(userId, word, synonym, antonym, example
     })
 
     synonym = synonym.split(", ")
+    let testSynonym = synonym.sort().join("")
     let synonymLenght = synonym.length
     for (let i = 0; i < synonymLenght; i++) {
         let same = false
@@ -121,6 +191,13 @@ const editWord = async function editWord(userId, word, synonym, antonym, example
 
     if (antonym.length !== 0) {
         antonym = antonym.split(", ")
+        let testAntonym = antonym.sort().join("")
+    if(testSynonym=== testAntonym){
+        throw {code: 401, error: "Synonyms and Antonyms cannot be same"};
+    }
+    if(!testSynonym.match(/^[a-zA-Z]+$/) || !testAntonym.match(/^[a-zA-Z]+$/)) {
+        throw {code: 401, error: "Synonyms and Antonyms should contain only alphabets"};
+    } 
         let antonymLength = antonym.length
         if (editingWord.antonyms.length != 0) {
             for (let i = 0; i < antonymLength; i++) {
@@ -142,10 +219,13 @@ const editWord = async function editWord(userId, word, synonym, antonym, example
         } else{
             countA = -1
         }
-    }    
+    }   
+    
+    
     
     if (example.length !== 0) {
         example = example.split(". ")
+       
         let exampleLenght = example.length
         if (editingWord.examples.length != 0) {
             for (let i = 0; i < exampleLenght; i++) {
