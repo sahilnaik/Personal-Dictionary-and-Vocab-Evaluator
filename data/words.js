@@ -50,15 +50,44 @@ const addWord = async function (userId,  word, meaning, synonym, antonym, exampl
         noOfTimesCorrect: 0
     }
 
+    
     synonym = synonym.split(", ")
+    let sameSynonym = false
+    for (let i = 1; i < synonym.length; i++) {
+        if(synonym[i-1] == synonym[i]){
+            sameSynonym = true
+            throw {code: 401, error: `No 2 synonyms can be same. Every synonynm must be unique`}
+        }
+        
+    }
     synonym.forEach(x => {
         newWord.synonyms.push(x) 
     });
+    
+    
     antonym = antonym.split(", ")
+    let sameAntonym = false
+    for (let i = 1; i < synonym.length; i++) {
+        if(synonym[i-1] == synonym[i]){
+            sameAntonym = true
+            throw {code: 401, error: `No 2 antonyms can be same. Every antonym must be unique`}
+        }
+        
+    }
     antonym.forEach(x =>{
         newWord.antonyms.push(x)
     })
+
+    
     example = example.split(". ")
+    let sameExample = false
+    for (let i = 1; i < synonym.length; i++) {
+        if(synonym[i-1] == synonym[i]){
+            sameExample = true
+            throw {code: 401, error: `No 2 examples can be same. Every example must be unique`}
+        }
+        
+    }
     example.forEach(x =>{
         newWord.examples.push(x)
     })
@@ -245,9 +274,6 @@ const updateAllWordsProgress = async function updateAllWordsProgress(userId, cor
                     y.progress = "learnt"
                 }
                 let updatingNoOfTimesCorrect = await wordCollection.updateOne({userId: ObjectId(userId)}, {$set: {words: wordDocument.words}})
-                // if (!updatingNoOfTimesCorrect) {
-                //     throw {code: 500, error: `Cannot update the no of words counter`}
-                // }
             }
         })
     })
@@ -256,11 +282,9 @@ const updateAllWordsProgress = async function updateAllWordsProgress(userId, cor
         wordDocument.words.every(async y => {
             if (x.toLowerCase() == y.word.toLowerCase()) {
                 if (y.progress == "learnt") {
+                    y.progress = "learning"
                     y.noOfTimesCorrect = 1
                     let updatingNoOfTimesCorrect = await wordCollection.updateOne({userId: ObjectId(userId)}, {$set: {words: wordDocument.words}})
-                    // if (!updatingNoOfTimesCorrect) {
-                    //     throw { code: 500, error: `Cannot update the no of words counter` }
-                    // }
                 }
             }
         })
@@ -271,7 +295,7 @@ const updateProgressToLearning = async function updateProgressToLearning(userId,
     let wordCollection = await words()
     let wordDocument = await wordCollection.findOne({userId: ObjectId(userId)})
     
-    wordDocument.words.every(async x =>{
+    await wordDocument.words.every(async x =>{
         if (x.word == word) {
             x.progress = "learning"
             let updatingProgress = await wordCollection.updateOne({userId: ObjectId(userId)}, {$set: {words: wordDocument.words}})
