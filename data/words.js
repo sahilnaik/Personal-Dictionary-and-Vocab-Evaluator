@@ -6,7 +6,7 @@ const words = mongoCollections.words
 const checkSameSynonym = async (synonym) =>{
     let sameSynonym = false
     for (let i = 1; i < synonym.length; i++) {
-        if(synonym[i-1] == synonym[i]){
+        if(synonym[i-1].toLowerCase() == synonym[i].toLowerCase()){
             sameSynonym = true
             throw {code: 401, error: `No 2 synonyms can be same. Every synonynm must be unique`}
         }
@@ -16,7 +16,7 @@ const checkSameSynonym = async (synonym) =>{
 const checkSameAntonym = async (antonym) => {
     let sameAntonym = false
     for (let i = 1; i < antonym.length; i++) {
-        if(antonym[i-1] == antonym[i]){
+        if(antonym[i-1].toLowerCase() == antonym[i].toLowerCase()){
             sameAntonym = true
             throw {code: 401, error: `No 2 antonyms can be same. Every antonym must be unique`}
         }  
@@ -26,13 +26,14 @@ const checkSameAntonym = async (antonym) => {
 const checkSameExamples = async (example) => {
     let sameExample = false
     for (let i = 1; i < example.length; i++) {
-        if(example[i-1] == example[i]){
+        if(example[i-1].toLowerCase() == example[i].toLowerCase()){
             sameExample = true
             throw {code: 401, error: `No 2 examples can be same. Every example must be unique`}
         }   
     }
 }
 // Checks End
+
 const createWordsDocument = async function createWordsDocument(userId) {
     if(arguments.length != 1) {
 
@@ -59,16 +60,13 @@ const createWordsDocument = async function createWordsDocument(userId) {
     if (insertWord.insertedCount === 0) {
         throw {code: 500, error: `Unable to create the word Document`}
     }
-
-
-
     return newWordObject._id
     
 }
 
 const addWord = async function (userId,  word, meaning, synonym, antonym, example) {
     if(arguments.length != 6) {
-        throw {code: 400, error: `Check the number of arguments`}
+        throw {code: 400, error: `Please provide all arguments`}
     }
     if(!userId || !word || !meaning || !synonym) {
         throw {code: 400, error: `Check if all the arguments are provided`}
@@ -115,52 +113,48 @@ const addWord = async function (userId,  word, meaning, synonym, antonym, exampl
         noOfTimesCorrect: 0
     }
 
-    
-    
-
     synonym = synonym.split(", ")
     let testSynonym = synonym.sort().join("")
     await checkSameSynonym(synonym)
 
     synonym.forEach(x => {
-        newWord.synonyms.push(x) 
+        newWord.synonyms.push(x.trim()) 
     });
     
     if (antonym.length !== 0) {
         antonym = antonym.split(", ")
         let testAntonym = antonym.sort().join("")
-    if(testSynonym=== testAntonym){
-        throw {code: 401, error: "Synonyms and Antonyms cannot be same"};
-    }
-    if(!testSynonym.match(/^[a-zA-Z]+$/) || !testAntonym.match(/^[a-zA-Z]+$/)) {
-        throw {code: 401, error: "Synonyms and Antonyms should contain only alphabets"};
-    }
+
+        if(testSynonym=== testAntonym){
+            throw {code: 401, error: "Synonyms and Antonyms cannot be same"};
+        }
+        if(!testSynonym.match(/^[a-zA-Z]+$/) || !testAntonym.match(/^[a-zA-Z]+$/)) {
+            throw {code: 401, error: "Synonyms and Antonyms should contain only alphabets"};
+        }
         await checkSameAntonym(antonym)
 
         antonym.forEach(x =>{
-            newWord.antonyms.push(x)
+            newWord.antonyms.push(x.trim())
         })
     }
     if (example.length !== 0) {
-    example = example.split(". ")
-    for (let i = 0; i < example.length; i++) {
-        example[i] = example[i].trim()
-        if(example[i].length == 0) {
-            throw {code: 401, error: "Example cannot be empty"};
+        example = example.split(". ")
+        for (let i = 0; i < example.length; i++) {
+            example[i] = example[i].trim()
+            if(example[i].length == 0) {
+                throw {code: 401, error: "Example cannot be empty"};
+            }
+            // if(!example[i].match(/^[a-zA-Z0-9!"',@#\$%\&*\)\(.]+$/g)){
+            //     throw {code: 401, error: "Example should contain only alphabets and numbers"};
+            // }
         }
-        // if(!example[i].match(/^[a-zA-Z0-9!"',@#\$%\&*\)\(.]+$/g)){
-        //     throw {code: 401, error: "Example should contain only alphabets and numbers"};
-        // }
+        await checkSameExamples(example)
+
+        example.forEach(x =>{
+            newWord.examples.push(x.trim())
+        })
     }
-    await checkSameExamples(example)
-
-    example.forEach(x =>{
-        newWord.examples.push(x)
-    })
-}
     
-    
-
     let result = await wordCollection.updateOne({userId: ObjectId(userId)}, {$addToSet: {words: newWord}})
     if (result.modifiedCount === 0) {
         throw {code: 500, error: `Unable to add the word to the Document`}; 
@@ -229,7 +223,7 @@ const editWord = async function editWord(userId, word, synonym, antonym, example
     for (let i = 0; i < synonymLenght; i++) {
         let same = false
         for (let j = 0; j < editingWord.synonyms.length; j++) {
-            if (editingWord.synonyms[j] == synonym[i]) {
+            if (editingWord.synonyms[j].toLowerCase() == synonym[i].toLowerCase()) {
                 same = true
                 countS++
                 break
@@ -253,7 +247,7 @@ const editWord = async function editWord(userId, word, synonym, antonym, example
             for (let i = 0; i < antonymLength; i++) {
                 let same = false
                 for (let j = 0; j < editingWord.antonyms.length; j++) {
-                    if (editingWord.antonyms[j] == antonym[i]) {
+                    if (editingWord.antonyms[j].toLowerCase() == antonym[i].toLowerCase()) {
                         same = true
                         countA++
                         break
@@ -286,7 +280,7 @@ const editWord = async function editWord(userId, word, synonym, antonym, example
                 }
                 let same = false
                 for (let j = 0; j < editingWord.examples.length; j++) {
-                    if (editingWord.examples[j] == example[i]) {
+                    if (editingWord.examples[j].toLowerCase() == example[i].toLowerCase()) {
                         same = true
                         countE++
                         break
@@ -309,14 +303,23 @@ const editWord = async function editWord(userId, word, synonym, antonym, example
     }
 
     if (countS != editingWord.synonyms.length) {
+        synonym.forEach(x =>{
+            x = x.trim()
+        })
         editingWord.synonyms = synonym
     }
 
     if (countA != editingWord.antonyms.length) {
+        antonym.forEach(x =>{
+            x = x.trim()
+        })
         editingWord.antonyms = antonym
     }
 
     if (countE != editingWord.examples.length) {
+        example.forEach(x =>{
+            x = x.trim()
+        })
         editingWord.examples = example
     }
 
@@ -490,6 +493,35 @@ const updateCounters = async function updateCounters(userId) {
     
     result = await wordCollection.updateOne({userId: ObjectId(userId)}, {$set: {yetToLearn: yetToLearnWords.length, learning:learningWords.length, learnt: learntWords.length }})
 }
+
+const addWordSeed = async function addWordSeed(userId, word, meaning, synonyms, antonyms, examples, progress, noOfTimesCorrect){
+    let wordCollection = await words()
+    let wordDocument = await wordCollection.findOne({userId: ObjectId(userId)})
+
+    word = word.toLowerCase()  
+    wordDocument.words.forEach(x =>{
+        if (x.word.toLowerCase() === word) {
+            throw {code: 401, error: "Word already exists in the database."}
+        }
+    })
+
+    let newWord = {
+        word: word,
+        meaning: meaning,
+        synonyms: synonyms,
+        antonyms: antonyms,
+        examples: examples,
+        progress: progress,
+        noOfTimesCorrect: noOfTimesCorrect
+    }
+    
+    let result = await wordCollection.updateOne({userId: ObjectId(userId)}, {$addToSet: {words: newWord}})
+    if (result.modifiedCount === 0) {
+        throw {code: 500, error: `Unable to add the word to the Document`}; 
+    }
+
+}
+
 module.exports = {
     createWordsDocument,
     addWord, 
@@ -499,4 +531,5 @@ module.exports = {
     updateAllWordsProgress,
     updateProgressToLearning,
     updateCounters,
+    addWordSeed,
 }

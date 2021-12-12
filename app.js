@@ -73,8 +73,6 @@ app.post('/profile-upload-single', result = upload.single('profile-file'), async
     res.status(401).redirect('/profile')
     return
   }
-    
-  next()
 })
 
 // Authenticated User Routes Starts
@@ -174,15 +172,15 @@ app.use("/feedback", (req, res, next) => {
 
 configRoutes(app);
 
-app.use((req, res, next) => {
-  date = new Date();
-  console.log(
-    `[${date.toUTCString()}]:\t${req.method}\t${req.originalUrl}\t\t${
-      req.session.user ? "(Authenticated User)" : "(Non-Authenticated User)"
-    }`
-  );
-  next();
-});
+// app.use((req, res, next) => {
+//   date = new Date();
+//   console.log(
+//     `[${date.toUTCString()}]:\t${req.method}\t${req.originalUrl}\t\t${
+//       req.session.user ? "(Authenticated User)" : "(Non-Authenticated User)"
+//     }`
+//   );
+//   next();
+// });
 
 app.listen(3000, () => {
   console.log("We've now got a server!");

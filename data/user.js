@@ -9,10 +9,14 @@ const createFlashcard = flashcardStuff.create;
 const createMcq = mcqStuff.create;
 const { createWordsDocument } = require("./words")
 
+
+// Checks Starts
 function stringErrorHandler(pass) {
   if (typeof pass !== "string") throw "Type must be a string";
   if (pass.trim() === "") throw "Input cannot be empty";
 }
+// Checks Ends
+
 async function create(firstName, lastName, email, phoneNumber, password) {
   if (arguments.length !== 5) {
     throw "Check arguments passed";
@@ -91,7 +95,8 @@ async function create(firstName, lastName, email, phoneNumber, password) {
   await createFlashcard(newId);
   let wordDocumentId = await createWordsDocument(newId)
   let wordIdInserted = await userCollection.updateOne({_id: ObjectId(newId)}, {$set: {wordsId: wordDocumentId}})
-  console.log(wordIdInserted);
+  
+  return newId
 }
 
 async function get(email, password) {
