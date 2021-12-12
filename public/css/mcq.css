@@ -230,3 +230,37 @@ td{
 .mcq_i,.word_i,.option_i,.answers_i,#mcq_id{
     display: none;
 }
+
+
+#note{
+    justify-content: center;
+    display: grid;
+    width: 90%;
+    padding: 0px;
+    height: 300px;
+    border:10px #1e51dc;
+    border-style: double;
+    margin-bottom: 50px;
+    font-size: larger;
+    font-weight: 600;
+    position: relative;
+    bottom:100px;
+}
+#exit_note{
+    text-align: center;
+    color: red;
+}
+
+#exit_note span{
+    color: black;
+    font-weight: 800;
+}
+
+.note_title{
+    font-size: xx-large;
+    font-weight: 900;
+    text-align: center;
+    color: white;
+    position: relative;
+    background-color: #1e51dc;
+}

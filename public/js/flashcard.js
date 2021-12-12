@@ -2,6 +2,10 @@ window.addEventListener('load', (event) => {
     document.getElementsByClassName("sidebar-flashcard")[0].style.backgroundColor="rgb(53, 51, 51)";
 });
 
+window.addEventListener('beforeunload', (event) => {
+    event.returnValue = `Are you sure you want to leave?`;
+});
+
 let wordCount=-1;
 let correctCount=0;
 let wrongCount=0;

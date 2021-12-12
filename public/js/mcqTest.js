@@ -2,6 +2,10 @@ window.addEventListener('load', (event) => {
     document.getElementsByClassName("sidebar-mcq")[0].style.backgroundColor="rgb(53, 51, 51)";
 });
 
+window.addEventListener('beforeunload', (event) => {
+    event.returnValue = `Are you sure you want to leave?`;
+  });
+
 let wordindex=-1;
 let no=0;
 let words=[];
