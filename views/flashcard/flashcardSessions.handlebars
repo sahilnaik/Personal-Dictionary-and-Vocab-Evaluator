@@ -29,6 +29,7 @@
         </div>
     </div>
     <div class="results">
+    {{#if sessions}} 
     <h1 class="f_heading">PREVIOUS TEST SCORES</h1>
     {{#each sessions}}
         <div class="result">
@@ -44,6 +45,7 @@
         </div>
     {{/each}}
     </div>
+    {{/if}}
 {{/if}}
 
 <script src="../../public/js/flashcardsessions.js"></script>
