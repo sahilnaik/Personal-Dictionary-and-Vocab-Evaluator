@@ -34,7 +34,7 @@ router.post('/addWord', async (req, res) => {
     const example = xss(addWordForm.example)
     try {
         const wordDocument = await words.addWord( req.session.user._id, word, meaning, synonym, antonym, example);
-        res.status(200).render("/addWords", {title:"Add Words", profilePicture: profilePicture, firstName: firstName, lastName: lastName });
+        res.status(200).render("words/addWords", {title:"Add Words", profilePicture: profilePicture, firstName: firstName, lastName: lastName });
     } catch (e) {
         if (e.code) {
             res.status(e.code).render("words/addWords", {title:"Add Words",profilePicture: profilePicture,error: e.error, firstName: firstName, lastName: lastName})

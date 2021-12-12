@@ -36,6 +36,21 @@ router.post("/", async (req, res) => {
     });
     return;
   }
+  if(firstName.match(/[^a-zA-Z]/g)){
+    res.status(400).render("user/signup", {
+      layout: "user",
+      error: "First name can only contain letters",
+    });
+    return;
+  }
+  if(lastName.match(/[^a-zA-Z]/g)){
+    res.status(400).render("user/signup", {
+      layout: "user",
+      error: "Last name can only contain letters",
+    });
+    return;
+  }
+  
   if (password !== confirmPassword) {
     //  res.status(400).json({ error: "Passwords do not match" });
     res.status(400).render("user/signup", {

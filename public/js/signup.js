@@ -49,7 +49,7 @@ if (myForm) {
     }
     if (
       firstName.length < 2 ||
-      firstName.length > 20 ||
+      
       !firstName ||
       !firstName.trim() ||
       !firstName.match(/^[a-zA-Z]+$/)
