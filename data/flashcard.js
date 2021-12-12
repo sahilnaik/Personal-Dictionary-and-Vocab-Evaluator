@@ -49,8 +49,7 @@ async function create(userId) {
 async function createSession(userId, length) {
   if (arguments.length != 2) throw "Invalid argument";
   if (!userId) throw "You must provide a userId to create a flashcard";
-  if(!length) throw "You must provide a length to create a flashcard";
-
+  
     let count = length;
     let wordArray = [];
     let prevQuestion = [];

@@ -431,7 +431,7 @@ detailsForm.addEventListener('submit', (event) => {
                 }, delayInMilliseconds);
                 swal({
                     title: "Good job!",
-                    text: "Submitted Successfully",
+                    text: "Request Submitted!",
                     icon: "success",
                 });
     }
