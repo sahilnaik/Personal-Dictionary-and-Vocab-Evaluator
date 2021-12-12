@@ -96,12 +96,13 @@ const editWord = async function editWord(userId, word, synonym, antonym, example
     word = word.toLowerCase() 
     let editingWord, i=0, indexof
     wordDocument.words.every(x => {
-        i++
         if (x.word.toLowerCase() == word) {
             editingWord = x
             indexof = i
+            i++
             return false
         }
+        i++
         return true
     })
 
@@ -118,57 +119,80 @@ const editWord = async function editWord(userId, word, synonym, antonym, example
         }  
     }
 
-    if (antonym.trim().length !== 0) {
+    if (antonym.length !== 0) {
         antonym = antonym.split(", ")
-        let antonymLenght = antonym.length
-        for (let i = 0; i < antonymLenght; i++) {
-            let same = false
-            for (let j = 0; j < editingWord.antonyms.length; j++) {
-                if (editingWord.antonyms[j] == antonym[i]) {
-                    same = true
-                    countA++
-                    break
-                }            
-            }  
+        let antonymLength = antonym.length
+        if (editingWord.antonyms.length != 0) {
+            for (let i = 0; i < antonymLength; i++) {
+                let same = false
+                for (let j = 0; j < editingWord.antonyms.length; j++) {
+                    if (editingWord.antonyms[j] == antonym[i]) {
+                        same = true
+                        countA++
+                        break
+                    }            
+                }  
+            }   
+        }else{
+            countA = -2
         }
     } else {
-        countA = -1
+        if (antonym.length == editingWord.antonyms.length) {
+            countA = 0
+        } else{
+            countA = -1
+        }
     }    
     
-    if (example.trim().length !== 0) {
+    if (example.length !== 0) {
         example = example.split(". ")
         let exampleLenght = example.length
-        for (let i = 0; i < exampleLenght; i++) {
-            let same = false
-            for (let j = 0; j < editingWord.examples.length; j++) {
-                if (editingWord.examples[j] == example[i]) {
-                    same = true
-                    countE++
-                    break
-                }            
-            }  
+        if (editingWord.examples.length != 0) {
+            for (let i = 0; i < exampleLenght; i++) {
+                let same = false
+                for (let j = 0; j < editingWord.examples.length; j++) {
+                    if (editingWord.examples[j] == example[i]) {
+                        same = true
+                        countE++
+                        break
+                    }            
+                }  
+            }   
+        } else{
+            countE = -2
         }
     } else {
-        countE = -1
+        if (example.length == editingWord.examples.length) {
+            countE = 0
+        }else{
+            countE = -1
+        }
     }    
 
-    if (countS == synonym.length && countA == antonym.length && countE == example.length) {
+    if (countS == editingWord.synonyms.length && countA == editingWord.antonyms.length && countE == editingWord.examples.length) {
         throw  `Please provide at least 1 of the elements different in order to edit`
     }
 
-    if (countS != synonym.length) {
+    if (countS != editingWord.synonyms.length) {
         editingWord.synonyms = synonym
     }
 
-    if (countA != antonym.length) {
+    if (countA != editingWord.antonyms.length) {
         editingWord.antonyms = antonym
     }
 
-    if (countE != example.length) {
+    if (countE != editingWord.examples.length) {
         editingWord.examples = example
     }
 
-    // wordCollection.words = wordCollection.words.splice(indexof, 1, editingWord)
+
+    wordDocument.words.every(x => {
+        if (x.word.toLowerCase() == word) {
+            x = editingWord
+            return false
+        }
+        return true
+    })
 
     let result = await wordCollection.updateOne({userId: ObjectId(userId)}, {$set: {words: wordDocument.words}})
     if (result.modifiedCount === 0) {

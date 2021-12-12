@@ -58,7 +58,6 @@ async function createSession(userId, length) {
       .find({ userId: userId }, { projection: { words: 1 } })
       .toArray();
     let noOfWords = findWords[0].words.length - 1;
-    let { wordList, yetToLearnWords, learningWords, learntWords } = await getAll(userId)
   
     for (let iterations = 0; iterations < 10; iterations++) {
       let randomNum = Math.round(Math.random() * noOfWords);
