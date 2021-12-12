@@ -25,6 +25,7 @@
 .results{
     margin: auto;
     display: grid;
+    height: 100vh;
 }
 
 .test{
