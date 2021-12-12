@@ -417,3 +417,8 @@ p{
   font-size: xx-large;
   display: none;
 }
+
+
+#sameValue_err{
+  display: none;
+}

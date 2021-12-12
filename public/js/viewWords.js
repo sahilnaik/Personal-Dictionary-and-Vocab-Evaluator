@@ -34,6 +34,7 @@ function editStart(){
         document.getElementsByClassName('disclaimer_msg')[0].style.display="none";
         document.getElementById('meaning_err').style.display="none";
         document.getElementById('synonym_err').style.display="none";
+        document.getElementById('sameValue_err').style.display="none";
         document.getElementById('antonym_err').style.display="none";
         document.getElementById('example_err').style.display="none";
         document.getElementsByClassName('submit_edit')[0].style.display="none";
@@ -49,6 +50,7 @@ function editStart(){
         document.getElementById('antonyms').contentEditable="false";
         document.getElementById('antonyms').style.border="none";
         document.getElementById('meaning_err').style.display="none";
+        document.getElementById('sameValue_err').style.display="none";
         document.getElementById('synonym_err').style.display="none";
         document.getElementById('antonym_err').style.display="none";
         document.getElementById('example_err').style.display="none";
@@ -68,6 +70,7 @@ function editStart(){
         document.getElementById('synonym_err').style.display="none";
         document.getElementById('antonym_err').style.display="none";
         document.getElementById('example_err').style.display="none";
+        document.getElementById('sameValue_err').style.display="none";
         document.getElementsByClassName('submit_edit')[0].style.display="none";
         document.getElementsByClassName('disclaimer_msg')[0].style.display="none";
     }else{
@@ -86,7 +89,7 @@ let meaningsList=[];
 let synonymsList=[];
 let antonymsList=[];
 let examplesList=[];
-
+let meaningInitial,synonymsInitial,antonymsInitial,examplesInitial="";
 let word_i=document.getElementsByClassName("word_i");
 let meaning_i=document.getElementsByClassName("meaning_i");
 let synonyms_i=document.getElementsByClassName("synonyms_i");
@@ -394,6 +397,11 @@ function elementReturn(selection){
     document.getElementById("synonyms").innerText=synonymsString;
     document.getElementById("antonyms").innerText=antonymsString;
     document.getElementById("example").innerText=examplesString;
+
+    meaningInitial=meaning;
+    synonymsInitial=synonymsString;
+    antonymsInitial=antonymsString;
+    examplesInitial=examplesString;
 }
 
 detailsForm=document.getElementById("details-form");
@@ -405,8 +413,7 @@ detailsForm.addEventListener('submit', (event) => {
     document.getElementById("synonymsinput").value=document.getElementById("synonyms").innerText;
     document.getElementById("antonymsinput").value=document.getElementById("antonyms").innerText;
     document.getElementById("exampleinput").value=document.getElementById("example").innerText;
-    let validateWord=true;
-    let validateMeaning=true;
+    let validateValues=true;
     let validateSynonym=true;
     let validateAntonym=true;
     let validateExample=true;
@@ -419,12 +426,20 @@ detailsForm.addEventListener('submit', (event) => {
     let antonym_err=document.getElementById('antonym_err');
     let example=document.getElementById('exampleinput').value;
     let example_err=document.getElementById('example_err');
+    let sameValue_err=document.getElementById('sameValue_err');
     // validateMeaning=checkMeaning(meaning,meaning_err);
+    synonym=synonym.trim();
+    antonym=antonym.trim();
+    example=example.trim();
+    synonymsInitial=synonymsInitial.trim();
+    antonymsInitial=antonymsInitial.trim();
+    examplesInitial=examplesInitial.trim();
     validateSynonym=checkSynonym(synonym,synonym_err);
     validateAntonym=checkAntonym(antonym,antonym_err);
     validateExample=checkExample(example,example_err);
-    if(validateSynonym&&validateAntonym&&validateExample){
-            var delayInMilliseconds = 2000;
+    validateValues=checkValues(synonym,antonym,example,sameValue_err);
+    if(validateSynonym&&validateAntonym&&validateExample&&validateValues){
+                var delayInMilliseconds = 2000;
 
                 setTimeout(function() {
                     detailsForm.submit();
@@ -547,5 +562,17 @@ detailsForm.addEventListener('submit', (event) => {
                 validateExample=true;
             }
             return validateExample;
+    }
+
+    function checkValues(synonym,antonym,example,sameValue_err){
+        if(synonymsInitial==synonym&&antonymsInitial==antonym&&examplesInitial==example){
+            sameValue_err.style.display="grid";
+            sameValue_err.innerText="Atleast one of editable fields should have a different input for the word to be edited!";
+            return false;
+        }else{
+            sameValue_err.style.display="none";
+            return true;
         }
+        
+    }
 });
