@@ -889,7 +889,6 @@ const addMCQSeed = async function addMCQSeed(seedUser) {
 const main = async () => {
   let seedUser = await createSeedUser()
   let word1 = await addWordSeeds(seedUser)
-  let overallLearntSeed = await users.overallLearnt(seedUser,)
   try {
   let countersUpdate = await updateCounters(seedUser) 
   } catch (e) {

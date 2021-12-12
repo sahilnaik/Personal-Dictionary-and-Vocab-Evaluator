@@ -53,7 +53,6 @@ async function create(firstName, lastName, email, phoneNumber, password) {
 
   let wordsId = 0;
   let flashcardId = 0;
-  let overallLearnt = 0;
   let mcqTestId = 0;
   let profilePicture = "default.jpeg";
   const userCollection = await user();
@@ -82,7 +81,6 @@ async function create(firstName, lastName, email, phoneNumber, password) {
     password : hashedPassword,
     wordsId,
     flashcardId,
-    overallLearnt,
     mcqTestId,
     profilePicture,
   };

@@ -220,42 +220,50 @@ const editWord = async function editWord(userId, word, synonym, antonym, example
     await checkSameSynonym(synonym)
     
     let synonymLenght = synonym.length
-    for (let i = 0; i < synonymLenght; i++) {
-        let same = false
-        for (let j = 0; j < editingWord.synonyms.length; j++) {
-            if (editingWord.synonyms[j].toLowerCase() == synonym[i].toLowerCase()) {
-                same = true
-                countS++
-                break
-            }            
-        }  
+    if (synonymLenght > editingWord.synonyms.length) {
+        countS = -1
+    }else{
+        for (let i = 0; i < synonymLenght; i++) {
+            let same = false
+            for (let j = 0; j < editingWord.synonyms.length; j++) {
+                if (editingWord.synonyms[j].toLowerCase() == synonym[i].toLowerCase()) {
+                    same = true
+                    countS++
+                    break
+                }            
+            }  
+        }
     }
 
     if (antonym.length !== 0) {
         antonym = antonym.split(", ")
         let testAntonym = antonym.sort().join("")
-    if(testSynonym=== testAntonym){
-        throw {code: 401, error: "Synonyms and Antonyms cannot be same"};
-    }
-    if(!testSynonym.match(/^[a-zA-Z]+$/) || !testAntonym.match(/^[a-zA-Z]+$/)) {
-        throw {code: 401, error: "Synonyms and Antonyms should contain only alphabets"};
-    } 
+        if(testSynonym=== testAntonym){
+            throw {code: 401, error: "Synonyms and Antonyms cannot be same"};
+        }
+        if(!testSynonym.match(/^[a-zA-Z]+$/) || !testAntonym.match(/^[a-zA-Z]+$/)) {
+            throw {code: 401, error: "Synonyms and Antonyms should contain only alphabets"};
+        } 
         await checkSameAntonym(antonym)
 
         let antonymLength = antonym.length
-        if (editingWord.antonyms.length != 0) {
-            for (let i = 0; i < antonymLength; i++) {
-                let same = false
-                for (let j = 0; j < editingWord.antonyms.length; j++) {
-                    if (editingWord.antonyms[j].toLowerCase() == antonym[i].toLowerCase()) {
-                        same = true
-                        countA++
-                        break
-                    }            
-                }  
-            }   
-        }else{
-            countA = -2
+        if (antonymLength > editingWord.antonyms.length) {
+            countA = -3
+        } else{
+            if (editingWord.antonyms.length != 0) {
+                for (let i = 0; i < antonymLength; i++) {
+                    let same = false
+                    for (let j = 0; j < editingWord.antonyms.length; j++) {
+                        if (editingWord.antonyms[j].toLowerCase() == antonym[i].toLowerCase()) {
+                            same = true
+                            countA++
+                            break
+                        }            
+                    }  
+                }   
+            }else{
+                countA = -2
+            }
         }
     } else {
         if (antonym.length == editingWord.antonyms.length) {
@@ -273,22 +281,26 @@ const editWord = async function editWord(userId, word, synonym, antonym, example
         await checkSameExamples(example)
 
         let exampleLenght = example.length
-        if (editingWord.examples.length != 0) {
-            for (let i = 0; i < exampleLenght; i++) {
-                if(example[i].trim().length == 0) {
-                    throw {code: 400, error: `Example is empty`}
-                }
-                let same = false
-                for (let j = 0; j < editingWord.examples.length; j++) {
-                    if (editingWord.examples[j].toLowerCase() == example[i].toLowerCase()) {
-                        same = true
-                        countE++
-                        break
-                    }            
-                }  
+        if (exampleLenght > editingWord.examples.length) {
+            countE = -3
+        }else{   
+            if (editingWord.examples.length != 0) {
+                for (let i = 0; i < exampleLenght; i++) {
+                    if(example[i].trim().length == 0) {
+                        throw {code: 400, error: `Example is empty`}
+                    }
+                    let same = false
+                    for (let j = 0; j < editingWord.examples.length; j++) {
+                        if (editingWord.examples[j].toLowerCase() == example[i].toLowerCase()) {
+                            same = true
+                            countE++
+                            break
+                        }            
+                    }  
+                }   
+            } else{
+                countE = -2
             }   
-        } else{
-            countE = -2
         }
     } else {
         if (example.length == editingWord.examples.length) {
