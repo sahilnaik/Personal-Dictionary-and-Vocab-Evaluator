@@ -481,17 +481,7 @@ detailsForm.addEventListener('submit', (event) => {
                 synonym_err.style.display="none";
                 validateSynonym=true;
             }
-         if(!synonym.match(/^[a-zA-Z]+$/)) {
-            synonym_err.style.display="grid";
-             document.getElementById('synonym').focus();
-             
-             synonym_err.innerText="Synonym cannot contain special characters. Please Enter a valid synonym";
-             validateSynonym=false;
-             return validateSynonym;
-         }else{
-             synonym_err.style.display="none";
-             validateSynonym=true;
-         }
+         
          synonymList=synonym.split(', ');
          j=0;
          flag=0;
@@ -546,16 +536,7 @@ detailsForm.addEventListener('submit', (event) => {
                 antonym_err.style.display="none";
                 validateAntonym=true;
             }
-         if(!antonym.match(/^[a-zA-Z]+$/)){
-            antonym_err.style.display="grid";
-               document.getElementById('antonym').focus();
-            antonym_err.innerText="Antonym cannot contain special characters. Please Enter a valid antonym";
-            validateAntonym=false;
-            return validateAntonym;
-        }else{
-            antonym_err.style.display="none";
-            validateAntonym=true;
-        }
+         
          antonymList=antonym.split(', ');
          j=0;
          flag=0;

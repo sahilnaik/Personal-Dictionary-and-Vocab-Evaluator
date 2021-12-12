@@ -13,11 +13,11 @@ router.post('/createDocument', async (req, res) => {
         res.status(200).json(`Word document successfully created for User ID: ${userId} with document ID:${wordDocument}`)
     } catch (e) {
         if (e.code) {
-          //  res.status(e.code).json(e.error)
+         
             res.status(e.code).render("words/addWords", {title:"Add Words",profilePicture: profilePicture,error: e.error, firstName: firstName, lastName: lastName})
     
         } else {
-          //  res.status(400).json(e)    
+        
             return res.status(500).render('httpErrors/error', {code:'500', description: e});         
            
         }
@@ -36,6 +36,49 @@ router.post('/addWord', async (req, res) => {
     const synonym = xss(addWordForm.synonym)
     const antonym = xss(addWordForm.antonym)
     const example = xss(addWordForm.example)
+    
+    let testSynonym = synonym.split(", ").sort().join("")
+    if(!word || !meaning || !synonym){
+        return res.status(400).render('httpErrors/error', {code:'400', description: "Please fill all the fields"});         
+        }
+        if(word.trim().length == 0 || meaning.trim().length == 0 || synonym.trim().length == 0) {
+            
+            return res.status(400).render('httpErrors/error', {code:'400', description: "Please fill all the fields"});
+        }
+        if(word == meaning || word == synonym || word == antonym || meaning == synonym || meaning == antonym || synonym == antonym) {
+            return res.status(400).render('httpErrors/error', {code:'400', description: "All the fields should be different"});
+        }
+        if(!word.match(/^[a-zA-Z]+$/)) {
+            
+            return res.status(400).render('httpErrors/error', {code:'400', description: "Word should contain only alphabets"});
+        }
+        if(!meaning.match(/^[a-zA-Z]+$/)) {
+            return res.status(400).render('httpErrors/error', {code:'400', description: "Meaning should contain only alphabets"});
+        }
+        if(antonym.length!==0){
+            
+            let testAntonym = antonym.split(", ").sort().join("")
+
+            if(testSynonym=== testAntonym){
+            
+                return res.status(401).render('httpErrors/error', {code:'401', description: "Synonyms and Antonyms cannot be same"});
+            }
+            if(!testSynonym.match(/^[a-zA-Z]+$/) || !testAntonym.match(/^[a-zA-Z]+$/)) {
+                
+                return res.status(401).render('httpErrors/error', {code:'401', description: "Synonyms and Antonyms should contain only alphabets"});
+            }
+        }
+        if (example.length !== 0) {
+            let testEg = example.split(". ");
+            for (let i = 0; i < testEg.length; i++) {
+                testEg[i] = testEg[i].trim()
+                if(testEg[i].length == 0) {
+                    
+                    return res.status(401).render('httpErrors/error', {code:'401', description: "Example cannot be empty"});
+                }
+                
+            }
+        }
     try {
         const wordDocument = await words.addWord( req.session.user._id, word, meaning, synonym, antonym, example);
         return res.status(200).render("words/addWords", {title:"Add Words", profilePicture: profilePicture, firstName: firstName, lastName: lastName });
@@ -62,6 +105,49 @@ router.post('/:id/editWord', async (req, res) => {
     console.log(synonym);
     console.log(antonym);
     console.log(example);
+
+    // let testSynonym = synonym.split(", ").sort().join("")
+    // if(!word || !meaning || !synonym || !antonym || !example){
+    //     return res.status(400).render('httpErrors/error', {code:'400', description: "Please fill all the fields"});         
+    //     }
+    //     if(word.trim().length == 0 || meaning.trim().length == 0 || synonym.trim().length == 0) {
+            
+    //         return res.status(400).render('httpErrors/error', {code:'400', description: "Please fill all the fields"});
+    //     }
+    //     if(word == meaning || word == synonym || word == antonym || meaning == synonym || meaning == antonym || synonym == antonym) {
+    //         return res.status(400).render('httpErrors/error', {code:'400', description: "All the fields should be different"});
+    //     }
+    //     if(!word.match(/^[a-zA-Z]+$/)) {
+            
+    //         return res.status(400).render('httpErrors/error', {code:'400', description: "Word should contain only alphabets"});
+    //     }
+    //     if(!meaning.match(/^[a-zA-Z]+$/)) {
+    //         return res.status(400).render('httpErrors/error', {code:'400', description: "Meaning should contain only alphabets"});
+    //     }
+    //     if(antonym.length!==0){
+            
+    //         let testAntonym = antonym.split(", ").sort().join("")
+
+    //         if(testSynonym=== testAntonym){
+            
+    //             return res.status(401).render('httpErrors/error', {code:'401', description: "Synonyms and Antonyms cannot be same"});
+    //         }
+    //         if(!testSynonym.match(/^[a-zA-Z]+$/) || !testAntonym.match(/^[a-zA-Z]+$/)) {
+                
+    //             return res.status(401).render('httpErrors/error', {code:'401', description: "Synonyms and Antonyms should contain only alphabets"});
+    //         }
+    //     }
+    //     if (example.length !== 0) {
+    //         let testEg = example.split(". ");
+    //         for (let i = 0; i < testEg.length; i++) {
+    //             testEg[i] = testEg[i].trim()
+    //             if(testEg[i].length == 0) {
+                    
+    //                 return res.status(401).render('httpErrors/error', {code:'401', description: "Example cannot be empty"});
+    //             }
+                
+    //         }
+    //     }
 
     try {
         const wordDocument = await words.editWord(req.params.id, word, synonym, antonym, example);
