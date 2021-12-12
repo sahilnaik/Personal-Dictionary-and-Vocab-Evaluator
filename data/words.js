@@ -2,7 +2,37 @@ const mongoCollections = require('../config/mongoCollections')
 let { ObjectId } = require('mongodb')
 const words = mongoCollections.words
 
+// Checks Start
+const checkSameSynonym = async (synonym) =>{
+    let sameSynonym = false
+    for (let i = 1; i < synonym.length; i++) {
+        if(synonym[i-1] == synonym[i]){
+            sameSynonym = true
+            throw {code: 401, error: `No 2 synonyms can be same. Every synonynm must be unique`}
+        }
+    }
+}
 
+const checkSameAntonym = async (antonym) => {
+    let sameAntonym = false
+    for (let i = 1; i < synonym.length; i++) {
+        if(synonym[i-1] == synonym[i]){
+            sameAntonym = true
+            throw {code: 401, error: `No 2 antonyms can be same. Every antonym must be unique`}
+        }  
+    }
+}
+
+const checkSameExamples = async (antonym) => {
+    let sameExample = false
+    for (let i = 1; i < synonym.length; i++) {
+        if(synonym[i-1] == synonym[i]){
+            sameExample = true
+            throw {code: 401, error: `No 2 examples can be same. Every example must be unique`}
+        }   
+    }
+}
+// Checks End
 const createWordsDocument = async function createWordsDocument(userId) {
     let wordCollection = await words()
     userId = ObjectId(userId)
@@ -50,44 +80,26 @@ const addWord = async function (userId,  word, meaning, synonym, antonym, exampl
         noOfTimesCorrect: 0
     }
 
-    
+
     synonym = synonym.split(", ")
-    let sameSynonym = false
-    for (let i = 1; i < synonym.length; i++) {
-        if(synonym[i-1] == synonym[i]){
-            sameSynonym = true
-            throw {code: 401, error: `No 2 synonyms can be same. Every synonynm must be unique`}
-        }
-        
-    }
+    await checkSameSynonym(synonym)
+
     synonym.forEach(x => {
         newWord.synonyms.push(x) 
     });
     
     
     antonym = antonym.split(", ")
-    let sameAntonym = false
-    for (let i = 1; i < synonym.length; i++) {
-        if(synonym[i-1] == synonym[i]){
-            sameAntonym = true
-            throw {code: 401, error: `No 2 antonyms can be same. Every antonym must be unique`}
-        }
-        
-    }
+    await checkSameAntonym(antonym)
+
     antonym.forEach(x =>{
         newWord.antonyms.push(x)
     })
 
     
     example = example.split(". ")
-    let sameExample = false
-    for (let i = 1; i < synonym.length; i++) {
-        if(synonym[i-1] == synonym[i]){
-            sameExample = true
-            throw {code: 401, error: `No 2 examples can be same. Every example must be unique`}
-        }
-        
-    }
+    await checkSameExamples(example)
+
     example.forEach(x =>{
         newWord.examples.push(x)
     })
@@ -136,6 +148,8 @@ const editWord = async function editWord(userId, word, synonym, antonym, example
     })
 
     synonym = synonym.split(", ")
+    await checkSameSynonym(synonym)
+    
     let synonymLenght = synonym.length
     for (let i = 0; i < synonymLenght; i++) {
         let same = false
@@ -150,6 +164,8 @@ const editWord = async function editWord(userId, word, synonym, antonym, example
 
     if (antonym.length !== 0) {
         antonym = antonym.split(", ")
+        await checkSameAntonym(antonym)
+
         let antonymLength = antonym.length
         if (editingWord.antonyms.length != 0) {
             for (let i = 0; i < antonymLength; i++) {
@@ -175,6 +191,8 @@ const editWord = async function editWord(userId, word, synonym, antonym, example
     
     if (example.length !== 0) {
         example = example.split(". ")
+        await checkSameExamples(example)
+
         let exampleLenght = example.length
         if (editingWord.examples.length != 0) {
             for (let i = 0; i < exampleLenght; i++) {
