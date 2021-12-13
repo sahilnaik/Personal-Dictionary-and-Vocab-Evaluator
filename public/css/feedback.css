@@ -1,0 +1,71 @@
+#feedback-form {
+  background-color: #f1f1f1;
+  padding: 20px;
+  padding-top: 100px;
+  border-radius: 5px;
+  margin: 0 auto;
+  width: 50%;
+  height: 80%;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  font-size: x-large;
+}
+
+html,body,.main-box {
+
+  height: 120% ;
+}
+
+/*  body {
+    display: flex;
+    justify-content: center;
+    margin-top: 1%;
+    align-items: center;
+    background-color: #f1f1f1;
+}
+ */
+
+#Feedback-h1{
+    font-weight: bolder;
+    text-align: center;
+    color: #23282d;
+  }
+   * {
+    box-sizing: content-box;
+    font-family: "Montserrat", sans-serif;
+    text-align: center;
+    
+  } 
+/*   form {
+  background-color: #f1f1f1;
+  color: #f1f1f1;
+  padding: 20px;
+  border-radius: 5px;
+  margin: 0 auto;
+  width: 100%;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+ */
+
+
+textarea[name="feedback"]
+{
+    border-color: black;
+    padding: 15px;
+}
+
+
+
+
+button { 
+    padding: 14px 20px;
+    background-color: black;
+    border-color: #f1f1f1;
+    color: white;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.required_msg{
+    color: #de0000;
+    font-size: xx-large;
+}

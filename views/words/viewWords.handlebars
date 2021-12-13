@@ -1,0 +1,127 @@
+<link rel="stylesheet" href="../public/css/viewWords.css">
+<div class="main_container" >
+    <div class="word_title">Personal Dictionary</div>
+    <br>
+    <div class="word_box">
+        <div class="progress_desc">
+            <span id="wordCount"></span> out of <span id="wordTotal"></span> words learnt
+        </div>
+        <span class="percentage"><span id="perc"></span></span>
+        <div class="progress">
+            <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" id="pbar"></div>
+        </div>
+
+        <div class="select">
+            <select id="selectWordType">
+                <option value="1">All Words</option>
+                <option value="2">Yet to Learn</option>
+                <option value="3">Learning</option>
+                <option value="4">Learnt</option>
+            </select>
+        </div>
+
+        <form id="word-select-form">
+        <label for="filter_word">
+            <input class="chosen-value" type="text" value="" id="filter_word" placeholder="Type to filter">
+        </label>
+
+        {{!-- Displaying Word Lists --}}
+        <ul id="word_list" class="value-list">
+        </ul>
+
+        </form>
+        <div class="details-box">
+        <form id="details-form" action="/words/{{userId}}/editWord" method="post">
+                    <div class="word-field">
+                        <p id="word"></p>
+                        <input name="wordinput" id="wordinput">    
+                    </div>
+                    <div class="box_input">
+                        <div class="edit_icon_box"><i class="fas fa-edit fa-2x" id="edit_icon" onclick="editStart()"></i></div>
+                    <div class="meaning-field">
+                        <p>Meaning &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; : &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<span id="meaning"></span></p>
+                        <p id="meaning_err"></p>
+                        <label for="meaninginput">
+                            <input name="meaninginput" id="meaninginput">
+                        </label>
+                    </div>
+                    <br> 
+                    <div class="synonyms-field">
+                        <p>Synonyms<span class="required_msg">*</span> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; : &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<span id="synonyms" contenteditable="false"></span></p>
+                        <p id="synonym_err"></p>
+                        <label for="synonymsinput">
+                            <input name="synonymsinput" id="synonymsinput">
+                        </label>
+                    </div>
+                    <br> 
+                    <div class="antonyms-field">
+                        <p>Antonyms &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; : &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<span id="antonyms" contenteditable="false"></span></p>
+                        <p id="antonym_err"></p>
+                        <label for="antonymsinput">
+                            <input name="antonymsinput" id="antonymsinput">
+                        </label>
+                    </div>
+                    <br>  
+                    <div class="example-field">
+                        <p>Example &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; : &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<span id="example" contenteditable="false"></span></p>
+                        <p id="example_err"></p>
+                        <label for="exampleinput">
+                            <input name="exampleinput" id="exampleinput">
+                        </label>
+                    
+                    </div>
+                    
+                    <p class="disclaimer_msg">Multiple examples needs to be entered with full stop space as the separator</p>
+                    <p id="sameValue_err"></p>
+                    </div>
+                    <div class="submit_edit">
+                <button type="submit" id="submit-btn">submit</button>
+            </div>    
+                    
+        </form>
+        </div>
+        {{#each wordList}}
+        <div class="wordlist_i">
+            <p class="word_i">{{word}}</p>
+            <p class="meaning_i">{{meaning}}</p>
+            <p class="synonyms_i">{{synonyms}}</p>
+            <p class="antonyms_i">{{antonyms}}</p>
+            <p class="examples_i">{{examples}}</p>
+        </div>
+        {{/each}}
+        {{#each yetToLearnWords}}
+        <div class="yettolearnwordlist_i">
+            <p class="word_i1">{{word}}</p>
+            <p class="meaning_i1">{{meaning}}</p>
+            <p class="synonyms_i1">{{synonyms}}</p>
+            <p class="antonyms_i1">{{antonyms}}</p>
+            <p class="examples_i1">{{examples}}</p>
+        </div>
+        {{/each}}
+        {{#each learningWords}}
+        <div class="learningwordslist_i">
+            <p class="word_i2">{{word}}</p>
+            <p class="meaning_i2">{{meaning}}</p>
+            <p class="synonyms_i2">{{synonyms}}</p>
+            <p class="antonyms_i2">{{antonyms}}</p>
+            <p class="examples_i2">{{examples}}</p>
+        </div>
+        {{/each}}
+        {{#each learntWords}}
+        <div class="learntwordslist_i">
+            <p class="word_i3">{{word}}</p>
+            <p class="meaning_i3">{{meaning}}</p>
+            <p class="synonyms_i3">{{synonyms}}</p>
+            <p class="antonyms_i3">{{antonyms}}</p>
+            <p class="examples_i3">{{examples}}</p>
+        </div>
+        {{/each}}
+        <p id="noOfWords">{{wordListLength}}</p>
+        <p id="noOfLearntWords">{{learntWordsLength}}</p>
+        </div>
+</div>
+
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+    crossorigin="anonymous"></script>
+<script src="/public/js/viewWords.js"></script>

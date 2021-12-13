@@ -1,0 +1,110 @@
+<link rel="stylesheet" href="../public/css/flashcard.css">
+<div id="startFlashcardTest">
+    
+    <div id="note"><h1 class="note_title">FLASHCARD TEST</h1><br>
+    Words from your Personal Dictionary will show up. If you know the word, click on the tick button, otherwise click on the cross button.
+    Learn the word before you move on to the next word. This test will be graded out of 10. Result will be generated when the test is submitted.
+    <div id="exit_note"><span>Note:</span>&nbsp; If you exit from the test without submitting it, your marks will be considered as 0.</div></div>
+    <Button type="button" id="flashcard-btn" class="btn btn-secondary" onclick="startTest()">Take Test</Button>
+</div>
+<div id="flashcard-content">
+    <div class="card text-white bg-secondary mb-3" id="card1">
+        <div class="front_body" id="front_card">
+            <div class="card-header">Question #<span id="cardHeader"></span></div>
+                <div class="card-body">
+                    <p class="card-title" id="cardTitle"></p>
+                        <p class="card-text" id="cardText">Do you know this word?</p>
+                            <div class="flashcard-options" id="flashcardOptions">
+                                <div class="tickMark" onclick="changeWord()">
+                                    <i class="fas fa-check fa-4x"></i>
+                                </div>
+                                <div class="crossMark" onclick="flipCard()">
+                                    <i class="fas fa-times fa-4x"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card text-white bg-secondary mb-3" id="card2">  
+                    <div class="front_body" id="back_card">
+                        <p class="card-header" id="word"></p>
+                        <div class="card-body">
+                        <p class="card-title" id="meaning"></p>
+                        <p class="card-text">Synonym : <span id="synonym"></span></p>
+                        <p class="card-text">Antonym : <span id="antonym"></span></p>
+                        <p class="card-text">Example : <span id="example"></span></p>
+                        <div class="flashcard-options1">
+                            <div class="tickMark" onclick="changeWordBack()">
+                                <i class="fas fa-check fa-4x"></i>    
+                        </div>        
+                    </div>   
+            </div>
+        </div>
+    </div>
+</div>
+<div class="hidden">
+    <Button type="button" class="hidden" id="submit-button">Submit</Button>
+</div>
+
+<div id="result_box">
+    <div class="row">
+            <div class="col-6 sub-box-result">
+                <div class="report_heading">
+                    <h2>Flashcard Report Card</h2>
+                </div>
+                <br>
+                <div class="report_scores">
+                    <h3>Marks Secured: <span id="marks_sec"></span></h3>
+                    <h3>Total Marks: <span id="total_m"></span></h3> 
+                </div>
+                <br>           
+                <div class="circle-wrap">
+                    <div class="circle">
+                        <div class="mask half">
+                            <div class="fill1"></div>
+                        </div>
+                        <div class="mask full1">
+                            <div class="fill1"></div>
+                        </div>
+                        <div id="i-circle1" class="inside-circle"></div>
+                    </div>
+                </div>
+
+                <div class="report_ending">
+                    <h4>Percentage of marks secured (%)</h4>
+                    <br>
+                    <br>
+                    <table id="report_table">
+                        <tr>
+                           <th>Question</th>
+                           <th>Correct Or Not</th> 
+                        </tr>
+                    </table>
+                    <br>
+                    <button type="button" class="btn btn-secondary" onclick="window.location.href='/flashcard/sessions'">Take Test Again</button>
+                    <br>
+                </div>
+             </div>
+    </div>
+</div> 
+{{#each flashcardList}}
+    <div class="wordlist_i">
+        <p class="word_i" >{{{word}}}</p>
+        <p class="meaning_i">{{{meaning}}}</p>
+        <p class="synonyms_i">{{{synonyms}}}</p>
+        <p class="antonyms_i">{{{antonyms}}}</p>
+        <p class="examples_i">{{{examples}}}</p>
+    </div>
+{{/each}}
+<p id="flashcard_id">{{{flashcardId}}}</p> 
+<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+        crossorigin="anonymous"></script>
+
+<script src="../../public/js/flashcard.js"></script>
+<script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/TweenMax.min.js" integrity="sha512-DkPsH9LzNzZaZjCszwKrooKwgjArJDiEjA5tTgr3YX4E6TYv93ICS8T41yFHJnnSmGpnf0Mvb5NhScYbwvhn2w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/TimelineMax.min.js" integrity="sha512-0xrMWUXzEAc+VY7k48pWd5YT6ig03p4KARKxs4Bqxb9atrcn2fV41fWs+YXTKb8lD2sbPAmZMjKENiyzM/Gagw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+        

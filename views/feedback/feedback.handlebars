@@ -1,0 +1,45 @@
+<link rel="stylesheet" href="/public/css/feedback.css">
+
+
+  <form method="POST" action="/feedback/store" class="feedback-form" id="feedback-form">
+
+  <h1 id="Feedback-h1">Feedback</h1><br>
+
+
+        <p>How would you rate this experience?<span class="required_msg">*</span></p>
+
+    <input type="radio" id="onestar" name="rating" class="rating"  value="1">
+        <label for="onestar">Extremely Dissatisfied</label><br>
+
+
+    <input type="radio" id="twostar" name="rating" class="rating" value="2">
+        <label for="twostar">Dissatisfied</label><br>
+
+         <input type="radio" id="threestar" name="rating" value="3">
+        <label for="threestar">Neutral</label><br>
+
+         <input type="radio" id="fourstar" name="rating" value="4">
+        <label for="fourstar">Satisfied</label><br>
+
+        <input type="radio" id="fivestar" name="rating" value="5">
+        <label for="fivestar">Extremely Satisfied</label><br><br>
+
+        <label for="feedback">Enter your Feedback:</label><span class="required_msg">*</span>
+        <br>
+        <textarea name="feedback" id="feedback" cols="30" rows="7"></textarea>
+        <br>
+        <br>
+    <button type="submit">Submit</button>
+    <br>
+  
+
+    <p id="error"></p>
+        </form>
+
+         <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+        crossorigin="anonymous"></script>
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    
+    <script src="/public/js/feedback.js"></script>
+
+

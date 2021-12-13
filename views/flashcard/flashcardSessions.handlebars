@@ -1,0 +1,59 @@
+<link rel="stylesheet" href="../public/css/sessions.css">
+
+{{#if insufficientWords}}  
+    <h1 class="error">Not enough words to start the Flashcard Test (more than 10 words required)</h1>
+{{else}}
+<div class="main-navbar">
+    <div class="center-navbar">
+        <form class="proceed-to-test-btn" action="/flashcard">
+            <button type="submit" class="btn btn-secondary">PROCEED TO TEST</button>
+        </form>
+    </div>    
+    <div class="right_navbar">
+        <div id="right_name">{{firstName}} {{lastName}}</div>
+            <div id="right_profile">
+                <div class="dropdown">
+                    <img id="img_profile" src="/public/uploads/{{profilePicture}}" alt="Profile picture">
+                        <div class="dropdown-content">
+                            <a id="dashboard_link" aria-label="Dashboard" href="/dashboard">Dashboard</a>
+                            <a id="profile_link" aria-label="Profile" href="/profile">Profile</a>
+                            <a id="viewwords_link" aria-label="View Words" href="/viewWords">Words</a>
+                            <a id="flashcard_link" aria-label="Flashcard Sessions" href="/flashcard/sessions">Flashcard Test</a>
+                            <a id="mcq_link" aria-label="MCQ Sessions" href="/mcq/sessions">MCQ Test</a>
+                            <a id="feedback_link" aria-label="Feedback" href="/feedback">Feedback</a>
+                            <a id="logout_link" aria-label="Logout" href="/logout">Logout</a>
+
+                        </div>
+                </div>    
+            </div>
+        </div>
+    </div>
+    <div class="results">
+        {{#if sessions}} 
+            <h1 class="f_heading">PREVIOUS TEST SCORES</h1>
+            {{#each sessions}}
+                <div class="result">
+                    <div class="test">
+                        <h2>Test <span class="test_no">{{id}}</span></h2>
+                    </div>
+                    <p class="res"><span class="res_h">Result: </span><span class="s_marks_scored">{{marks}}</span>/<span class="s_total_marks">{{total}}</span></p>
+                    <p class="res"><span class="res_h">Percentage:</span><span class="s_total_marks">{{percentage}}</span></p>
+                    <p class="right"><span class="right_h">Words you got right: </span><span class="s_correct_words">{{correct}}</span></p>
+                    <p class="wrong"><span class="wrong_h">Words you got incorrect: </span><span class="s_incorrect_words">{{incorrect}}</span></p>
+                    <p class="res"><span class="res_h">Submitted On: </span><span class="s_marks_scored">{{time}}</span></p>
+                    
+                </div>
+            {{/each}}
+        {{else}}
+            <h1 class="error">NO PREVIOUS TEST SCORES</h1>
+        {{/if}}
+    </div>
+
+{{/if}}
+
+<script src="../../public/js/flashcardsessions.js"></script>
+{{!-- <script>
+    window.addEventListener('load', (event) => {
+       document.getElementsByClassName("sidebar-flashcard")[0].style.backgroundColor="rgb(53, 51, 51)";
+    });    
+</script> --}}

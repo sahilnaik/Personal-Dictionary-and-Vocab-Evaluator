@@ -1,0 +1,89 @@
+
+<link rel="stylesheet" href="../public/css/mcq.css">
+<div id="startMCQTest">
+    <div id="note"><h1 class="note_title">MCQ TEST</h1><br>
+    Words from your Personal Dictionary will show up. Choose the correct synonym of the specified word from a choice of 4 options.This test will be graded out of 5.
+    Result will be generated when the test is submitted.
+    <div id="exit_note"><span>Note:</span>&nbsp; If you exit from the test without submitting it, your marks will be considered as 0.</div></div>
+        <Button type="button" id="mcq-btn" class="btn btn-outline-primary" onclick="startTest()">Take Test</Button>
+</div>
+<div id="mcq_box">
+    <div class="row">
+            <div class="col-9 sub-box-mcq">
+                <div class="content" id="contents">
+                    <h2 class="mcq-no" id="queNo">Question #<span id="no"></span></h2>
+                    <p class="mcq-que" id="que">Do you know the synonym of this word?</p>
+                    <p class="mcq-word" id="word"></p>
+                    <div class="options" id="option">
+                        <input type="radio" id="option1" name="mcq_ans" value="option1" onclick="optionSelect()">
+                        <label for="option1" id="label_option1"></label><br>
+                        <input type="radio" id="option2" name="mcq_ans" value="option2" onclick="optionSelect()">
+                        <label for="option2" id="label_option2"></label><br>
+                        <input type="radio" id="option3" name="mcq_ans" value="option3" onclick="optionSelect()">
+                        <label for="option3" id="label_option3"></label><br>
+                        <input type="radio" id="option4" name="mcq_ans" value="option4" onclick="optionSelect()">
+                        <label for="option4" id="label_option4"></label>
+                    </div>
+                    
+                    
+                    <div id="buttons">
+                        <Button type="button" class="btn btn-secondary" id="prev-button" onclick="prev()">Previous</Button>
+                        <Button type="button" class="btn btn-secondary" id="submit-button">Submit</Button>
+                        <Button type="button" class="btn btn-secondary" id="next-button" onclick="next()">Next</Button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="result_box">
+    <div class="row">
+            <div class="col-6 sub-box-result">
+                <div class="report_heading">
+                    <h3>MCQ Report Card</h3>
+                </div>
+                <br>
+                <div class="report_scores">
+                    <h4>Marks Secured: <span id="marks_sec"></span></h4>
+                    <h4>Total Marks: <span id="total_m"></span></h4> 
+                </div>
+                <br>           
+                <div class="circle-wrap">
+                    <div class="circle">
+                        <div class="mask half">
+                            <div class="fill1"></div>
+                        </div>
+                        <div class="mask full1">
+                            <div class="fill1"></div>
+                        </div>
+                        <div id="i-circle1" class="inside-circle"></div>
+                    </div>
+                </div>
+
+                <div class="report_ending">
+                    <h5>Percentage of marks secured (%)</h5>
+                    <br>
+                    <br>
+                    <table id="report_table">
+                        <tr>
+                           <th>Question</th>
+                           <th>Correct Or Not</th> 
+                        </tr>
+                    </table>
+                    <br>
+                    <button type="button" class="btn btn-primary" onclick="window.location.href='/mcq/sessions'" >Back to MCQ sessions</button>
+                    <br>
+                </div>
+             </div>
+    </div>
+</div>
+{{#each mcqList}}
+    <div class="mcq_i">
+        <p class="word_i">{{{question_word}}}</p>
+        <p class="option_i">{{{answer}}}</p>
+        <p class="answers_i">{{{correctAns}}}</p>
+    </div>
+{{/each}}
+<p id="mcq_id">{{{mcqId}}}</p>         
+<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+        crossorigin="anonymous"></script>
+<script src="../../public/js/mcqTest.js"></script>

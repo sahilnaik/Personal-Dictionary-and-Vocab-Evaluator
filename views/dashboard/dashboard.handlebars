@@ -1,0 +1,63 @@
+   
+<div class="main-box1">
+    <div class="row row1">
+        <div class="sub-box col-5" >
+            <div class="report_heading">
+                <p class="pro_heading">Flashcard Test Report</p>
+            </div>
+                            
+            <div class="circle-wrap">
+                <div class="circle">
+                    <div class="mask half">
+                        <div class="fill1"></div>
+                    </div>
+                    <div class="mask full1">
+                        <div class="fill1"></div>
+                    </div>
+                    <div id="i-circle1" class="inside-circle"></div>
+                </div>
+            </div>
+            <div class="report_ending">
+                <p class="pro_subheading">Percentage of marks secured (%)</p>
+            </div>                      
+        </div>
+        <div class="sub-box col-5"  >
+            <div class="report_heading">
+                <p class="pro_heading">MCQ Test Report</p>
+            </div>
+            <div class="circle-wrap">
+                <div class="circle">
+                    <div class="mask half">
+                            <div class="fill2"></div>
+                    </div>
+                    <div class="mask full2">
+                        <div class="fill2"></div>
+                    </div>
+                    <div id="i-circle2" class="inside-circle"></div>
+                </div>
+            </div>
+            <div class="report_ending">
+                <p class="pro_subheading">Percentage of marks secured (%)</p>
+            </div>
+        </div>
+    </div>
+    <div class="row row2">
+        <div class="sub-box col-5 chart-box">
+            <canvas id="myChart"></canvas>
+        </div>
+        <div class="sub-box col-5 chart-box1">
+            <canvas id="myChart1"></canvas>
+        </div>
+    </div>
+    <div class="hidden">
+        <p id="mcqHBS" class="hidden">{{{mcqScore}}}</p>
+        <p id="flashcardHBS" class="hidden">{{{flashcardScore}}}</p>
+        <p id="overallHBS" class="hidden">{{{overallScore}}}</p>
+        <p id="mcqSessionHBS" class="hidden">{{mcqSession}}</p>
+        <p id="mcqSessionIdHBS" class="hidden">{{mcqSessionId}}</p>
+        <p id="flashSessionHBS" class="hidden">{{flashcardSession}}</p>
+        <p id="flashSessionIdHBS" class="hidden">{{flashcardSessionId}}</p>
+    </div>
+</div>
+        <script src="../../public/js/dashboard.js"></script>
+    

@@ -1,0 +1,389 @@
+html,body,.main-box{
+  margin:0;
+  min-width: 1700px;
+  min-height:1300px;
+}
+
+.main-box{
+  width: 100%;
+  min-height: 120%;
+}
+
+#example_err{
+  position: relative;
+  top:100px;
+}
+.main_container{
+    position: relative;
+    min-height: 100%;
+    width: 100%;
+    padding-left: 100px;
+}
+.sidebar{
+  z-index:2;
+}
+.word_box{
+    position: relative;
+    padding: 0;
+}
+
+.progress_cal{
+  position: relative;
+  left:0px;
+}
+.percentage{
+    background-color: white;
+    position: relative;
+    left:8%;
+    top:20px;
+    font-weight: bolder;
+}
+
+.progress{
+  width:55%;
+  margin-bottom:50px;
+  background-color:lightgray;
+  position: relative;
+  left:10%;
+}
+
+.progress_desc{
+    position: relative;
+    left:60%;
+    top:1%;
+    width:200px;
+    font-weight: bolder;
+}
+
+#word-select-form{
+  position: relative;
+  left:10%;
+  z-index: 1;
+  width: 60%;
+}
+.details-box{
+  padding-top: 50px;
+  display: grid;
+  position: relative;
+  z-index: 0;
+  width: 70%;
+  right:80px;
+  min-height: 800px;
+  padding-left: 100px;
+}
+
+#details-form{
+  position: relative;
+  left:10%;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  
+  h1 {
+    margin-top: 10vh;
+    font-size: 2.5rem;
+    max-width: 500px;
+    letter-spacing: 3px;
+    text-align: center;
+    line-height: 1.5;
+    font-family: "Open Sans";
+    text-transform: capitalize;
+    font-weight: 800;
+    color: white;
+  }
+  h1 span {
+    color: #ff908b;
+  }
+  
+  form {
+    position: relative;
+    width: 18rem;
+    margin-top: 8vh;
+  }
+  
+  .chosen-value,
+  .value-list {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 90%;
+  }
+  
+  .chosen-value {
+    font-family: "Ek Mukta";
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 4px;
+    height: 4rem;
+    font-size: 1.1rem;
+    padding: 1rem;
+    background-color: #fafcfd;
+    border: 3px solid transparent;
+    transition: 0.3s ease-in-out;
+  }
+  .chosen-value::-webkit-input-placeholder {
+    color: #333;
+  }
+  .chosen-value:hover {
+    background-color: #ff908b;
+    cursor: pointer;
+  }
+  .chosen-value:hover::-webkit-input-placeholder {
+    color: #333;
+  }
+  .chosen-value:focus, .chosen-value.open {
+    box-shadow: 0px 5px 8px 0px rgba(0, 0, 0, 0.2);
+    outline: 0;
+    background-color: #ff908b;
+    color: #000;
+  }
+  .chosen-value:focus::-webkit-input-placeholder, .chosen-value.open::-webkit-input-placeholder {
+    color: #000;
+  }
+  
+  .value-list {
+    list-style: none;
+    margin-top: 4rem;
+    box-shadow: 0px 5px 8px 0px rgba(0, 0, 0, 0.2);
+    overflow: scroll;
+    max-height: 320px;
+    transition: 0.3s ease-in-out;
+    z-index: 1;
+  }
+  
+  .value-list li {
+    position: relative;
+    height: 4rem;
+    background-color: #fafcfd;
+    padding: 1rem;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    opacity: 1;
+  }
+  .value-list li:hover {
+    background-color: #ff908b;
+  }
+  .value-list li.closed {
+    max-height: 0;
+    overflow: hidden;
+    padding: 0;
+    opacity: 0;
+  }
+
+  :root {
+    --background-gradient: linear-gradient(30deg, #f39c12 30%, #f1c40f);
+    --gray: #34495e;
+    --darkgray: #2c3e50;
+  }
+  
+  select {
+    appearance: none;
+    outline: 0;
+    border: 0;
+    box-shadow: none;
+    flex: 1;
+    padding: 0 1em;
+    color: #fff;
+    background-color: var(--darkgray);
+    background-image: none;
+    cursor: pointer;
+    
+  }
+  
+  select::-ms-expand {
+    display: none;
+  }
+  
+  .select {
+    position: relative;
+    display: flex;
+    left:10%;
+    width: 55%;
+    height: 3em;
+    border-radius: .25em;
+    overflow: hidden;
+  }
+  
+  .select::after {
+    content: '\25BC';
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 1em;
+    background-color: #34495e;
+    transition: .25s all ease;
+    pointer-events: none;
+  }
+  
+  .select:hover::after {
+    color: #f39c12;
+  }
+ 
+  h1 {
+    margin: 0 0 0.25em;
+  }
+
+
+  #details-form{
+    position: relative;
+    top:100px;
+    right:20px;
+    background-color: white;
+    height: 100%;
+    width: 100%;
+    box-shadow: 0 3px 10px rgb(0 0 1 / 0.9);
+    display: none;
+  }
+  
+  .box_input{
+    display: grid;
+    justify-content: center;
+    position: relative;
+    bottom:80px;
+    right:20px;
+  }
+  .word-field{
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.9);
+    position: relative;
+    bottom:50px;
+    display: flex;
+    justify-content: center;
+    height: 60px;
+    width: 100%;
+    background:#23282D;
+  }
+
+  .word_title{
+    font-size: x-large;
+    font-weight: bold;
+    text-align: center;
+  }
+
+  .meaning-field,.synonyms-field,.antonyms-field,.example-field{
+    position: relative;
+    left:50px;
+    width: 850px;
+    
+  }
+  
+  .example-field{
+    padding-bottom: 50px;
+  }
+  .disclaimer_msg{
+    display: none;
+    font-size: medium;
+    font-weight: 500;
+    text-align: center;
+  }
+  #word{
+    position:relative;  
+    top:15px;
+    width: 100px; 
+    color:white; 
+    font-size:x-large; 
+    font-weight: bold;
+  }
+
+  #example,#meaning{
+    position: absolute;
+    overflow: scroll;
+    width:500px;
+    height: 100px;
+  }
+
+  #synonym_err,#antonym_err,#example_err{
+    font-weight: 700;
+    display: none;
+    padding-top: 20px;
+    padding-left:250px;
+}
+
+.hidden{
+  display: none;
+}
+
+.submit_edit{
+  display: none;
+}
+
+#submit-btn{
+  background-color: #000;
+  color: white;
+}
+
+#submit-btn:hover{
+  background-color: skyblue;
+  color:#000;
+}
+
+#pbar{
+  background-color: rgb(54, 224, 54);
+}
+
+p{
+  font-weight: 600;
+  font-size: 20px;
+}
+
+#exampleinput,#wordinput,#meaninginput,#synonymsinput,#antonymsinput,#user_id{
+  display: none;
+}
+
+.word_i,.meaning_i,.synonyms_i,.antonyms_i,.examples_i,.wordlist_i{
+  display: none;
+}
+
+.word_i1,.meaning_i1,.synonyms_i1,.antonyms_i1,.examples_i1,.yettolearnwordlist_i{
+  display: none;
+}
+.word_i2,.meaning_i2,.synonyms_i2,.antonyms_i2,.examples_i2,.learningwordslist_i{
+  display: none;
+}
+
+.word_i3,.meaning_i3,.synonyms_i3,.antonyms_i3,.examples_i3,.learntwordslist_i{
+  display: none;
+}
+
+#noOfWords,#noOfLearntWords{
+  display: none;
+}
+
+#example,#synonyms,#antonyms{
+  padding: 8px;
+}
+
+.edit_icon_box{
+  display: flex;
+  position: relative;
+  left:800px;
+  width: 150px;
+}
+
+#edit_icon{
+  color:black;
+
+}
+
+#edit_icon:hover{
+  color:skyblue;
+
+}
+
+.required_msg{
+  color: #de0000;
+  font-size: xx-large;
+  display: none;
+}
+
+
+#sameValue_err{
+  display: none;
+}

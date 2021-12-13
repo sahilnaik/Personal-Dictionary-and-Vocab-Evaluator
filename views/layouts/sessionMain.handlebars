@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>{{title}}</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <style media="screen">@import url(http://fonts.googleapis.com/css?family=Roboto:400,700,300);</style>
+        <link rel="stylesheet" href="../public/css/sessionMain.css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        
+    </head>
+    <body>
+        <div class="main-box">
+            <div class="sidebar">
+                <a href="/dashboard" aria-label="Dashboard" id="s_dashboard">
+                    <div class="sidebar-dashboard"><i class="far fa-user fa-2x"></i>
+                        <div class="sidebar-dashboard-text">Dashboard</div>
+                    </div>
+                </a>
+                <a href="/addWords" aria-label="Add words" id="s_addwords">
+                    <div class="sidebar-word"><i class="fas fa-file-word fa-2x"></i>
+                        <div class="sidebar-dashboard-text">Add Words</div>   
+                    </div>
+                </a>
+                <a href="/flashcard/sessions"  aria-label="Flashcard sessions" id="s_flashcard">
+                    <div class="sidebar-flashcard"><i class="fas fa-user fa-2x"></i>
+                        <div class="sidebar-dashboard-text">Flashcard</div>
+                    </div>
+                </a>
+                <a href="/mcq/sessions" aria-label="MCQ sessions" id="s_mcq">
+                    <div class="sidebar-mcq"><i class="fas fa-user fa-2x"></i>
+                        <div class="sidebar-dashboard-text">MCQ</div>
+                    </div>
+                </a>
+                <a href="/viewWords" aria-label="View Words" id="s_viewwords">
+                    <div class="sidebar-mcq"><i class="fas fa-file-word fa-2x"></i>
+                        <div class="sidebar-dashboard-text">View Words</div>
+                    </div>
+                </a>
+            </div>
+            <div class="main-dashboard">
+                {{{body}}}
+            </div>
+        </div>
+        <script src="../../public/js/sessionMain.js"></script>
+        
+        <script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/TweenMax.min.js" integrity="sha512-DkPsH9LzNzZaZjCszwKrooKwgjArJDiEjA5tTgr3YX4E6TYv93ICS8T41yFHJnnSmGpnf0Mvb5NhScYbwvhn2w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/TimelineMax.min.js" integrity="sha512-0xrMWUXzEAc+VY7k48pWd5YT6ig03p4KARKxs4Bqxb9atrcn2fV41fWs+YXTKb8lD2sbPAmZMjKENiyzM/Gagw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+        {{!-- <script  type = "text/javascript" src="mcq.js"></script> --}}
+    </body>
+</html>

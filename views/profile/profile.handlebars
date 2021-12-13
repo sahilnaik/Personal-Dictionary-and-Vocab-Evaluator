@@ -1,0 +1,55 @@
+<link rel="stylesheet" href="../public/css/profile.css">
+<div class="sub-box">
+    <div class="profile_form">
+    <form method="POST" action="/profile-upload-single" id="myForm"  enctype="multipart/form-data">
+            <div class="profile_pic_box">
+                <img id="profile_picture" src="../../public/uploads/{{profilePicture}}" alt="Profile picture">
+                <i id="pen" class="fad fa-pen fa-2x" onclick="uploadpic()">
+                    <input type="file" id="myfile" name="profile-file" required/>
+                </i>
+                
+            </div>
+        
+        </form>
+    </div>
+
+    <div class="profile_details">
+        <hr>
+    
+        <div class="pname">Name: <span id="p_name"></span></div>
+        <br>
+        <div class="pname">Email ID: {{email}}<span id="p_email"></span></div>
+        <br>
+        <div class="pname">Phone Number: {{phoneNumber}}<span id="p_phone"></span></div>
+    </div>
+
+    <div class="prog_box">
+        <hr>
+        <div id="perc2"></div>
+        <div class="progress" id="progress_2">
+            <div class="progress-bar progress-bar-striped progress-bar-animated" id="progress_bar_2" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
+        <div class="box1"><span id="wordCount2"></span>&nbsp;out of&nbsp;<span id="wordTotal2"></span>&nbsp;words are Yet To Learn</div>
+        <div id="perc3"></div>
+        <div class="progress" id="progress_3">
+            <div class="progress-bar progress-bar-striped progress-bar-animated" id="progress_bar_3" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
+        <div class="box2"><span id="wordCount3"></span>&nbsp;out of&nbsp;<span id="wordTotal3"></span>&nbsp;words are Learning</div>
+        <div id="perc1"></div>
+        <div class="progress" id="progress_1">
+            <div class="progress-bar progress-bar-striped progress-bar-animated" id="progress_bar_1" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
+        <div class="box3"><span id="wordCount1"></span>&nbsp;out of&nbsp;<span id="wordTotal1"></span>&nbsp;words are Learnt</div>
+        
+    </div>
+    <p id="firstName">{{{firstName}}}</p>
+    <p id="lastName">{{{lastName}}}</p>
+    <p id="profilePicture">{{{profilePicture}}}</p>
+    <p id="email">{{{email}}}</p>
+    <p id="noOfWords">{{{wordListLength}}}</p>
+    <p id="noOfLearntWords">{{{learntWordsLength}}}</p>
+    <p id="noOfLearningWords">{{{learningWordsLength}}}</p>
+    <p id="noOfYetToLearnWords">{{{yetToLearnWordsLength}}}</p>
+</div>
+<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+<script src="../../public/js/profile.js"></script>

@@ -1,0 +1,264 @@
+html,body,.main-box,.main-dashboard{
+ height: 100%;
+ width: 100%;
+}
+
+#startFlashcardTest{
+    display: grid;
+    justify-items: center;
+    margin: auto;
+}
+
+#flashcard-btn{
+    width: 100px;
+    height: 60px;
+}
+
+#flashcard-content{
+    display: none;
+    height: 100%;
+    width: 90%;
+}
+
+#card1{
+    height:500px; 
+    position: relative;
+    top:10%;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+}
+
+#card2{
+    display: none;
+    height:500px; 
+    position: relative;
+    top:10%;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+    left:10%;
+}
+
+.flashcard-options{
+    display:flex; 
+    justify-content: space-between;
+    padding-left:200px;
+    padding-right:200px;
+    padding-top:200px;
+}
+
+.flashcard-options1{
+    display:flex; 
+    justify-content: center;
+    padding-left:200px;
+    padding-right:200px;
+    padding-top:100px;
+    padding-bottom: 100px;
+}
+
+
+#result_box{
+    display: none;
+}
+
+.sub-box-result{
+    display: grid;
+    margin: auto;
+    margin-top: 80px;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+    place-content: center;
+    background-color: white;
+}
+
+table, th, td {
+    padding:10px;
+    border:2px solid black;
+}
+
+td{
+    font-weight: 600;
+}
+
+#result_table{
+    position: relative;
+    right:70px;
+    width: 100%;
+}
+
+.mask .fill1,.mask .fill2,.mask .fill3{
+    clip: rect(0px, 75px, 150px, 0px);
+    background-color: #3aed22;
+  }
+
+
+    
+.circle-wrap {
+    margin: 150px auto;
+    width: 150px;
+    height: 150px;
+    background: #fefcff;
+    border-radius: 50%;
+    border: 1px solid #cdcbd0;
+}
+
+.circle-wrap .circle .mask,
+.circle-wrap .circle .fill1,
+.circle-wrap .circle .fill2,
+.circle-wrap .circle .fill3 {
+  width: 150px;
+  height: 150px;
+  position: absolute;
+  border-radius: 50%;
+}
+
+.mask .fill1,.mask .fill2,.mask .fill3{
+  clip: rect(0px, 75px, 150px, 0px);
+  background-color: #227ded;
+}
+
+.circle-wrap .circle .mask {
+    clip: rect(0px, 150px, 150px, 75px);
+}
+
+/* :root{
+    --startdegree1: ;
+    --enddegree1: ;
+    --animation1: fill ease-in-out 3s;
+} */
+
+/* .mask.full,
+.circle .fill {
+    animation: fill ease-in-out 3s;
+    transform: var(--enddegree1);
+}
+  
+@keyframes fill{
+   0% {
+      transform: var(--startdegree1);
+    }
+    100% {
+      transform: var(--enddegree1);
+    }
+} */
+
+.circle-wrap .inside-circle {
+    width: 122px;
+    height: 122px;
+    border-radius: 50%;
+    background: #d2eaf1;
+    line-height: 120px;
+    text-align: center;
+    margin-top: 14px;
+    margin-left: 14px;
+    color: #1e51dc;
+    position: absolute;
+    z-index: 100;
+    font-weight: 700;
+    font-size: 2em;
+}
+
+.chart-box{
+    display: flex;
+    justify-content: center;
+}
+
+.chart-box1{
+    display: flex;
+    justify-content: center;
+}
+
+
+.report_heading{
+    text-align: center;
+    position: relative;
+    top:80px;
+}
+
+.report_ending{
+    text-align: center;
+    position: relative;
+    bottom:100px;
+}
+
+.report_scores{
+    position: relative;
+    top:100px;
+    margin: auto;
+}
+
+.hidden{
+    display: none;
+}
+
+#i-circle1{
+    background-color: rgb(217, 247, 174);
+}
+
+#cardTitle,#cardText{
+    text-align: center;
+}
+
+#cardTitle{
+    font-size: xx-large;
+    font-weight: 700;
+}
+
+#card1,#card2{
+    max-width: 70rem;
+}
+
+#word,#meaning{
+    text-align: center;
+    font-size: xx-large;
+    font-weight: 700;
+}
+
+.card-text,.card-title{
+    text-align: center;
+}
+
+#dashboard_link,#profile_link,#flashcard_link,#mcq_link,#logout_link,#viewwords_link{
+    text-decoration: none;
+}
+
+#flashcard_id,.examples_i,.antonyms_i,.synonyms_i,.meaning_i,.word_i{
+    display: none;
+}
+
+#note{
+    justify-content: center;
+    display: grid;
+    width: 90%;
+    padding: 0px;
+    height: 300px;
+    border:10px rgb(29, 2, 25);
+    border-style: double;
+    margin-bottom: 50px;
+    font-size: larger;
+    font-weight: 600;
+    position: relative;
+    bottom:100px;
+}
+#exit_note{
+    text-align: center;
+    color: red;
+}
+
+#exit_note span{
+    color: black;
+    font-weight: 800;
+}
+
+.note_title{
+    font-size: xx-large;
+    font-weight: 900;
+    text-align: center;
+    color: white;
+    position: relative;
+    background-color: black;
+}
+
+#report_table{
+    margin-left: 50px;
+}
+
+.tickMark, .crossMark {
+    cursor: pointer;
+}

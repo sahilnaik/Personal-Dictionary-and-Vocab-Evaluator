@@ -1,0 +1,139 @@
+* {
+  box-sizing: border-box;
+  font-family: "Montserrat", sans-serif;
+  text-align: center;
+  color: #23282d;
+}
+.note {
+  color: #23282d;
+}
+
+/* Full-width input fields */
+input[type="text"],
+input[type="password"],
+input[type="tel"] {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  display: inline-block;
+
+  background: #f1f1f1;
+}
+h1 {
+  font-weight: bolder;
+  text-align: center;
+}
+.input-error {
+  border-color: #ee0000;
+  border-width: 2px;
+}
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="number"]:focus {
+  background-color: whitesmoke;
+}
+input[type="text"]:hover,
+input[type="password"]:hover,
+input[type="number"]:hover {
+  outline: none;
+  background-color: whitesmoke;
+}
+a {
+  color: #23282d;
+  text-decoration: none;
+}
+a:hover {
+  color: #23282d;
+  text-decoration: underline;
+}
+form {
+  background-color: #f1f1f1;
+  color: #f1f1f1;
+  padding: 20px;
+  border-radius: 5px;
+  margin: 0 auto;
+  width: 50%;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+hr {
+  border: 1px solid #f1f1f1;
+  margin-bottom: 25px;
+}
+.error {
+  color: #ee0000;
+}
+/* Extra styles for the cancel button */
+.cancelbtn {
+  padding: 14px 20px;
+  background-color: whitesmoke;
+  border-color: #f1f1f1;
+  color: red;
+  border-radius: 10px;
+}
+.cancelbtn:hover {
+  background-color: red;
+  color: white;
+}
+.signupbtn:hover {
+  background-color: #23282de3;
+  color: white;
+}
+.signupbtn {
+  padding: 14px 20px;
+  background-color: black;
+  border-color: #f1f1f1;
+  color: white;
+  border-radius: 10px;
+}
+/* Float cancel and signup buttons and add an equal width */
+.cancelbtn,
+.signupbtn {
+  float: left;
+  width: 50%;
+}
+
+/* Add padding to container elements */
+.container {
+  padding: 16px;
+}
+
+/* Clear floats */
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+/* Change styles for cancel button and signup button on extra small screens */
+@media screen and (max-width: 300px) {
+  .cancelbtn,
+  .signupbtn {
+    width: 100%;
+  }
+}
+#pass-error,
+#email-error,
+#phone-error,
+#firstname-error,
+#lastname-error {
+  display: none;
+  padding-bottom: 20px;
+  color: #ee0000;
+}
+footer {
+  background-color: #23282d;
+  color: whitesmoke;
+  padding: 10px;
+  text-align: center;
+  font-size: 12px;
+  position: bottom;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+}
+body {
+  margin: 0;
+}
+p {
+  color: whitesmoke;
+}

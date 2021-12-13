@@ -1,0 +1,102 @@
+html,body{
+    height: 120%;
+    width: 100%;
+}
+
+.hidden {
+    display: none;
+}
+
+.sub-box{
+    padding-left: 30px;
+    display: grid;
+    grid-template-rows: 25% 15% 25%;
+    min-height: 100%;
+}
+
+.profile_pic_box{
+    display: flex;
+    justify-content: center;
+}
+
+#profile_picture{
+    position:relative;
+    top:0px;
+    right:50px;
+    border-radius: 50%;
+    border:1px solid white;
+    width: 200px;
+    height: 200px;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.8);
+}
+
+#pen{
+    position: relative;
+    top:160px;
+    right:80px;
+}
+
+#pen:hover{
+    transition: transform .5s ease;
+    transform: scale(0.9);
+}
+
+#myfile{
+    display: none;
+}
+
+
+.pname{
+    font-weight: 700;
+    font-size: large;
+}
+
+hr{
+    border:1px black solid;
+    width:100%;
+}
+
+.hidden{
+    display: none;
+}
+
+#progress_i{
+    width:800px;
+}
+
+.prog_box{
+    display: grid;
+    justify-items: center;
+    margin-top:50px;
+}
+
+#progress_1,#progress_2,#progress_3{
+    width: 70%;
+}
+
+#firstName,#lastName,#profilePicture,#email,#noOfWords,#noOfLearntWords,#noOfLearningWords,#noOfYetToLearnWords{
+    display: none;
+}
+
+#perc1,#perc2,#perc3{
+    font-weight: 600;
+    position: relative;
+    right:38%;
+    top:15px;
+}
+
+.box1,.box2,.box3{
+    display: flex;
+    position: relative;
+    left:30%;
+    bottom:40px;
+    font-weight: 600;
+}
+
+#progress_bar_1{
+    background-color: yellowgreen;
+}
+
+#progress_bar_2{
+    background-color: tomato;
+}
