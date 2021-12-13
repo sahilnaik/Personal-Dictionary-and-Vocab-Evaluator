@@ -258,3 +258,7 @@ td{
 #report_table{
     margin-left: 50px;
 }
+
+.tickMark, .crossMark {
+    cursor: pointer;
+}
