@@ -384,7 +384,7 @@ function elementReturn(selection){
     }
     antonymsString+=antonymList[antonymList.length-1];
     console.log(example[0]);
-    let exampleList=example[0].split('.');
+    let exampleList=example[0].split('. ');
     let examplesString="";
     i=0;
     while(i<exampleList.length-1){

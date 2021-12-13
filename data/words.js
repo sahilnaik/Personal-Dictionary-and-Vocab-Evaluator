@@ -322,17 +322,25 @@ const editWord = async function editWord(userId, word, synonym, antonym, example
     }
 
     if (countA != editingWord.antonyms.length) {
-        antonym.forEach(x =>{
-            x = x.trim()
-        })
-        editingWord.antonyms = antonym
+        if (countA == -1) {
+            editingWord.antonyms = []
+        }else{
+            antonym.forEach(x =>{
+                x = x.trim()
+            })
+            editingWord.antonyms = antonym    
+        }
     }
 
     if (countE != editingWord.examples.length) {
-        example.forEach(x =>{
-            x = x.trim()
-        })
-        editingWord.examples = example
+        if (countE == -1) {
+            editingWord.examples = []
+        }else{
+            example.forEach(x =>{
+                x = x.trim()
+            })
+            editingWord.examples = example    
+        }
     }
 
 
