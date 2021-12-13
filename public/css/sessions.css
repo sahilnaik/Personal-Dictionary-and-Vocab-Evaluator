@@ -64,9 +64,11 @@
 
 .error{
     display: grid;
-    justify-content: right;
-    transform: translate(50%, 50%);
+    position: relative;
+    text-align: center;
+    font-size: xx-large;
 }
+
 .main-navbar{
     z-index: 2;
 }
