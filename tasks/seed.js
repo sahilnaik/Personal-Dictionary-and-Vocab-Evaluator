@@ -1,22 +1,23 @@
-const { users } = require("../data/index")
+const { users, feedback } = require("../data/index")
 const { addWordSeed, updateCounters } = require("../data/words")
 const { createSeedSession } = require("../data/flashcard")
 const { createSeedMCQ } = require("../data/mcq")
 
 const createSeedUser = async () => {  
   try {
+    let firstName = "John", lastName = "Doe", email = "johndoe@gmail.com"
     let newUser = await users.create(
-      "John",
-      "Doe",
-      "johndoe@gmail.com",
+      firstName,
+      lastName,
+      email,
       "123-456-7890",
       "qwertyuiop"
     ) 
     
-    console.log("Email Address: johndoe@gmail.com")
+    console.log(`Email Address: ${email}`)
     console.log("Password: qwertyuiop")
 
-    return newUser
+    return {newUser, firstName, lastName, email}
   } catch (e) {
     console.log(e)
   }
@@ -886,16 +887,26 @@ const addMCQSeed = async function addMCQSeed(seedUser) {
     console.log(e);
   }
 }
-const main = async () => {
-  let seedUser = await createSeedUser()
-  let word1 = await addWordSeeds(seedUser)
+
+const feedbackSeed = async function feedbackSeed(firstName, lastName, email, rating, feedbackText) {
   try {
-  let countersUpdate = await updateCounters(seedUser) 
+    let seedFeedback = await feedback.create(firstName, lastName, email, rating, feedbackText)
   } catch (e) {
     console.log(e);
   }
-  let seedSession = await addSeedSession(seedUser)
-  let seedMCQSession = await addMCQSeed(seedUser)
+  
+}
+const main = async () => {
+  let seedUser = await createSeedUser()
+  let word1 = await addWordSeeds(seedUser.newUser)
+  try {
+  let countersUpdate = await updateCounters(seedUser.newUser) 
+  } catch (e) {
+    console.log(e);
+  }
+  let seedSession = await addSeedSession(seedUser.newUser)
+  let seedMCQSession = await addMCQSeed(seedUser.newUser)
+  let feedbackSeedResult = await feedbackSeed(seedUser.firstName, seedUser.lastName, seedUser.email, 5, "Amazing Concept.")
 }
 
 main()
