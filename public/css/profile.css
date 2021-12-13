@@ -21,7 +21,7 @@ html,body{
 
 #profile_picture{
     position:relative;
-    top:50px;
+    top:0px;
     right:50px;
     border-radius: 50%;
     border:1px solid white;
@@ -32,7 +32,7 @@ html,body{
 
 #pen{
     position: relative;
-    top:210px;
+    top:160px;
     right:80px;
 }
 
@@ -67,6 +67,7 @@ hr{
 .prog_box{
     display: grid;
     justify-items: center;
+    margin-top:50px;
 }
 
 #progress_1,#progress_2,#progress_3{
