@@ -10,7 +10,7 @@ html,body{
 .sub-box{
     padding-left: 30px;
     display: grid;
-    grid-template-rows: 50% 25% 25%;
+    grid-template-rows: 25% 15% 25%;
     min-height: 100%;
 }
 
