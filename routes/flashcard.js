@@ -13,20 +13,27 @@ router.get('/', async(req,res)=>{
         let firstName= req.session.user.firstName;
         let lastName= req.session.user.lastName;
         if(profilePicture==null || profilePicture==undefined || profilePicture=='' || firstName==null || firstName==undefined || firstName=='' || lastName==null || lastName==undefined || lastName==''){
-            res.status(400).json({error: "Please update your profile"});
+       //     res.status(400).json({error: "Please update your profile"});
+            res.status(400).render('httpErrors/error', {code:'400', description: 'Please update your profile'});
+            return;
         }
         if(!ObjectId.isValid(req.session.user._id)){
-            res.status(400).json({error: "Invalid id"});
+         
+            res.status(400).render('httpErrors/error', {code:'400', description: 'Invalid user id'});
+            return;
         }
         const flashcardList = await flashcardData.create(req.session.user._id);
         res.render('flashcard/flashcard',{ title:"Flashcard",profilePicture: profilePicture, firstName: firstName, lastName: lastName, flashcardList: flashcardList.words, flashcardId: flashcardList._id});
+        return;
         }
         else{
             res.redirect('/login');
         }
 
     }catch(e){
-        res.status(500).json({error:e});
+       
+        res.status(500).render('httpErrors/error', {code:'500', description: e});
+        return; 
     }
 });
 
@@ -37,27 +44,35 @@ router.get('/sessions', async (req, res) => {
         let firstName= req.session.user.firstName;
         let lastName= req.session.user.lastName;
         if(profilePicture==null || profilePicture==undefined || profilePicture=='' || firstName==null || firstName==undefined || firstName=='' || lastName==null || lastName==undefined || lastName==''){
-            res.status(400).json({error: "Please update your profile"});
+          //  res.status(400).json({error: "Please update your profile"});
+            res.status(400).render('httpErrors/error', {code:'400', description: 'Please update your profile'});
+            return;
         }
         if(!ObjectId.isValid(req.session.user._id)){
-            res.status(400).json({error: "Invalid id"});
+        //    res.status(400).json({error: "Invalid id"});
+            res.status(400).render('httpErrors/error', {code:'400', description: 'Invalid user id'});
+            return;
         }
         
         const noOfWords = await words.noOfWords(req.session.user._id);
         if (noOfWords <= 9) {
             res.render('flashcard/flashcardSessions',{title:"Flashcard",layout: "sessionMain", insufficientWords: true, profilePicture: profilePicture, firstName: firstName, lastName: lastName});
+            return;
        
         } else{
             const sessionList = await flashcardData.getLastFiveSessions(req.session.user._id);
             
             res.render('flashcard/flashcardSessions',{title:"Flashcard",layout: "sessionMain", sessions:sessionList, profilePicture: profilePicture, firstName: firstName, lastName: lastName});
+            return;
         }
         }
         else{
             res.redirect('/login');
         }
     }catch(e){
-        res.status(500).json({error:e});
+       // res.status(500).json({error:e});
+        res.status(500).render('httpErrors/error', {code:'500', description: e});
+        return;
     }
 });
 
@@ -68,16 +83,20 @@ router.post("/flashcardsubmit", async (req, res) => {
     let userId = req.session.user._id;
     let sessionId = req.body.id;
     if(!Array.isArray(stuff)){
-        res.status(400).json({error: "Invalid data"});
+        
+        res.status(400).render('httpErrors/error', {code:'400', description: 'Invalid data'});
+        return;
     }
-    if(!ObjectId.isValid(sessionId)){
-        res.status(400).json({error: "Invalid session id"});
-    }
+    
     if(typeof numberOfCorrect !== 'string'){
-        res.status(400).json({error: "Invalid number of correct"});
+      
+        res.status(400).render('httpErrors/error', {code:'400', description: 'Invalid number of correct'});
+        return;
     }
     if(!ObjectId.isValid(userId)){
-        res.status(400).json({error: "Invalid user id"});
+       
+        res.status(400).render('httpErrors/error', {code:'400', description: 'Invalid user id'});
+        return;
     }
         
 
@@ -86,7 +105,9 @@ router.post("/flashcardsubmit", async (req, res) => {
         const flashcardList = await flashcardData.updateSession(userId, sessionId, stuff, numberOfCorrect);
        
     } catch (error) {
-        return res.status(500).json({ error: error });
+      
+        res.status(500).render('httpErrors/error', {code:'500', description: error});
+        return;
     }
         
     
