@@ -265,7 +265,7 @@ e.addEventListener('change', (event) => {
         word["meaning"]=meaningsList[i];
         word["synonyms"]=synonymsList[i].split(",");
         word["antonyms"]=antonymsList[i].split(",");
-        word["example"]=examplesList[i].split(",");        
+        word["example"]=examplesList[i].split(". ");        
         wordList.push(word);
         word={};
                 
@@ -384,11 +384,17 @@ function elementReturn(selection){
     }
     antonymsString+=antonymList[antonymList.length-1];
     console.log(example[0]);
-    let exampleList=example[0].split('. ');
+    let exampleList=example[0].split('.');
     let examplesString="";
     i=0;
     while(i<exampleList.length-1){
-        examplesString+=exampleList[i]+". ";
+        if(exampleList[i][0]==','){
+            examplesString+=exampleList[i].slice(1,exampleList[i].length)+". ";
+        }
+        else{
+            examplesString+=exampleList[i]+". ";
+        }
+        
         i++;
     }
     examplesString+=exampleList[exampleList.length-1];
