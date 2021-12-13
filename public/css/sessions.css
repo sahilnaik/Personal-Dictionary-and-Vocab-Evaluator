@@ -67,6 +67,7 @@
     position: relative;
     text-align: center;
     font-size: xx-large;
+    justify-content: end;
 }
 
 .main-navbar{
