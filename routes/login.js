@@ -37,7 +37,7 @@ router.post("/", async (req, res) => {
   try {
     const checkUser = await userData.get(email, password);
     if (checkUser) {
-      req.session.user = { email: checkUser.email, firstName: checkUser.firstName, lastName: checkUser.lastName, _id: checkUser._id, profilePicture: checkUser.profilePicture };
+      req.session.user = { email: checkUser.email, firstName: checkUser.firstName, lastName: checkUser.lastName, _id: checkUser._id, profilePicture: checkUser.profilePicture, phoneNumber: checkUser.phoneNumber };
       // console.log(req.session)
       return res.redirect("/dashboard");
     }

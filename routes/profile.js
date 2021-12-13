@@ -11,12 +11,13 @@ router.get('/', async(req,res)=>{
         lastName=req.session.user.lastName;
         profilePicture=req.session.user.profilePicture;
         email = req.session.user.email;
+        phoneNumber = req.session.user.phoneNumber;
         let id = req.session.user._id;
         const { wordList, yetToLearnWords, learningWords, learntWords } = await getAll(id);
         return res.render('profile/profile', {title:"Profile",firstName: firstName,lastName: lastName, profilePicture: profilePicture, email:email,
         wordList: wordList, wordListLength: wordList.length, yetToLearnWords: yetToLearnWords, learningWords: learningWords,
         learntWords: learntWords, yetToLearnWordsLength: yetToLearnWords.length, learningWordsLength: learningWords.length,
-        learntWordsLength: learntWords.length });
+        learntWordsLength: learntWords.length, phoneNumber: phoneNumber});
     }catch(e){
         
         return res.status(500).render('httpErrors/error', {code:'500', description: e});
