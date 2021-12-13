@@ -274,9 +274,6 @@ html,body,.main-box{
     
   }
   
-  #meaning::-webkit-scrollbar,#example::-webkit-scrollbar {
-    display: none;
-  }
   .example-field{
     padding-bottom: 50px;
   }
