@@ -1,6 +1,6 @@
 {
     "mongoConfig": {
-        "serverUrl": "mongodb://localhost:27017/",
-        "database": "Personal_Dictionary_and_Vocab_Evaluator"
+        "serverUrl": "mongodb+srv://team4:team4@cluster0.ozifv.mongodb.net/test?retryWrites=true&w=majority",
+        "database": "Personal_Dict_Vocab_Eval"
       }
 }

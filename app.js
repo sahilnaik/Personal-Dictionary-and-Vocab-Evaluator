@@ -193,8 +193,11 @@ app.use("/feedback", (req, res, next) => {
 
 configRoutes(app);
 
-app.listen(3000, () => {
-  console.log("We've now got a server!");
-  console.log('Your routes will be running on http://localhost:3000');
-});
+const PORT = process.env.PORT ||5000;
+ 
+// Executing the server on given port number
 
+app.listen(PORT, () => {
+  console.log("We've now got a server!");
+
+});
